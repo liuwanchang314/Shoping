@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Shopping</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_index">IndexActivity</string>
+    <string name="title_activity_shops">ShopsActivity</string>
+    <string name="title_activity_buy">BuyActivity</string>
+    <string name="title_activity_user">UserActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_retrieve">RetrieveActivity</string>
+    <string name="title_activity_edit_pwd">EditPwdActivity</string>
+    <string name="title_activity_finan_info">FinanInfoActivity</string>
+    <string name="title_activity_regn">RegnActivity</string>
+    <string name="title_activity_product_info">Product_infoActivity</string>
+    <string name="title_activity_product_info_item">Product_info_itemActivity</string>
+
+</resources>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1" >
+
+        <TextView
+            android:textSize="16dp"
+            android:id="@+id/f_item_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="支出" />
+
+        <TextView
+            android:textSize="16dp"
+            android:textColor="#9A9A9A"
+            android:id="@+id/f_item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/f_item_state"
+            android:text="(2015-10-09 16:58:40)" />
+
+        <TextView
+            android:id="@+id/f_item_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:text="-28.50" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@+id/f_item_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[91家纺网]"
+            android:textColor="#FF5905" />
+
+        <TextView
+            android:id="@+id/f_item_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/f_item_label"
+            android:textColor="#9A9A9A"
+            android:text="订单号为7000052322540212021的订单冻结款解冻并转移至商家或代发公司账户" />
+    </RelativeLayout>
+
+</LinearLayout>

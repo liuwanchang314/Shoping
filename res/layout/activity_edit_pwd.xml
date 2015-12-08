@@ -1,0 +1,134 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    tools:context="com.activity.EditPwdActivity" >
+
+    <RelativeLayout
+        android:id="@+id/editpwd_rt_top"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/white" >
+
+        <RelativeLayout
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:background="#E4E4E4" >
+
+            <Button
+                android:id="@+id/editpwd_btn_back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/goback" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="重置密码"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/editpwd_lt_from"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editpwd_rt_top"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#DEDEDE" />
+
+        <RelativeLayout
+            android:id="@+id/editpwd_rt_one"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp" >
+
+            <TextView
+                android:id="@+id/editpwd_tv_one"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="重置密码"
+                android:textColor="#686868" />
+
+            <EditText
+                android:id="@+id/editpwd_txt_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/editpwd_tv_one"
+                android:background="@null"
+                android:hint="输入新密码"
+                android:password="true"
+                android:singleLine="true" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#DEDEDE" />
+
+        <RelativeLayout
+            android:id="@+id/editpwd_rt_two"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp" >
+
+            <TextView
+                android:id="@+id/editpwd_tv_two"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="确认密码"
+                android:textColor="#686868" />
+
+            <EditText
+                android:id="@+id/editpwd_txt_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/editpwd_tv_two"
+                android:background="@null"
+                android:hint="再次输入密码"
+                android:password="true"
+                android:singleLine="true" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.1dp"
+            android:background="#DEDEDE" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/editpwd_btn_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/editpwd_lt_from"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/ret_btn_submit" />
+
+</RelativeLayout>

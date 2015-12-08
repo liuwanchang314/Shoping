@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1.0" />
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.0"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.1dp"
+            android:background="#999999" />
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            
+            android:layout_height="0dp"
+            android:layout_weight="0.13" >
+
+            <RadioGroup
+                android:id="@+id/tab_rg_menu"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="#FFFFFF"
+                android:gravity="bottom"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/tab_rb_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:button="@null"
+                    android:checked="true"
+                    android:drawablePadding="4dp"
+                    android:drawableTop="@drawable/bg_checkbox_icon_menu_0"
+                    android:gravity="center"
+                    android:text="首 页"
+                    android:textColor="#F84E01"
+                    android:textSize="12sp" />
+
+               
+                <RadioButton
+                    android:id="@+id/tab_rb_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:button="@null"
+                    android:drawablePadding="4dp"
+                    android:drawableTop="@drawable/bg_checkbox_icon_menu_1"
+                    android:gravity="center"
+                    android:text="联系商家 "
+                    android:textColor="#8E8E8E"
+                    android:textSize="12sp" />
+
+               
+
+                <RadioButton
+                    android:id="@+id/tab_rb_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:button="@null"
+                    android:drawablePadding="4dp"
+                    android:drawableTop="@drawable/bg_checkbox_icon_menu_2"
+                    android:gravity="center"
+                    android:text="购物车 "
+                    android:textColor="#8E8E8E"
+                    android:textSize="12sp" />
+
+                
+
+                <RadioButton
+                    android:id="@+id/tab_rb_4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:button="@null"
+                    android:drawablePadding="4dp"
+                    android:drawableTop="@drawable/bg_checkbox_icon_menu_3"
+                    android:gravity="center"
+                    android:text="个人中心"
+                    android:textColor="#8E8E8E"
+                    android:textSize="12sp" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/main_tab_new_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|top"
+                android:layout_marginLeft="60dip"
+                android:layout_marginTop="1dip"
+                android:gravity="center"
+                android:text="112312321"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+
+</TabHost>

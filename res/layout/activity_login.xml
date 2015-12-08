@@ -1,0 +1,221 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    tools:context="com.activity.LoginActivity" >
+
+    <RelativeLayout
+        android:id="@+id/login_rt_top"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/white" >
+
+        <RelativeLayout
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:background="#E4E4E4" >
+
+            <Button
+                android:id="@+id/login_btn_back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/goback" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="用户登录"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/login_lt_from"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_rt_top"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#DEDEDE" />
+
+        <RelativeLayout
+            android:id="@+id/login_rt_one"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp" >
+
+            <TextView
+                android:id="@+id/login_tv_one"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="手机号码"
+                android:textColor="#686868" />
+
+            <EditText
+                android:id="@+id/login_txt_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/login_tv_one"
+                android:background="@null"
+                android:hint="输入手机号码"
+                android:singleLine="true" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#DEDEDE" />
+
+        <RelativeLayout
+            android:id="@+id/login_rt_two"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp" >
+
+            <TextView
+                android:id="@+id/login_tv_two"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="手机验证码"
+                android:textColor="#686868" />
+
+            <EditText
+                android:id="@+id/login_txt_two"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/login_tv_two"
+                android:background="@null"
+                android:singleLine="true" />
+
+            <View
+                android:layout_width="0.1dp"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/login_txt_two"
+                android:background="#DEDEDE" />
+
+            <TextView
+                android:id="@+id/login_code_two"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/login_txt_two"
+                android:gravity="center"
+                android:text="获取验证码"
+                android:textColor="#686868" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.1dp"
+            android:background="#DEDEDE" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/login_btn_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/login_lt_from"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/login_btn_submit" />
+
+    <CheckBox
+        android:id="@+id/login_check_pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_btn_submit"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:button="@drawable/bg_checkbox_icon_menu_4"
+        android:paddingLeft="5dp"
+        android:text="记住密码"
+        android:textColor="#686868" />
+
+    <TextView
+        android:id="@+id/login_tv_getPwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/login_btn_submit"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="13dp"
+        android:text="找回密码"
+        android:textColor="#686868" />
+
+    <Button
+        android:id="@+id/login_btn_reg"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_below="@+id/login_tv_getPwd"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/login_btn_reg" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.1dp"
+        android:layout_above="@+id/login_lt_bottom"
+        android:background="#DEDEDE" />
+
+    <LinearLayout
+        android:id="@+id/login_lt_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/login_btn_left"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:text="账号登录"
+            android:textColor="#686868" />
+
+        <View
+            android:layout_width="0.1dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:background="#DEDEDE" />
+
+        <Button
+            android:id="@+id/login_btn_right"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:text="微信登录"
+            android:textColor="#686868" />
+    </LinearLayout>
+
+</RelativeLayout>

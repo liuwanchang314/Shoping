@@ -1,0 +1,222 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    tools:context="com.activity.IndexActivity" >
+    
+     <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:orientation="vertical"
+        android:layout_weight="0.7"
+        
+        >
+
+        <RelativeLayout
+            android:id="@+id/index_rt_top"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.6"
+            android:background="@drawable/top_bg" >
+        <TextView
+            android:id="@+id/logoName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="19dp"
+            android:text="南通风向标纺织品有限公司"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+         <ImageView
+             android:id="@+id/logoLook"
+             android:layout_width="25dp"
+             android:layout_height="25dp"
+             android:layout_alignLeft="@+id/logoName"
+             android:layout_below="@+id/logoName"
+             android:src="@drawable/index_look" />
+
+         <TextView
+             android:id="@+id/index_tv_lookNum"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignBottom="@+id/logoLook"
+             android:layout_toRightOf="@+id/logoLook"
+             android:text="5190人浏览"
+             android:textColor="@color/white"
+             android:textSize="14dp" />
+
+		</RelativeLayout>
+        <RadioGroup
+            android:id="@+id/index_tab_rg_menu"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/logo"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:background="#FFFFFF"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/index_tab_rb_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:text="全部产品"
+                android:textColor="#444444"
+                android:textSize="16dp" />
+
+            <View
+                android:layout_width="0.1dp"
+                android:layout_height="fill_parent"
+                android:background="#DEDEDE" />
+
+            <RadioButton
+                android:id="@+id/index_tab_rb_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:button="@null"
+                android:gravity="center"
+                android:text="产品分类 "
+                android:textColor="#444444"
+                android:textSize="16dp" />
+
+            <View
+                android:layout_width="0.1dp"
+                android:layout_height="fill_parent"
+                android:background="#DEDEDE" />
+
+            <RadioButton
+                android:id="@+id/index_tab_rb_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:button="@null"
+                android:gravity="center"
+                android:text="公司公告 "
+                android:textColor="#444444"
+                android:textSize="16dp" />
+
+            <View
+                android:layout_width="0.1dp"
+                android:layout_height="fill_parent"
+                android:background="#DEDEDE" />
+
+            <RadioButton
+                android:id="@+id/index_tab_rb_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:button="@null"
+                android:gravity="center"
+                android:text="下架公告"
+                android:textColor="#444444"
+                android:textSize="16dp" />
+        </RadioGroup>
+
+       
+
+       
+
+    
+    </LinearLayout>
+    
+
+    <LinearLayout
+        android:id="@+id/index_lt_search"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:layout_weight="0.2"
+        android:background="@drawable/order_search_style"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/fanslist_txt_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:hint="搜索店铺的宝贝" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:src="@drawable/index_camera" />
+
+            <View
+                android:layout_width="0.1dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:background="#E1E1E1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:src="@drawable/index_search" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:layout_below="@+id/index_lt_search"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/index_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+        </ListView>
+
+    </LinearLayout>
+  </LinearLayout>
+
+      <ImageView
+          android:id="@+id/logo"
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+          android:layout_alignParentLeft="true"
+          android:layout_alignParentTop="true"
+          android:layout_marginTop="22dp"
+          android:src="@drawable/logo" />
+
+</RelativeLayout>

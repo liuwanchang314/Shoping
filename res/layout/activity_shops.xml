@@ -1,0 +1,158 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.activity.ShopsActivity" >
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        >
+		<include layout="@layout/relationctivity_top"/>        
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:orientation="vertical"
+        >
+		<LinearLayout 
+		    android:layout_width="match_parent"
+		    android:layout_height="0dp"
+		    android:layout_weight="1.8"
+		    android:orientation="horizontal"
+		    >
+		    <TextView 
+		        android:id="@+id/relation_tv_goongsimingcheng"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="南通风向标纺织品有限公司"
+		        android:textSize="20sp"
+		        android:layout_gravity="center_vertical"
+		        />
+		</LinearLayout>
+		<LinearLayout 
+		    android:layout_width="match_parent"
+		    android:layout_height="0dp"
+		    android:layout_weight="1"
+		    android:orientation="horizontal"
+		    >
+		    <TextView  
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_vertical"
+		        android:textSize="15sp"
+		        android:text="联系人： "
+		        />
+		    <TextView  
+		        android:id="@+id/relation_tv_relationname"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_vertical"
+		        android:textSize="15sp"
+		        android:text="蔡海洋 "
+		        />
+		</LinearLayout>
+		<LinearLayout 
+		    android:layout_width="match_parent"
+		    android:layout_height="0dp"
+		    android:layout_weight="1"
+		    android:orientation="horizontal"
+		    >
+		    <TextView  
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_vertical"
+		        android:textSize="15sp"
+		        android:text="联系电话： "
+		        />
+		    <TextView  
+		        android:id="@+id/relation_tv_relationphone"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_vertical"
+		        android:textSize="15sp"
+		        android:text="13993155768 "
+		        />
+		</LinearLayout>
+		<LinearLayout 
+		    android:layout_width="match_parent"
+		    android:layout_height="0dp"
+		    android:layout_weight="1"
+		    android:orientation="horizontal"
+		    >
+		    <TextView  
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_vertical"
+		        android:textSize="15sp"
+		        android:text="联系QQ： "
+		        />
+		    <TextView  
+		        android:id="@+id/relation_tv_relaitonQQ"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_vertical"
+		        android:textSize="15sp"
+		        android:text="448890153 "
+		        />
+		</LinearLayout>
+		<LinearLayout 
+		    android:layout_width="match_parent"
+		    android:layout_height="0dp"
+		    android:layout_weight="1"
+		    android:orientation="horizontal"
+		    >
+		    <TextView  
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_vertical"
+		        android:textSize="15sp"
+		        android:text="店铺浏览次数： "
+		        />
+		    <TextView  
+		        android:id="@+id/relation_tv_relaitonnum"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_vertical"
+		        android:textSize="15sp"
+		        android:text="123"
+		        />
+		</LinearLayout>
+		<LinearLayout 
+		    android:layout_width="match_parent"
+		    android:layout_height="0dp"
+		    android:layout_weight="2"
+		    android:orientation="horizontal"
+		    >
+		    <TextView  
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:textSize="15sp"
+		        android:text="联系地址： "
+		        />
+		    <TextView  
+		        android:id="@+id/relation_tv_relaitonadress"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:textSize="15sp"
+		        android:text="江苏省海门市叠石桥大岛路网销广场内88号（风向标家纺） "
+		        
+		        />
+		</LinearLayout>
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:orientation="vertical"
+        >
+        <!-- 这里需要写baidumap -->
+    </LinearLayout>
+	
+  
+
+</LinearLayout>
