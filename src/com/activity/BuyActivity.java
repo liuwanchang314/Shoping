@@ -16,7 +16,6 @@ public class BuyActivity extends Activity {
 	private ImageView mNameXuanDing;//选定名称
 	private TextView mChange;//编辑
 	private TextView mCName;//公司名称
-	
 	private ListView mListview;
 	private ImageView mQuanxuan;//全选
 	private TextView mTotalPrice;//总价
