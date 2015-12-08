@@ -12,6 +12,7 @@ import android.widget.TextView;
 public class BuyActivity extends Activity {
 
 	private TextView mBack;//返回按钮
+	//
 	private TextView mHome;//主页按钮
 	private ImageView mNameXuanDing;//选定名称
 	private TextView mChange;//编辑
