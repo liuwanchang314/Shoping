@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        >
+        <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        >
+          <RelativeLayout 
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:layout_weight="1"
+              >
+			 <!-- item当中的分类图标 -->
+              <ImageView
+                  android:id="@+id/orderfragment_listviewa_item_fenleitubiao"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentLeft="true"
+                  android:layout_centerVertical="true"
+                  android:src="@drawable/home" />
+
+              <!-- item当中的商家名称 -->
+              <TextView
+                  android:id="@+id/orderfragment_listviewa_item_shangjiamingcheng"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_centerVertical="true"
+                  android:layout_toRightOf="@+id/orderfragment_listviewa_item_fenleitubiao"
+                  android:text="南通风向标纺织品有限公司" />
+              <ImageView
+                  android:id="@+id/imageView2"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentRight="true"
+                  android:layout_alignTop="@+id/orderfragment_listviewa_item_fenleitubiao"
+                  android:src="@drawable/left" />
+
+          </RelativeLayout>  
+              <RelativeLayout 
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:layout_weight="1"
+              >
+				 <!-- item当中的商家名称 -->
+                  <TextView
+                      android:id="@+id/orderfragment_listviewa_item_fenleimingcheng"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentRight="true"
+                      android:layout_centerVertical="true"
+                      android:layout_marginRight="15dp"
+                      android:textColor="#aa00aa"
+                      android:text="等待买家付款" />
+
+              </RelativeLayout>  
+        </LinearLayout>
+        <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="horizontal"
+        >
+            <RelativeLayout 
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                >
+			<!-- 商品图片 -->
+                <ImageView
+                    android:id="@+id/orderfragment_listviewa_item_picture"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/home" />
+
+            </RelativeLayout>
+            <LinearLayout 
+                android:layout_weight="5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+                <RelativeLayout 
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    
+                    >
+					 <!-- item当中的商品名称 -->
+                    <TextView
+                        android:id="@+id/orderfragment_listviewa_item_shangpingmingcheng"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginTop="10dp"
+                        android:text="风向标全棉活性印花四件套" />
+
+                </RelativeLayout>
+                 <RelativeLayout 
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="10dp"
+                    
+                    >
+					<!-- item当中 -->
+                     <TextView
+                         android:id="@+id/textView4"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_alignParentLeft="true"
+                         android:layout_alignParentTop="true"
+                         android:text="适用床尺寸：" />
+
+                     <TextView
+                         android:id="@+id/textView5"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_alignParentBottom="true"
+                         android:layout_alignParentLeft="true"
+                         android:text="颜色分类：" />
+						<!-- item当中的尺寸大小 -->
+                     <TextView
+                         android:id="@+id/orderfragment_listviewa_item_chicun"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_alignParentTop="true"
+                         android:layout_marginLeft="17dp"
+                         android:layout_toRightOf="@+id/textView4"
+                         android:text="1.8（6英尺）" />
+					<!-- item当中的颜色分类 -->
+                     <TextView
+                         android:id="@+id/orderfragment_listviewa_item_yansefenlei"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_alignParentBottom="true"
+                         android:layout_alignRight="@+id/orderfragment_listviewa_item_chicun"
+                         android:text="蒲公因种子" />
+
+                 </RelativeLayout>
+            </LinearLayout>
+            <RelativeLayout 
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                >
+				<!-- item当中的价格-->
+                <TextView
+                    android:id="@+id/orderfragment_listviewa_item_jiage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="￥ 23.9" />
+				<!-- item当中的数量-->
+                <TextView
+                    android:id="@+id/orderfragment_listviewa_item_shuliang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_centerVertical="true"
+                    android:text="x1" />
+
+            </RelativeLayout>
+        </LinearLayout>
+        <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:textSize="18sp"
+                android:text="共" />
+			<!-- item当中的图片下面的商品个数-->
+            <TextView
+                android:id="@+id/orderfragment_listviewa_item_shuliangs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textView8"
+                android:layout_alignBottom="@+id/textView8"
+                android:layout_marginLeft="3dp"
+                android:textSize="18sp"
+                android:layout_toRightOf="@+id/textView8"
+                android:text="999" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/orderfragment_listviewa_item_shuliangs"
+                android:layout_alignBottom="@+id/orderfragment_listviewa_item_shuliangs"
+                android:layout_marginLeft="3dp"
+                android:layout_toRightOf="@+id/orderfragment_listviewa_item_shuliangs"
+                android:text="件商品" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/orderfragment_listviewa_item_shuliangs"
+                android:layout_centerHorizontal="true"
+                android:textSize="18sp"
+                android:text="合计：￥" />
+			<!-- item当中的图片下面的合计价格-->
+            <TextView
+                android:id="@+id/orderfragment_listviewa_item_hejijiage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textView11"
+                android:layout_alignBottom="@+id/textView11"
+                android:layout_toRightOf="@+id/textView11"
+                android:text="000" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/orderfragment_listviewa_item_hejijiage"
+                android:text="元" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/orderfragment_listviewa_item_hejijiage"
+                android:layout_alignBottom="@+id/orderfragment_listviewa_item_hejijiage"
+                android:layout_toRightOf="@+id/textView13"
+                android:text="（含运费:￥" />
+			<!-- item当中的图片下面的运费-->
+            <TextView
+                android:id="@+id/orderfragment_listviewa_item_yunfei"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textView14"
+                android:layout_alignBottom="@+id/textView14"
+                android:layout_alignParentRight="true"
+                android:text="000" />
+
+        </RelativeLayout>
+        <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        >
+
+            <RelativeLayout 
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                
+                ></RelativeLayout>
+            <RelativeLayout 
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                
+                >
+				<!-- 此控件只有在订单已完成的情况下战士，所以现在隐藏 -->
+                <TextView
+                    android:id="@+id/orderfragment_listviewa_item_shanchudingdan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:visibility="visible"
+                    android:text="删除订单" />
+
+            </RelativeLayout>
+            <RelativeLayout 
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                
+                >
+
+                <TextView
+                    android:id="@+id/orderfragment_listviewa_item_chakanwuliu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="查看物流" />
+
+            </RelativeLayout>
+            <RelativeLayout 
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                
+                >
+
+                <TextView
+                    android:id="@+id/orderfragment_listviewa_item_pingjia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="评价" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        ></LinearLayout>
+    
+
+</LinearLayout>
