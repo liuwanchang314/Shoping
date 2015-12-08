@@ -1048,7 +1048,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:isEnable
+          @attr name com.activity:isEnable
         */
         public static final int NumberPicker_isEnable = 9;
         /**
@@ -1062,7 +1062,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:itemNumber
+          @attr name com.activity:itemNumber
         */
         public static final int NumberPicker_itemNumber = 5;
         /**
@@ -1077,7 +1077,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:lineColor
+          @attr name com.activity:lineColor
         */
         public static final int NumberPicker_lineColor = 6;
         /**
@@ -1093,7 +1093,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:maskHight
+          @attr name com.activity:maskHight
         */
         public static final int NumberPicker_maskHight = 7;
         /**
@@ -1107,7 +1107,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:noEmpty
+          @attr name com.activity:noEmpty
         */
         public static final int NumberPicker_noEmpty = 8;
         /**
@@ -1122,7 +1122,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:normalTextColor
+          @attr name com.activity:normalTextColor
         */
         public static final int NumberPicker_normalTextColor = 0;
         /**
@@ -1138,7 +1138,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:normalTextSize
+          @attr name com.activity:normalTextSize
         */
         public static final int NumberPicker_normalTextSize = 1;
         /**
@@ -1153,7 +1153,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:selecredTextColor
+          @attr name com.activity:selecredTextColor
         */
         public static final int NumberPicker_selecredTextColor = 2;
         /**
@@ -1169,7 +1169,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:selecredTextSize
+          @attr name com.activity:selecredTextSize
         */
         public static final int NumberPicker_selecredTextSize = 3;
         /**
@@ -1185,7 +1185,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:unitHight
+          @attr name com.activity:unitHight
         */
         public static final int NumberPicker_unitHight = 4;
         /** Attributes that can be used with a SwitchButton.
@@ -1216,7 +1216,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:bmHeight
+          @attr name com.activity:bmHeight
         */
         public static final int SwitchButton_bmHeight = 1;
         /**
@@ -1232,7 +1232,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:bmWidth
+          @attr name com.activity:bmWidth
         */
         public static final int SwitchButton_bmWidth = 0;
         /** Attributes that can be used with a roundedimageview.
@@ -1264,7 +1264,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:border_inside_color
+          @attr name com.activity:border_inside_color
         */
         public static final int roundedimageview_border_inside_color = 1;
         /**
@@ -1279,7 +1279,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:border_outside_color
+          @attr name com.activity:border_outside_color
         */
         public static final int roundedimageview_border_outside_color = 2;
         /**
@@ -1295,7 +1295,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:border_thickness
+          @attr name com.activity:border_thickness
         */
         public static final int roundedimageview_border_thickness = 0;
     };

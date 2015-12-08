@@ -14,6 +14,7 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 public class MainActivity extends TabActivity {
 
 	//协作开发测试第一次
+	//协作开发测试arige-1
 	
 	RadioButton t1, t2, t3, t4;
 	
