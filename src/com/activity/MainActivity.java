@@ -16,6 +16,7 @@ public class MainActivity extends TabActivity {
 	//协作开发测试第一次
 	
 	RadioButton t1, t2, t3, t4;
+	
 	private static TabHost tabHost;
 	private static Context context;
 	// private TextView main_tab_new_message;
