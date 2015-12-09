@@ -11,18 +11,20 @@ import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class ShopsActivity extends Activity {
+public class ShopsActivity extends Activity implements OnClickListener{
 
-	private TextView mCompanyInfo;
 	private MapView mMapView = null;
 	private BaiduMap mBaidumap;
+	private RelativeLayout mDetails;//详情
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -53,15 +55,8 @@ public class ShopsActivity extends Activity {
 		// TODO Auto-generated method stub
 		//获取地图控件引用  
         
-		mCompanyInfo=(TextView) findViewById(R.id.relation_tv_goongsimingcheng);
-		mCompanyInfo.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
+		mDetails=(RelativeLayout) findViewById(R.id.shops_companydetails);
+		mDetails.setOnClickListener(this);
 	}
 	@Override  
     protected void onDestroy() {  
@@ -81,6 +76,18 @@ public class ShopsActivity extends Activity {
         //在activity执行onPause时执行mMapView. onPause ()，实现地图生命周期管理  
         mMapView.onPause();  
         }
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.shops_companydetails://点击查看详情
+			startActivity(new Intent(ShopsActivity.this,CompanyInfoActivity.class));
+			break;
+
+		default:
+			break;
+		}
+	}
 	
 	
 

@@ -115,6 +115,9 @@
             android:name=".WithDrawAcivity"
             android:windowSoftInputMode="stateUnchanged"
             ></activity>
+        <activity 
+            android:name=".CompanyInfoActivity"
+            ></activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
