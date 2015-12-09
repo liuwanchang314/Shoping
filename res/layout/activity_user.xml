@@ -350,6 +350,11 @@
                     android:layout_marginRight="5dp"
                     android:src="@drawable/side_right_img" />
             </RelativeLayout>
+            
+            
+            
+            
+            
 
             <View
                 android:layout_width="match_parent"
@@ -411,6 +416,8 @@
                 android:layout_marginRight="10dp"
                 android:background="#DEDEDE" />
 
+            
+            
             <RelativeLayout
                 android:id="@+id/horder_lt_list5"
                 android:layout_width="fill_parent"
@@ -461,6 +468,43 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
                 android:background="#DEDEDE" />
+            
+            <RelativeLayout
+                android:id="@+id/horder_lt_list_tixian"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="0.1dp"
+                android:background="#ffffff" >
+
+                <ImageView
+                    android:id="@+id/user_img_listtixian"
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/user_phone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/user_img_listtixian"
+                    android:text="申请提现"
+                    android:textColor="#393939"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+
+                <ImageView
+                    android:id="@+id/right3"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/side_right_img" />
+            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"

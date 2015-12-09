@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <!--  查看物流界面-->
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        
+        >
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            >
+            <RelativeLayout 
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/back" />
+
+            </RelativeLayout>
+            <RelativeLayout 
+                android:layout_weight="8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                >
+
+                <TextView
+                    android:id="@+id/checklogistics_iamgeview_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:textSize="20sp"
+                    android:text="查看物流" />
+
+            </RelativeLayout>
+            <RelativeLayout 
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                >
+
+                <ImageView
+                    android:id="@+id/checklogistics_iamgeview_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/home" />
+
+            </RelativeLayout>
+        </LinearLayout>
+         <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            >
+             
+             <RelativeLayout 
+                 android:layout_weight="1"
+                 android:layout_width="0dp"
+                 android:layout_height="match_parent"
+                 >
+
+                 <ImageView
+                     android:id="@+id/checklogistics_iamgeview_wuliugongsibiaozhi"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:layout_marginTop="10dp"
+                     android:layout_marginLeft="10dp"
+                     android:layout_marginRight="10dp"
+                     android:layout_marginBottom="10dp"
+                     android:layout_centerHorizontal="true"
+                     android:layout_centerVertical="true"
+                     android:src="@drawable/home" />
+
+             </RelativeLayout>
+             <RelativeLayout 
+                 android:layout_weight="1"
+                 android:layout_width="0dp"
+                 android:layout_height="match_parent"
+                 >
+
+                 <TextView
+                     android:id="@+id/textView2"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_alignParentLeft="true"
+                     android:layout_alignParentTop="true"
+                     android:layout_marginTop="10dp"
+                     android:text="物流状态  :" />
+
+                 <TextView
+                     android:id="@+id/textView3"
+                     
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_alignParentLeft="true"
+                     android:layout_centerVertical="true"
+                     android:text="信息来源  :" />
+
+                 <TextView
+                     android:id="@+id/textView4"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginBottom="10dp"
+                     android:layout_alignParentBottom="true"
+                     android:layout_alignParentLeft="true"
+                     android:text="运单编号  :" />
+
+             </RelativeLayout>
+             <RelativeLayout 
+                 android:layout_weight="2"
+                 android:layout_width="0dp"
+                 android:layout_height="match_parent"
+                 >
+
+                 <TextView
+                     android:id="@+id/checklogistics_tv_wuliuzhuangtai"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginTop="10dp"
+                     android:layout_alignParentLeft="true"
+                     android:layout_alignParentTop="true"
+                     android:text="已签收" />
+
+                 <TextView
+                     android:id="@+id/checklogistics_tv_wuliugongsimingchen"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_alignParentLeft="true"
+                     android:layout_centerVertical="true"
+                     android:text="韵达快递" />
+
+                 <TextView
+                     android:id="@+id/checklogistics_tv_yundanbianhao"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_alignParentBottom="true"
+                     android:layout_alignParentLeft="true"
+                     android:layout_marginBottom="10dp"
+                     android:text="00000000000001" />
+
+             </RelativeLayout>
+         </LinearLayout>
+          <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            >
+              
+              <RelativeLayout 
+                  android:layout_weight="1"
+                  android:layout_width="match_parent"
+                  android:layout_height="0dp"
+                  >
+
+                  <TextView
+                      android:id="@+id/textView5"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentLeft="true"
+                      android:layout_centerVertical="true"
+                      android:layout_marginLeft="10dp"
+                      android:text="物品信息" />
+
+              </RelativeLayout>
+              <LinearLayout 
+                  android:layout_weight="2"
+                  android:layout_width="match_parent"
+                  android:layout_height="0dp"
+                  android:orientation="horizontal"
+                  >
+                  <RelativeLayout 
+                      android:layout_weight="1"
+                      android:layout_height="match_parent"
+                      android:layout_width="0dp"
+                      >
+
+                      <ImageView
+                          android:id="@+id/checklogistics_imageview_shangpintupian"
+                          android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+                          android:layout_centerHorizontal="true"
+                          android:layout_marginTop="10dp"
+	                     android:layout_marginLeft="10dp"
+	                     android:layout_marginRight="10dp"
+	                     android:layout_marginBottom="10dp"
+                          android:layout_centerVertical="true"
+                          android:src="@drawable/logo" />
+
+                  </RelativeLayout>
+                  <LinearLayout 
+                      android:layout_weight="2"
+                      android:layout_height="match_parent"
+                      android:layout_width="0dp"
+                      android:orientation="vertical"
+                      >
+                      <RelativeLayout 
+                          android:layout_weight="1"
+                          android:layout_width="match_parent"
+                          android:layout_height="0dp"
+                          >
+
+                          <TextView
+                              android:id="@+id/checklogistics_tv_shangpinmingcheng"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_alignParentLeft="true"
+                              android:layout_centerVertical="true"
+                              android:text="xxx四件套" />
+
+                      </RelativeLayout>
+                      <RelativeLayout 
+                          android:layout_weight="1"
+                          android:layout_width="match_parent"
+                          android:layout_height="0dp"
+                          >
+
+                          <TextView
+                              android:id="@+id/textView7"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_alignParentLeft="true"
+                              android:layout_alignParentTop="true"
+                              android:text="适用床尺寸  :" />
+
+                          <TextView
+                              android:id="@+id/textView8"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_alignParentBottom="true"
+                              android:layout_alignParentLeft="true"
+                              android:text="颜色分类  :" />
+
+                          <TextView
+                              android:id="@+id/checklogistics_tv_shiyongchuangchicun"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_alignParentTop="true"
+                              android:layout_toRightOf="@+id/textView7"
+                              android:text="1.8m" />
+
+                          <TextView
+                              android:id="@+id/checklogistics_tv_yansefenlei"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_alignParentBottom="true"
+                              android:layout_toRightOf="@+id/textView8"
+                              android:text="蒲公英种子" />
+
+                      </RelativeLayout>
+                  </LinearLayout>
+                  <RelativeLayout 
+                      android:layout_weight="1"
+                      android:layout_height="match_parent"
+                      android:layout_width="0dp"
+                      >
+
+                      <TextView
+                          android:id="@+id/checklogistics_tv_jiage"
+                          android:layout_marginTop="10dp"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_alignParentTop="true"
+                          android:layout_centerHorizontal="true"
+                          android:text="123.00" />
+
+                      <TextView
+                          android:id="@+id/checklogistics_tv_shangpinshuliang"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_centerHorizontal="true"
+                          android:layout_centerVertical="true"
+                          android:text="X1" />
+
+                  </RelativeLayout>
+              </LinearLayout>
+          </LinearLayout>
+    </LinearLayout>
+     <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        
+        >
+         <!--物流信息  -->
+         <RelativeLayout 
+             android:layout_width="match_parent"
+             android:layout_height="40dp"
+             
+             >
+
+             <TextView
+                 android:id="@+id/textView1"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentLeft="true"
+                 android:layout_centerVertical="true"
+                 android:layout_marginLeft="19dp"
+                 android:text="物流跟踪" />
+             
+         </RelativeLayout>
+         <ListView 
+             android:id="@+id/checklogistics_listview"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             ></ListView>
+     </LinearLayout>
+    
+    
+
+</LinearLayout>

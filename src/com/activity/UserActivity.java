@@ -24,7 +24,7 @@ public class UserActivity extends Activity implements OnClickListener,OnCheckedC
 	private ImageView mErweima;//二维码图片
 	private RelativeLayout mEnd;//退出当前账号
 	private RelativeLayout mComplaint;//我的投诉
-	
+	private RelativeLayout mTixian;//提现
 	private RadioGroup mRadiogroup;//菜单项
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,8 @@ public class UserActivity extends Activity implements OnClickListener,OnCheckedC
 		mEnd.setOnClickListener(this);
 		mComplaint=(RelativeLayout) findViewById(R.id.horder_lt_list3);
 		mComplaint.setOnClickListener(this);
+		mTixian=(RelativeLayout) findViewById(R.id.horder_lt_list_tixian);
+		mTixian.setOnClickListener(this);
 	}
 	
 	@Override
@@ -98,9 +100,11 @@ public class UserActivity extends Activity implements OnClickListener,OnCheckedC
 			break;
 		case R.id.horder_lt_list2://收货地址
 			Toast.makeText(UserActivity.this, "收货地址", Toast.LENGTH_SHORT).show();
+			startActivity(new Intent(UserActivity.this, TakeGoodsAddressActivity.class));
 			break;
 		case R.id.horder_lt_list1://个人信息
 			Toast.makeText(UserActivity.this, "个人信息", Toast.LENGTH_SHORT).show();
+			startActivity(new Intent(UserActivity.this,PersonDataActivity.class));
 			break;
 		case R.id.user_erweima://二维码
 			Toast.makeText(UserActivity.this, "二维码", Toast.LENGTH_SHORT).show();
@@ -114,6 +118,10 @@ public class UserActivity extends Activity implements OnClickListener,OnCheckedC
 			break;
 		case R.id.horder_lt_list3://我的投诉
 			Toast.makeText(UserActivity.this, "投诉", Toast.LENGTH_SHORT).show();
+			break;
+		case R.id.horder_lt_list_tixian://体现
+			Toast.makeText(UserActivity.this,"提现", Toast.LENGTH_SHORT).show();
+			startActivity(new Intent(UserActivity.this, WithDrawAcivity.class));
 			break;
 		default:
 			break;

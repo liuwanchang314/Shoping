@@ -50,6 +50,7 @@
             android:layout_alignBottom="@+id/paymoney_activity_ed_shurujine"
             android:layout_marginLeft="16dp"
             android:layout_toRightOf="@+id/paymoney_activity_ed_shurujine"
+            android:background="#FF4500"
             android:text="支付" />
 
         <ImageView

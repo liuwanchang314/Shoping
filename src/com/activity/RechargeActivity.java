@@ -65,6 +65,9 @@ public class RechargeActivity extends Activity implements OnClickListener{
 		mBgweixin=(RelativeLayout) findViewById(R.id.rechrageactivity_bg_weixin);
 		mPay=(TextView) findViewById(R.id.rechrageactivity_textview_querenzhifu);
 		mPay.setOnClickListener(this);
+		mBgcaifutong.setBackgroundColor(Color.WHITE);
+		mBgzhifubao.setBackgroundColor(Color.WHITE);
+		mBgweixin.setBackgroundColor(Color.WHITE);
 	}
 	@Override
 	public void onClick(View v) {

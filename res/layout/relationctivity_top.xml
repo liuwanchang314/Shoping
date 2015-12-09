@@ -7,33 +7,60 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
+        
         >
-        <TextView 
-            android:id="@+id/relationactivity_top_textview_back"
-            android:layout_width="0dp"
+        
+        <RelativeLayout 
             android:layout_weight="1"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:background="@drawable/back"
-            />
-        <TextView 
-            android:id="@+id/buyactivity_top_textview_title"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="#a9a9a9"
+            >
+
+            <TextView
+                android:id="@+id/relationactivity_top_textview_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/back" />
+
+        </RelativeLayout>
+        <RelativeLayout 
             android:layout_weight="8"
-            android:layout_height="wrap_content"
-            android:text="联系商家"
-            android:layout_gravity="center"
-            android:textSize="18sp"
-            android:gravity="center"
-            />
-        <TextView 
-            android:id="@+id/relationactivity_top_textview_home"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
+            >
+
+             <TextView
+                 android:id="@+id/buyactivity_top_textview_title"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_centerHorizontal="true"
+                 android:layout_centerVertical="true"
+                 android:gravity="center"
+                 android:text="联系商家"
+                 android:textSize="18sp" />
+
+        </RelativeLayout>
+        <RelativeLayout 
             android:layout_weight="1"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:background="@drawable/home"
-            />
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="#a9a9a9"
+            >
+             <TextView
+                 android:id="@+id/relationactivity_top_textview_home"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_centerHorizontal="true"
+                 android:layout_centerVertical="true"
+                 android:background="@drawable/home" />
+
+        </RelativeLayout>
+        
+       
+       
     </LinearLayout>
 
 </LinearLayout>
