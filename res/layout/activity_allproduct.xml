@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        
+        >
+        <RelativeLayout 
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="#a9a9a9"
+            >
+
+            <ImageView
+                android:id="@+id/allprodyct_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/back" />
+
+        </RelativeLayout>
+        <RelativeLayout 
+            android:layout_weight="8"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textSize="20sp"
+                android:text="产品中心" />
+
+        </RelativeLayout>
+        <RelativeLayout 
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            >
+
+            <ImageView
+                android:id="@+id/allprodyct_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/home" />
+
+        </RelativeLayout>
+    </LinearLayout>
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#a9a9a9"
+        />
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        >
+        <RelativeLayout 
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:id="@+id/allprodyct_zonghepaixu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="综合排序" />
+
+        </RelativeLayout>
+        <RelativeLayout 
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:id="@+id/allprodyct_liulanliang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:drawableRight="@drawable/jiantoudown"
+                android:text="浏览量" />
+
+        </RelativeLayout>
+        <RelativeLayout 
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:id="@+id/allprodyct_jiage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="价格" />
+
+        </RelativeLayout>
+        <RelativeLayout 
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+
+            <ImageView
+                android:id="@+id/allproduct_tuwenbiebiao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/tuwenbiebiao" />
+
+        </RelativeLayout>
+    </LinearLayout>
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#a9a9a9"
+        />
+     <com.customview.PullToRefreshGridView
+        android:id="@+id/allproduct_grid"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:columnWidth="60dp"
+        android:gravity="center"
+        android:horizontalSpacing="10dp"
+        android:numColumns="2"
+        android:padding="10dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp" >
+    </com.customview.PullToRefreshGridView>
+    <com.customview.PullToRefreshListView
+        android:id="@+id/allproduct_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    </com.customview.PullToRefreshListView>
+
+   
+</LinearLayout>
