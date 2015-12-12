@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CCFFCC"
+    android:background="#a9a9a9"
     android:orientation="vertical" >
     
     <LinearLayout 
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:background="#ffffff"
         android:dividerHeight="2dp"
-        android:divider="#CCFFCC"
+        android:divider="#a9a9a9"
         ></ListView>
     
     </LinearLayout>

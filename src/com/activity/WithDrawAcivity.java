@@ -33,11 +33,7 @@ public class WithDrawAcivity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-//		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);  
 		setContentView(R.layout.activity_withdraw);
-		//声明使用自定义的标题栏  
-        //使用自定义的标题栏  
-//        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.withdrawactivity_toptitle);  
 		initview();
 	}
 	@SuppressLint("NewApi")

@@ -23,6 +23,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * @author JZKJ-LWC
+ * @date : 2015-12-11 下午1:33:50
+ * 重置密码界面
+ */  
 public class EditPwdActivity extends Activity {
 
 	Button btn_submit, btn_back;
