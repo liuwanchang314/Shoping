@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#a9a9a9"
+    android:orientation="vertical" >
+    
+    <!-- 下架公告界面 -->
+     <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        >
+        
+        <RelativeLayout 
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:background="#a9a9a9"
+            >
+
+             <TextView
+                 android:id="@+id/soldout_back"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_centerVertical="true"
+                 android:background="@drawable/back" />
+
+        </RelativeLayout>
+         <RelativeLayout 
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+			android:layout_weight="8"
+			android:background="#ffffff"
+            >
+
+             <TextView
+                 android:id="@+id/soldout_title"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_centerHorizontal="true"
+                 android:layout_centerVertical="true"
+                 android:gravity="center"
+                 android:text="下架公告"
+                 android:textSize="20sp" />
+
+         </RelativeLayout>
+          <RelativeLayout 
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+			android:layout_weight="1"
+            >
+
+              <TextView
+                  android:id="@+id/soldout_home"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_centerHorizontal="true"
+                  android:layout_centerVertical="true"
+                  android:background="@drawable/home" />
+
+          </RelativeLayout>
+       
+        
+        
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_weight="10"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="3dp"
+        >
+        <ListView 
+        android:id="@+id/soldout_listview"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="#ffffff"
+        android:dividerHeight="2dp"
+        android:divider="#a9a9a9"
+        ></ListView>
+    
+    </LinearLayout>
+    
+    
+
+</LinearLayout>

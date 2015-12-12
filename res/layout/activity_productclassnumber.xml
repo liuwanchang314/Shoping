@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#a9a9a9"
+    android:orientation="vertical" >
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="#ffffff"
+        >
+        <RelativeLayout 
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:background="#a9a9a9"
+            >
+
+            <ImageView
+                android:id="@+id/productclassnumber_bake"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/back" />
+
+        </RelativeLayout>
+         <RelativeLayout 
+            android:layout_weight="8"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            >
+
+             <TextView
+                 android:id="@+id/textView1"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_centerHorizontal="true"
+                 android:layout_centerVertical="true"
+                 android:textSize="20sp"
+                 android:text="产品分类" />
+
+         </RelativeLayout>
+          <RelativeLayout 
+            android:layout_weight="1"
+            android:background="#a9a9a9"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            >
+
+              <ImageView
+                  android:id="@+id/productclassnumber_home"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_centerHorizontal="true"
+                  android:layout_centerVertical="true"
+                  android:src="@drawable/home" />
+
+          </RelativeLayout>
+    </LinearLayout>
+    
+    <ExpandableListView android:id="@+id/productclassnumber_list"
+		android:layout_width="fill_parent"
+		android:background="#ffffff"
+		android:layout_height="fill_parent"
+		android:layout_marginTop="5dp"
+		android:divider="#a9a9a9"
+		android:dividerHeight="2dp"
+        android:layout_alignParentLeft="true"/>
+
+</LinearLayout>
