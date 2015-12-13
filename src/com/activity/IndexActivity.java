@@ -2,7 +2,10 @@ package com.activity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,6 +14,9 @@ import org.json.JSONObject;
 import com.Extension.AutoScrollViewPager;
 import com.Extension.DataService;
 import com.Extension.DownLoadImage;
+import com.adapter.indexListviewAdapter;
+import com.other.index_product_item;
+import com.utils.StringManager;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -53,9 +59,10 @@ public class IndexActivity extends Activity implements OnPageChangeListener {
 	private ImageAdapter mAdapter;
 	private AutoScrollViewPager viewPager;
 	private ViewGroup group;
+	private String TAG = this.getClass().getName();
 	Handler handler;
 	DataService client;//网络请求获取数据的工具类
-	ListView mLisView;
+	LinearLayout mLisView;
 	HashMap<String, String> list = new HashMap<String, String>();
 
 	String filenameTemp = Environment.getExternalStorageDirectory()
@@ -72,17 +79,17 @@ public class IndexActivity extends Activity implements OnPageChangeListener {
 		initradiogroup();
 		edittext=(EditText) findViewById(R.id.fanslist_txt_search);
 		initinputmanager(edittext);
-		mLisView = (ListView) findViewById(R.id.index_list);
+		mLisView =  (LinearLayout) findViewById(R.id.index_product_list);
 		//获取头部布局
 		View view = LayoutInflater.from(this).inflate(
 				R.layout.activity_carousel, null);
 		//获取尾部布局
 		View view1 = LayoutInflater.from(this).inflate(
 				R.layout.activity_index_button, null);
-		mLisView.addFooterView(view1);
+		mLisView.addView(view1);
 		group = (ViewGroup) view.findViewById(R.id.viewGroup);
 		viewPager = (AutoScrollViewPager) view.findViewById(R.id.pager_id);
-		mLisView.addHeaderView(view);
+		mLisView.addView(view);
 
 		handler = new Handler() {
 			@Override
@@ -123,7 +130,32 @@ public class IndexActivity extends Activity implements OnPageChangeListener {
 							client = new DataService(handler, 1, list);
 							client.start();
 						}
-					} else {
+					}else if(msg.arg1 == 1){
+						jsonObject = new JSONObject(msg.obj.toString());
+						data = jsonObject.getString("status");
+						if (data.equals("1")) {
+							data = jsonObject.getString("data");	
+							
+							Log.e(TAG, data);
+							//String ImgTop = jsonObject.getString("class_info");
+							//JSONArray jsonArray = jsonObject.getJSONArray("class_goods");
+							List<Map<String, String>> list = StringManager.getListMapByJson(data);
+							Map<String, String> map = list.get(0);
+							Iterator<Entry<String, String>> it = map.entrySet().iterator();
+							while(it.hasNext()){
+								Entry<String, String> en = it.next();
+								Log.e(TAG, "key==="+en.getKey()+"///value=="+en.getValue());
+								Map<String, String> map1 = StringManager.getListMapByJson(en.getValue()).get(0);
+								index_product_item  product_item = new index_product_item(IndexActivity.this);
+								product_item.setDate(map1);
+								mLisView.addView(product_item);
+							}
+							
+							indexListviewAdapter inadaAdapter = new indexListviewAdapter(IndexActivity.this,list);
+							
+							
+						}
+					}else {
 						jsonObject = new JSONObject(msg.obj.toString());
 						data = jsonObject.getString("status");
 						if (data.equals("1")) {
@@ -151,8 +183,8 @@ public class IndexActivity extends Activity implements OnPageChangeListener {
 		client = new DataService(handler, 0, list);
 		client.start();
 
-		mLisView.setAdapter(new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, strs));
+//		mLisView.setAdapter(new ArrayAdapter<String>(this,
+//				android.R.layout.simple_list_item_1, strs));
 
 		
 

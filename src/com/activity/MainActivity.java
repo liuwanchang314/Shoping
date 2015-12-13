@@ -1,15 +1,25 @@
 package com.activity;
 
+import com.CommonConstants;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
+
 import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TabHost;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.Toast;
 
 public class MainActivity extends TabActivity {
 
@@ -33,7 +43,25 @@ public class MainActivity extends TabActivity {
 		setContentView(R.layout.activity_main);
 		context = this;
 		initview();
-		
+//		RequestParams params = new RequestParams();
+//		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
+//		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
+//		params.addBodyParameter("type", "adv");
+//		params.addBodyParameter("part", "index_slide");
+//		HttpUtils httpUtils = new HttpUtils();
+//		httpUtils.send(HttpMethod.POST, CommonConstants.APP_URL,params, new RequestCallBack<String>() {
+//
+//			@Override
+//			public void onFailure(HttpException arg0, String arg1) {
+//				// TODO Auto-generated method stub
+////				Log.e("tag", "======"+arg1);
+//			}
+//
+//			@Override
+//			public void onSuccess(ResponseInfo<String> arg0) {
+//				// TODO Auto-generated method stub
+//			}
+//		});
 		
 	}
 
