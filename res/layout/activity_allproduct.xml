@@ -135,23 +135,26 @@
         android:layout_height="1dp"
         android:background="#a9a9a9"
         />
-     <com.customview.PullToRefreshGridView
+    
+    
+    <com.customview.PullToRefreshListView
+        android:id="@+id/allproduct_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.customview.PullToRefreshListView>
+    <com.customview.PullToRefreshGridView
         android:id="@+id/allproduct_grid"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:columnWidth="60dp"
-        android:gravity="center"
+        android:columnWidth="130dp"
+        android:gravity="fill"
         android:horizontalSpacing="10dp"
-        android:numColumns="2"
-        android:padding="10dp"
+        android:numColumns="auto_fit"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="10dp" >
-    </com.customview.PullToRefreshGridView>
-    <com.customview.PullToRefreshListView
-        android:id="@+id/allproduct_list"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-    </com.customview.PullToRefreshListView>
-
+        android:verticalSpacing="10dp"
+         >
+    </com.customview.PullToRefreshGridView> 
+        
+    
    
 </LinearLayout>
