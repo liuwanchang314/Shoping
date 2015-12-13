@@ -103,8 +103,7 @@ public class ProductClassNumberActivity extends Activity {
 		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
 		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
 		params.addBodyParameter("type", "goods");
-//		params.addBodyParameter("part", "index_goods_cat_nokey");
-		params.addBodyParameter("part", "index_goods_cat");
+		params.addBodyParameter("part", "goods_classes");
 		HttpUtils http = new HttpUtils();
 		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
 
