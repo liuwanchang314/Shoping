@@ -1,6 +1,5 @@
 package com.activity;
 
-import com.CommonConstants;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;
