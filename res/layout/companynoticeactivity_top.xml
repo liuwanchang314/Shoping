@@ -8,32 +8,58 @@
         android:layout_height="50dp"
         android:orientation="horizontal"
         >
-        <TextView 
-            android:id="@+id/companynotice_top_textview_back"
+        
+        <RelativeLayout 
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:background="@drawable/back"
-            />
-        <TextView 
-            android:id="@+id/companynotice_top_textview_title"
+            android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:background="#a9a9a9"
+            >
+
+             <TextView
+                 android:id="@+id/companynotice_top_textview_back"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_centerVertical="true"
+                 android:background="@drawable/back" />
+
+        </RelativeLayout>
+         <RelativeLayout 
             android:layout_width="0dp"
-            android:layout_weight="8"
-            android:layout_height="wrap_content"
-            android:text="公司公告"
-            android:layout_gravity="center"
-            android:textSize="18sp"
-            android:gravity="center"
-            />
-        <TextView 
-            android:id="@+id/companynotice_top_textview_home"
+            android:layout_height="match_parent"
+			android:layout_weight="8"
+            >
+
+             <TextView
+                 android:id="@+id/companynotice_top_textview_title"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_centerHorizontal="true"
+                 android:layout_centerVertical="true"
+                 android:gravity="center"
+                 android:text="公司公告"
+                 android:textSize="20sp" />
+
+         </RelativeLayout>
+          <RelativeLayout 
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:background="@drawable/home"
-            />
+            android:layout_height="match_parent"
+			android:layout_weight="1"
+            >
+
+              <TextView
+                  android:id="@+id/companynotice_top_textview_home"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_centerHorizontal="true"
+                  android:layout_centerVertical="true"
+                  android:background="@drawable/home" />
+
+          </RelativeLayout>
+       
+        
+        
     </LinearLayout>
 
 </LinearLayout>

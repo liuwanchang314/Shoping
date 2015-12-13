@@ -16,6 +16,11 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.Spinner;
 
+/**
+ * @author JZKJ-LWC
+ * @date : 2015-12-11 下午1:31:57
+ *找回密码界面
+ */  
 public class RetrieveActivity extends Activity {
 
 	Spinner spinner;

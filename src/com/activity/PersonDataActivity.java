@@ -5,6 +5,7 @@ import com.Extension.RoundImageView;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -67,12 +68,15 @@ public class PersonDataActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.persondata_anquanxinxi://安全
 			Toast.makeText(PersonDataActivity.this,"安全",Toast.LENGTH_SHORT).show();
+			startActivity(new Intent(PersonDataActivity.this, ChangeSafetyActivity.class));
 			break;
 		case R.id.persondata_zhifumima://密码
 			Toast.makeText(PersonDataActivity.this,"密码",Toast.LENGTH_SHORT).show();
+			startActivity(new Intent(PersonDataActivity.this,PayPassWordFindBackActivity.class ));
 			break;
 		case R.id.persondata_mingpian://名片
 			Toast.makeText(PersonDataActivity.this,"名片",Toast.LENGTH_SHORT).show();
+			startActivity( new Intent(PersonDataActivity.this,TwoDimensionCodeActivity.class));
 			break;
 
 		default:

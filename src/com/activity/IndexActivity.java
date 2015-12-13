@@ -203,9 +203,11 @@ public class IndexActivity extends Activity implements OnPageChangeListener {
 				switch (checkedId) {
 				case R.id.index_tab_rb_1://全部商品
 					Toast.makeText(IndexActivity.this,"全部商品",Toast.LENGTH_SHORT).show();
+					startActivity(new Intent(IndexActivity.this,AllProductActivity.class));
 					break;
 				case R.id.index_tab_rb_2://产品分类
 					Toast.makeText(IndexActivity.this,"产品分类",Toast.LENGTH_SHORT).show();
+					startActivity(new Intent(IndexActivity.this,ProductClassNumberActivity.class));
 					break;
 				case R.id.index_tab_rb_3://公司公告
 					Toast.makeText(IndexActivity.this,"公司公告",Toast.LENGTH_SHORT).show();
@@ -214,6 +216,7 @@ public class IndexActivity extends Activity implements OnPageChangeListener {
 					break;
 				case R.id.index_tab_rb_4://下架公告
 					Toast.makeText(IndexActivity.this,"下架公告",Toast.LENGTH_SHORT).show();
+					startActivity(new Intent(IndexActivity.this,SoldOutActivity.class));
 					break;
 				default:
 					break;

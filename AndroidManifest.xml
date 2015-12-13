@@ -115,8 +115,40 @@
             android:name=".WithDrawAcivity"
             android:windowSoftInputMode="stateUnchanged"
             ></activity>
+        <!-- 公司简介详情 -->
         <activity 
             android:name=".CompanyInfoActivity"
+            ></activity>
+        <!-- 产品分类详情 -->
+        <activity 
+            android:name=".ProductClassNumberActivity"
+            ></activity>
+        <!-- 下架公告界面 -->
+        <activity 
+            android:name=".SoldOutActivity"
+            ></activity>
+        <!-- 全部商品界面 -->
+        <activity 
+            android:name=".AllProductActivity"
+            ></activity>
+        <!-- 支付密码找回界面 -->
+        <activity 
+            android:name=".PayPassWordFindBackActivity"
+            android:windowSoftInputMode="stateUnchanged"
+            ></activity>
+        <!-- 修改安全信息界面 -->
+        <activity 
+            android:name=".ChangeSafetyActivity"
+            android:windowSoftInputMode="stateUnchanged"
+            ></activity>
+        <!--二维码界面  -->
+        <activity 
+            android:name=".TwoDimensionCodeActivity"
+            ></activity>
+        <!-- 新建 收货地址界面-->
+        <activity 
+            android:name=".NewTakeOverGoodsAddress"
+            android:windowSoftInputMode="stateUnchanged"
             ></activity>
     </application>
 

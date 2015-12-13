@@ -1,7 +1,15 @@
 package com.activity;
 
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
+
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -24,13 +32,59 @@ public class DynamicDetailsActivity extends Activity implements OnClickListener{
 	private TextView mTime;//时间
 	private TextView mContent;//内容
 	
+	private String mId;//从跳转界面传过来的ID
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dynamicdetails);
-		
 		initview();
+		GetData();
+	}
+
+	/**
+	 * @author JZKJ-LWC
+	 * @date : 2015-12-10 下午12:44:39
+	 *该方法用来从网络动态获取数据
+	 */  
+	private void GetData() {
+		// TODO Auto-generated method stub
+		RequestParams params = new RequestParams();
+		// 只包含字符串参数时默认使用BodyParamsEntity，
+		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
+		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
+		params.addBodyParameter("type", "article");
+		params.addBodyParameter("part", "article_main");
+		params.addBodyParameter("article_id", mId);//这里的mid需要从列表页传递过来
+		HttpUtils http = new HttpUtils();
+		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
+
+		        @Override
+		        public void onStart() {
+		        	//开始请求
+		        }
+
+		        @Override
+		        public void onLoading(long total, long current, boolean isUploading) {
+		            if (isUploading) {
+		            } else {
+		            }
+		        }
+
+		        @Override
+		        public void onSuccess(ResponseInfo<String> responseInfo) {
+		        	//请求成功
+		        	String str=responseInfo.result;
+		        	Log.i("网络请求下来的参数是",str);
+		        	//这里得到的就是文章内容结果集
+		        	
+		        }
+
+		        @Override
+		        public void onFailure(HttpException error, String msg) {
+		        }
+		});
 	}
 
 	private void initview() {
@@ -40,6 +94,7 @@ public class DynamicDetailsActivity extends Activity implements OnClickListener{
 		mTitle=(TextView) findViewById(R.id.dynamicdetais_tv_title);
 		mTime=(TextView) findViewById(R.id.dynamicdetais_tv_time);
 		mContent=(TextView) findViewById(R.id.dynamicdetais_tv_content);
+		
 	}
 
 	@Override
@@ -56,6 +111,8 @@ public class DynamicDetailsActivity extends Activity implements OnClickListener{
 			break;
 		}
 	}
+	
+	
 	
 
 }

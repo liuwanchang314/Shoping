@@ -3,6 +3,7 @@ package com.activity;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -64,7 +65,7 @@ public class TakeGoodsAddressActivity extends Activity implements OnClickListene
 			break;
 		case R.id.takegoodsaddress_add:
 			Toast.makeText(TakeGoodsAddressActivity.this,"添加", Toast.LENGTH_SHORT).show();
-			
+			startActivity(new Intent(TakeGoodsAddressActivity.this,NewTakeOverGoodsAddress.class));
 			break;
 
 		default:
