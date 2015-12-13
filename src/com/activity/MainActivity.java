@@ -1,6 +1,7 @@
 package com.activity;
 
 import com.CommonConstants;
+import com.Application.SysApplication;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;
@@ -34,6 +35,7 @@ public class MainActivity extends TabActivity {
 	// private static RadioButton main_tab_myExam;
 	TabHost.TabSpec spec;
 	Intent intent;
+	private String TAG = this.getClass().getName();
 	
 	@SuppressWarnings("deprecation")
 	@Override
@@ -126,12 +128,24 @@ public class MainActivity extends TabActivity {
 					tabHost.setCurrentTabByTag("联系商家");
 					break;
 				case R.id.tab_rb_3:
-					t3.setTextColor(Color.rgb(248, 78, 1));
-					tabHost.setCurrentTabByTag("购物车");
+					if(SysApplication.getInstance().getIsLogin()){
+						t3.setTextColor(Color.rgb(248, 78, 1));
+						tabHost.setCurrentTabByTag("购物车");
+					}else{
+						Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+						startActivityForResult(intent, CommonConstants.SHOP_CARD);
+					}
+					
 					break;
 				case R.id.tab_rb_4:
-					t4.setTextColor(Color.rgb(248, 78, 1));
-					tabHost.setCurrentTabByTag("个人中心");
+					if(SysApplication.getInstance().getIsLogin()){
+						t4.setTextColor(Color.rgb(248, 78, 1));
+						tabHost.setCurrentTabByTag("个人中心");
+					}else{
+						Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+						startActivityForResult(intent, CommonConstants.PERSONAL_CENTER);
+					}
+					
 					break;
 				default:
 					// tabHost.setCurrentTabByTag("我的考试");
@@ -139,6 +153,28 @@ public class MainActivity extends TabActivity {
 				}
 			}
 		});
+	}
+	
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		if(requestCode == CommonConstants.SHOP_CARD && resultCode == RESULT_OK){
+			if(SysApplication.getInstance().getIsLogin()){
+				t3.setTextColor(Color.rgb(248, 78, 1));
+				tabHost.setCurrentTabByTag("购物车");
+			}
+			
+		}
+		
+		if(requestCode == CommonConstants.PERSONAL_CENTER && resultCode == RESULT_OK){
+			
+			if(SysApplication.getInstance().getIsLogin()){
+				t4.setTextColor(Color.rgb(248, 78, 1));
+				tabHost.setCurrentTabByTag("个人中心");
+			}
+		}
 	}
 	
 }

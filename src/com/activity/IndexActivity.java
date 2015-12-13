@@ -84,9 +84,9 @@ public class IndexActivity extends Activity implements OnPageChangeListener {
 		View view = LayoutInflater.from(this).inflate(
 				R.layout.activity_carousel, null);
 		//获取尾部布局
-		View view1 = LayoutInflater.from(this).inflate(
+		final View view1 = LayoutInflater.from(this).inflate(
 				R.layout.activity_index_button, null);
-		mLisView.addView(view1);
+		
 		group = (ViewGroup) view.findViewById(R.id.viewGroup);
 		viewPager = (AutoScrollViewPager) view.findViewById(R.id.pager_id);
 		mLisView.addView(view);
@@ -144,16 +144,14 @@ public class IndexActivity extends Activity implements OnPageChangeListener {
 							Iterator<Entry<String, String>> it = map.entrySet().iterator();
 							while(it.hasNext()){
 								Entry<String, String> en = it.next();
-								Log.e(TAG, "key==="+en.getKey()+"///value=="+en.getValue());
 								Map<String, String> map1 = StringManager.getListMapByJson(en.getValue()).get(0);
 								index_product_item  product_item = new index_product_item(IndexActivity.this);
 								product_item.setDate(map1);
 								mLisView.addView(product_item);
 							}
 							
-							indexListviewAdapter inadaAdapter = new indexListviewAdapter(IndexActivity.this,list);
 							
-							
+							mLisView.addView(view1);
 						}
 					}else {
 						jsonObject = new JSONObject(msg.obj.toString());
@@ -164,6 +162,8 @@ public class IndexActivity extends Activity implements OnPageChangeListener {
 							//JSONArray jsonArray = jsonObject.getJSONArray("class_goods");
 						}
 					}
+					
+//					mLisView.addView(view1);
 				} catch (JSONException e) {
 					e.printStackTrace();
 					// Toast.makeText(getApplicationContext(),

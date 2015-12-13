@@ -3,13 +3,12 @@ package com.activity;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import org.json.JSONException;
 import org.json.JSONObject;
-
 import com.Application.SysApplication;
 import com.Extension.DataService;
 import com.Model.UserInfo;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
@@ -41,6 +40,7 @@ public class LoginActivity extends Activity {
 	HashMap<String, String> list = new HashMap<String, String>();
 	Button btn_submit, btn_reg, btn_left, btn_right;
 	DataService client;
+	private String message_code = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,38 +68,52 @@ public class LoginActivity extends Activity {
 			public void handleMessage(Message msg) {
 				String data = "";
 				JSONObject jsonObject;
-				try {
+				if(msg.what == 0){
+					try {
 
-					jsonObject = new JSONObject(msg.obj.toString());
-					data = jsonObject.getString("login_user_status");
-					if (data.equals("1")) {
-						UserInfo model = new UserInfo();
-						String txtoneString = txtone.getText().toString()
-								.trim();
-						String txttwoString = txttwo.getText().toString()
-								.trim();
-						if (check.isChecked()) {
-							SharedPreferences share = getSharedPreferences(
-									"log_share", MODE_PRIVATE);
-							Editor editor = share.edit();
-							editor.putString("log_name", txtoneString);
-							editor.commit();
+						jsonObject = new JSONObject(msg.obj.toString());
+						data = jsonObject.getString("login_user_status");
+						if (data.equals("1")) {
+							UserInfo model = new UserInfo();
+							String txtoneString = txtone.getText().toString()
+									.trim();
+							String txttwoString = txttwo.getText().toString()
+									.trim();
+							if (check.isChecked()) {
+								SharedPreferences share = getSharedPreferences(
+										"log_share", MODE_PRIVATE);
+								Editor editor = share.edit();
+								editor.putString("log_name", txtoneString);
+								editor.commit();
+							}
+							model.setName(txtoneString);
+							model.setPassWord(txttwoString);
+							application.addUserInfo(model);
+							setResult(RESULT_OK);
+							finish();
+						} else {
+							Toast.makeText(getApplicationContext(), "用户名或密码错误", 1)
+									.show();
+							return;
 						}
-						model.setName(txtoneString);
-						model.setPassWord(txttwoString);
-						application.addUserInfo(model);
-						Intent intent = new Intent(getApplicationContext(),
-								MainActivity.class);
-						startActivity(intent);
-						finish();
-					} else {
-						Toast.makeText(getApplicationContext(), "用户名或密码错误", 2)
-								.show();
-						return;
-					}
-				} catch (Exception exp) {
+					} catch (Exception exp) {
 
+					}
+				}else if(msg.what == 1){
+					try {
+						jsonObject = new JSONObject(msg.obj.toString());
+						data = jsonObject.getString("send_status");
+						if(data.equals("1")){
+							message_code = jsonObject.getString("message_code");
+						}
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
 				}
+				
+				
 			}
 		};
 	}
@@ -147,7 +161,14 @@ public class LoginActivity extends Activity {
 	private void Login() {
 		String txtoneString = txtone.getText().toString().trim();
 		String txttwoString = txttwo.getText().toString().trim();
+		
 		if (ViewState) {
+			if(txtoneString.length() == 0 || txttwoString.length() == 0){
+				Toast.makeText(getApplicationContext(), "用户名或密码不能为空", 1)
+				.show();
+				return;
+			}
+			list.clear();
 			list.put("type", "user");
 			list.put("part", "userlogin");
 			list.put("username", txtoneString);
@@ -155,7 +176,23 @@ public class LoginActivity extends Activity {
 			client = new DataService(handler, 0, list);
 			client.start();
 		} else {
-
+			if(txtoneString.length() == 0 || txttwoString.length() == 0){
+				Toast.makeText(getApplicationContext(), "手机号码和验证码都不能为空", 1)
+				.show();
+				return;
+			}
+			if(!txttwoString.equals(message_code)){
+				Toast.makeText(getApplicationContext(), "验证码错误", 1)
+				.show();
+				return;
+			}
+			list.clear();
+			list.put("type", "user");
+			list.put("part", "userlogin");
+			list.put("mobilphone", txtoneString);
+			list.put("code", txttwoString);
+			client = new DataService(handler, 0, list);
+			client.start();
 		}
 	}
 
@@ -174,6 +211,18 @@ public class LoginActivity extends Activity {
 				codetwo.setText("隐藏");
 			}
 		}else {
+			String txtoneString = txtone.getText().toString().trim();
+			if(txtoneString.length() == 11){
+				list.clear();
+				list.put("type", "user");
+				list.put("part", "userlogin");
+				list.put("mobilphone", txtoneString);
+				client = new DataService(handler, 1, list);
+				client.start();
+			}else{
+				Toast.makeText(getApplicationContext(), "手机号码格式错误", 1)
+				.show();
+			}
 			
 		}
 	}

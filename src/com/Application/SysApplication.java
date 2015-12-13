@@ -19,7 +19,18 @@ public class SysApplication extends Application {
 	private static SysApplication instance;
 
 	private Activity tempActivitie = new Activity();
+	
+	private boolean  islogin = false;
+	
+	
+	public boolean getIsLogin(){
+		return islogin;
+	}
 
+	public void logOut(){
+		islogin = false;
+		user = null;
+	}
 
 	// ��ȡʵ��
 	public synchronized static SysApplication getInstance() {
@@ -35,6 +46,7 @@ public class SysApplication extends Application {
 
 	// ���õ�½�û�����Ϣ
 	public void addUserInfo(UserInfo model) {
+		islogin = true;
 		user = model;
 	}
 
