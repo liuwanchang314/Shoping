@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -25,11 +26,11 @@ public class TakeGoodsAddressActivity extends Activity implements OnClickListene
 	private ImageView mHome;
 	private ListView mListview;
 	private TextView mAdd;
-	private ActionBar actionbar;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_takegoodsaddress);
 		initview();
 	}
@@ -37,8 +38,6 @@ public class TakeGoodsAddressActivity extends Activity implements OnClickListene
 	@SuppressLint("NewApi")
 	private void initview() {
 		// TODO Auto-generated method stub
-		actionbar=getActionBar();
-		actionbar.hide();
 		mBack=(ImageView) findViewById(R.id.takegoodsaddress_back);
 		mBack.setOnClickListener(this);
 		mHome=(ImageView) findViewById(R.id.takegoodsaddress_home);

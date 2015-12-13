@@ -14,6 +14,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+
+import android.view.Window;
 import android.widget.Spinner;
 
 /**
@@ -32,6 +34,7 @@ public class RetrieveActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_retrieve);
 		spinner = (Spinner) findViewById(R.id.ret_txt_one);
 

@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
+
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,11 +25,11 @@ public class FinanInfoActivity extends Activity {
 	private Button mcallback;
 	private TextView mHome;
 	private ListView mListview;
-	private ActionBar actionbar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_finan_info);
 		initview();
 	}
@@ -35,8 +37,6 @@ public class FinanInfoActivity extends Activity {
 	@SuppressLint("NewApi")
 	private void initview() {
 		// TODO Auto-generated method stub
-		actionbar=getActionBar();
-		actionbar.hide();
 		mcallback=(Button) findViewById(R.id.finance_btn_back);
 		mHome=(TextView) findViewById(R.id.finance_btn_home);
 		mListview=(ListView) findViewById(R.id.financedetail_listview);

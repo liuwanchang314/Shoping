@@ -16,11 +16,19 @@ import java.net.URL;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+
+import com.lidroid.xutils.BitmapUtils;
+
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Environment;
 import android.os.StrictMode;
+import android.widget.ImageView;
 
 public class DownLoadImage {
 
@@ -194,33 +202,34 @@ public class DownLoadImage {
 		}
 	}
 
-	@SuppressLint("NewApi")
-	public static Bitmap GetLocalOrNetBitmap(String url) {
-		StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-				.detectDiskReads().detectDiskWrites().detectNetwork()
-				.penaltyLog().build());
-		StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-				.detectLeakedSqlLiteObjects().detectLeakedClosableObjects()
-				.penaltyLog().penaltyDeath().build());
-		Bitmap bitmap = null;
-		InputStream in = null;
-		BufferedOutputStream out = null;
-		try {
-			in = new BufferedInputStream(
-
-			new URL(url).openStream(), 2 * 1024);
-			final ByteArrayOutputStream dataStream = new ByteArrayOutputStream();
-			out = new BufferedOutputStream(dataStream, 2 * 1024);
-			copy(in, out);
-			out.flush();
-			byte[] data = dataStream.toByteArray();
-			bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-			data = null;
-			return bitmap;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
+	public static void GetLocalOrNetBitmap(Context context,ImageView iv,String url) {
+//		StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+//				.detectDiskReads().detectDiskWrites().detectNetwork()
+//				.penaltyLog().build());
+//		StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+//				.detectLeakedSqlLiteObjects().detectLeakedClosableObjects()
+//				.penaltyLog().penaltyDeath().build());
+//		Bitmap bitmap = null;
+//		InputStream in = null;
+//		BufferedOutputStream out = null;
+//		try {
+//			in = new BufferedInputStream(
+//
+//			new URL(url).openStream(), 2 * 1024);
+//			final ByteArrayOutputStream dataStream = new ByteArrayOutputStream();
+//			out = new BufferedOutputStream(dataStream, 2 * 1024);
+//			copy(in, out);
+//			out.flush();
+//			byte[] data = dataStream.toByteArray();
+//			bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+//			data = null;
+//			return bitmap;
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//			return null;
+//		}
+		BitmapUtils bm=new BitmapUtils(context);
+		bm.display(iv,url);
 	}
 
 	private static void copy(InputStream in, OutputStream out)

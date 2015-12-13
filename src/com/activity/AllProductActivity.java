@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -66,6 +67,7 @@ public class AllProductActivity extends Activity {
 		// TODO Auto-generated method stub
 		mactionbar=getActionBar();
 		mactionbar.hide();
+
 		mTubiaoqiehuan=(ImageView) findViewById(R.id.allproduct_tuwenbiebiao);
 		mTubiaoqiehuan.setOnClickListener(new OnClickListener() {
 			

@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,11 +24,11 @@ public class PayPassWordFindBackActivity extends Activity {
 	private EditText mNewPassword;
 	private EditText mSurewore;//确认密码
 	private TextView mTijiao;
-	private ActionBar actionbar;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_paypasswordfindback);
 		initview();
 	}
@@ -39,8 +40,6 @@ public class PayPassWordFindBackActivity extends Activity {
 	@SuppressLint("NewApi")
 	private void initview() {
 		// TODO Auto-generated method stub
-		actionbar=getActionBar();
-		actionbar.hide();
 		mBack=(ImageView) findViewById(R.id.passwordfindback_back);
 		mHome=(ImageView) findViewById(R.id.passwordfindback_home);
 		mPhone=(EditText) findViewById(R.id.passwordfindback_phone);

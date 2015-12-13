@@ -7,19 +7,19 @@
     <WebView
         android:id="@+id/proItem_wvTop"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:src="@drawable/itemtop" />
+         />
     <TextView 
         android:id="@+id/proItem_tvTop"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
         android:layout_weight="1"
+        android:layout_height="0dp"
         />
 
     <com.customview.MyGridView
         android:id="@+id/proitem_lv"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_width="match_parent"
         android:numColumns="2"
         android:layout_weight="1"

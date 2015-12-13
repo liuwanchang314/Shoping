@@ -223,7 +223,7 @@ public class LoginActivity extends Activity {
 				Toast.makeText(getApplicationContext(), "手机号码格式错误", 1)
 				.show();
 			}
-			
+
 		}
 	}
 

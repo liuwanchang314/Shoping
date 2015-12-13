@@ -22,6 +22,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import android.view.Window;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
@@ -33,7 +35,6 @@ public class ProductClassNumberActivity extends Activity {
 	private ImageView mBack;
 	private ImageView mHome;
 	private ExpandableListView mListview;
-	private ActionBar actionbar;
 	private static final String G_TEXT = "g_text";//组标记
 	private static final String C_TEXT1 = "c_text1";//子标记
 	List<Map<String, String>> groupData = new ArrayList<Map<String, String>>();//组数据源集合
@@ -43,6 +44,7 @@ public class ProductClassNumberActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_productclassnumber);
 		initview();
 		GetData();
@@ -90,8 +92,6 @@ public class ProductClassNumberActivity extends Activity {
 	@SuppressLint("NewApi")
 	private void initview() {
 		// TODO Auto-generated method stub
-		actionbar=getActionBar();
-		actionbar.hide();
 		mBack=(ImageView) findViewById(R.id.productclassnumber_bake);
 		mHome=(ImageView) findViewById(R.id.productclassnumber_home);
 		mListview=(ExpandableListView) findViewById(R.id.productclassnumber_list);

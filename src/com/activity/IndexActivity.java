@@ -227,7 +227,7 @@ public class IndexActivity extends Activity implements OnPageChangeListener {
 
 
 
-	// ///////////////////////////////////////////////////////////////////////////////////
+
 	private void init() {
 
 		mDotTips = new ImageView[mPicsUrl.length];
@@ -258,8 +258,9 @@ public class IndexActivity extends Activity implements OnPageChangeListener {
 		mImageViews = new ImageView[length];
 		for (int i = 0; i < length; i++) {
 			ImageView img = new ImageView(IndexActivity.this);
-			Bitmap bitmap = DownLoadImage.GetLocalOrNetBitmap(mPicsUrl[i]);
-			img.setImageBitmap(bitmap);
+//			Bitmap bitmap = DownLoadImage.GetLocalOrNetBitmap(mPicsUrl[i]);
+//			img.setImageBitmap(bitmap);
+			DownLoadImage.GetLocalOrNetBitmap(IndexActivity.this, img, mPicsUrl[i]);
 			// img.setTag(mPicsUrlid[i]);
 			img.setScaleType(ScaleType.FIT_XY);
 			mImageViews[i] = img;

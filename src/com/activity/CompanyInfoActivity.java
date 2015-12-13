@@ -31,6 +31,7 @@ public class CompanyInfoActivity extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		actionbar=getActionBar();
 		actionbar.hide();
+
 		mBack=(ImageView) findViewById(R.id.companyinfo_back);
 		mBack.setOnClickListener(this);
 		mHome=(ImageView) findViewById(R.id.companyinfo_home);

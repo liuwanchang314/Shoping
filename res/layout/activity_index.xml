@@ -13,13 +13,13 @@
         android:orientation="vertical"
         >
 
-    <LinearLayout 
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:orientation="vertical"
-        android:layout_weight="0.7"
-        
-        >
+        android:layout_weight="1.83"
+        android:orientation="vertical" >
+
 
         <RelativeLayout
             android:id="@+id/index_rt_top"

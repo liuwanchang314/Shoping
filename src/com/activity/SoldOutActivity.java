@@ -19,6 +19,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,21 +28,18 @@ public class SoldOutActivity extends Activity {
 	private TextView mBack;
 	private TextView mHome;
 	private ListView mListview;
-	private ActionBar actionbar;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_soldout);
 		initview();
 		GetData();
 	}
 	
-	@SuppressLint("NewApi")
 	private void initview() {
 		// TODO Auto-generated method stub
-		actionbar=getActionBar();
-		actionbar.hide();
 		mBack=(TextView) findViewById(R.id.soldout_back);
 		mHome=(TextView) findViewById(R.id.soldout_home);
 		mListview=(ListView) findViewById(R.id.soldout_listview);

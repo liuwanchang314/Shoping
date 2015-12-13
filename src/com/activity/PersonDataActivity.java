@@ -8,11 +8,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+
+import android.view.Window;
+
 
 /**
  * @author JZKJ-LWC
@@ -29,19 +34,17 @@ public class PersonDataActivity extends Activity implements OnClickListener{
 	private LinearLayout mAnquan;//安全信息
 	private LinearLayout mPayinfo;//支付
 	private LinearLayout mCard;//名片
-	private ActionBar actionbar;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_persondata);
 		initview();
 	}
 	@SuppressLint("NewApi")
 	private void initview() {
 		// TODO Auto-generated method stub
-		actionbar=getActionBar();
-		actionbar.hide();
 		mBack=(ImageView) findViewById(R.id.persondata_back);
 		mBack.setOnClickListener(this);
 		mHome=(ImageView) findViewById(R.id.persondata_home);

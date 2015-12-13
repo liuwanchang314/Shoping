@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.zip.Inflater;
-
-import com.CommonConstants;
 import com.activity.R;
 import com.lidroid.xutils.BitmapUtils;
+import com.other.CommonConstants;
 
 import android.content.Context;
 import android.view.View;

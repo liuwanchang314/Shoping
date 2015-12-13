@@ -28,19 +28,17 @@ public class WithDrawAcivity extends Activity implements OnClickListener{
 	private EditText mBranchName;//分行名称
 	private EditText mNumber;//卡号
 	private TextView mSure;//确认提现
-	private ActionBar actionbar;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_withdraw);
 		initview();
 	}
 	@SuppressLint("NewApi")
 	private void initview() {
 		// TODO Auto-generated method stub
-		actionbar=getActionBar();
-		actionbar.hide();
 		mBack=(ImageView) findViewById(R.id.withdraw_back);
 		mBack.setOnClickListener(this);
 		mHome=(ImageView) findViewById(R.id.withdraw_home);

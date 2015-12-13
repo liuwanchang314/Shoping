@@ -39,6 +39,8 @@ public class Product_infoActivity extends Activity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_product_info);
 		initview();
 		getid();
@@ -58,8 +60,6 @@ public class Product_infoActivity extends Activity implements OnClickListener{
 	@SuppressLint("NewApi")
 	private void initview() {
 		// TODO Auto-generated method stub
-		actionbar=getActionBar();
-		actionbar.hide();
 		mBack=(Button) findViewById(R.id.producinfo_back);
 		mBack.setOnClickListener(this);
 		mHome=(Button) findViewById(R.id.producinfo_home);

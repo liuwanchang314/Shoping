@@ -18,20 +18,21 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+
+import android.view.Window;
 import android.widget.ListView;
 
 public class CompanyNoticeActivity extends Activity {
 	
-	private ActionBar actionbar;
 	private ListView mListview;
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_companynotice);
-		actionbar=getActionBar();
-		actionbar.hide();
+
 		initview();
 		//准备数据源
 		GetData();
