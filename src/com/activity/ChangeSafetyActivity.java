@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,7 +14,6 @@ import android.widget.TextView;
  * @date : 2015-12-11 上午11:24:22
  * 修改安全信息界面
  */  
-@SuppressLint("NewApi")
 public class ChangeSafetyActivity extends Activity {
 	
 	private ImageView mBack,mHome;
@@ -27,6 +27,7 @@ public class ChangeSafetyActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_changesafety);
 		initview();
 		
@@ -37,8 +38,6 @@ public class ChangeSafetyActivity extends Activity {
 	 */  
 	private void initview() {
 		// TODO Auto-generated method stub
-		actionbar=getActionBar();
-		actionbar.hide();
 		mBack=(ImageView) findViewById(R.id.changesafety_back);
 		mHome=(ImageView) findViewById(R.id.changesafety_home);
 		mQuestion=(TextView) findViewById(R.id.changesafety_wentianniu);
