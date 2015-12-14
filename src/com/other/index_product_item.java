@@ -63,9 +63,7 @@ public class index_product_item extends RelativeLayout {
 			tv.setVisibility(View.GONE);
 			wv.setVisibility(View.VISIBLE);
 			 wv.loadDataWithBaseURL(null, map.get("class_info"), "text/html", "utf-8", null);  
-
 		        wv.getSettings().setJavaScriptEnabled(true);  
-
 		        wv.setWebChromeClient(new WebChromeClient()); 
 		}else{
 			wv.setVisibility(View.GONE);
