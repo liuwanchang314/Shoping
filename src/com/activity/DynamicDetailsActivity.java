@@ -1,5 +1,7 @@
 package com.activity;
 
+import com.bean.Dynamicdetailsbean;
+import com.jsonParser.DyJsonpaser;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;
@@ -8,12 +10,16 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.TextView;
 /**
  * @author JZKJ-LWC
@@ -32,7 +38,7 @@ public class DynamicDetailsActivity extends Activity implements OnClickListener{
 	private TextView mHome;//主页
 	private TextView mTitle;//标题
 	private TextView mTime;//时间
-	private TextView mContent;//内容
+	private WebView mContent;//内容
 	
 	private String mId;//从跳转界面传过来的ID
 	
@@ -42,6 +48,9 @@ public class DynamicDetailsActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_dynamicdetails);
+		Intent intent=getIntent();
+		Bundle budle=intent.getExtras();
+		mId=budle.getString("id");
 		initview();
 		GetData();
 	}
@@ -81,6 +90,11 @@ public class DynamicDetailsActivity extends Activity implements OnClickListener{
 		        	String str=responseInfo.result;
 		        	Log.i("网络请求下来的参数是",str);
 		        	//这里得到的就是文章内容结果集
+		        	Dynamicdetailsbean bean=DyJsonpaser.getlist(str);
+		        	mTitle.setText(bean.getArticle_title());
+		        	mTime.setText(bean.getArticle_time());
+		        	mContent.loadDataWithBaseURL(null, bean.getArticle_content(), "text/html", "utf-8", null);  
+		        	
 		        	
 		        }
 
@@ -96,7 +110,15 @@ public class DynamicDetailsActivity extends Activity implements OnClickListener{
 		mHome=(TextView) findViewById(R.id.dynamicdetails_top_textview_home);
 		mTitle=(TextView) findViewById(R.id.dynamicdetais_tv_title);
 		mTime=(TextView) findViewById(R.id.dynamicdetais_tv_time);
-		mContent=(TextView) findViewById(R.id.dynamicdetais_tv_content);
+		mContent=(WebView) findViewById(R.id.dy_webview);
+//		WebSettings webSettings = mContent.getSettings();
+//		mContent.setWebChromeClient(new WebChromeClient());
+//		webSettings.setSavePassword(false);
+//		webSettings.setSaveFormData(false);
+//		webSettings.setJavaScriptEnabled(true);
+//		webSettings.setSupportZoom(false);
+//		webSettings.setUseWideViewPort(true); 
+//		webSettings.setLoadWithOverviewMode(true); 
 		
 	}
 
