@@ -269,13 +269,7 @@ public class IndexActivity extends Activity implements OnPageChangeListener {
 
 				@Override
 				public void onClick(View v) {
-					// TODO �Զ���ɵķ������
 					String aString = v.getTag().toString();
-					// Intent intent = new Intent(NewsActivity.this,
-					// NewPageActivity.class);
-					// intent.putExtra("newsid", aString);
-					// intent.putExtra("newtitle", t.getText().toString());
-					// startActivity(intent);
 				}
 			});
 		}
