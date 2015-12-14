@@ -3,11 +3,14 @@ package com.activity;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import com.Application.SysApplication;
 import com.Extension.DataService;
 import com.Model.UserInfo;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
@@ -17,9 +20,13 @@ import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -41,7 +48,27 @@ public class LoginActivity extends Activity {
 	Button btn_submit, btn_reg, btn_left, btn_right;
 	DataService client;
 	private String message_code = "";
+	private Map<String, String> userMap = new HashMap<String, String>();
 
+	private String name;
+	private String pwd;
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		getUserMapFromSP();
+	}
+	
+	private void getUserMapFromSP(){
+		SharedPreferences share = getSharedPreferences(
+				"log_share", MODE_PRIVATE);
+		name = share.getString("log_name", "");
+		userMap.put("name", name);
+		pwd = share.getString("log_pwd", "");
+		userMap.put("pwd", pwd);
+	}
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,6 +77,7 @@ public class LoginActivity extends Activity {
 		tvtwo = (TextView) findViewById(R.id.login_tv_two);// 第二行标题
 		codetwo = (TextView) findViewById(R.id.login_code_two);// 第二行验证码&显示
 		txtone = (EditText) findViewById(R.id.login_txt_one);// 第一行文本
+		
 		txttwo = (EditText) findViewById(R.id.login_txt_two);
 		btn_left = (Button) findViewById(R.id.login_btn_left);
 		btn_submit = (Button) findViewById(R.id.login_btn_submit);
@@ -57,6 +85,32 @@ public class LoginActivity extends Activity {
 		btn_reg = (Button) findViewById(R.id.login_btn_reg);
 		getPwd = (TextView) findViewById(R.id.login_tv_getPwd);
 		check = (CheckBox) findViewById(R.id.login_check_pwd);
+		txtone.addTextChangedListener(new TextWatcher() {
+			
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				
+				String ss = txtone.getText().toString();
+					if(ss.equals(name)){
+						txttwo.setText(pwd);
+					}
+				
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 		codetwo.setOnClickListener(new onClick());
 		btn_left.setOnClickListener(new onClick());
 		btn_right.setOnClickListener(new onClick());
@@ -84,6 +138,14 @@ public class LoginActivity extends Activity {
 										"log_share", MODE_PRIVATE);
 								Editor editor = share.edit();
 								editor.putString("log_name", txtoneString);
+								editor.putString("log_pwd", txttwoString);
+								editor.commit();
+							}else{
+								SharedPreferences share = getSharedPreferences(
+										"log_share", MODE_PRIVATE);
+								Editor editor = share.edit();
+								editor.putString("log_name", "");
+								editor.putString("log_pwd", "");
 								editor.commit();
 							}
 							model.setName(txtoneString);
@@ -133,13 +195,21 @@ public class LoginActivity extends Activity {
 				Login();
 				break;
 			case R.id.login_btn_reg:
+				Intent intent1 = new Intent(getApplicationContext(),
+						RegnActivity.class);
+				startActivity(intent1);
 				break;
 			case R.id.login_code_two:
 				isPassWord();
 				break;
 			case R.id.login_tv_getPwd:
+				if(txtone.getText().toString().equals("")){
+					Toast.makeText(LoginActivity.this, "用户名不能为空", 0).show();
+					return;
+				}
 				Intent intent = new Intent(getApplicationContext(),
 						RetrieveActivity.class);
+				intent.putExtra("name", txttwo.getText().toString());
 				startActivity(intent);
 			default:
 				break;
@@ -232,6 +302,7 @@ public class LoginActivity extends Activity {
 		tvtwo.setText("手机验证码");
 		codetwo.setText("获取验证码");
 		txtone.setHint("输入手机号码");
+		check.setVisibility(View.GONE);
 		txttwo.setHint("输入验证码");
 		btn_left.setText("账号登录");
 		isPassWord();
@@ -245,6 +316,7 @@ public class LoginActivity extends Activity {
 		codetwo.setText("显示");
 		txtone.setHint("手机/会员名/邮箱");
 		txttwo.setHint("请输入密码");
+		check.setVisibility(View.VISIBLE);
 		btn_left.setText("手机号码登录");
 		isPassWord();
 		txttwo.setText("");

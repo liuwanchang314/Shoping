@@ -2,7 +2,6 @@ package com.activity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import java.util.List;
 
 import org.json.JSONObject;
@@ -11,10 +10,10 @@ import com.Extension.DataService;
 import com.Model.RelInfo;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-
 import android.view.Window;
 import android.widget.Spinner;
 
@@ -30,12 +29,15 @@ public class RetrieveActivity extends Activity {
 	DataService client;
 	Handler handler;
 	HashMap<String, String> list = new HashMap<String, String>();
-
+	private String name;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_retrieve);
+		Intent intent = getIntent();
+		name = intent.getStringExtra("name");
 		spinner = (Spinner) findViewById(R.id.ret_txt_one);
 
 		handler = new Handler() {
@@ -60,6 +62,7 @@ public class RetrieveActivity extends Activity {
 	private void addRetItem() {
 		list.put("type", "system");
 		list.put("part", "question");
+		list.put("", name);
 		client = new DataService(handler, 0, list);
 		client.start();
 	}
