@@ -26,6 +26,7 @@
             android:src="@drawable/logo" />
 
         <ImageView
+            android:id="@+id/proii_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -167,7 +168,7 @@
         android:background="#DEDEDE" />
 
     <Button
-        android:id="@+id/login_btn_submit"
+        android:id="@+id/login_btn_submits"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"

@@ -73,12 +73,23 @@
             android:layout_height="180dp"
             android:layout_margin="5dp"
             android:background="@drawable/itemtop" >
+            <com.Extension.AutoScrollViewPager
+		        android:id="@+id/producinfo_viewpager"
+		        android:layout_width="match_parent"
+		        android:layout_height="match_parent" >
+    			</com.Extension.AutoScrollViewPager>
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/producinfo_viewpager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-            </android.support.v4.view.ViewPager>
+    			<LinearLayout
+    			    android:id="@+id/pi_viewGroup"
+    			    android:layout_width="match_parent"
+    			    android:layout_height="20dp"
+    			    android:layout_alignParentBottom="true"
+    			    android:layout_alignParentLeft="true"
+    			    android:background="#998E8E8E"
+    			    android:gravity="center"
+    			    android:orientation="horizontal" >
+    			</LinearLayout>
+
         </RelativeLayout>
 
         <LinearLayout
@@ -287,11 +298,10 @@
             />
         <!-- 这里是一张大图 -->
         
-        <ImageView 
+        <WebView
             android:id="@+id/productinfo_datu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/itemtop"
             />
      
     </LinearLayout>
