@@ -16,15 +16,20 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 public class CompanyNoticeActivity extends Activity {
 	
 	private ListView mListview;
+	List<CompanyNoticeBean> list;
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,10 +74,23 @@ public class CompanyNoticeActivity extends Activity {
 		        	//请求成功
 		        	String str=responseInfo.result;
 		        	Log.i("公司公告网络请求下来的参数是",str);
-		        	List<CompanyNoticeBean> list=new ArrayList<CompanyNoticeBean>();
 		        	list=CompanyNoticeJsonPaser.GetBean(str);
 		        	CompanyNoticeAdapter adapter=new CompanyNoticeAdapter(list, CompanyNoticeActivity.this);
 		        	mListview.setAdapter(adapter);
+		        	mListview.setOnItemClickListener(new OnItemClickListener() {
+
+						@Override
+						public void onItemClick(AdapterView<?> arg0, View arg1,
+								int arg2, long arg3) {
+							// TODO Auto-generated method stub
+							//进行跳转，需要带上商品id
+							Bundle bundle=new Bundle();
+							bundle.putString("id",list.get(arg2).getArticle_id());
+							Intent intent=new Intent(CompanyNoticeActivity.this,DynamicDetailsActivity.class);
+							intent.putExtras(bundle);
+							startActivity(intent);
+						}
+					});
 		        	
 		        }
 
