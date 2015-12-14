@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -54,6 +55,7 @@ public class AllProductActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_allproduct);
 		initview();
 		GetData();
@@ -65,9 +67,6 @@ public class AllProductActivity extends Activity {
 	 */  
 	private void initview() {
 		// TODO Auto-generated method stub
-		mactionbar=getActionBar();
-		mactionbar.hide();
-
 		mTubiaoqiehuan=(ImageView) findViewById(R.id.allproduct_tuwenbiebiao);
 		mTubiaoqiehuan.setOnClickListener(new OnClickListener() {
 			
