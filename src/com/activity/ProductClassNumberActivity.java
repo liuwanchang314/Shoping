@@ -1,22 +1,27 @@
 package com.activity;
 
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.adapter.myexlistviewadapter;
+import com.bean.productclassgroup;
+import com.jsonParser.ProductClassJsonpaser;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,6 +31,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -48,38 +54,25 @@ public class ProductClassNumberActivity extends Activity {
 		setContentView(R.layout.activity_productclassnumber);
 		initview();
 		GetData();
-		initGroupDate();
-		initChildDate();
-		mAdapter=new myexlistviewadapter(groupData, childData, ProductClassNumberActivity.this);
-		mListview.setAdapter(mAdapter);
-		mListview.setGroupIndicator(null);
-//		mListview.setDivider(null);
-	}
-	/**
-	 * @author JZKJ-LWC
-	 * @date : 2015-12-10 下午1:20:30
-	 * 子菜单数据
-	 */  
-	private void initChildDate() {
-		// TODO Auto-generated method stub
 		
+//		mListview.setDivider(null);
 	}
 	/**
 	 * @author JZKJ-LWC
 	 * @date : 2015-12-10 下午1:19:54
 	 * 组菜单数据源
 	 */  
-	private void initGroupDate() {
+	private void initGroupDate(List<productclassgroup> list) {
 		// TODO Auto-generated method stub
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < list.size(); i++) {
             Map<String, String> curGroupMap = new HashMap<String, String>();//该集合存储了一个组的菜单数据，组名和标记
-            curGroupMap.put(G_TEXT, "Group " + i);
+            curGroupMap.put(G_TEXT,list.get(i).getClass_name());
             groupData.add(curGroupMap);//将这个组添加到组集合中
             //一个组当中有多个子，所以这里生成集合来存储子列表项
             List<Map<String, String>> children = new ArrayList<Map<String, String>>();
-            for (int j = 0; j < 5; j++) {
+            for (int j = 0; j <list.get(i).getList().size(); j++) {
                 Map<String, String> curChildMap = new HashMap<String, String>();//子菜单内容
-                curChildMap.put(C_TEXT1, "Child " + j);
+                curChildMap.put(C_TEXT1, list.get(i).getList().get(j).getClass_name());
                 children.add(curChildMap);//添加到集合中
             }
             childData.add(children);//循环结束，将该组的子菜单集合添加到子数据源中
@@ -124,7 +117,23 @@ public class ProductClassNumberActivity extends Activity {
 		        	//请求成功
 		        	String str=responseInfo.result;
 		        	Log.i("网络请求下来的参数是",str);
-		        	
+		        	List<productclassgroup> list=ProductClassJsonpaser.getlist(str);
+		        	Log.i("分组现在有多少数据", list.size()+"");
+		        	initGroupDate(list);
+		    		mAdapter=new myexlistviewadapter(groupData, childData, ProductClassNumberActivity.this);
+		    		mListview.setAdapter(mAdapter);
+		    		mListview.setGroupIndicator(null);
+		    		mListview.setOnChildClickListener(new OnChildClickListener() {
+						
+						@Override
+						public boolean onChildClick(ExpandableListView parent, View v,
+								int groupPosition, int childPosition, long id) {
+							// TODO Auto-generated method stub
+							startActivity(new Intent(ProductClassNumberActivity.this,AllProductActivity.class));
+							
+							return false;
+						}
+					});
 		        }
 
 		        @Override
