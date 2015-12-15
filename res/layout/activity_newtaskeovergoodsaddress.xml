@@ -87,7 +87,7 @@
 
             <EditText
                 android:id="@+id/newtakeoveraddress_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
@@ -110,7 +110,7 @@
 
             <EditText
                 android:id="@+id/newtakeoveraddress_phone"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
@@ -131,7 +131,7 @@
 
             <EditText
                 android:id="@+id/newtakeoveraddress_youzhenbianma"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
@@ -217,7 +217,7 @@
 
             <EditText
                 android:id="@+id/newtakeoveraddress_detail_address"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"

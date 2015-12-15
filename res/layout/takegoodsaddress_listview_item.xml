@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <RelativeLayout 
+        android:id="@+id/takegoodsaddress_lv_layout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        >
+
+        <TextView
+            android:id="@+id/takegoodsaddress_lv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="李先生" 
+            />
+
+        <ImageView
+            android:id="@+id/takegoodsaddress_lv_tubiao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:visibility="invisible"
+            android:src="@drawable/login_yes_check" />
+
+        <TextView
+            android:id="@+id/takegoodsaddress_lv_dianhua"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/takegoodsaddress_lv_name"
+            android:layout_alignBottom="@+id/takegoodsaddress_lv_name"
+            android:layout_marginRight="40dp"
+            android:layout_toLeftOf="@+id/takegoodsaddress_lv_tubiao"
+            android:text="1234577654" />
+
+        <TextView
+            android:id="@+id/takegoodsaddress_lv_dizhi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/takegoodsaddress_lv_name"
+            android:layout_below="@+id/takegoodsaddress_lv_tubiao"
+            android:text="TextView" />
+       
+    </RelativeLayout>
+    
+
+</LinearLayout>
