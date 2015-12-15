@@ -35,7 +35,7 @@ public class OrderActivity extends Activity implements OnClickListener{
 	private Fragment[] mfragments;//用来存储fragment
 	private ActionBar actionbar;
 	
-	@SuppressLint({ "NewApi", "CommitTransaction" })
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
