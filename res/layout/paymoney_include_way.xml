@@ -20,6 +20,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
+                android:background="@drawable/biankuang"
+                android:gravity="center"
                 android:text="商家发货" />
 
         </RelativeLayout>
@@ -36,6 +38,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
+                android:background="@drawable/biankuang"
+                android:gravity="center"
                 android:text="嘉禾代发" />
 
         </RelativeLayout>

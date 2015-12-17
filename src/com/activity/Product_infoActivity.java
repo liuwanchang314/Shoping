@@ -2,6 +2,9 @@ package com.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.CommonConstants;
 import com.Application.SysApplication;
 import com.Extension.AutoScrollViewPager;
@@ -34,6 +37,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,6 +74,7 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 	private WebView mBigpic;//大图
 	private String[] ViewpagerData;
 	private ViewGroup group;//顶部标示点布局
+	private RelativeLayout layyout_add;
 	private ImageView mDotTips[];
 	private ImageView mImageViews[];
 	private ImageAdapter mAdapter;
@@ -78,7 +83,12 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 	private XCFlowLayout xDimesion;
 	private XCFlowLayout xColor;
 	private Button edit;
-	
+	private String dimesion=null;
+	private String colors=null;
+	List<PIdimesionAndColor> list_yanse;
+	List<PIdimesionAndColor> list_chicun;
+	int a=0;
+	int b=0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -216,8 +226,8 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 					            dialog.show();
 					            
 					            //颜色集合
-					            List<PIdimesionAndColor> list_yanse=new ArrayList<PIdimesionAndColor>();
-					            List<PIdimesionAndColor> list_chicun=new ArrayList<PIdimesionAndColor>();
+					            list_yanse=new ArrayList<PIdimesionAndColor>();
+					            list_chicun=new ArrayList<PIdimesionAndColor>();
 					            List<PIspec> list_guige=(List<PIspec>) bean.getList();
 					            
 					            for(int g=0;g<list_guige.size();g++){
@@ -246,7 +256,8 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 					            ml.rightMargin = 5;
 					            ml.topMargin = 5;
 					            ml.bottomMargin = 5;
-					            for(int i = 0; i < list_chicun.size(); i ++){
+					            
+					            for(int i=0; i < list_chicun.size(); i ++){
 					                final TextView view = new TextView(Product_infoActivity.this);
 					                view.setText(list_chicun.get(i).getValue());
 					                view.setTextColor(Color.WHITE);
@@ -255,21 +266,33 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 					    				
 					    				public void onClick(View v) {
 					    					// TODO Auto-generated method stub
-					    					Toast.makeText(Product_infoActivity.this,view.getText(),Toast.LENGTH_SHORT).show();		
+					    					Toast.makeText(Product_infoActivity.this,view.getText(),Toast.LENGTH_SHORT).show();	
+					    					//获取id
+					    					for(int j=0;j<list_chicun.size();j++){
+					    						if(list_chicun.get(j).getValue().equals(view.getText().toString())){
+					    							dimesion=list_chicun.get(j).getId();
+					    						}
+					    					}
+					    					
 					    				}
 					    			});
 					                xDimesion.addView(view,ml);
 					            }
-					            for(int i = 0; i < list_yanse.size(); i ++){
+					            for(b = 0; b < list_yanse.size(); b ++){
 					                final TextView view = new TextView(Product_infoActivity.this);
-					                view.setText(list_yanse.get(i).getValue());
+					                view.setText(list_yanse.get(b).getValue());
 					                view.setTextColor(Color.WHITE);
 					                view.setBackgroundDrawable(getResources().getDrawable(R.drawable.textview_bg));
 					                view.setOnClickListener(new OnClickListener() {
 					    				
 					    				public void onClick(View v) {
 					    					// TODO Auto-generated method stub
-					    					Toast.makeText(Product_infoActivity.this,view.getText(),Toast.LENGTH_SHORT).show();		
+					    					Toast.makeText(Product_infoActivity.this,view.getText(),Toast.LENGTH_SHORT).show();	
+					    					for(int j=0;j<list_yanse.size();j++){
+					    						if(list_yanse.get(j).getValue().equals(view.getText().toString())){
+					    							colors=list_yanse.get(j).getId();
+					    						}
+					    					}
 					    				}
 					    			});
 					                xColor.addView(view,ml);
@@ -326,6 +349,83 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 										//购物车，这里需要注意的是
 										if(SysApplication.getInstance().getIsLogin()){
 											//说明已经登陆,需要将数据提交到远程
+											//需要提交的参数1username,2商品id,3规格id,4goodsname,5,购买数量
+//											String username=SysApplication.getInstance().getUserInfo().getName();//用户名
+											String id=_id;//商品id
+//											String goodsname=bean.getGoods_name();//商品名称
+//											String buynum=edit.getText().toString();//购买数量
+											String guige=colors+","+dimesion;
+//											
+//											Log.i("要加入了，现在的username是", username);
+//											Log.i("要加入了，现在的id是", id);
+//											Log.i("要加入了，现在的goodsname是", goodsname);
+//											Log.i("要加入了，现在的buynum是", buynum);
+//											Log.i("要加入了，现在的guige是", guige);
+											//现在在这里获取商品的规格id
+											RequestParams params = new RequestParams();
+											// 只包含字符串参数时默认使用BodyParamsEntity，
+											params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
+											params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
+											params.addBodyParameter("type", "goods");
+											params.addBodyParameter("part", "get_spec_id");
+											params.addBodyParameter("goods_id",id);
+											params.addBodyParameter("up_id",guige);
+											HttpUtils http = new HttpUtils();
+											http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
+
+											        @Override
+											        public void onStart() {
+											        	//开始请求
+											        }
+
+											        @Override
+											        public void onLoading(long total, long current, boolean isUploading) {
+											            if (isUploading) {
+											            } else {
+											            }
+											        }
+
+											        @Override
+											        public void onSuccess(ResponseInfo<String> responseInfo) {
+											        	//请求成功
+											        	String str=responseInfo.result;
+											        	Log.i("网络请求下来规格id 参数是",str);
+											        	/**
+											        	 			* {
+																    "api": "APISUCCESS",
+																    "storage": "85",
+																    "spec_id": "398345",
+																    "price": "12.00",
+																    "status": 1
+																}
+											        	 * 
+											        	 * */
+											        	try {
+															JSONObject obj=new JSONObject(str);
+															String guiges=obj.getString("spec_id");
+															String username=SysApplication.getInstance().getUserInfo().getName();//用户名
+															String id=_id;//商品id
+															String goodsname=bean.getGoods_name();//商品名称
+															String buynum=edit.getText().toString();//购买数量
+												        	Log.i("要加入了，现在的username是", username);
+															Log.i("要加入了，现在的id是", id);
+															Log.i("要加入了，现在的goodsname是", goodsname);
+															Log.i("要加入了，现在的buynum是", buynum);
+															Log.i("要加入了，现在的guige是", guiges);
+															//调用方法，加入购物车
+															addgouwuche(username,id,goodsname,buynum,guiges);
+														} catch (JSONException e) {
+															// TODO Auto-generated catch block
+															e.printStackTrace();
+														}
+											        	
+											        }
+
+											        @Override
+											        public void onFailure(HttpException error, String msg) {
+											        }
+											});
+											
 										}else{
 											AlertDialog.Builder builder=new AlertDialog.Builder(Product_infoActivity.this);
 											builder.setTitle("登录提示");
@@ -336,7 +436,7 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 												public void onClick(DialogInterface dialog, int which) {
 													// TODO Auto-generated method stub
 													Intent intent = new Intent(Product_infoActivity.this, LoginActivity.class);
-													startActivityForResult(intent, CommonConstants.SHOP_CARD);
+													startActivity(intent);
 												}
 											});
 											
@@ -351,6 +451,8 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 											builder.create().show();
 										}
 									}
+
+									
 								});
 					            
 							}
@@ -412,6 +514,7 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 		mChoice=(RelativeLayout) findViewById(R.id.productinfo_chicunxuanze);
 		mChoice.setOnClickListener(this);
 		mBigpic=(WebView) findViewById(R.id.productinfo_datu);
+		layyout_add=(RelativeLayout) findViewById(R.id.productinfo_jiarugouwuche);
 		WebSettings webSettings = mBigpic.getSettings();
 		webSettings.setSavePassword(false);
 		webSettings.setSaveFormData(false);
@@ -439,6 +542,21 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 			break;
 		case R.id.producinfo_paizhao:
 			Toast.makeText(Product_infoActivity.this, "拍照",Toast.LENGTH_SHORT).show();
+			break;
+		case R.id.productinfo_jiarugouwuche:
+			Toast.makeText(Product_infoActivity.this, "加入购物车",Toast.LENGTH_SHORT).show();
+			layyout_add.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					AlertDialog.Builder dialog=new AlertDialog.Builder(Product_infoActivity.this);
+					dialog.setTitle("温馨提示");
+					dialog.setMessage("请先选择尺寸以及颜色之后再添加宝贝哦");
+					dialog.create().show();
+//					dialog.setPositiveButton("确定",dialo)
+				}
+			});
 			break;
 		default:
 			break;
@@ -518,6 +636,91 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 	public void onPageSelected(int arg0) {
 		setDotBackground(arg0 % mImageViews.length);
 	}
+	/**
+	 * @author JZKJ-LWC
+	 * @date : 2015-12-16 上午11:32:38
+	 * //发起网络请求，传入参数，加入购车
+	 */  
+	private void addgouwuche(String username,
+			String id, String goodsname,
+			String buynum, String guige) {
+		
+		RequestParams params = new RequestParams();
+		// 只包含字符串参数时默认使用BodyParamsEntity，
+		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
+		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
+		params.addBodyParameter("type", "order");
+		params.addBodyParameter("part", "add_cart");
+		params.addBodyParameter("user_name",username);
+		params.addBodyParameter("goods_id",id);
+		params.addBodyParameter("spec_id",guige);
+		params.addBodyParameter("buy_num",buynum);
+		params.addBodyParameter("goods_name",goodsname);
+		HttpUtils http = new HttpUtils();
+		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
+
+		        @Override
+		        public void onStart() {
+		        	//开始请求
+		        }
+
+		        @Override
+		        public void onLoading(long total, long current, boolean isUploading) {
+		            if (isUploading) {
+		            } else {
+		            }
+		        }
+
+		        @Override
+		        public void onSuccess(ResponseInfo<String> responseInfo) {
+		        	//请求成功
+		        	String str=responseInfo.result;
+		        	Log.i("网络请求下来的shengfen 参数是",str);
+		        	String tag = null;
+					try {
+						JSONObject obj=new JSONObject(str);
+						tag = obj.getString("status");
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		        	if(tag!=null||tag.equals("0")){
+		        		//加入失败
+		        		Toast.makeText(Product_infoActivity.this,"加入失败",Toast.LENGTH_SHORT).show();
+		        	}else if(tag!=null||tag.equals("1")){
+		        		//加成功
+		        		AlertDialog.Builder dialog=new AlertDialog.Builder(Product_infoActivity.this);
+		        		dialog.setTitle("温馨提示");
+		        		dialog.setMessage("您挑选的商品已经加入购物车，请进入购物车进行结算");
+		        		dialog.create().show();
+		        		dialog.setPositiveButton("去购物车",new DialogInterface.OnClickListener() {
+							
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								// TODO Auto-generated method stub
+							Intent intent=new Intent(Product_infoActivity.this,BuyActivity.class);
+							startActivity(intent);
+							}
+						})
+		        		;
+		        		dialog.setNegativeButton("取消",new DialogInterface.OnClickListener() {
+							
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								// TODO Auto-generated method stub
+								
+							}
+						});
+		        	}
+		        	
+		        }
+
+		        @Override
+		        public void onFailure(HttpException error, String msg) {
+		        }
+		});
+	}
+	
 
 
 	

@@ -77,29 +77,31 @@
             >
             <RelativeLayout 
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:layout_height="match_parent"
                 >
-                
-
-                <ImageView
-                    android:id="@+id/buyactivity_radiobutton_quanxuan"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="16dp"
-                    android:background="@drawable/gougou" />
 
                 <TextView
+                    android:id="@+id/buyactivity_radiobutton_quanxuan"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentTop="true"
-                    android:layout_marginLeft="15dp"
-                    android:textSize="18sp"
-                    android:layout_toRightOf="@+id/buyactivity_radiobutton_quanxuan"
+                    android:layout_centerHorizontal="true"
+                    android:visibility="invisible"
                     android:gravity="center"
-                    android:text="全选" />
+                    android:text="全选"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/image_quanxuan"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:visibility="invisible"
+                    android:src="@drawable/quanquan"
+                    />
 
             </RelativeLayout>
             <LinearLayout 

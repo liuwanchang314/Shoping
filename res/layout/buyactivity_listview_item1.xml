@@ -2,74 +2,207 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
-    
-    <RelativeLayout 
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent"
+    android:orientation="vertical" >
+   
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="horizontal"
         >
-        <ImageView 
-            android:id="@+id/buyactivity_listview_item1_imageview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/logo"
+        <LinearLayout 
+            android:layout_weight="1.5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+
+            <!-- 这个图标也是需要隐藏的 -->
+            <CheckBox
+                android:id="@+id/buy_yincang_tubiao"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:button="@drawable/checkbox"
+                android:background="@null"
+                android:visibility="gone"
+                android:layout_gravity="center_vertical"
+                 />
+
+            <ImageView
+                android:id="@+id/buy_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"
+                android:src="@drawable/logo" />
+
+        </LinearLayout>
+         <LinearLayout 
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:orientation="horizontal"
+            android:layout_height="match_parent"
+            >
+            <LinearLayout 
+                android:layout_weight="3"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:orientation="vertical"
+                >
+                 <!-- 这一部分是需要隐藏的界面，也就是标题 -->
+            <LinearLayout
+                android:id="@+id/buy_yincang_biaoti" 
+                android:layout_weight="2"
+                android:layout_height="0dp"
+                
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:id="@+id/buy_biaoti"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="15sp"
+                    android:text="TextView" />
+
+            </LinearLayout>
+            <!-- 这一部分是需要隐藏的界面，也就是anniu -->
+            <LinearLayout 
+                android:id="@+id/buy_yincang_anniu"
+                android:layout_weight="2"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                >
+                <RelativeLayout 
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/biankuang"
+                    >
+
+                    <TextView
+                        android:id="@+id/buy_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:textSize="18sp"
+                        android:text="7" />
+
+                    <ImageView
+                        android:id="@+id/buy_jian"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp"
+                        android:src="@drawable/jian" />
+
+                    <ImageView
+                        android:id="@+id/buy_jia"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignBottom="@+id/buy_num"
+                        android:layout_marginRight="15dp"
+                        android:layout_toLeftOf="@+id/buy_num"
+                        android:src="@drawable/add" />
+
+                </RelativeLayout>
+            </LinearLayout>
+            <!-- 这一部分是，也就是jiagehe chicun-->
+             <RelativeLayout 
+                android:layout_weight="2.5"
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                >
+
+                 <TextView
+                     android:id="@+id/textView3"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_alignParentBottom="true"
+                     android:layout_alignParentLeft="true"
+                     android:text="颜色：" />
+
+                 <TextView
+                     android:id="@+id/buy_yanse"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_alignLeft="@+id/buy_chicun"
+                     android:layout_alignParentBottom="true"
+                     android:text="TextView" />
+
+                 <TextView
+                     android:id="@+id/buy_chicun"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_alignParentTop="true"
+                     android:layout_toRightOf="@+id/textView2"
+                     android:text="TextView" />
+
+                 <TextView
+                     android:id="@+id/textView2"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_alignParentLeft="true"
+                     android:layout_alignParentTop="true"
+                     android:text="尺寸：" />
+
+            </RelativeLayout>
+        </LinearLayout>
+        <!-- 这里是删除按钮 -->
+             <RelativeLayout 
+                android:id="@+id/buy_yingcang_shanchu"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                >
+
+                 <TextView
+                     android:id="@+id/textView1"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:layout_alignParentLeft="true"
+                     android:layout_centerVertical="true"
+                     android:gravity="center"
+                     android:background="#ff4500"
+                     android:text="删除" />
+
+             </RelativeLayout>
+             <!-- 这里是用来显示价格和数量，也需要影藏 -->
+             <RelativeLayout 
+                android:id="@+id/buy_yingcang_jiageheshuliang"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                >
+
+                 <TextView
+                     android:id="@+id/buy_jiage"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_alignParentLeft="true"
+                     android:layout_alignParentTop="true"
+                     android:layout_marginTop="10dp"
+                     android:text="价格" />
+
+                 <TextView
+                     android:id="@+id/buy_shuliang"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_alignParentLeft="true"
+                     android:layout_below="@+id/buy_jiage"
+                     android:layout_marginTop="19dp"
+                     android:text="数量" />
+
+             </RelativeLayout>
+
             
-            />
-    </RelativeLayout>
-     <RelativeLayout 
-        android:layout_width="0dp"
-        android:layout_weight="1.8"
-        android:layout_height="match_parent"
-        >
-
-         <TextView
-             android:id="@+id/buyacttivity_listview_textview_title"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignParentLeft="true"
-             android:layout_alignParentTop="true"
-             android:layout_marginLeft="15dp"
-             android:text="标题" />
-
-         <TextView
-             android:id="@+id/buyacttivity_listview_textview_demisen"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignLeft="@+id/buyacttivity_listview_textview_title"
-             android:layout_below="@+id/buyacttivity_listview_textview_title"
-             android:text="使用床尺寸：" />
-
-         <TextView
-             android:id="@+id/buyacttivity_listview_textview_price"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignLeft="@+id/buyacttivity_listview_textview_demisen"
-             android:layout_below="@+id/buyacttivity_listview_textview_demisen"
-             android:layout_marginTop="44dp"
-             android:textColor="#aa00aa"
-             android:text="价格" />
-
-         <TextView
-             android:id="@+id/buyacttivity_listview_textview_yansefenlei"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignLeft="@+id/buyacttivity_listview_textview_demisen"
-             android:layout_below="@+id/buyacttivity_listview_textview_demisen"
-             android:text="颜色分类：" />
-
-         <TextView
-             android:id="@+id/buyacttivity_listview_textview_number"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignBaseline="@+id/buyacttivity_listview_textview_price"
-             android:layout_alignBottom="@+id/buyacttivity_listview_textview_price"
-             android:layout_alignParentRight="true"
-             android:layout_marginRight="20dp"
-             android:textColor="#aa00aa"
-             android:text="数量" />
-
-     </RelativeLayout>
+         </LinearLayout>
+    </LinearLayout>
     
 
 </LinearLayout>
