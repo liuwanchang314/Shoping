@@ -50,6 +50,16 @@ public class BuyActivity extends Activity implements OnClickListener{
 		initview();
 		getdata();
 		//解析
+		mJiesuan.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				//跳转到结算界面
+				Intent intent=new Intent(BuyActivity.this,PayMoneyActivity.class);
+				startActivity(intent);
+			}
+		});
 		
 	}
 	//获取用户名
