@@ -150,6 +150,10 @@
             android:name=".NewTakeOverGoodsAddress"
             android:windowSoftInputMode="stateUnchanged"
             ></activity>
+        <!-- 确认支付界面 -->
+        <activity 
+            android:name=".PayMoneyActivity"
+            ></activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
