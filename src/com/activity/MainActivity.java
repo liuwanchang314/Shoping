@@ -135,7 +135,7 @@ public class MainActivity extends TabActivity {
 						Intent intent = new Intent(MainActivity.this, LoginActivity.class);
 						startActivityForResult(intent, CommonConstants.SHOP_CARD);
 					}
-					
+//					
 					break;
 				case R.id.tab_rb_4:
 					if(SysApplication.getInstance().getIsLogin()){

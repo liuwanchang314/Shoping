@@ -23,10 +23,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
@@ -93,12 +95,56 @@ public class TakeGoodsAddressActivity extends Activity implements OnClickListene
 		        	String str=responseInfo.result;
 		        	Log.i("网络请求下来的参数是",str);
 		        		//获取的数据无格式说明
-		        	List<TakeGoodsAddressBean> list=TakeGoodsAddressJsonpaser.getlist(str);
+		        	final List<TakeGoodsAddressBean> list=TakeGoodsAddressJsonpaser.getlist(str);
 		        	Log.i("现在地址有多少",list.size()+"");
 		        	//给listview准备适配器
 		        	adapter=new TakeGoodsAddressAdapter(list, TakeGoodsAddressActivity.this);
 		        	mListview.setAdapter(adapter);
-		        	
+		        	mListview.setOnItemClickListener(new OnItemClickListener() {
+
+						@Override
+						public void onItemClick(AdapterView<?> arg0, View arg1,
+								int arg2, long arg3) {
+							// TODO Auto-generated method stub
+							Intent intent=new Intent();
+							intent.putExtra("name",list.get(arg2).getReceive_name());
+							intent.putExtra("phone",list.get(arg2).getMob_phone());
+							intent.putExtra("xxaddress",list.get(arg2).getArea_info());
+							TakeGoodsAddressActivity.this.setResult(1,intent);
+							TakeGoodsAddressActivity.this.finish();
+						}
+					});
+		        	mListview.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+						@Override
+						public boolean onItemLongClick(AdapterView<?> arg0,
+								View arg1, int arg2, long arg3) {
+							// TODO Auto-generated method stub
+							AlertDialog.Builder dialog=new AlertDialog.Builder(TakeGoodsAddressActivity.this);
+							View dialogView = LayoutInflater.from(TakeGoodsAddressActivity.this).inflate(R.layout.takeaddress_dialogview,null);
+							dialog.setView(dialogView);
+							TextView shezhi=(TextView) dialogView.findViewById(R.id.take_long_shezhi);
+							TextView xiugai=(TextView) dialogView.findViewById(R.id.take_long_xiugai);
+							shezhi.setOnClickListener(new OnClickListener() {
+								
+								@Override
+								public void onClick(View v) {
+									// TODO Auto-generated method stub
+									Toast.makeText(TakeGoodsAddressActivity.this,"设置",1).show();	
+								}
+							});
+							xiugai.setOnClickListener(new OnClickListener() {
+								
+								@Override
+								public void onClick(View v) {
+									// TODO Auto-generated method stub
+									Toast.makeText(TakeGoodsAddressActivity.this,"修改",1).show();	
+								}
+							});
+							dialog.create().show();
+							return false;
+						}
+					});
 		        	
 		        }
 
@@ -137,7 +183,7 @@ public class TakeGoodsAddressActivity extends Activity implements OnClickListene
 			break;
 		case R.id.takegoodsaddress_add:
 			Toast.makeText(TakeGoodsAddressActivity.this,"添加", Toast.LENGTH_SHORT).show();
-			startActivity(new Intent(TakeGoodsAddressActivity.this,NewTakeOverGoodsAddress.class));
+			startActivityForResult((new Intent(TakeGoodsAddressActivity.this,NewTakeOverGoodsAddress.class)),1);
 			break;
 
 		default:
@@ -149,6 +195,15 @@ public class TakeGoodsAddressActivity extends Activity implements OnClickListene
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if(resultCode==1){
+			getdata();
+			adapter.notifyDataSetChanged();
+		}
 	}
 	
 

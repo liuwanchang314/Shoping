@@ -28,6 +28,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -72,6 +73,7 @@ public class LoginActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_login);
 		tvone = (TextView) findViewById(R.id.login_tv_one);// 第一行标题
 		tvtwo = (TextView) findViewById(R.id.login_tv_two);// 第二行标题

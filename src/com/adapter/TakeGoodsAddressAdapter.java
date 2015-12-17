@@ -63,7 +63,7 @@ public class TakeGoodsAddressAdapter extends BaseAdapter {
 		}
 		//先取出标记，来判断是否是默认地址
 		String defaults=list.get(position).getDefaults();
-		if(defaults.equals("0")){
+		if(defaults.equals("1")){
 			//说明是默认地址
 			vh.name.setText(list.get(position).getReceive_name());
 			//图标显示
