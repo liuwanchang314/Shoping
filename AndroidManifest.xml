@@ -155,8 +155,18 @@
             android:name=".PayMoneyActivity"
             android:windowSoftInputMode="stateUnchanged"
             ></activity>
+        <!-- 选择省市县界面 -->
         <activity 
             android:name="com.wheelview.CitiesActivity"
+            ></activity>
+        <!-- 修改地址界面 -->
+        <activity 
+            android:name=".ChangeTakeGoodsAddressActivity"
+            ></activity>
+        <!-- 发票信息界面 -->
+        <activity 
+            android:name=".BillActivity"
+            android:windowSoftInputMode="stateUnchanged"
             ></activity>
     </application>
 
