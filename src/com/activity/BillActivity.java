@@ -1,6 +1,7 @@
 package com.activity;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,6 +21,14 @@ public class BillActivity extends Activity {
 	private TextView mTvZZtv;//增值发票
 	private boolean mchoiceis=false;
 	private ImageView mChoise;//是否使用新发票图标
+	private LinearLayout mZengzhi;//增值切换部分
+	private LinearLayout mPutong;//普通切换部分
+	private TextView mTvgeren;//个人按钮
+	private TextView mTvdanwei;//单位按钮
+	private ImageView mImgeren;//个人图标
+	private ImageView mIndanwei;//单位图标
+	private RelativeLayout mDanweimingchen;//单位名称部分
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -36,6 +45,8 @@ public class BillActivity extends Activity {
 				if(mchoiceis){
 					mChoise.setBackgroundResource(R.drawable.quanquan);
 					mFapiaoFenlei.setVisibility(View.GONE);
+					mZengzhi.setVisibility(View.GONE);
+					mPutong.setVisibility(View.GONE);
 					mchoiceis=false;
 					
 				}else{
@@ -43,6 +54,60 @@ public class BillActivity extends Activity {
 					mFapiaoFenlei.setVisibility(View.VISIBLE);
 					mchoiceis=true;
 				}
+			}
+		});
+		//当普通或者增值发票被点击的时候，显示其相对应的界面发票被点击的时候
+		mTvPTtv.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				//首先隐藏相对的界面
+				mImPTim.setBackgroundResource(R.drawable.gougou);
+				mImZZim.setBackgroundResource(R.drawable.quanquan);
+				mTvPTtv.setTextColor(Color.RED);
+				mTvZZtv.setTextColor(Color.BLACK);
+				mZengzhi.setVisibility(View.GONE);
+				mPutong.setVisibility(View.VISIBLE);
+			}
+		});
+		mTvZZtv.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				mImPTim.setBackgroundResource(R.drawable.quanquan);
+				mImZZim.setBackgroundResource(R.drawable.gougou);
+				mTvPTtv.setTextColor(Color.BLACK);
+				mTvZZtv.setTextColor(Color.RED);
+				mPutong.setVisibility(View.GONE);
+				mZengzhi.setVisibility(View.VISIBLE);
+				
+			}
+		});
+		//个人被点击，单位图标变暗，显示个人部分
+		mTvgeren.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				mImgeren.setBackgroundResource(R.drawable.gougou);
+				mTvgeren.setTextColor(Color.RED);
+				mTvdanwei.setTextColor(Color.BLACK);	
+				mIndanwei.setBackgroundResource(R.drawable.quanquan);
+				mDanweimingchen.setVisibility(View.GONE);
+			}
+		});
+		mTvdanwei.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				mImgeren.setBackgroundResource(R.drawable.quanquan);
+				mTvgeren.setTextColor(Color.BLACK);
+				mTvdanwei.setTextColor(Color.RED);	
+				mIndanwei.setBackgroundResource(R.drawable.gougou);
+				mDanweimingchen.setVisibility(View.VISIBLE);
 			}
 		});
 	}
@@ -60,6 +125,14 @@ public class BillActivity extends Activity {
 		mImZZim=(ImageView) findViewById(R.id.bill_yincang_fapiaofenlei_zz_im);
 		mTvZZtv=(TextView) findViewById(R.id.bill_yincang_fapiaofenlei_zz_tv);
 		mChoise=(ImageView) findViewById(R.id.bill_checks);
+		mZengzhi=(LinearLayout) findViewById(R.id.bill_yincang_zengzhi);
+		mPutong=(LinearLayout) findViewById(R.id.bill_yincang_putong);
+		mTvgeren=(TextView) findViewById(R.id.bill_layout_geren_tv);
+		mTvdanwei=(TextView) findViewById(R.id.bill_layout_danwei_tv);
+		mIndanwei=(ImageView) findViewById(R.id.bill_layout_danwei_im);
+		mImgeren=(ImageView) findViewById(R.id.bill_layout_geren_im);
+		
+		mDanweimingchen=(RelativeLayout) findViewById(R.id.bill_layout_danweimingcheng);
 	}
 	
 

@@ -46,7 +46,6 @@
                     android:layout_centerVertical="true"
                     android:gravity="center"
                     android:text="个人"
-                    android:textColor="#ff4500"
                     android:textSize="18sp" />
 
                 <ImageView
@@ -56,7 +55,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/gougou" />
+                    android:src="@drawable/quanquan" />
 
             </RelativeLayout>
 
@@ -76,7 +75,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                      android:layout_marginLeft="5dp"
-                    android:src="@drawable/gougou" />
+                    android:src="@drawable/quanquan" />
 
                 <TextView
                     android:id="@+id/bill_layout_danwei_tv"
@@ -85,7 +84,6 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:text="单位"
-                    android:textColor="#ff4500"
                     android:textSize="18sp" />
 
             </RelativeLayout>
@@ -103,6 +101,7 @@
     <RelativeLayout
         android:id="@+id/bill_layout_danweimingcheng"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="70dp" >
 
         <TextView
