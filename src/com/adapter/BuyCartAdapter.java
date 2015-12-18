@@ -48,7 +48,26 @@ public class BuyCartAdapter extends BaseAdapter {
 	private double totalprice=0.0;
 	Double price;
 	Double number;
+	//建立一个集合，用来存储listview当中被选中的商品的下标
+	private List<Map<String,BuyCartBean>> newlists=new ArrayList<Map<String,BuyCartBean>>();
 	
+	public List<Map<String, BuyCartBean>> getNewlists() {
+		return newlists;
+	}
+
+	private Map<Integer, BuyCartBean> newmap=new HashMap<Integer, BuyCartBean>();
+	public Map<Integer, BuyCartBean> getNewmap() {
+		return newmap;
+	}
+
+	public void setNewmap(Map<Integer, BuyCartBean> newmap) {
+		this.newmap = newmap;
+	}
+
+	public void setNewlists(List<Map<String, BuyCartBean>> newlists) {
+		this.newlists = newlists;
+	}
+
 	public BuyCartAdapter(List<BuyCartBean> list,Context context,TextView total){
 		
 		this.list=list;
@@ -97,6 +116,7 @@ public class BuyCartAdapter extends BaseAdapter {
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		viewholder vhs;
+		final Map<String,BuyCartBean> map=new HashMap<String, BuyCartBean>();
 		if(convertView==null){
 			vhs=new viewholder();
 			LayoutInflater inflater=(LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
@@ -131,9 +151,16 @@ public class BuyCartAdapter extends BaseAdapter {
 			if(IsChoise){
 				//为全选时候
 				vhs.tubiao.setChecked(true);
+				//当这个item被选中的时候，将他添加到map集合中，并且添加到总集合中
+				map.put("bean",list.get(position));
+				newlists.add(map);
+				newmap.put(position, list.get(position));
 			}else{
 				//为不全选时候
 				vhs.tubiao.setChecked(false);
+				//删除新集合内部所有
+				newlists.clear();
+				newmap.clear();
 				
 			}
 //			price=Double.parseDouble((String) vhs.jiage.getText());
@@ -151,9 +178,14 @@ public class BuyCartAdapter extends BaseAdapter {
 //						double totals=price*number;
 //						totalprice=totalprice+totals;
 //						total.setText(totalprice+"");
+						map.put("bean",list.get(position));
+						newlists.add(map);
+						newmap.put(position, list.get(position));
 					}else{
 						Toast.makeText(context, "被取消了了",1).show();
 						//调用方法，进行减价处理
+						//从新集合中删除被取消选定的
+						newmap.remove(position);
 						
 					}
 				}

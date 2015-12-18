@@ -1,7 +1,10 @@
 package com.activity;
 
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.Application.SysApplication;
 import com.adapter.BuyCartAdapter;
@@ -50,16 +53,7 @@ public class BuyActivity extends Activity implements OnClickListener{
 		initview();
 		getdata();
 		//解析
-		mJiesuan.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				//跳转到结算界面
-				Intent intent=new Intent(BuyActivity.this,PayMoneyActivity.class);
-				startActivity(intent);
-			}
-		});
+		
 		
 	}
 	//获取用户名
@@ -147,15 +141,28 @@ public class BuyActivity extends Activity implements OnClickListener{
 						}
 					});
 		        	mJiesuan.setOnClickListener(new OnClickListener() {
-						
-						@Override
-						public void onClick(View v) {
-							// TODO Auto-generated method stub
-							//跳转到结算界面
-							Intent intent=new Intent(BuyActivity.this,PayMoneyActivity.class);
-							startActivity(intent);
-						}
-					});
+		    			
+		    			@Override
+		    			public void onClick(View v) {
+		    				// TODO Auto-generated method stub
+		    				//首先，这里需要拿到购物车中被选中的商品的数据
+		    				List<Map<String, BuyCartBean>> newlist=adapter.getNewlists();
+		    				List<BuyCartBean> listss=new ArrayList<BuyCartBean>();
+		    				for(int i=0;i<newlist.size();i++){
+		    					Map<String,BuyCartBean> map=newlist.get(i);
+		    					BuyCartBean bean=map.get("bean");
+		    					listss.add(bean);
+		    				}
+		    				Map<Integer, BuyCartBean> map=adapter.getNewmap();
+		    				Log.i("现在拿到选定的数据了吗liss",newlist.size()+"");
+		    				Log.i("现在拿到选定的数据了吗map",map.size()+"");
+		    				//跳转到结算界面
+		    				//
+		    				Intent intent=new Intent(BuyActivity.this,PayMoneyActivity.class);
+		    				intent.putExtra("list", (Serializable)listss);
+		    				startActivity(intent);
+		    			}
+		    		});
 		        }
 
 		        @Override

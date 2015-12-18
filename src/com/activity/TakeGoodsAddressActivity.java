@@ -2,11 +2,16 @@ package com.activity;
 
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.CommonConstants;
 import com.Application.SysApplication;
 import com.adapter.TakeGoodsAddressAdapter;
 import com.bean.ChangeSafetBean;
+import com.bean.Dynamicdetailsbean;
 import com.bean.TakeGoodsAddressBean;
+import com.jsonParser.DyJsonpaser;
 import com.jsonParser.TakeGoodsAddressJsonpaser;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -118,7 +123,7 @@ public class TakeGoodsAddressActivity extends Activity implements OnClickListene
 
 						@Override
 						public boolean onItemLongClick(AdapterView<?> arg0,
-								View arg1, int arg2, long arg3) {
+								View arg1, final int arg2, long arg3) {
 							// TODO Auto-generated method stub
 							AlertDialog.Builder dialog=new AlertDialog.Builder(TakeGoodsAddressActivity.this);
 							View dialogView = LayoutInflater.from(TakeGoodsAddressActivity.this).inflate(R.layout.takeaddress_dialogview,null);
@@ -131,7 +136,13 @@ public class TakeGoodsAddressActivity extends Activity implements OnClickListene
 								public void onClick(View v) {
 									// TODO Auto-generated method stub
 									Toast.makeText(TakeGoodsAddressActivity.this,"设置",1).show();	
+									//调用方法，将该地址设置为默认地址
+									setmoren(list.get(arg2).getAddress_id());
+									getdata();
+									adapter.notifyDataSetChanged();
 								}
+
+								
 							});
 							xiugai.setOnClickListener(new OnClickListener() {
 								
@@ -139,6 +150,16 @@ public class TakeGoodsAddressActivity extends Activity implements OnClickListene
 								public void onClick(View v) {
 									// TODO Auto-generated method stub
 									Toast.makeText(TakeGoodsAddressActivity.this,"修改",1).show();	
+									//进行界面跳转，
+									Intent intent=new Intent(TakeGoodsAddressActivity.this,ChangeTakeGoodsAddressActivity.class);
+									//这里还需要intent带一部分数据过去
+									intent.putExtra("name",list.get(arg2).getReceive_name());
+									intent.putExtra("phone",list.get(arg2).getMob_phone());
+//									intent.putExtra("youbian",list.get(arg2).get)//网络请求下来的参数就没有邮政编码，所以这里先不写
+									intent.putExtra("xxdz",list.get(arg2).getArea_info());
+									intent.putExtra("default",list.get(arg2).getDefaults());
+									intent.putExtra("id",list.get(arg2).getAddress_id());
+									startActivityForResult(intent, 3);
 								}
 							});
 							dialog.create().show();
@@ -204,7 +225,63 @@ public class TakeGoodsAddressActivity extends Activity implements OnClickListene
 			getdata();
 			adapter.notifyDataSetChanged();
 		}
+		if(resultCode==3){
+			getdata();
+			adapter.notifyDataSetChanged();
+		}
 	}
+	public void setmoren(String id) {
+		// TODO Auto-generated method stub
+		RequestParams params = new RequestParams();
+		// 只包含字符串参数时默认使用BodyParamsEntity，
+		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
+		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
+		params.addBodyParameter("type", "user");
+		params.addBodyParameter("part", "default_post_address");
+		params.addBodyParameter("address_id",id);
+		HttpUtils http = new HttpUtils();
+		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
+
+		        @Override
+		        public void onStart() {
+		        	//开始请求
+		        }
+
+		        @Override
+		        public void onLoading(long total, long current, boolean isUploading) {
+		            if (isUploading) {
+		            } else {
+		            }
+		        }
+
+		        @Override
+		        public void onSuccess(ResponseInfo<String> responseInfo) {
+		        	//请求成功
+		        	String str=responseInfo.result;
+		        	String status = null;
+		        	Log.i("网络请求下来的参数是",str);
+		        	try {
+						JSONObject obj=new JSONObject(str);
+						status=obj.getString("status");
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		        	if(status.equals("1")){
+		        		Toast.makeText(TakeGoodsAddressActivity.this,"设置成功",1).show();
+		        	}else if(status.equals("0")){
+		        		Toast.makeText(TakeGoodsAddressActivity.this,"设置失败",1).show();
+		        	}
+		        	
+		        }
+
+		        @Override
+		        public void onFailure(HttpException error, String msg) {
+		        }
+		});
+	}
+	
+	
 	
 
 }

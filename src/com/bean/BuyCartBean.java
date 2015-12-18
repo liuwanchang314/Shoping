@@ -1,5 +1,7 @@
 package com.bean;
 
+import java.io.Serializable;
+
 /**
  * {
     "api": "APISUCCESS",
@@ -16,7 +18,7 @@ package com.bean;
         },
 
  * */
-public class BuyCartBean {
+public class BuyCartBean implements Serializable{
 	
 	private String store_name;
 	public String getStore_name() {

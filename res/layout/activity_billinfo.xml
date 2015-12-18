@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
+        android:id="@+id/bill_layout_top" 
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        >
+        <RelativeLayout 
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="#e4e4e4"
+            android:layout_height="match_parent"
+            >
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/back" />
+
+        </RelativeLayout>
+        <RelativeLayout 
+            android:layout_width="0dp"
+            android:layout_weight="7"
+            android:layout_height="match_parent"
+            >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="发票信息" />
+
+        </RelativeLayout>
+        <RelativeLayout 
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            >
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/home" />
+
+        </RelativeLayout>
+        
+    </LinearLayout>
+    <View 
+        android:layout_below="@+id/bill_layout_top"
+        android:id="@+id/bill_layout_top2"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#e4e4e4"
+        />
+    
+    <ScrollView 
+        android:layout_below="@+id/bill_layout_top2"
+        android:layout_width="match_parent"
+        android:transcriptMode="alwaysScroll"
+        android:layout_height="wrap_content"
+        >
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+             <!-- 用来展示发票信息 -->
+            <com.customview.Mylistview
+             android:id="@+id/bill_listview"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             ></com.customview.Mylistview>
+            <View 
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#e4e4e4"
+                />
+            <RelativeLayout 
+                android:id="@+id/bill_shiyongxinfapiao"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                >
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="50dp"
+                    android:text="使用新的发票信息" />
+
+                <ImageView
+                    android:id="@+id/bill_checks"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/quanquan"
+                     />
+
+            </RelativeLayout>
+            <!-- 这一部分界面是需要隐藏的 -->
+            <LinearLayout 
+                android:id="@+id/bill_yincang_fapiaofenlei"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:visibility="gone"
+                android:orientation="vertical"
+                >
+                <RelativeLayout 
+                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:layout_width="match_parent"
+                    >
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="29dp"
+                        android:text="发票类型" />
+
+                </RelativeLayout>
+                <RelativeLayout 
+                    android:layout_weight="1.3"
+                    android:layout_height="0dp"
+                    android:layout_width="match_parent"
+                    >
+
+                    <TextView
+                        android:id="@+id/bill_yincang_fapiaofenlei_pt_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="50dp"
+                        android:text="普通发票" />
+
+                    <TextView
+                        android:id="@+id/bill_yincang_fapiaofenlei_zz_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/bill_yincang_fapiaofenlei_pt_tv"
+                        android:layout_marginLeft="50dp"
+                        android:layout_toRightOf="@+id/bill_yincang_fapiaofenlei_pt_tv"
+                        android:text="增值税发票" />
+
+                    <ImageView
+                        android:id="@+id/bill_yincang_fapiaofenlei_pt_im"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_alignBottom="@+id/bill_yincang_fapiaofenlei_pt_tv"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="30dp"
+                        android:src="@drawable/quanquan" />
+
+                    <ImageView
+                        android:id="@+id/bill_yincang_fapiaofenlei_zz_im"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="30dp"
+                        android:layout_toRightOf="@+id/bill_yincang_fapiaofenlei_pt_tv"
+                        android:src="@drawable/quanquan" />
+                    
+                </RelativeLayout>
+            </LinearLayout>
+              <View 
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:background="#e4e4e4"
+                />
+            
+            <!-- 从这里开始，这里的界面才是真正需要隐藏和切换显示的 -->
+            <LinearLayout
+                android:id="@+id/bill_yincang_putong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical" 
+                >
+                <include layout="@layout/bill_include_putong"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/bill_yincang_zengzhi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical" 
+                >
+                <include layout="@layout/bill_include_zenzhifapiao"/>
+                <include layout="@layout/bill_include_zenzhifapiao1"/>
+            </LinearLayout>
+            <View 
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                />
+        </LinearLayout>
+    </ScrollView>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        >
+        <RelativeLayout 
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            >
+
+            <TextView
+                android:id="@+id/bill_baocunfapiao"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="#ff4500"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="保存发票信息" />
+
+        </RelativeLayout>
+        <RelativeLayout 
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            >
+
+            <TextView
+                android:id="@+id/bill_buyaofapiao"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="#e4e4e4"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="不需要发票" />
+
+        </RelativeLayout>
+    </LinearLayout>
+   
+
+</RelativeLayout>

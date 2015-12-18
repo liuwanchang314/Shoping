@@ -5,29 +5,29 @@
     android:orientation="vertical" >
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="150dp"
         android:orientation="vertical"
         >
         <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.7"
         android:orientation="horizontal"
         >
           <RelativeLayout 
               android:layout_width="0dp"
               android:layout_height="match_parent"
-              android:layout_weight="1"
+              android:layout_weight="0.7"
               >
 			 <!-- item当中的分类图标 -->
               <ImageView
                   android:id="@+id/paymoney_listviewa_item_fenleitubiao"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
+                  android:layout_width="15dp"
+                  android:layout_height="15dp"
                   android:layout_alignParentLeft="true"
                   android:layout_centerVertical="true"
-                  android:src="@drawable/home" />
+                  android:scaleType="fitXY"
+                  android:src="@drawable/gougou" />
 
               <!-- item当中的商家名称 -->
               <TextView
@@ -49,7 +49,7 @@
               <RelativeLayout 
               android:layout_width="0dp"
               android:layout_height="match_parent"
-              android:layout_weight="0.5"
+              android:layout_weight="0.2"
               >
 				 <!-- item当中的商家名称 -->
 
@@ -102,51 +102,50 @@
                         android:text="风向标全棉活性印花四件套" />
 
                 </RelativeLayout>
-                 <RelativeLayout 
-                    android:layout_weight="1"
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginBottom="10dp"
-                    
-                    >
-					<!-- item当中 -->
-                     <TextView
-                         android:id="@+id/textView4"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:layout_alignParentLeft="true"
-                         android:layout_alignParentTop="true"
-                         android:text="适用床尺寸：" />
+                    android:layout_weight="1" >
 
-                     <TextView
-                         android:id="@+id/textView5"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:layout_alignParentBottom="true"
-                         android:layout_alignParentLeft="true"
-                         android:text="颜色分类：" />
-						<!-- item当中的尺寸大小 -->
-                     <TextView
-                         android:id="@+id/paymoney_listviewa_item_chicun"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:layout_alignParentTop="true"
-                         android:layout_marginLeft="17dp"
-                         android:layout_toRightOf="@+id/textView4"
-                         android:text="1.8（6英尺）" />
-					<!-- item当中的颜色分类 -->
-                     <TextView
-                         android:id="@+id/paymoney_listviewa_item_yanse"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:layout_alignParentBottom="true"
-                         android:layout_alignRight="@+id/paymoney_listviewa_item_chicun"
-                         android:text="蒲公因种子" />
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:text="适用床尺寸：" />
 
-                 </RelativeLayout>
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:text="颜色分类：" />
+
+                    <TextView
+                        android:id="@+id/paymoney_listviewa_item_chicun"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="17dp"
+                        android:layout_toRightOf="@+id/textView4"
+                        android:text="1.8（6英尺）" />
+
+                    <TextView
+                        android:id="@+id/paymoney_listviewa_item_yanse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignRight="@+id/paymoney_listviewa_item_chicun"
+                        android:text="蒲公因种子" />
+                </RelativeLayout>
+
             </LinearLayout>
             <RelativeLayout 
-                android:layout_weight="2"
+                android:layout_weight="1.5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 >
@@ -171,12 +170,7 @@
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
-    <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        ></LinearLayout>
+    
     
 
 </LinearLayout>

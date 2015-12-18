@@ -1,8 +1,15 @@
 package com.activity;
 
+import java.util.List;
+
+import com.adapter.PayMoneyAdatper;
+import com.bean.BuyCartBean;
+import com.customview.Mylistview;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -15,6 +22,9 @@ public class PayMoneyActivity extends Activity {
 	private TextView mName;
 	private TextView mPhone;
 	private TextView mAddress;
+	private Mylistview mlistview;
+	private LinearLayout mBillInfo;//发票信息
+	private TextView mBillInfoTextviw;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -22,6 +32,22 @@ public class PayMoneyActivity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_paymoney);
 		initview();
+		Intent intent=getIntent();
+		List<BuyCartBean> list=(List<BuyCartBean>) getIntent().getSerializableExtra("list");
+		Log.i("现在传递过来了多少数据",list.size()+"");
+		//准备adapter
+		PayMoneyAdatper adapter=new PayMoneyAdatper(list, PayMoneyActivity.this);
+		mlistview.setAdapter(adapter);
+		
+		mBillInfo.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent=new Intent(PayMoneyActivity.this,BillActivity.class);
+				startActivityForResult(intent, 4);
+			}
+		});
 	}
 
 	private void initview() {
@@ -40,6 +66,9 @@ public class PayMoneyActivity extends Activity {
 		mName=(TextView) findViewById(R.id.paymoney_activity_tv_shouhuorennanme);
 		mPhone=(TextView) findViewById(R.id.paymoney_activity_tv_shouhuorendianhua);
 		mAddress=(TextView) findViewById(R.id.paymoney_activity_tv_shouhuorenaddress);
+		mlistview=(Mylistview) findViewById(R.id.paymoney_activity_listview);
+		mBillInfo=(LinearLayout) findViewById(R.id.pay_bill);
+		mBillInfoTextviw=(TextView) findViewById(R.id.paymoney_activity_tv_fapiaoxinxi);
 	}
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -50,6 +79,8 @@ public class PayMoneyActivity extends Activity {
 			mName.setText(data.getStringExtra("name"));
 			mPhone.setText(data.getStringExtra("phone"));
 			mAddress.setText(data.getStringExtra("xxaddress"));
+		}else if(resultCode==4){
+			//说明是从发票界面传递过来的
 		}
 	}
 

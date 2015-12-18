@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     >
      <!--头部界面  -->
             <LinearLayout 
                 android:id="@+id/paymney_top"
-                android:layout_alignParentTop="true"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_alignParentTop="true"
                 android:orientation="horizontal"
                 >
                 <RelativeLayout 
@@ -64,6 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:transcriptMode="alwaysScroll"
+        android:layout_below="@+id/paymney_top"
         >
         <!-- 界面总共分为7部分，占比分别为1.2.3.1.1.2.1 -->
         <LinearLayout 
@@ -118,6 +118,7 @@
                android:background="#E4E4E4"
                />
             <LinearLayout 
+                android:id="@+id/pay_bill"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -159,25 +160,23 @@
                android:background="#E4E4E4"
                />
              <!--支付确认部分  -->
-            
-                
-		 
-
             <View 
                android:layout_width="match_parent"
                android:layout_height="10dp"
                android:background="#E4E4E4"
                />
+            <View 
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                
+                />
         </LinearLayout>
     </ScrollView>
     
-    <RelativeLayout 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-               <LinearLayout 
+          <LinearLayout 
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="#ffffff"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal"
             >
@@ -229,6 +228,5 @@
             </RelativeLayout>
         </LinearLayout>
           
-    </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>
