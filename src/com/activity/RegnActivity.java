@@ -1,15 +1,35 @@
 package com.activity;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.Extension.DataService;
+import com.utils.StringManager;
+
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.InputType;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * @author JZKJ-LWC
@@ -22,16 +42,124 @@ public class RegnActivity extends Activity implements OnClickListener{
 	private EditText regn_phnum_txt, regn_pwd_txt, regn_phcode_txt, regn_btn_ans;
 	private Spinner regn_spSpinner;
 	private boolean isShow = true;
+	private HashMap<String, String> listmap = new HashMap<String, String>();
+	private List<Map<String, String>> ques_list = new ArrayList<Map<String,String>>();
+	public static int MPHONE_CODE = 1;
 	
-	
-	
+	private Handler handler; 
+	private DataService client;
+	private String message_code;
+	private String ques_id;
+	List<String> strList,idlist;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_regn);
+		
+		initHandler();
+		getQues();
 		initView();
+		setListenting();
+	}
+	
+	private void getQues(){
+		listmap.clear();
+		listmap.put("type", "system");
+		listmap.put("part", "question");
+		client = new DataService(handler, 0, listmap);
+		client.start();
+	}
+	
+	private void initHandler(){
+         handler = new Handler(){
+			public void handleMessage(android.os.Message msg) {
+				String data = "";
+				JSONObject jsonObject;
+				switch (msg.what) {
+				case 0:
+					try {
+						jsonObject = new JSONObject(msg.obj.toString());
+						data = jsonObject.getString("questions");
+						
+						ques_list = StringManager.getListMapByJson(data);
+						strList = new ArrayList<String>();
+						idlist = new ArrayList<String>();
+						for(int n = 0; n<ques_list.size(); n++){
+							Iterator<Entry<String, String>> it=ques_list.get(n).entrySet().iterator();
+							while(it.hasNext()){
+								Entry<String, String> en = it.next();
+								strList.add(en.getValue());
+								idlist.add(en.getKey());
+							}
+						}
+						ArrayAdapter<String> adapter = new ArrayAdapter<String>(RegnActivity.this, android.R.layout.simple_list_item_1, strList);
+						adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); 
+						regn_spSpinner.setAdapter(adapter);
+						regn_spSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+							@Override
+							public void onItemSelected(AdapterView<?> parent,
+									View view, int position, long id) {
+								// TODO Auto-generated method stub
+								ques_id = idlist.get(position);
+							}
+
+							@Override
+							public void onNothingSelected(AdapterView<?> parent) {
+								// TODO Auto-generated method stub
+								
+							}
+						});
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				case 1:
+					
+						try {
+							regn_btn_getcode.setClickable(true);
+							jsonObject = new JSONObject(msg.obj.toString());
+							data = jsonObject.getString("send_status");
+							if(data.equals("1")){
+								message_code = jsonObject.getString("message_code");
+								Toast.makeText(RegnActivity.this, message_code, 0).show();
+							}else{
+								Toast.makeText(RegnActivity.this, "验证码获取失败，请重试", 0).show();
+							}
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+					
+					break;
+				case 2:
+					try {
+						jsonObject = new JSONObject(msg.obj.toString());
+						data = jsonObject.getString("reg_status");
+						if(data.equals("1")){
+							Toast.makeText(RegnActivity.this, "成功！", 0).show();
+						}else if(data.equals("0")){
+							Toast.makeText(RegnActivity.this, "注册失败，请重试", 0).show();
+						}else if(data.equals("2")){
+							Toast.makeText(RegnActivity.this, "手机号已被注册", 0).show();
+						}else if(data.equals("3")){
+							Toast.makeText(RegnActivity.this, "验证码错误", 0).show();
+						}
+						
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+
+				default:
+					break;
+				}
+			};
+		};
 	}
 	
 	private void initView(){
@@ -57,6 +185,11 @@ public class RegnActivity extends Activity implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
+		String phnum = regn_phnum_txt.getText().toString();
+		if(TextUtils.isEmpty(phnum)){
+			Toast.makeText(RegnActivity.this, "请填写有效电话号码", 0).show();
+			return;
+		}
 		switch (v.getId()) {
 		case R.id.regn_btn_back:
 			finish();
@@ -64,14 +197,36 @@ public class RegnActivity extends Activity implements OnClickListener{
 		case R.id.regn_show_btn:
 			if(isShow){
 				regn_pwd_txt.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
-				regn_btn_show.setText("隐藏");
+				regn_btn_show.setText("显示");
 				isShow = false;
 			}else{
 				regn_pwd_txt.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
-				regn_btn_show.setText("显示");
+				regn_btn_show.setText("隐藏");
 				isShow = true;
 			}
-
+			break;
+		case R.id.regn_getcode_btn:
+			
+			regn_btn_getcode.setClickable(false);
+			listmap.put("type", "user");
+			listmap.put("part", "userlogin");
+			listmap.put("mobilphone", phnum);
+			
+			client = new DataService(handler, 1, listmap);
+			client.start();
+			break;
+		case R.id.regn_btn_submit:
+			
+			listmap.put("type", "user");
+			listmap.put("part", "reg");
+			listmap.put("mobilphone", phnum);
+			listmap.put("code", regn_phcode_txt.getText().toString());
+			listmap.put("password", regn_pwd_txt.getText().toString());
+			listmap.put("question", ques_id);
+			listmap.put("answer", regn_btn_ans.getText().toString());
+			client = new DataService(handler, 2, listmap);
+			client.start();
+			break;
 		default:
 			break;
 		}

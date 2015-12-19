@@ -44,7 +44,5 @@ Temporary Items
 .apdisk
 
 #Android generated
-bin
-gen
-*/bin/*
-*/gen/*
+bin/
+gen/

@@ -107,6 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
+                android:inputType="textPassword"
                 android:layout_toRightOf="@+id/regn_tv_two"
                 android:background="@null"
                 android:singleLine="true" />
@@ -126,7 +127,6 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/regn_txt_two"
                 android:gravity="center"
                 android:text="显示"
                 android:textColor="#686868" />
