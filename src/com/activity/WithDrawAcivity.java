@@ -3,6 +3,7 @@ package com.activity;
 import java.util.List;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.Application.SysApplication;
@@ -83,6 +84,61 @@ public class WithDrawAcivity extends Activity implements OnClickListener{
 			break;
 		case R.id.withdraw_querentixian:
 			Toast.makeText(WithDrawAcivity.this,"确认",Toast.LENGTH_SHORT).show();
+			RequestParams params = new RequestParams();
+			// 只包含字符串参数时默认使用BodyParamsEntity，
+			params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
+			params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
+			params.addBodyParameter("type", "finance");
+			params.addBodyParameter("part", "do_deposit_91");
+			params.addBodyParameter("user_name", SysApplication.getInstance().getUserInfo().getName());
+			params.addBodyParameter("deposit_price", mMoney.getText().toString());
+			params.addBodyParameter("deposit_type","1");
+			params.addBodyParameter("deposit_bankname",mBankName.getText().toString());
+			params.addBodyParameter("deposit_bankcode",mNumber.getText().toString());
+			params.addBodyParameter("deposit_bankuser",mName.getText().toString());
+			params.addBodyParameter("deposit_bankaddress", mBranchName.getText().toString());
+			params.addBodyParameter("deposit_alipay","");
+			HttpUtils http = new HttpUtils();
+			http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
+
+			        @Override
+			        public void onStart() {
+			        	//开始请求
+			        }
+
+			        @Override
+			        public void onLoading(long total, long current, boolean isUploading) {
+			            if (isUploading) {
+			            } else {
+			            }
+			        }
+
+			        @Override
+			        public void onSuccess(ResponseInfo<String> responseInfo) {
+			        	//请求成功
+			        	String str=responseInfo.result;
+			        	Log.i("tixian请求下来的参数是",str);
+			        	try {
+							JSONObject obj=new JSONObject(str);
+							String status=obj.getString("status");
+							if(status!=null&&status.equals("1")){
+								Toast.makeText(WithDrawAcivity.this,"成功",1).show();
+							}else if(status!=null&&status.equals("0")){
+								Toast.makeText(WithDrawAcivity.this,"失败",1).show();
+							}else if(status!=null&&status.equals("2")){
+								Toast.makeText(WithDrawAcivity.this,"余额不足",1).show();
+							}
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+			        	
+			        }
+
+			        @Override
+			        public void onFailure(HttpException error, String msg) {
+			        }
+			});
 			break;
 
 		default:
@@ -121,10 +177,17 @@ public class WithDrawAcivity extends Activity implements OnClickListener{
 		        	String str=responseInfo.result;
 		        	Log.i("caiwu 请求下来的参数是",str);
 		        	
-		        	//这里接口有问题，需要改动
-//		        	JSONObject obj=new JSONObject(str);
-//		        	JSONArray array=obj.getJSONArray("data");
-//		        	for()
+//		        	这里接口有问题，需要改动
+		        	try {
+						JSONObject obj=new JSONObject(str);
+						JSONObject objs=obj.getJSONObject("data");
+						String banace=objs.getString("user_balance");
+						mCurrent.setText(banace);
+						String user_conbalance=objs.getString("user_conbalance");
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 		        }
 
 		        @Override
