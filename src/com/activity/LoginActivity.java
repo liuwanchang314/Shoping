@@ -7,9 +7,13 @@ import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.CommonConstants;
 import com.Application.SysApplication;
 import com.Extension.DataService;
 import com.Model.UserInfo;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.SendAuth;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -54,6 +58,8 @@ public class LoginActivity extends Activity {
 	private String name;
 	private String pwd;
 	
+	private IWXAPI api;
+	
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -75,6 +81,7 @@ public class LoginActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_login);
+		api = WXAPIFactory.createWXAPI(this, CommonConstants.WXAPP_ID, false);
 		tvone = (TextView) findViewById(R.id.login_tv_one);// 第一行标题
 		tvtwo = (TextView) findViewById(R.id.login_tv_two);// 第二行标题
 		codetwo = (TextView) findViewById(R.id.login_code_two);// 第二行验证码&显示
@@ -192,6 +199,7 @@ public class LoginActivity extends Activity {
 				LeftClint();
 				break;
 			case R.id.login_btn_right:
+				rightClint();
 				break;
 			case R.id.login_btn_submit:
 				Login();
@@ -230,6 +238,12 @@ public class LoginActivity extends Activity {
 		}
 	}
 
+	private void rightClint(){
+	     SendAuth.Req req = new SendAuth.Req();
+	    req.scope = "snsapi_userinfo";
+	    req.state = "wechat_sdk_demo_test";
+	    api.sendReq(req);
+	}
 	private void Login() {
 		String txtoneString = txtone.getText().toString().trim();
 		String txttwoString = txttwo.getText().toString().trim();

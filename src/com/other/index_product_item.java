@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.zip.Inflater;
 
+import com.activity.Product_infoActivity;
 import com.activity.R;
 import com.adapter.indexListviewAdapter;
 import com.customview.MyGridView;
@@ -13,13 +14,18 @@ import com.utils.StringManager;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.opengl.Visibility;
 import android.os.Build;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -30,6 +36,7 @@ public class index_product_item extends RelativeLayout {
 	private WebView  wv;
 	private TextView tv;
 	private MyGridView mlistview;
+	@SuppressLint("NewApi")
 	public index_product_item(Context contexts) {
 		super(contexts);
 		this.context = contexts;
@@ -73,8 +80,20 @@ public class index_product_item extends RelativeLayout {
 		
 		String listString  = map.get("class_goods");
 		if(listString != null && !listString.equals("")){
-			List<Map<String, String>> list = StringManager.getListMapByJson(listString);
+			final List<Map<String, String>> list = StringManager.getListMapByJson(listString);
 			indexListviewAdapter adapter = new indexListviewAdapter(context, list);
+			mlistview.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+				  Intent intent = new Intent(context, Product_infoActivity.class);
+				  Bundle bundle = new Bundle();
+				  bundle.putCharSequence("id", list.get(position).get("goods_id"));
+				  intent.putExtras(bundle);
+				  context.startActivity(intent);
+				}
+			});
 			mlistview.setAdapter(adapter);
 		}
 		

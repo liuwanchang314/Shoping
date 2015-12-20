@@ -8,6 +8,8 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import android.app.TabActivity;
 import android.content.Context;
@@ -36,6 +38,8 @@ public class MainActivity extends TabActivity {
 	TabHost.TabSpec spec;
 	Intent intent;
 	private String TAG = this.getClass().getName();
+	private IWXAPI wxapi;
+	
 	
 	@SuppressWarnings("deprecation")
 	@Override
@@ -44,29 +48,16 @@ public class MainActivity extends TabActivity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 		context = this;
+		regToWx();
 		initview();
-//		RequestParams params = new RequestParams();
-//		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
-//		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
-//		params.addBodyParameter("type", "adv");
-//		params.addBodyParameter("part", "index_slide");
-//		HttpUtils httpUtils = new HttpUtils();
-//		httpUtils.send(HttpMethod.POST, CommonConstants.APP_URL,params, new RequestCallBack<String>() {
-//
-//			@Override
-//			public void onFailure(HttpException arg0, String arg1) {
-//				// TODO Auto-generated method stub
-////				Log.e("tag", "======"+arg1);
-//			}
-//
-//			@Override
-//			public void onSuccess(ResponseInfo<String> arg0) {
-//				// TODO Auto-generated method stub
-//			}
-//		});
+		
 		
 	}
 
+	private void regToWx(){
+		wxapi = WXAPIFactory.createWXAPI(context, CommonConstants.WXAPP_ID,true);
+		wxapi.registerApp(CommonConstants.WXAPP_ID);
+	}
 	private void setRadioColor() {
 		t1.setTextColor(Color.rgb(142, 142, 142));
 		t2.setTextColor(Color.rgb(142, 142, 142));

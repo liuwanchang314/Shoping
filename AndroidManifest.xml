@@ -168,8 +168,19 @@
             android:name=".BillActivity"
             android:windowSoftInputMode="stateUnchanged"
             ></activity>
+        <!-- 微信回调页面 -->
+        <activity 
+            android:name="com.activity.wxapi.WXEntryActicity"
+            android:label="@string/app_name"
+            android:exported="true"></activity>
     </application>
-
+       <!-- 微信star -->
+        <uses-permission android:name="android.permission.INTERNET"/> 
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+         <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/> 
+         <uses-permission android:name="android.permission.READ_PHONE_STATE"/> 
+         <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> 
+         <!-- 微信end -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
