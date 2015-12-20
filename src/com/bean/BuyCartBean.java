@@ -1,3 +1,4 @@
+
 package com.bean;
 
 import java.io.Serializable;
@@ -10,7 +11,7 @@ import java.io.Serializable;
             "store_name": "jiafangyan",
             "cart_id": "3935",
             "goods_id": "4400",
-            "goods_name": "½ö¹©²âÊÔÇëÎð¹ºÂò ÌìÀ¶É«,1.8m£¨6Ó¢³ß£©´²",
+            "goods_name": "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½É«,1.8mï¿½ï¿½6Ó¢ï¿½ß£ï¿½ï¿½ï¿½",
             "goods_price": "300.00",
             "goods_num": "1",
             "goods_image": "http://www.91jf.com/attachment/goods/428/20151015015628876.jpg_60_60.jpg",
@@ -76,5 +77,12 @@ public class BuyCartBean implements Serializable{
 	private String goods_num;
 	private String goods_image;
 	private String spec_id;
-
+	private boolean isChoosed;		//ï¿½ï¿½Æ·ï¿½Ç·ï¿½ï¿½Ú¹ï¿½ï¿½ï³µï¿½Ð±ï¿½Ñ¡ï¿½ï¿½
+	
+	public boolean isChoosed() {
+		return isChoosed;
+	}
+	public void setChoosed(boolean isChoosed) {
+		this.isChoosed = isChoosed;
+	}
 }

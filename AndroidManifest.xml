@@ -153,7 +153,7 @@
         <!-- 确认支付界面 -->
         <activity 
             android:name=".PayMoneyActivity"
-            android:windowSoftInputMode="stateUnchanged"
+            android:windowSoftInputMode="adjustPan"
             ></activity>
         <!-- 选择省市县界面 -->
         <activity 
@@ -173,6 +173,14 @@
             android:name="com.activity.wxapi.WXEntryActicity"
             android:label="@string/app_name"
             android:exported="true"></activity>
+        <!-- 商家发货界面 -->
+        <activity 
+            android:name=".ShangJiaSendGoodsActivity"
+            ></activity>
+        
+        <activity 
+            android:name=".orderactivitys"
+            ></activity>
     </application>
        <!-- 微信star -->
         <uses-permission android:name="android.permission.INTERNET"/> 

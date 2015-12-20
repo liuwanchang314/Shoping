@@ -116,7 +116,7 @@ public class UserActivity extends Activity implements OnClickListener,OnCheckedC
 			break;
 		case R.id.horder_lt_list://全部订单
 			Toast.makeText(UserActivity.this, "全部订单", Toast.LENGTH_SHORT).show();
-			startActivity(new Intent(UserActivity.this, OrderActivity.class));
+			startActivity(new Intent(UserActivity.this, orderactivitys.class));
 			break;
 		case R.id.horder_lt_list3://我的投诉
 			Toast.makeText(UserActivity.this, "投诉", Toast.LENGTH_SHORT).show();

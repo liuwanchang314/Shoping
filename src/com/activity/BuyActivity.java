@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -41,10 +42,13 @@ public class BuyActivity extends Activity implements OnClickListener{
 	private TextView mQuanxuan;//全选
 	private TextView mTotalPrice;//总价
 	private TextView mJiesuan;//结算
+	private List<BuyCartBean> list=new ArrayList<BuyCartBean>();
 	
 	private String CallBackString;//网络请求回的数据
 	BuyCartAdapter adapter;
-	private ImageView im_quanzuantubiao;
+	private CheckBox im_quanzuantubiao;
+	
+	private boolean flag = true;		//全选或全取消
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,8 +56,33 @@ public class BuyActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_buy);
 		initview();
 		getdata();
-		//解析
 		
+		mChange.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(mChange.getText().equals("编辑")){
+					mChange.setText("完成");
+					mNameXuanDing.setBackgroundResource(R.drawable.quanquan);
+					//在这里第二步，通知listview发生改变
+					BuyCartAdapter.isshow();
+					adapter.notifyDataSetChanged();
+					//全选按钮需要显示出来
+					mQuanxuan.setVisibility(View.VISIBLE);
+					im_quanzuantubiao.setVisibility(View.VISIBLE);
+					
+				}else{
+					mChange.setText("编辑");
+					mNameXuanDing.setBackgroundResource(R.drawable.gougou);
+					BuyCartAdapter.unshow();
+					adapter.notifyDataSetChanged();
+					mQuanxuan.setVisibility(View.GONE);
+					im_quanzuantubiao.setVisibility(View.GONE);
+				}
+				
+			}
+		});
 		
 	}
 	//获取用户名
@@ -90,80 +119,92 @@ public class BuyActivity extends Activity implements OnClickListener{
 		        	//请求成功
 		        	CallBackString=responseInfo.result;
 		        	Log.i("解析前网络请求有数据吗？",CallBackString);
-		        	List<BuyCartBean> list=BuyCartJsonP.getlist(CallBackString);
+		        	list=BuyCartJsonP.getlist(CallBackString);
 		        	//准备适配器
-		        	adapter=new BuyCartAdapter(list, BuyActivity.this,mTotalPrice);
+		        	//解析
+		    		adapter=new BuyCartAdapter(list, BuyActivity.this,mTotalPrice);
 		        	mListview.setAdapter(adapter);
 		        	mChange.setOnClickListener(new OnClickListener() {
-						
+		    			
+		    			@Override
+		    			public void onClick(View v) {
+		    				// TODO Auto-generated method stub
+		    				if(mChange.getText().equals("编辑")){
+		    					mChange.setText("完成");
+		    					mNameXuanDing.setBackgroundResource(R.drawable.quanquan);
+		    					//在这里第二步，通知listview发生改变
+		    					BuyCartAdapter.isshow();
+		    					adapter.notifyDataSetChanged();
+		    					//全选按钮需要显示出来
+		    					mQuanxuan.setVisibility(View.VISIBLE);
+		    					im_quanzuantubiao.setVisibility(View.VISIBLE);
+		    					
+		    				}else{
+		    					double total=0;
+			    				List<BuyCartBean> listss=new ArrayList<BuyCartBean>();
+			    				for(int i=0;i<list.size();i++){
+			    					if(BuyCartAdapter.getIsSelected().get(i)){
+			    						listss.add(list.get(i));
+			    						double price=Double.parseDouble(list.get(i).getGoods_price());
+			    						double num=Double.parseDouble(list.get(i).getGoods_num());
+			    						total=total+price*num;
+			    						Log.i("现在价格是多少liss",total+"");
+			    					}
+			    				}
+			    				Log.i("现在总价格是多少liss",total+"");
+			    				mTotalPrice.setText(total+"");
+		    					mChange.setText("编辑");
+		    					mNameXuanDing.setBackgroundResource(R.drawable.gougou);
+		    					BuyCartAdapter.unshow();
+		    					adapter.notifyDataSetChanged();
+		    					mQuanxuan.setVisibility(View.GONE);
+		    					im_quanzuantubiao.setVisibility(View.GONE);
+		    				}
+		    				
+		    			}
+		    		});
+		        	//全选或全取消
+		        	im_quanzuantubiao.setOnClickListener(new OnClickListener() {
 						@Override
 						public void onClick(View v) {
 							// TODO Auto-generated method stub
-							if(mChange.getText().equals("编辑")){
-								mChange.setText("完成");
-								mNameXuanDing.setBackgroundResource(R.drawable.quanquan);
-								//在这里第二步，通知listview发生改变
-								BuyCartAdapter.isshow();
-								adapter.notifyDataSetChanged();
-								//全选按钮需要显示出来
-								mQuanxuan.setVisibility(View.VISIBLE);
-								im_quanzuantubiao.setVisibility(View.VISIBLE);
-								
-							}else{
-								mChange.setText("编辑");
-								mNameXuanDing.setBackgroundResource(R.drawable.gougou);
-								BuyCartAdapter.unshow();
-								adapter.notifyDataSetChanged();
-								mQuanxuan.setVisibility(View.GONE);
-								im_quanzuantubiao.setVisibility(View.GONE);
-							}
-							
+							for(int i=0;i<list.size();i++){
+				    			BuyCartAdapter.getIsSelected().put(i, flag);
+				    		}
+				    		adapter.notifyDataSetChanged();
+				    		flag=!flag;
 						}
 					});
 		        	
-		        	//当全选被点击的时候，还是同理，调用方法，通知listview里面的item的radiobutton发生改变
-		        	mQuanxuan.setOnClickListener(new OnClickListener() {
-						
-						@Override
-						public void onClick(View v) {
-							//调用方法
-							if(mQuanxuan.getText().toString().equals("全选")){
-								mQuanxuan.setText("取消");
-								im_quanzuantubiao.setBackgroundResource(R.drawable.gougou);
-								BuyCartAdapter.isChoice();
-								adapter.notifyDataSetChanged();
-							}else{
-								mQuanxuan.setText("全选");
-								im_quanzuantubiao.setBackgroundResource(R.drawable.quanquan);
-								BuyCartAdapter.unChoice();
-								adapter.notifyDataSetChanged();
-							}
-						}
-					});
 		        	mJiesuan.setOnClickListener(new OnClickListener() {
 		    			
 		    			@Override
 		    			public void onClick(View v) {
 		    				// TODO Auto-generated method stub
-		    				//首先，这里需要拿到购物车中被选中的商品的数据
-		    				List<Map<String, BuyCartBean>> newlist=adapter.getNewlists();
 		    				List<BuyCartBean> listss=new ArrayList<BuyCartBean>();
-		    				for(int i=0;i<newlist.size();i++){
-		    					Map<String,BuyCartBean> map=newlist.get(i);
-		    					BuyCartBean bean=map.get("bean");
-		    					listss.add(bean);
+		    				for(int i=0;i<list.size();i++){
+		    					if(BuyCartAdapter.getIsSelected().get(i)){
+		    						listss.add(list.get(i));
+		    					}
 		    				}
-		    				Map<Integer, BuyCartBean> map=adapter.getNewmap();
-		    				Log.i("现在拿到选定的数据了吗liss",newlist.size()+"");
-		    				Log.i("现在拿到选定的数据了吗map",map.size()+"");
-		    				//跳转到结算界面
-		    				//
-		    				Intent intent=new Intent(BuyActivity.this,PayMoneyActivity.class);
-		    				intent.putExtra("list", (Serializable)listss);
-		    				startActivity(intent);
-		    			}
+		    				if(mChange.getText().toString().equals("编辑")&&listss.size()>0){
+		    					//首先，这里需要拿到购物车中被选中的商品的数据
+			    				
+			    				Log.i("现在拿到选定的数据了吗liss",listss.size()+"");
+			    				//跳转到结算界面
+			    				Intent intent=new Intent(BuyActivity.this,PayMoneyActivity.class);
+			    				intent.putExtra("price", mTotalPrice.getText().toString());
+			    				intent.putExtra("list", (Serializable)listss);
+			    				startActivity(intent);
+			    			}else{
+			    				Toast.makeText(BuyActivity.this,"请先完成商品选择",1).show();
+			    			}
+		    				}
+		    				
 		    		});
+		        	
 		        }
+		      
 
 		        @Override
 		        public void onFailure(HttpException error, String msg) {
@@ -187,7 +228,7 @@ public class BuyActivity extends Activity implements OnClickListener{
 		mQuanxuan=(TextView) findViewById(R.id.buyactivity_radiobutton_quanxuan);
 		mTotalPrice=(TextView) findViewById(R.id.buyactivity_textview_totalprice);
 		mJiesuan=(TextView) findViewById(R.id.buyacttivity_textview_jiesuan);
-		im_quanzuantubiao=(ImageView) findViewById(R.id.image_quanxuan);
+		im_quanzuantubiao=(CheckBox) findViewById(R.id.image_quanxuan);
 	}
 	@Override
 	public void onClick(View v) {

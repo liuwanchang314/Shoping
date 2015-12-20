@@ -1,17 +1,10 @@
 package com.activity;
 
-import com.fragment.OrderFragment1;
-import com.fragment.OrderFragment2;
-import com.fragment.OrderFragment3;
-import com.fragment.OrderFragment4;
-import com.fragment.OrderFragment5;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -35,7 +28,6 @@ public class OrderActivity extends Activity implements OnClickListener{
 	private Fragment[] mfragments;//用来存储fragment
 	private ActionBar actionbar;
 	
-	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -45,13 +37,13 @@ public class OrderActivity extends Activity implements OnClickListener{
 		initview();
 		inittitleview();
 		initflagview();
-		initfragments();
+//		initfragments();
 		//默认，第一个标题是被选中的，首先展示的是第一个fragment，所以
 		mtitles[0].setTextColor(Color.BLUE);
 		mflages[0].setBackgroundColor(Color.BLUE);
-		FragmentTransaction mtransaction=getFragmentManager().beginTransaction();
-		mtransaction.add(R.id.activity_order_layout_addfragment,mfragments[0]);
-		mtransaction.commit();
+//		FragmentTransaction mtransaction=getFragmentManager().beginTransaction();
+//		mtransaction.add(R.id.activity_order_layout_addfragment,mfragments[0]);
+//		mtransaction.commit();
 		onclicktitle();
 		
 	}
@@ -145,9 +137,9 @@ public class OrderActivity extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		mtitles[i].setTextColor(Color.BLUE);
 		mflages[i].setBackgroundColor(Color.BLUE);
-		FragmentTransaction mtransaction=getFragmentManager().beginTransaction();
-		mtransaction.replace(R.id.activity_order_layout_addfragment,mfragments[i]);
-		mtransaction.commit();
+//		FragmentTransaction mtransaction=getFragmentManager().beginTransaction();
+//		mtransaction.replace(R.id.activity_order_layout_addfragment,mfragments[i]);
+//		mtransaction.commit();
 	}
 
 	/**
@@ -155,15 +147,15 @@ public class OrderActivity extends Activity implements OnClickListener{
 	 * @date : 2015-12-8 上午10:05:23
 	 * 用来初始化fragment的数组
 	 */  
-	private void initfragments() {
-		// TODO Auto-generated method stub
-		mfragments=new Fragment[5];
-		mfragments[0]=new OrderFragment1();
-		mfragments[1]=new OrderFragment2();
-		mfragments[2]=new OrderFragment3();
-		mfragments[3]=new OrderFragment4();
-		mfragments[4]=new OrderFragment5();
-	}
+//	private void initfragments() {
+//		// TODO Auto-generated method stub
+//		mfragments=new Fragment[5];
+//		mfragments[0]=new OrderFragment1();
+//		mfragments[1]=new OrderFragment2();
+//		mfragments[2]=new OrderFragment3();
+//		mfragments[3]=new OrderFragment4();
+//		mfragments[4]=new OrderFragment5();
+//	}
 	/**
 	 * @author JZKJ-LWC
 	 * @date : 2015-12-8 上午10:01:52

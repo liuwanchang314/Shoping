@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:id="@+id/bill_item_im"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/checkbox_uncheck" />
+
+    <TextView
+        android:id="@+id/bill_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/bill_item_im"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/bill_item_im"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/bill_item_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/bill_item_title"
+        android:layout_alignBottom="@+id/bill_item_title"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:textColor="#aa00aa"
+        android:text="删除" />
+
+</RelativeLayout>
