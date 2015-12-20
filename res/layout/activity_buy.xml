@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CCCCFF"
     tools:context="com.activity.BuyActivity" >
     
     <LinearLayout 
@@ -65,7 +64,8 @@
                  android:id="@+id/butactivity_listview" 
                  android:layout_width="match_parent"
                  android:layout_height="match_parent"
-                 
+                 android:divider="#e4e4e4"
+                 android:dividerHeight="2dp"
                  ></ListView>
         </LinearLayout>
          <LinearLayout 
