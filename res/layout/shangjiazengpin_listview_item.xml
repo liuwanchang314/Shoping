@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     >
+
+    <ImageView
+        android:id="@+id/shangjiazenpin_tubiao"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/checkbox_uncheck" />
+
+    <ImageView
+        android:id="@+id/shangjiazengpin_image"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/shangjiazenpin_tubiao"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/shangjiazenpin_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/shangjiazenpin_jiage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/shangjiazenpin_title"
+        android:layout_below="@+id/shangjiazenpin_tubiao"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/shangjiazenppin_zhongliang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/shangjiazenpin_jiage"
+        android:layout_alignBottom="@+id/shangjiazenpin_jiage"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/shangjiazenpin_jiage"
+        android:text="TextView" />
+
+</RelativeLayout>

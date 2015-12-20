@@ -2,9 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CCFFCC"
     android:orientation="vertical"
-
     tools:context="com.activity.FinanInfoActivity" >
 
 <RelativeLayout
@@ -16,16 +14,17 @@
 
     <RelativeLayout
         android:layout_width="40dp"
-        android:layout_height="60dp"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:background="#E4E4E4" >
 
         <Button
             android:id="@+id/finance_btn_back"
             android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerInParent="true"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
             android:background="@drawable/goback" />
+
     </RelativeLayout>
 
     <TextView
@@ -56,12 +55,25 @@
     android:layout_marginTop="3dp"
     
     >
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#e4e4e4"
+        />
     <ListView 
         android:id="@+id/financedetail_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:dividerHeight="2dp"
         ></ListView>
+    <TextView
+			 android:id="@+id/finance_empty"
+			 android:text="暂无收支记录"
+			 android:layout_width="fill_parent"
+			 android:layout_height="fill_parent"
+			 style="@android:style/TextAppearance.Large"
+			 android:gravity="center">
+			 </TextView>
 </LinearLayout>
     
 </LinearLayout>

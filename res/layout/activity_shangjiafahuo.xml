@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        >
+        <RelativeLayout 
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#e4e4e4"
+            >
+
+            <ImageView
+                android:id="@+id/shangjiafahuo_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/back" />
+
+        </RelativeLayout>
+        <RelativeLayout 
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="商家发货" />
+
+        </RelativeLayout>
+        <RelativeLayout 
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+
+            <ImageView
+                android:id="@+id/shangjiafahuo_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/home" />
+
+        </RelativeLayout>
+    </LinearLayout>
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#e4e4e4"
+        />
+    
+    <RelativeLayout 
+        android:id="@+id/shangjiafahuo_layouy_xuanzezengpin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="选择赠品" />
+
+        <ListView
+            android:id="@+id/shangjiafahuo_listview_zengpin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView2"
+            android:layout_marginTop="5dp"
+            android:layout_centerHorizontal="true" >
+        </ListView>
+        
+        <TextView 
+            android:id="@+id/shangjiafahuo_xiayibu"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="下一步"
+            android:gravity="center"
+            android:background="#ff4500"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
+    
+    <RelativeLayout 
+        android:id="@+id/shangjiafahuo_layout_xuanzekuaidi"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="选择快递公司" />
+
+        <ListView
+            android:id="@+id/shangjiafahuo_listview_kuaidi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/textView3" >
+        </ListView>
+        
+        <TextView 
+            android:id="@+id/shangjiafahuo_wancheng"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="完成"
+            android:gravity="center"
+            android:background="#ff4500"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
+    
+
+</LinearLayout>

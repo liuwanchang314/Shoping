@@ -143,6 +143,7 @@
         android:layout_marginLeft="20dp"
          >
         <TextView
+        android:id="@+id/bill_putong_mingxi_tv"
         android:layout_width="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
@@ -151,11 +152,12 @@
         android:text="明细" />
 
         <ImageView
+            android:id="@+id/bill_putong_mingxi_im"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/gougou" />
+            android:src="@drawable/quanquan" />
 
     </RelativeLayout>
     <RelativeLayout
@@ -165,6 +167,7 @@
         android:layout_marginLeft="20dp"
          >
         <TextView
+         android:id="@+id/bill_putong_yinliao_tv"
         android:layout_width="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
@@ -173,11 +176,12 @@
         android:text="饮料" />
 
         <ImageView
+            android:id="@+id/bill_putong_yinliao_im"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/gougou" />
+            android:src="@drawable/quanquan" />
 
     </RelativeLayout>
     <RelativeLayout
@@ -187,6 +191,7 @@
         android:layout_marginLeft="20dp"
          >
         <TextView
+            android:id="@+id/bill_putong_zhuangxiucailiao_tv"
         android:layout_width="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
@@ -195,11 +200,12 @@
         android:text="装修材料" />
 
         <ImageView
+            android:id="@+id/bill_putong_zhuangxiucailiao_im"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/gougou" />
+            android:src="@drawable/quanquan" />
 
     </RelativeLayout>
     <RelativeLayout
@@ -209,6 +215,7 @@
         android:layout_marginLeft="20dp"
          >
         <TextView
+            android:id="@+id/bill_putong_xueshengyongpin_tv"
         android:layout_width="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
@@ -217,11 +224,12 @@
         android:text="学生用品" />
 
         <ImageView
+            android:id="@+id/bill_putong_xueshengyongpin_im"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/gougou" />
+            android:src="@drawable/quanquan" />
 
     </RelativeLayout>
 
