@@ -76,5 +76,12 @@ public class BuyCartBean implements Serializable{
 	private String goods_num;
 	private String goods_image;
 	private String spec_id;
-
+	private boolean isChoosed;		//商品是否在购物车中被选中
+	
+	public boolean isChoosed() {
+		return isChoosed;
+	}
+	public void setChoosed(boolean isChoosed) {
+		this.isChoosed = isChoosed;
+	}
 }

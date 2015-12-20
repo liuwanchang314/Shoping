@@ -46,6 +46,8 @@ public class BuyCartAdapter extends BaseAdapter {
 	private static boolean istag=false;
 	private TextView total;
 	private double totalprice=0.0;
+	private static HashMap<Integer, Boolean> isSelected; 
+	
 	Double price;
 	Double number;
 	//建立一个集合，用来存储listview当中被选中的商品的下标
@@ -69,11 +71,25 @@ public class BuyCartAdapter extends BaseAdapter {
 	}
 
 	public BuyCartAdapter(List<BuyCartBean> list,Context context,TextView total){
-		
+		isSelected = new HashMap<Integer, Boolean>();
 		this.list=list;
 		this.context=context;
 		this.total=total;
+		initDate();
 	}
+	// 初始化isSelected的数据  
+    private void initDate() {  
+        for (int i = 0; i < list.size(); i++) {  
+            getIsSelected().put(i, false);  
+        }  
+    }  
+    public static HashMap<Integer, Boolean> getIsSelected() {  
+        return isSelected;  
+    }
+    
+    public static void setIsSelected(HashMap<Integer, Boolean> isSelected) {  
+    	BuyCartAdapter.isSelected = isSelected;  
+    }  
 
 	//该方法用来动态通知listview布局以及数据显示发生改变
 	public static void isshow(){
@@ -148,48 +164,9 @@ public class BuyCartAdapter extends BaseAdapter {
 			BitmapUtils bitmapUtils=new BitmapUtils(context);
 			bitmapUtils.display(vhs.img,list.get(position).getGoods_image());
 			vhs.tubiao.setVisibility(View.VISIBLE);//图标需要xianshi
-			if(IsChoise){
-				//为全选时候
-				vhs.tubiao.setChecked(true);
-				//当这个item被选中的时候，将他添加到map集合中，并且添加到总集合中
-				map.put("bean",list.get(position));
-				newlists.add(map);
-				newmap.put(position, list.get(position));
-			}else{
-				//为不全选时候
-				vhs.tubiao.setChecked(false);
-				//删除新集合内部所有
-				newlists.clear();
-				newmap.clear();
-				
-			}
-//			price=Double.parseDouble((String) vhs.jiage.getText());
-//			number=Double.parseDouble((String) vhs.num.getText());
-			vhs.tubiao.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-				
-				@Override
-				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-					// TODO Auto-generated method stub
-					//当radiobutton被选定的时候，这里需要计算出这个item的商品价格，然后通知到activity中
-					if(isChecked){
-						Toast.makeText(context, "被选定了",1).show();
-						//调用方法，将该item的价格传递过去，选定就加价
-						//先根据价格进行计算总价
-//						double totals=price*number;
-//						totalprice=totalprice+totals;
-//						total.setText(totalprice+"");
-						map.put("bean",list.get(position));
-						newlists.add(map);
-						newmap.put(position, list.get(position));
-					}else{
-						Toast.makeText(context, "被取消了了",1).show();
-						//调用方法，进行减价处理
-						//从新集合中删除被取消选定的
-						newmap.remove(position);
-						
-					}
-				}
-			});
+			vhs.tubiao.setTag(position);
+			vhs.tubiao.setChecked(getIsSelected().get(position));
+			vhs.tubiao.setOnCheckedChangeListener(new CheckBoxChangedListener());
 			vhs.bitoti.setVisibility(View.GONE);//标题需要隐藏
 			vhs.anniu.setVisibility(View.VISIBLE);//按钮部分需要显示
 			vhs.shanchu.setVisibility(View.VISIBLE);//数量部分需要隐藏
@@ -220,7 +197,11 @@ public class BuyCartAdapter extends BaseAdapter {
 					Toast.makeText(context, "..加.",1).show();
 					int i=Integer.parseInt(tv.getText().toString());
 					i++;
+					list.get(position).setGoods_num(i+"");
 					tv.setText(i+"");
+					//调用方法，进行添加数量
+					//同时调用方法在服务器中加上商品数量
+					getdataadd(list.get(position).getCart_id(),1+"");
 				}
 			});
 			vhs.jian.setOnClickListener(new OnClickListener() {
@@ -231,10 +212,14 @@ public class BuyCartAdapter extends BaseAdapter {
 								Toast.makeText(context, "..减..",1).show();
 								int i=Integer.parseInt(tv.getText().toString());
 								if(i==1){
+									list.get(position).setGoods_num(i+"");
 									tv.setText(i+"");
 								}else{
 									i--;
 									tv.setText(i+"");
+									list.get(position).setGoods_num(i+"");
+									//调用方法，进行减去数量
+									getdatajianqu(list.get(position).getCart_id(),1+"");
 								}
 								
 							}
@@ -313,6 +298,99 @@ public class BuyCartAdapter extends BaseAdapter {
 			        }
 			});
 		}
+		
+		
+		//CheckBox选择改变监听器
+		private final class CheckBoxChangedListener implements OnCheckedChangeListener{
+			public void onCheckedChanged(CompoundButton cb, boolean flag) {
+				int position = (Integer)cb.getTag();
+				getIsSelected().put(position, flag);
+				BuyCartBean bean = list.get(position);
+				bean.setChoosed(flag);
+//				mHandler.sendMessage(mHandler.obtainMessage(10, getTotalPrice()));
+//				//如果所有的物品全部被选中，则全选按钮也默认被选中
+//				mHandler.sendMessage(mHandler.obtainMessage(11, isAllSelected()));
+			}
+		}
+		
+		//获取数据
+		private void getdataadd(String id,String num) {
+					// TODO Auto-generated method stub
+					RequestParams params = new RequestParams();
+					// 只包含字符串参数时默认使用BodyParamsEntity，
+					params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
+					params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
+					params.addBodyParameter("type", "order");
+					params.addBodyParameter("part", "cart_add_num");
+					params.addBodyParameter("cart_id", id);
+					params.addBodyParameter("num", num);
+					HttpUtils http = new HttpUtils();
+					http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
+
+					        @Override
+					        public void onStart() {
+					        	//开始请求
+					        }
+
+					        @Override
+					        public void onLoading(long total, long current, boolean isUploading) {
+					            if (isUploading) {
+					            } else {
+					            }
+					        }
+
+					        @Override
+					        public void onSuccess(ResponseInfo<String> responseInfo) {
+					        	//请求成功
+					        	String str=responseInfo.result;
+					        	Log.i("添加上了数据吗", str);
+					        }
+
+					        @Override
+					        public void onFailure(HttpException error, String msg) {
+					        }
+					});
+				}
+		//获取数据
+				private void getdatajianqu(String id,String num) {
+							// TODO Auto-generated method stub
+							RequestParams params = new RequestParams();
+							// 只包含字符串参数时默认使用BodyParamsEntity，
+							params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
+							params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
+							params.addBodyParameter("type", "order");
+							params.addBodyParameter("part", "cart_sub_num");
+							params.addBodyParameter("cart_id", id);
+							params.addBodyParameter("num", num);
+							HttpUtils http = new HttpUtils();
+							http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
+
+							        @Override
+							        public void onStart() {
+							        	//开始请求
+							        }
+
+							        @Override
+							        public void onLoading(long total, long current, boolean isUploading) {
+							            if (isUploading) {
+							            } else {
+							            }
+							        }
+
+							        @Override
+							        public void onSuccess(ResponseInfo<String> responseInfo) {
+							        	//请求成功
+							        	String str=responseInfo.result;
+							        	Log.i("添加上了数据吗", str);
+							        }
+
+							        @Override
+							        public void onFailure(HttpException error, String msg) {
+							        }
+							});
+						}
+				
+		
 
 
 }

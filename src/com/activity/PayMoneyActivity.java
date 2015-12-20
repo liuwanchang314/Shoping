@@ -29,6 +29,7 @@ public class PayMoneyActivity extends Activity {
 	private TextView mBillInfoTextviw;
 	private TextView mFapiao;
 	private TextView shangjiafahuo;
+	private TextView totalprice;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -39,6 +40,8 @@ public class PayMoneyActivity extends Activity {
 		Intent intent=getIntent();
 		List<BuyCartBean> list=(List<BuyCartBean>) getIntent().getSerializableExtra("list");
 		Log.i("现在传递过来了多少数据",list.size()+"");
+		String price=intent.getStringExtra("price");
+		totalprice.setText("￥"+price);
 		//准备adapter
 		PayMoneyAdatper adapter=new PayMoneyAdatper(list, PayMoneyActivity.this);
 		mlistview.setAdapter(adapter);
@@ -88,6 +91,7 @@ public class PayMoneyActivity extends Activity {
 		mBillInfoTextviw=(TextView) findViewById(R.id.paymoney_activity_tv_fapiaoxinxi);
 		mFapiao=(TextView) findViewById(R.id.paymoney_activity_tv_fapiaoxinxi);
 		shangjiafahuo=(TextView) findViewById(R.id.paymoney_activity_tv_shangjiafahuo);
+		totalprice=(TextView) findViewById(R.id.pay_totalprice);
 	}
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
