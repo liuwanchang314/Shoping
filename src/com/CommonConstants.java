@@ -12,7 +12,7 @@ public class CommonConstants {
 	
 	public static int RESULTCODE_OK = 2;
 	
-	public static String WXAPP_ID = "";
+	public static String WXAPP_ID = "wx7e252fa6728cf6eb";
 	
 	
 }
