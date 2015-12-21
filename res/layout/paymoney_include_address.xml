@@ -32,7 +32,7 @@
                 android:textSize="20sp"
                 android:layout_alignBottom="@+id/textView1"
                 android:layout_toRightOf="@+id/textView1"
-                android:text="李先生" />
+                />
 
             <TextView
                 android:id="@+id/paymoney_activity_tv_shouhuorendianhua"
@@ -42,7 +42,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:textSize="20sp"
-                android:text="15252525252" />
+                />
 
         </RelativeLayout>
          <RelativeLayout 
@@ -57,7 +57,7 @@
                  android:layout_height="wrap_content"
                  android:layout_alignParentTop="true"
                  android:layout_toRightOf="@+id/imageView1"
-                 android:text="收获地址：" />
+                 />
 
              <TextView
                  android:id="@+id/paymoney_activity_tv_shouhuorenaddress"
@@ -65,7 +65,7 @@
                  android:layout_height="wrap_content"
                  android:layout_alignParentTop="true"
                  android:layout_toRightOf="@+id/textView2"
-                 android:text="这里是测试收货地址数据" />
+                 />
 
              <ImageView
                  android:id="@+id/imageView2"

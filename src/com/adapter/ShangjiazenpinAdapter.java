@@ -60,7 +60,7 @@ public class ShangjiazenpinAdapter extends BaseAdapter {
 		if(convertView==null){
 			vh=new viewholder();
 			LayoutInflater inflater=(LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-			convertView=inflater.inflate(R.layout.shangjiazengpin_listview_item, null);
+			convertView=inflater.inflate(R.layout.shangjiazenpin_item, null);
 			vh.title=(TextView) convertView.findViewById(R.id.shangjiazenpin_title);
 			vh.im=(ImageView) convertView.findViewById(R.id.shangjiazengpin_image);
 			vh.price=(TextView) convertView.findViewById(R.id.shangjiazenpin_jiage);

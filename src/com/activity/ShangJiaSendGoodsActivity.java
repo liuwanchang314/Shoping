@@ -1,15 +1,19 @@
 package com.activity;
 
 import java.io.Serializable;
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import com.adapter.BuyCartAdapter;
+import com.adapter.KuaiDiAdapter;
 import com.adapter.ShangjiazenpinAdapter;
 import com.bean.BuyCartBean;
+import com.bean.KuaiDiBean;
 import com.bean.ShangjiazengpingBean;
 import com.jsonParser.BuyCartJsonP;
+import com.jsonParser.KuaiDiJsonParser;
 import com.jsonParser.ShangjiazenpinJsonparser;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -17,6 +21,7 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,6 +30,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -39,6 +46,9 @@ public class ShangJiaSendGoodsActivity extends Activity {
 	private ListView listview_kuaidi;
 	private TextView xiayibu;
 	private TextView wanceng;
+	private String zengpinid;
+	private String zenpinnum;
+	private String kuaidiid;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -68,6 +78,8 @@ public class ShangJiaSendGoodsActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent=new Intent();
+				intent.putExtra("zenpinid",zengpinid);
+				intent.putExtra("kuaidiid",kuaidiid);
 				ShangJiaSendGoodsActivity.this.setResult(3,intent);
 				ShangJiaSendGoodsActivity.this.finish();
 			}
@@ -107,9 +119,18 @@ public class ShangJiaSendGoodsActivity extends Activity {
 		        	//请求成功
 		        	String CallBackString=responseInfo.result;
 		        	Log.i("商家赠品请求有数据吗？",CallBackString);
-		        	List<ShangjiazengpingBean> list=ShangjiazenpinJsonparser.getlist(CallBackString);
+		        	final List<ShangjiazengpingBean> list=ShangjiazenpinJsonparser.getlist(CallBackString);
 		        	ShangjiazenpinAdapter adapter=new ShangjiazenpinAdapter(list, ShangJiaSendGoodsActivity.this);
 		        	listview_zengpin.setAdapter(adapter);
+		        	listview_zengpin.setOnItemClickListener(new OnItemClickListener() {
+
+						@Override
+						public void onItemClick(AdapterView<?> arg0, View arg1,
+								int arg2, long arg3) {
+							// TODO Auto-generated method stub
+							zengpinid=list.get(arg2).getGoods_id();
+						}
+					});
 		        }
 
 		        @Override
@@ -125,7 +146,7 @@ public class ShangJiaSendGoodsActivity extends Activity {
 		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
 		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
 		params.addBodyParameter("type", "order");
-		params.addBodyParameter("part", "get_store__express_nokey");
+		params.addBodyParameter("part", "get_store_express_nokey");
 		params.addBodyParameter("shipping_mode",mode);
 		HttpUtils http = new HttpUtils();
 		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
@@ -147,6 +168,19 @@ public class ShangJiaSendGoodsActivity extends Activity {
 		        	//请求成功
 		        	String CallBackString=responseInfo.result;
 		        	Log.i("商家快递请求有数据吗？",CallBackString);
+		        	final List<KuaiDiBean> list=KuaiDiJsonParser.getlist(CallBackString);
+		        	KuaiDiAdapter adapter=new KuaiDiAdapter(list,ShangJiaSendGoodsActivity.this);
+		        	listview_kuaidi.setAdapter(adapter);
+		        	listview_kuaidi.setOnItemClickListener(new OnItemClickListener() {
+
+						@Override
+						public void onItemClick(AdapterView<?> arg0, View arg1,
+								int arg2, long arg3) {
+							// TODO Auto-generated method stub
+							kuaidiid=list.get(arg2).getTransport_id();
+							Log.i("快递id是多少",kuaidiid);
+						}
+					});
 		        }
 
 		        @Override

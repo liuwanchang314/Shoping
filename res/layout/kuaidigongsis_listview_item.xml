@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     >
+
+    <ImageView
+        android:id="@+id/kuaidigongsi_tubiao"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/checkbox_uncheck" />
+
+    <TextView
+        android:id="@+id/kuaidigongsi_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/kuaidigongsi_tubiao"
+        android:layout_marginLeft="14dp"
+        android:layout_toRightOf="@+id/kuaidigongsi_tubiao"
+        android:text="TextView" />
+
+</RelativeLayout>

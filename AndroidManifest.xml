@@ -153,7 +153,7 @@
         <!-- 确认支付界面 -->
         <activity 
             android:name=".PayMoneyActivity"
-            android:windowSoftInputMode="adjustPan"
+            android:windowSoftInputMode="stateUnchanged"
             ></activity>
         <!-- 选择省市县界面 -->
         <activity 
@@ -172,9 +172,13 @@
         <activity 
             android:name=".ShangJiaSendGoodsActivity"
             ></activity>
-        
+        <!-- 订单界面 -->
         <activity 
             android:name=".orderactivitys"
+            ></activity>
+        <!-- 支付界面 -->
+        <activity 
+            android:name=".PayForActivity"
             ></activity>
     </application>
 
