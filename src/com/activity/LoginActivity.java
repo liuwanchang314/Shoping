@@ -59,7 +59,7 @@ public class LoginActivity extends Activity {
 	private String pwd;
 	
 	private IWXAPI api;
-	
+	private int i;//读秒计数
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -131,7 +131,7 @@ public class LoginActivity extends Activity {
 			public void handleMessage(Message msg) {
 				String data = "";
 				JSONObject jsonObject;
-				if(msg.what == 0){
+				if(msg.arg1 == 0){
 					try {
 
 						jsonObject = new JSONObject(msg.obj.toString());
@@ -170,7 +170,7 @@ public class LoginActivity extends Activity {
 					} catch (Exception exp) {
 
 					}
-				}else if(msg.what == 1){
+				}else if(msg.arg1 == 1){
 					try {
 						jsonObject = new JSONObject(msg.obj.toString());
 						data = jsonObject.getString("send_status");
@@ -274,7 +274,7 @@ public class LoginActivity extends Activity {
 			}
 			list.clear();
 			list.put("type", "user");
-			list.put("part", "userlogin");
+			list.put("part", "mobillogin");
 			list.put("mobilphone", txtoneString);
 			list.put("code", txttwoString);
 			client = new DataService(handler, 0, list);
@@ -297,11 +297,51 @@ public class LoginActivity extends Activity {
 				codetwo.setText("隐藏");
 			}
 		}else {
+			codetwo.setClickable(false);
+			//同时开启一个子线程，目的是为了改变控件上的时间数字
+			
+			new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					//先让线程睡上1000毫秒，
+					for(i=59;i>0;i--)
+					{
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						codetwo.post(new Runnable() {
+							
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								//更新ui上面的数字
+								codetwo.setText(i+"");
+							}
+						});
+						
+					}
+					codetwo.post(new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							//更新ui上面的数字
+							codetwo.setText("获取验证码");
+							codetwo.setClickable(true);
+						}
+					});
+				}
+			}).start();
 			String txtoneString = txtone.getText().toString().trim();
 			if(txtoneString.length() == 11){
 				list.clear();
-				list.put("type", "user");
-				list.put("part", "userlogin");
+				list.put("type", "system");
+				list.put("part", "message");
 				list.put("mobilphone", txtoneString);
 				client = new DataService(handler, 1, list);
 				client.start();
