@@ -446,6 +446,7 @@ public class BillActivity extends Activity {
 						im.setBackgroundResource(R.drawable.checkbox_check);
 						Intent intent=new Intent();
 						intent.putExtra("title",list.get(arg2).getInv_title()+list.get(arg2).getInv_content());
+						intent.putExtra("fapiaoid",list.get(arg2).getInv_id());
 						BillActivity.this.setResult(4,intent);
 						BillActivity.this.finish();
 						}
@@ -460,4 +461,3 @@ public class BillActivity extends Activity {
 		
 
 }
-

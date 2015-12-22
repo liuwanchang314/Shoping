@@ -4,29 +4,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    <RelativeLayout 
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:orientation="vertical"
         >
 
-        <TextView
-            android:id="@+id/paymoney_activity_tv_zhifu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/textView2"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/paymoney_activity_ed_shurujine"
-            android:background="#FF4500"
-            android:text="支付" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <RelativeLayout 
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            >
+             <CheckBox
+            android:id="@+id/paymoney_checbox_xshiyongyucunkuan"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignBaseline="@+id/textView1"
             android:layout_alignBottom="@+id/textView1"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/textView1"
-            android:text="（当前可用余额：￥" />
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="14dp"
+            android:background="@null"
+            android:button="@drawable/checkbox" />
 
         <TextView
             android:id="@+id/paymoney_activity_tv_dangqianyue"
@@ -34,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView4"
             android:layout_toRightOf="@+id/textView4"
-            android:text="000" />
+            android:text="0" />
 
         <TextView
             android:id="@+id/textView6"
@@ -46,46 +44,69 @@
             android:text="）" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textView1"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="14dp"
-            android:text="支付密码" />
-
-        <EditText
-            android:id="@+id/paymoney_activity_ed_shurujine"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/textView2"
-            android:layout_alignBottom="@+id/textView2"
-            android:layout_toRightOf="@+id/textView2"
-            android:background="@drawable/biankuang"
-            android:ems="6"
-            android:gravity="center" >
-
-            <requestFocus />
-        </EditText>
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/textView1"
+            android:text="（当前可用余额：" />
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/paymoney_activity_ed_shurujine"
-            android:layout_marginLeft="19dp"
-            android:layout_toRightOf="@+id/imageView1"
+            android:layout_alignBaseline="@+id/textView4"
+            android:layout_alignBottom="@+id/textView4"
+            android:layout_toRightOf="@+id/paymoney_checbox_xshiyongyucunkuan"
             android:text="使用预存款支付" />
+             
+        </RelativeLayout>
+         <RelativeLayout
+             android:id="@+id/paymoney_shiyongyucunuan_yincang" 
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            >
 
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:scaleType="fitXY"
-            android:layout_alignParentLeft="true"
-            android:layout_alignTop="@+id/textView1"
-            android:src="@drawable/gougou" />
+               <TextView
+                   android:id="@+id/textView2"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_centerVertical="true"
+                   android:layout_toLeftOf="@+id/paymoney_activity_ed_shurujine"
+                   android:text="支付密码" />
+
+               <TextView
+                   android:id="@+id/paymoney_activity_tv_zhifu"
+                   android:layout_width="40dp"
+                   android:layout_height="30dp"
+                   android:layout_alignBottom="@+id/paymoney_activity_ed_shurujine"
+                   android:layout_marginLeft="18dp"
+                   android:layout_toRightOf="@+id/paymoney_activity_ed_shurujine"
+                   android:background="@drawable/biankuang"
+                   android:gravity="center"
+                   android:text="验证"
+                   android:textColor="#ff4500" />
+
+               <EditText
+                   android:id="@+id/paymoney_activity_ed_shurujine"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_alignParentTop="true"
+                   android:layout_centerHorizontal="true"
+                   android:background="@drawable/biankuang"
+                   android:ems="6"
+                   android:gravity="center" />
+
+       </RelativeLayout>
+      
+
+      
+       
+
+     
         
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

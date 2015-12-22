@@ -209,8 +209,14 @@
             android:name=".ShangJiaSendGoodsActivity"
             ></activity>
         
+
+        <!-- 订单界面 -->
         <activity 
             android:name=".orderactivitys"
+            ></activity>
+        <!-- 支付界面 -->
+        <activity 
+            android:name=".PayForActivity"
             ></activity>
     </application>
        <!-- 微信star -->

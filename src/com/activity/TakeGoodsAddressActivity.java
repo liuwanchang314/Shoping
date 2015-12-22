@@ -115,6 +115,7 @@ public class TakeGoodsAddressActivity extends Activity implements OnClickListene
 							intent.putExtra("name",list.get(arg2).getReceive_name());
 							intent.putExtra("phone",list.get(arg2).getMob_phone());
 							intent.putExtra("xxaddress",list.get(arg2).getArea_info());
+							intent.putExtra("id",list.get(arg2).getAddress_id());
 							TakeGoodsAddressActivity.this.setResult(1,intent);
 							TakeGoodsAddressActivity.this.finish();
 						}
