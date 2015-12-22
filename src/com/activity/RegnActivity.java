@@ -51,6 +51,7 @@ public class RegnActivity extends Activity implements OnClickListener{
 	private String message_code;
 	private String ques_id;
 	List<String> strList,idlist;
+	private int i;//计时
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +78,7 @@ public class RegnActivity extends Activity implements OnClickListener{
 			public void handleMessage(android.os.Message msg) {
 				String data = "";
 				JSONObject jsonObject;
-				switch (msg.what) {
+				switch (msg.arg1) {
 				case 0:
 					try {
 						jsonObject = new JSONObject(msg.obj.toString());
@@ -124,7 +125,6 @@ public class RegnActivity extends Activity implements OnClickListener{
 							data = jsonObject.getString("send_status");
 							if(data.equals("1")){
 								message_code = jsonObject.getString("message_code");
-								Toast.makeText(RegnActivity.this, message_code, 0).show();
 							}else{
 								Toast.makeText(RegnActivity.this, "验证码获取失败，请重试", 0).show();
 							}
@@ -208,8 +208,45 @@ public class RegnActivity extends Activity implements OnClickListener{
 		case R.id.regn_getcode_btn:
 			
 			regn_btn_getcode.setClickable(false);
-			listmap.put("type", "user");
-			listmap.put("part", "userlogin");
+              new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					//先让线程睡上1000毫秒，
+					for(i=59;i>0;i--)
+					{
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						regn_btn_getcode.post(new Runnable() {
+							
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								//更新ui上面的数字
+								regn_btn_getcode.setText(i+"");
+							}
+						});
+						
+					}
+					regn_btn_getcode.post(new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							//更新ui上面的数字
+							regn_btn_getcode.setText("获取验证码");
+							regn_btn_getcode.setClickable(true);
+						}
+					});
+				}
+			}).start();
+			listmap.put("type", "system");
+			listmap.put("part", "message");
 			listmap.put("mobilphone", phnum);
 			
 			client = new DataService(handler, 1, listmap);
