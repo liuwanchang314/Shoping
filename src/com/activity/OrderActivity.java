@@ -1,10 +1,12 @@
 package com.activity;
 
 
+
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -28,6 +30,7 @@ public class OrderActivity extends Activity implements OnClickListener{
 	private Fragment[] mfragments;//用来存储fragment
 	private ActionBar actionbar;
 	
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -41,9 +44,9 @@ public class OrderActivity extends Activity implements OnClickListener{
 		//默认，第一个标题是被选中的，首先展示的是第一个fragment，所以
 		mtitles[0].setTextColor(Color.BLUE);
 		mflages[0].setBackgroundColor(Color.BLUE);
-//		FragmentTransaction mtransaction=getFragmentManager().beginTransaction();
-//		mtransaction.add(R.id.activity_order_layout_addfragment,mfragments[0]);
-//		mtransaction.commit();
+		FragmentTransaction mtransaction=getFragmentManager().beginTransaction();
+		mtransaction.add(R.id.activity_order_layout_addfragment,mfragments[0]);
+		mtransaction.commit();
 		onclicktitle();
 		
 	}
@@ -137,9 +140,9 @@ public class OrderActivity extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		mtitles[i].setTextColor(Color.BLUE);
 		mflages[i].setBackgroundColor(Color.BLUE);
-//		FragmentTransaction mtransaction=getFragmentManager().beginTransaction();
-//		mtransaction.replace(R.id.activity_order_layout_addfragment,mfragments[i]);
-//		mtransaction.commit();
+		FragmentTransaction mtransaction=getFragmentManager().beginTransaction();
+		mtransaction.replace(R.id.activity_order_layout_addfragment,mfragments[i]);
+		mtransaction.commit();
 	}
 
 	/**
