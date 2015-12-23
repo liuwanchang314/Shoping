@@ -23,6 +23,9 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.listenter.BaseUiListener;
+import com.tencent.tauth.Tencent;
+import com.utils.ShareUtils;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
@@ -87,8 +90,10 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 	private String colors=null;
 	List<PIdimesionAndColor> list_yanse;
 	List<PIdimesionAndColor> list_chicun;
+	private BaseUiListener listener = new BaseUiListener();
 	int a=0;
 	int b=0;
+	private Tencent tencent;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -539,6 +544,8 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 			break;
 		case R.id.producinfo_Qonefeixiang:
 			Toast.makeText(Product_infoActivity.this, "qq控件",Toast.LENGTH_SHORT).show();
+			tencent = Tencent.createInstance(CommonConstants.QQ_ID, Product_infoActivity.this);
+			ShareUtils.shareMegToQzone(tencent, Product_infoActivity.this, new ArrayList<String>(), "title", "summary", "target_url", listener);
 			break;
 		case R.id.producinfo_paizhao:
 			Toast.makeText(Product_infoActivity.this, "拍照",Toast.LENGTH_SHORT).show();
@@ -562,7 +569,13 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 			break;
 		}
 	}
-	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(null != tencent){
+			tencent.onActivityResultData(requestCode,resultCode,data,listener);	
+		}
+		
+	}
 	private String[] getpath(String str){
 		String[] str1 = str.split(",");
 		return str1;

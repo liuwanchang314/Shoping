@@ -1,5 +1,60 @@
 package com.utils;
 
+import java.util.ArrayList;
+
+import com.listenter.BaseUiListener;
+import com.tencent.connect.common.UIListenerManager;
+import com.tencent.connect.share.QQShare;
+import com.tencent.connect.share.QzoneShare;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
+
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+
 public class ShareUtils {
 
+	/**
+	 * 分享给qq好友
+	 * @param mTencent
+	 * @param mContext
+	 * @param listener
+	 * @param title
+	 * @param summary
+	 * @param target_url
+	 * @param img_url
+	 * @param appname
+	 */
+	public static void shareMegToQQfriend(Tencent mTencent, Activity mContext,IUiListener listener,
+			String title,String summary,String target_url,String img_url,String appname){
+		  final Bundle params = new Bundle();
+		    params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_DEFAULT);
+		    params.putString(QQShare.SHARE_TO_QQ_TITLE, title);
+		    params.putString(QQShare.SHARE_TO_QQ_SUMMARY,  summary);
+		    params.putString(QQShare.SHARE_TO_QQ_TARGET_URL,  target_url);
+		    params.putString(QQShare.SHARE_TO_QQ_IMAGE_URL,img_url);
+		    params.putString(QQShare.SHARE_TO_QQ_APP_NAME,  appname);
+		    mTencent.shareToQQ(mContext, params, listener);
+	}
+	/**
+	 * 分享到qq空间
+	 * @param mTencent
+	 * @param activity
+	 * @param img_url_list
+	 * @param title
+	 * @param summary
+	 * @param target_url
+	 * @param listener
+	 */
+	public static void shareMegToQzone(Tencent mTencent,Activity activity,ArrayList<String> img_url_list,String title,
+			String summary,String target_url,BaseUiListener listener){
+		  final Bundle params = new Bundle();
+		params.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE,QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT );
+	    params.putString(QzoneShare.SHARE_TO_QQ_TITLE, title);//必填
+	    params.putString(QzoneShare.SHARE_TO_QQ_SUMMARY, summary);//选填
+	    params.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL, target_url);//必填
+	    params.putStringArrayList(QzoneShare.SHARE_TO_QQ_IMAGE_URL, img_url_list);
+	    mTencent.shareToQzone(activity, params, listener);
+	}
 }
