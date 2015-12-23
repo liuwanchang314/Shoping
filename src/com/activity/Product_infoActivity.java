@@ -684,15 +684,14 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-		        	if(tag!=null||tag.equals("0")){
+		        	if(tag!=null&&tag.equals("0")){
 		        		//加入失败
 		        		Toast.makeText(Product_infoActivity.this,"加入失败",Toast.LENGTH_SHORT).show();
-		        	}else if(tag!=null||tag.equals("1")){
+		        	}else if(tag!=null&&tag.equals("1")){
 		        		//加成功
 		        		AlertDialog.Builder dialog=new AlertDialog.Builder(Product_infoActivity.this);
 		        		dialog.setTitle("温馨提示");
 		        		dialog.setMessage("您挑选的商品已经加入购物车，请进入购物车进行结算");
-		        		dialog.create().show();
 		        		dialog.setPositiveButton("去购物车",new DialogInterface.OnClickListener() {
 							
 							@Override
@@ -711,6 +710,7 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 								
 							}
 						});
+		        		dialog.create().show();
 		        	}
 		        	
 		        }

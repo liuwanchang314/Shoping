@@ -48,12 +48,12 @@ public class PayMoneyActivity extends Activity {
 	private TextView shangjiafahuo;
 	private TextView totalprice;
 	
-	//最底部的布局
-	private CheckBox yuncunkuan;//是否使用预存款
-	private TextView dangqianyue;//当前余额
-	private RelativeLayout xuyaoyincang;//需要隐藏的部分
-	private EditText zhifumima;//支付密码
-	private TextView yanzhengmima;//验证密码
+//	//最底部的布局
+//	private CheckBox yuncunkuan;//是否使用预存款
+//	private TextView dangqianyue;//当前余额
+//	private RelativeLayout xuyaoyincang;//需要隐藏的部分
+//	private EditText zhifumima;//支付密码
+//	private TextView yanzhengmima;//验证密码
 	
 	private boolean yanzhengTag=false;
 	
@@ -102,96 +102,85 @@ public class PayMoneyActivity extends Activity {
 				startActivityForResult(intents, 3);
 			}
 		});
-		yuncunkuan.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				// TODO Auto-generated method stub
-				if(isChecked){
-					xuyaoyincang.setVisibility(View.VISIBLE);
-				}else{
-					xuyaoyincang.setVisibility(View.GONE);
-				}
-			}
-		});
-		yanzhengmima.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				//调用方法进行密码验证，如果验证成功，则再次发出请求，获取用户当前余额，显示在可用资金框中
-				String password=zhifumima.getText().toString();
-				getdatayanzhenmima(password);
-				if(yanzhengTag){
-					//说明验证成功了
-					//获取当前用户余额
-					RequestParams params = new RequestParams();
-					// 只包含字符串参数时默认使用BodyParamsEntity，
-					params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
-					params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
-					params.addBodyParameter("type", "finance");
-					params.addBodyParameter("part", "user_finance_91");
-					params.addBodyParameter("user_name", SysApplication.getInstance().getUserInfo().getName());
-					HttpUtils http = new HttpUtils();
-					http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
-
-					        @Override
-					        public void onStart() {
-					        	//开始请求
-					        }
-
-					        @Override
-					        public void onLoading(long total, long current, boolean isUploading) {
-					            if (isUploading) {
-					            } else {
-					            }
-					        }
-
-					        @Override
-					        public void onSuccess(ResponseInfo<String> responseInfo) {
-					        	//请求成功
-					        	String str=responseInfo.result;
-					        	Log.i("caiwu 请求下来的参数是",str);
-					        	
-//					        	这里接口有问题，需要改动
-					        	try {
-									JSONObject obj=new JSONObject(str);
-									JSONObject objs=obj.getJSONObject("data");
-									String banace=objs.getString("user_balance");
-									dangqianyue.setText(banace);
-									String user_conbalance=objs.getString("user_conbalance");
-								} catch (JSONException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-					        }
-
-					        @Override
-					        public void onFailure(HttpException error, String msg) {
-					        }
-					});
-				}else{
-					//说明验证失败
-					Toast.makeText(PayMoneyActivity.this,"密码错误",1).show();
-				}
-			}
-		});
+//		yuncunkuan.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+//			
+//			@Override
+//			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//				// TODO Auto-generated method stub
+//				if(isChecked){
+//					xuyaoyincang.setVisibility(View.VISIBLE);
+//				}else{
+//					xuyaoyincang.setVisibility(View.GONE);
+//				}
+//			}
+//		});
+//		yanzhengmima.setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				//调用方法进行密码验证，如果验证成功，则再次发出请求，获取用户当前余额，显示在可用资金框中
+//				String password=zhifumima.getText().toString();
+//				getdatayanzhenmima(password);
+//				if(yanzhengTag){
+//					//说明验证成功了
+//					//获取当前用户余额
+//					RequestParams params = new RequestParams();
+//					// 只包含字符串参数时默认使用BodyParamsEntity，
+//					params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
+//					params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
+//					params.addBodyParameter("type", "finance");
+//					params.addBodyParameter("part", "user_finance_91");
+//					params.addBodyParameter("user_name", SysApplication.getInstance().getUserInfo().getName());
+//					HttpUtils http = new HttpUtils();
+//					http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
+//
+//					        @Override
+//					        public void onStart() {
+//					        	//开始请求
+//					        }
+//
+//					        @Override
+//					        public void onLoading(long total, long current, boolean isUploading) {
+//					            if (isUploading) {
+//					            } else {
+//					            }
+//					        }
+//
+//					        @Override
+//					        public void onSuccess(ResponseInfo<String> responseInfo) {
+//					        	//请求成功
+//					        	String str=responseInfo.result;
+//					        	Log.i("caiwu 请求下来的参数是",str);
+//					        	
+////					        	这里接口有问题，需要改动
+//					        	try {
+//									JSONObject obj=new JSONObject(str);
+//									JSONObject objs=obj.getJSONObject("data");
+//									String banace=objs.getString("user_balance");
+//									dangqianyue.setText(banace);
+//									String user_conbalance=objs.getString("user_conbalance");
+//								} catch (JSONException e) {
+//									// TODO Auto-generated catch block
+//									e.printStackTrace();
+//								}
+//					        }
+//
+//					        @Override
+//					        public void onFailure(HttpException error, String msg) {
+//					        }
+//					});
+//				}else{
+//					//说明验证失败
+//					Toast.makeText(PayMoneyActivity.this,"密码错误",1).show();
+//				}
+//			}
+//		});
 		quedinganniu.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				//支付密码完成验证以后，如果验证成功，并且当前余额大于需支付金额，在点击确认的时候,直接完成支付
-//				int yue=Integer.parseInt(dangqianyue.getText().toString());
-//				int total=Integer.parseInt(totalprice.getText().toString());
-//				if(yanzhengTag&&yue>=total){
-//					//满足了使用预存款支付的条件，所以直接用预存款进行支付
-//					Log.i("到true了", "");
-//					
-//				}else{
-//					//在这里，需要进行订单参数提交，并且进入支付方式选择界面
-//					//删除或结算商品
-//						Log.i("到false了", "");
 						StringBuffer sb = new StringBuffer();
 						for(int i=0;i<list.size();i++){
 								sb.append(list.get(i).getCart_id());
@@ -272,11 +261,11 @@ public class PayMoneyActivity extends Activity {
 		mFapiao=(TextView) findViewById(R.id.paymoney_activity_tv_fapiaoxinxi);
 		shangjiafahuo=(TextView) findViewById(R.id.paymoney_activity_tv_shangjiafahuo);
 		totalprice=(TextView) findViewById(R.id.pay_totalprice);
-		yuncunkuan=(CheckBox) findViewById(R.id.paymoney_checbox_xshiyongyucunkuan);
-		dangqianyue=(TextView) findViewById(R.id.paymoney_activity_tv_dangqianyue);
-		xuyaoyincang=(RelativeLayout) findViewById(R.id.paymoney_shiyongyucunuan_yincang);
-		zhifumima=(EditText) findViewById(R.id.paymoney_activity_ed_shurujine);
-		yanzhengmima=(TextView) findViewById(R.id.paymoney_activity_tv_zhifu);
+//		yuncunkuan=(CheckBox) findViewById(R.id.paymoney_checbox_xshiyongyucunkuan);
+//		dangqianyue=(TextView) findViewById(R.id.paymoney_activity_tv_dangqianyue);
+//		xuyaoyincang=(RelativeLayout) findViewById(R.id.paymoney_shiyongyucunuan_yincang);
+//		zhifumima=(EditText) findViewById(R.id.paymoney_activity_ed_shurujine);
+//		yanzhengmima=(TextView) findViewById(R.id.paymoney_activity_tv_zhifu);
 		quedinganniu=(TextView) findViewById(R.id.pay_quedinganniu);
 	}
 	@Override

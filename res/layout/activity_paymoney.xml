@@ -146,14 +146,7 @@
                android:layout_height="10dp"
                android:background="#E4E4E4"
                />
-            <LinearLayout 
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:orientation="horizontal"
-                >
-                <include layout="@layout/paymoney_include_payinfomation"/>
-            </LinearLayout>
+           
             <View 
                android:layout_width="match_parent"
                android:layout_height="10dp"
