@@ -212,13 +212,31 @@
 
         <!-- 订单界面 -->
         <activity 
-            android:name=".orderactivitys"
+            android:name=".ZJorderActivity"
             ></activity>
         <!-- 支付界面 -->
         <activity 
             android:name=".PayForActivity"
             ></activity>
-        
+         <!-- 投诉列表界面 -->
+        <activity 
+            android:name=".ComplaintActivity"
+            ></activity>
+        <activity 
+            android:name=".oederactivity1"
+            ></activity>
+          <activity 
+            android:name=".oederactivity2"
+            ></activity>
+           <activity 
+            android:name=".oederactivity3"
+            ></activity>
+           <activity 
+            android:name=".oederactivity4"
+            ></activity>
+           <activity 
+            android:name=".oederactivity5"
+            ></activity>
         <!-- QZONE -->
         <activity
             android:name="com.tencent.tauth.AuthActivity" 

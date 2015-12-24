@@ -2,22 +2,39 @@ package com.adapter;
 
 import java.util.List;
 
+import com.Application.SysApplication;
+import com.activity.BillActivity;
 import com.activity.PayForActivity;
 import com.activity.R;
+import com.bean.BillBean;
 import com.bean.BuyCartBean;
 import com.bean.OrderBean;
+import com.jsonParser.BillJsonPaser;
 import com.lidroid.xutils.BitmapUtils;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class OrderAdatper extends BaseAdapter {
 
@@ -77,19 +94,53 @@ public class OrderAdatper extends BaseAdapter {
 			final String price=list.get(arg0).getOrdergoods().getGoods_price();
 			final String order=list.get(arg0).getOrder_sn();
 			final String fhfs=list.get(arg0).getShipping_mode();
-			vh.pingjia.setOnClickListener(new OnClickListener() {
+			final TextView tv=vh.pingjia;
+			tv.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					Intent intent=new Intent(context,PayForActivity.class);
-					intent.putExtra("price",price);
-					intent.putExtra("fhfs",fhfs);
-					intent.putExtra("order",order);
-					context.startActivity(intent);
+					if(tv.getText().equals("付款")){
+						Intent intent=new Intent(context,PayForActivity.class);
+						intent.putExtra("price",price);
+						intent.putExtra("fhfs",fhfs);
+						intent.putExtra("order",order);
+						context.startActivity(intent);
+					}
 				}
 			});
 			vh.chakanwuliu.setText("取消订单");
+			final TextView tvs=vh.chakanwuliu;
+			final String orderid=list.get(arg0).getOrder_id();
+			tvs.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					if(tvs.getText().equals("取消订单")){
+						AlertDialog.Builder dialog=new AlertDialog.Builder(context);
+						dialog.setTitle("温馨提示");
+						dialog.setMessage("您确定要取消订单吗？");
+						dialog.setPositiveButton("确定",new DialogInterface.OnClickListener() {
+							
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								// TODO Auto-generated method stub
+								getdata(orderid);
+							}
+						});
+						dialog.setNegativeButton("取消",new DialogInterface.OnClickListener() {
+							
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								// TODO Auto-generated method stub
+								
+							}
+						});
+						dialog.create().show();
+					}
+				}
+			});
 			vh.shanchudingdan.setVisibility(View.INVISIBLE);
 			vh.goodsname.setText(list.get(arg0).getOrdergoods().getGoods_name());
 			vh.goodschicun.setText(list.get(arg0).getOrdergoods().getSpec_id());
@@ -102,7 +153,29 @@ public class OrderAdatper extends BaseAdapter {
 			//处于待发货状态
 			vh.dingdanfenglei.setText("买家已付款");
 			vh.pingjia.setText("投诉");
+			final TextView tousu=vh.pingjia;
+			tousu.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					if(tousu.getText().equals("投诉")){
+						Toast.makeText(context, "投诉被点击了",1).show();					}
+				}
+			});
 			vh.chakanwuliu.setText("查看物流");
+			final TextView chakanwuliu=vh.chakanwuliu;
+			chakanwuliu.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					if(chakanwuliu.getText().equals("查看物流")){
+						Toast.makeText(context, "查看物流被点击了",1).show();
+					}
+					
+				}
+			});
 			vh.shanchudingdan.setVisibility(View.INVISIBLE);
 			vh.goodsname.setText(list.get(arg0).getOrdergoods().getGoods_name());
 			vh.goodschicun.setText(list.get(arg0).getOrdergoods().getSpec_id());
@@ -115,6 +188,16 @@ public class OrderAdatper extends BaseAdapter {
 			//处于待收货状态
 			vh.dingdanfenglei.setText("卖家已发货");
 			vh.pingjia.setText("查看物流");
+			final TextView ckwl=vh.pingjia;
+			ckwl.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					if(ckwl.getText().equals("查看物流"));
+					Toast.makeText(context, "查看物流",1).show();
+				}
+			});
 			vh.chakanwuliu.setText("确认收货");
 			vh.shanchudingdan.setText("投诉");
 			vh.goodsname.setText(list.get(arg0).getOrdergoods().getGoods_name());
@@ -152,6 +235,44 @@ public class OrderAdatper extends BaseAdapter {
 		TextView pingjia;
 		TextView chakanwuliu;
 		TextView shanchudingdan;
+	}
+	
+	public void getdata(String id){
+		RequestParams params = new RequestParams();
+		// 只包含字符串参数时默认使用BodyParamsEntity，
+		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
+		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
+		params.addBodyParameter("type", "order");
+		params.addBodyParameter("part", "cancer_order");
+		params.addBodyParameter("user_name",SysApplication.getInstance().getUserInfo().getName());
+		params.addBodyParameter("order_id", id);
+		params.addBodyParameter("state_info", "");
+		HttpUtils http = new HttpUtils();
+		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
+
+		        @Override
+		        public void onStart() {
+		        	//开始请求
+		        }
+
+		        @Override
+		        public void onLoading(long total, long current, boolean isUploading) {
+		            if (isUploading) {
+		            } else {
+		            }
+		        }
+
+		        @Override
+		        public void onSuccess(ResponseInfo<String> responseInfo) {
+		        	//请求成功
+		        	String str=responseInfo.result;
+		        	Log.i("订单取消了没有", str);
+		        }
+
+		        @Override
+		        public void onFailure(HttpException error, String msg) {
+		        }
+		});
 	}
 
 }

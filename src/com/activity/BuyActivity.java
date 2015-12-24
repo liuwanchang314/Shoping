@@ -113,7 +113,6 @@ public class BuyActivity extends Activity implements OnClickListener{
 		            } else {
 		            }
 		        }
-
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
@@ -124,6 +123,17 @@ public class BuyActivity extends Activity implements OnClickListener{
 		        	//解析
 		    		adapter=new BuyCartAdapter(list, BuyActivity.this,mTotalPrice);
 		        	mListview.setAdapter(adapter);
+		        	mListview.setEmptyView(findViewById(R.id.layout_empty));
+		        	TextView tv=(TextView) findViewById(R.id.empty_add);
+		        	tv.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							// TODO Auto-generated method stub
+							Intent intent=new Intent(BuyActivity.this,AllProductActivity.class);
+							startActivity(intent);
+						}
+					});
 		        	mChange.setOnClickListener(new OnClickListener() {
 		    			
 		    			@Override

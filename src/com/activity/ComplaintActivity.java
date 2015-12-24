@@ -4,8 +4,11 @@ import java.util.List;
 
 import com.Application.SysApplication;
 import com.adapter.BillAdapter;
+import com.adapter.ComplaintAdapter;
 import com.bean.BillBean;
+import com.bean.ComplaintBean;
 import com.jsonParser.BillJsonPaser;
+import com.jsonParser.ComplaitJsonParser;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;
@@ -68,6 +71,9 @@ public class ComplaintActivity extends Activity {
 		        	//请求成功
 		        	String str=responseInfo.result;
 		        	Log.i("投诉数据获取了没有", str);
+		        	List<ComplaintBean> list=ComplaitJsonParser.getlist(str);
+		        	ComplaintAdapter adapter=new ComplaintAdapter(list, ComplaintActivity.this);
+		        	mListview.setAdapter(adapter);
 		        }
 
 		        @Override

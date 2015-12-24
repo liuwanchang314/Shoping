@@ -47,8 +47,8 @@ public class orderactivitys extends Activity {
 		setContentView(R.layout.activity_orders);
 		InitImageView();
 		InitTextView();
-		InitViewPager();
-		
+//		InitViewPager();
+		//这里需要明白的是，需要获取
 	}
 	
 	private void InitTextView() {
@@ -57,7 +57,6 @@ public class orderactivitys extends Activity {
         t3 = (TextView) findViewById(R.id.text3);
         t4 = (TextView) findViewById(R.id.text4);
         t5 = (TextView) findViewById(R.id.text5);
- 
         t1.setOnClickListener(new MyOnClickListener(0));
         t2.setOnClickListener(new MyOnClickListener(1));
         t3.setOnClickListener(new MyOnClickListener(2));

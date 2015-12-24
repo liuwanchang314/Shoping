@@ -67,6 +67,34 @@
                  android:divider="#e4e4e4"
                  android:dividerHeight="2dp"
                  ></ListView>
+
+             <RelativeLayout
+                 android:id="@+id/layout_empty"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent" >
+
+                 <TextView
+                     android:id="@+id/textView1"
+                     style="@android:style/TextAppearance.Large"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_centerHorizontal="true"
+                     android:layout_centerVertical="true"
+                     android:gravity="center"
+                     android:text="购物车空空如也" />
+
+                 <TextView
+                     android:id="@+id/empty_add"
+                     style="@android:style/TextAppearance.Large"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_below="@+id/textView1"
+                     android:layout_centerHorizontal="true"
+                     android:gravity="center"
+                     android:textColor="#ff4500"
+                     android:text="添加商品" />
+             </RelativeLayout>
+
         </LinearLayout>
          <LinearLayout 
             android:layout_width="match_parent"

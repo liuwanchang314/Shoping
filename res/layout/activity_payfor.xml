@@ -228,27 +228,7 @@
                     android:src="@drawable/zhifubao" />
                 
             </RelativeLayout>
-             <RelativeLayout
-                 android:id="@+id/payfor_caifutong_bg_caifutong" 
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginRight="3dp"
-                android:layout_marginBottom="3dp"
-                android:layout_height="match_parent"
-                >
-
-                 <ImageView
-                     android:id="@+id/payfor_caifutong"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_centerHorizontal="true"
-                     android:background="#ffffff"
-                     android:layout_centerVertical="true"
-                     android:src="@drawable/caifutong" />
-
-             </RelativeLayout>
+           
               <RelativeLayout 
                   android:id="@+id/payfor_weixin_bg_weixin"
                 android:layout_weight="1"
@@ -270,6 +250,27 @@
                       android:src="@drawable/weixinzhifu" />
 
               </RelativeLayout>
+                <RelativeLayout
+                 android:id="@+id/payfor_caifutong_bg_caifutong" 
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_marginBottom="3dp"
+                android:layout_height="match_parent"
+                >
+
+                 <ImageView
+                     android:id="@+id/payfor_caifutong"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_centerHorizontal="true"
+                     android:background="#ffffff"
+                     android:layout_centerVertical="true"
+                     android:src="@drawable/caifutong" />
+
+             </RelativeLayout>
         </LinearLayout>
     <RelativeLayout 
         android:layout_weight="1.8"

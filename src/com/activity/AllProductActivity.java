@@ -49,6 +49,7 @@ public class AllProductActivity extends Activity {
 	private MyAllproductAdapter mmyAllproductAdapter;
 	private List<AllProductBean> list=new ArrayList<AllProductBean>();
 	public static Boolean isGridView= true;
+	private ImageView listimage;
 	//http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2013/0626/1392.html
 	private boolean Tag=true;//定义一个标记，默认用来控制显示方式
 	@Override
@@ -67,7 +68,8 @@ public class AllProductActivity extends Activity {
 	 */  
 	private void initview() {
 		// TODO Auto-generated method stub
-		mTubiaoqiehuan=(ImageView) findViewById(R.id.allproduct_tuwenbiebiao);
+		mTubiaoqiehuan=(ImageView) findViewById(R.id.allproduct_gridview_or_listview);
+		listimage=(ImageView) findViewById(R.id.allproduct_gridview_or_listviews);
 		mTubiaoqiehuan.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -75,6 +77,29 @@ public class AllProductActivity extends Activity {
 				// TODO Auto-generated method stub
 				//目前没有写数据库，所以从网络再次获取，到数据库写好，则在这里从数据库获取数据来加载
 					isGridView=!isGridView;
+					if(isGridView){
+						//说明是listview
+						mTubiaoqiehuan.setVisibility(View.GONE);
+						listimage.setVisibility(View.VISIBLE);
+					}
+					GetData();
+			}
+		});
+		listimage.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				//目前没有写数据库，所以从网络再次获取，到数据库写好，则在这里从数据库获取数据来加载
+					isGridView=!isGridView;
+					if(isGridView){
+						//说明是listview
+//						mTubiaoqiehuan.setVisibility(View.GONE);
+//						listimage.setVisibility(View.VISIBLE);
+					}else{
+						mTubiaoqiehuan.setVisibility(View.VISIBLE);
+						listimage.setVisibility(View.GONE);
+					}
 					GetData();
 			}
 		});
@@ -82,18 +107,19 @@ public class AllProductActivity extends Activity {
 		mGridview.setOnRefreshListener(new OnRefreshListener() {
 			public void onRefresh() {
 				// Do work to refresh the list here.
+				GetData();
 			}
 
 			public void onLoading() {
 //				new GetDataTask().execute();
 			}
 		});
-		mGridview.onRefreshComplete();
 		mListview=(PullToRefreshListView) findViewById(R.id.allproduct_list);
 		mListview.setOnRefreshListener(new OnRefreshListener() {
 			public void onRefresh() {
 				// Do work to refresh the list here.
 				//刷新时回调
+				GetData();
 			}
 
 			public void onLoading() {
@@ -145,6 +171,7 @@ public class AllProductActivity extends Activity {
 		        		mmyAllproductAdapter=new MyAllproductAdapter(list,AllProductActivity.this);
 			    		GridView gv=mGridview.getRefreshableView();
 			    		gv.setAdapter(mmyAllproductAdapter);
+			    		mGridview.onRefreshComplete();
 			    		gv.setOnItemClickListener(new OnItemClickListener() {
 
 							@Override
@@ -166,6 +193,7 @@ public class AllProductActivity extends Activity {
 			    		ListView lv=mListview.getRefreshableView();
 			    		lv.setAdapter(mmyAllproductAdapter);
 			    		mGridview.setVisibility(View.GONE);
+			    		mListview.onRefreshComplete();
 			    		lv.setOnItemClickListener(new OnItemClickListener() {
 
 							@Override
