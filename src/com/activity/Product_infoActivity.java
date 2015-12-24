@@ -24,6 +24,8 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.listenter.BaseUiListener;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.tencent.tauth.Tencent;
 import com.utils.ShareUtils;
 
@@ -541,11 +543,15 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 			break;
 		case R.id.producinfo_weixinfenxiang:
 			Toast.makeText(Product_infoActivity.this, "威信",Toast.LENGTH_SHORT).show();
+			IWXAPI api = WXAPIFactory.createWXAPI(Product_infoActivity.this, CommonConstants.WXAPP_ID, true);
+			api.registerApp(CommonConstants.WXAPP_ID);
+			
+			ShareUtils.shareWebToWX(Product_infoActivity.this, api, "www.baidu.com", "....", "sss", true);
 			break;
 		case R.id.producinfo_Qonefeixiang:
 			Toast.makeText(Product_infoActivity.this, "qq控件",Toast.LENGTH_SHORT).show();
 			tencent = Tencent.createInstance(CommonConstants.QQ_ID, Product_infoActivity.this);
-			ShareUtils.shareMegToQzone(tencent, Product_infoActivity.this, new ArrayList<String>(), "title", "summary", "target_url", listener);
+			ShareUtils.shareMegToQzone(tencent, Product_infoActivity.this, new ArrayList<String>(), "title", "summary", "http://www.baidu.com", listener);
 			break;
 		case R.id.producinfo_paizhao:
 			Toast.makeText(Product_infoActivity.this, "拍照",Toast.LENGTH_SHORT).show();

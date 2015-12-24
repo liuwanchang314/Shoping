@@ -1,16 +1,26 @@
 package com.utils;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+
+
 
 import com.listenter.BaseUiListener;
 import com.tencent.connect.common.UIListenerManager;
 import com.tencent.connect.share.QQShare;
 import com.tencent.connect.share.QzoneShare;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.SendMessageToWX;
+import com.tencent.mm.sdk.openapi.WXMediaMessage;
+import com.tencent.mm.sdk.openapi.WXWebpageObject;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Bitmap.CompressFormat;
 import android.os.Bundle;
 
 public class ShareUtils {
@@ -56,5 +66,44 @@ public class ShareUtils {
 	    params.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL, target_url);//必填
 	    params.putStringArrayList(QzoneShare.SHARE_TO_QQ_IMAGE_URL, img_url_list);
 	    mTencent.shareToQzone(activity, params, listener);
+	}
+	
+	public static void shareWebToWX(Context context, IWXAPI api, String url,String title, String des,
+			boolean isFri){
+		WXWebpageObject webpage = new WXWebpageObject();
+		webpage.webpageUrl = url;
+		WXMediaMessage msg = new WXMediaMessage(webpage);
+		msg.title = title;
+		msg.description = des;
+		Bitmap thumb = BitmapFactory.decodeResource(context.getResources(), com.activity.R.drawable.ic_launcher);
+		msg.thumbData = bmpToByteArray(thumb, true);
+		
+		SendMessageToWX.Req req = new SendMessageToWX.Req();
+		req.transaction = buildTransaction("webpage");
+		req.message = msg;
+		req.scene = isFri ? SendMessageToWX.Req.WXSceneTimeline : SendMessageToWX.Req.WXSceneSession;
+		api.sendReq(req);
+	}
+	
+	
+	public static byte[] bmpToByteArray(final Bitmap bmp, final boolean needRecycle) {
+		ByteArrayOutputStream output = new ByteArrayOutputStream();
+		bmp.compress(CompressFormat.PNG, 100, output);
+		if (needRecycle) {
+			bmp.recycle();
+		}
+		
+		byte[] result = output.toByteArray();
+		try {
+			output.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	private static String buildTransaction(final String type) {
+		return (type == null) ? String.valueOf(System.currentTimeMillis()) : type + System.currentTimeMillis();
 	}
 }
