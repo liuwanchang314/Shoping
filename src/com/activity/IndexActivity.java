@@ -86,7 +86,16 @@ public class IndexActivity extends Activity implements OnPageChangeListener {
 		//获取尾部布局
 		final View view1 = LayoutInflater.from(this).inflate(
 				R.layout.activity_index_button, null);
-		
+		Button buttons=(Button) view1.findViewById(R.id.index_btn);
+		buttons.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent=new Intent(IndexActivity.this,AllProductActivity.class);
+				startActivity(intent);
+			}
+		});
 		group = (ViewGroup) view.findViewById(R.id.viewGroup);
 		viewPager = (AutoScrollViewPager) view.findViewById(R.id.pager_id);
 		mLisView.addView(view);
@@ -269,7 +278,6 @@ public class IndexActivity extends Activity implements OnPageChangeListener {
 
 				@Override
 				public void onClick(View v) {
-					String aString = v.getTag().toString();
 				}
 			});
 		}

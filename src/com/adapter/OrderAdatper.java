@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.Application.SysApplication;
 import com.activity.BillActivity;
+import com.activity.CheckLogisticsActivity;
 import com.activity.PayForActivity;
 import com.activity.R;
 import com.bean.BillBean;
@@ -64,7 +65,7 @@ public class OrderAdatper extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int arg0, View arg1, ViewGroup arg2) {
+	public View getView(final int arg0, View arg1, ViewGroup arg2) {
 		// TODO Auto-generated method stub
 		orderviewholder vh=null;
 		if(arg1==null){
@@ -127,6 +128,7 @@ public class OrderAdatper extends BaseAdapter {
 							public void onClick(DialogInterface dialog, int which) {
 								// TODO Auto-generated method stub
 								getdata(orderid);
+								notifyDataSetChanged();
 							}
 						});
 						dialog.setNegativeButton("取消",new DialogInterface.OnClickListener() {
@@ -172,6 +174,10 @@ public class OrderAdatper extends BaseAdapter {
 					// TODO Auto-generated method stub
 					if(chakanwuliu.getText().equals("查看物流")){
 						Toast.makeText(context, "查看物流被点击了",1).show();
+						//还需要传递过去一个实体对象
+						Intent intent=new Intent(context,CheckLogisticsActivity.class);
+						intent.putExtra("bean",list.get(arg0));
+						context.startActivity(intent);
 					}
 					
 				}
@@ -196,6 +202,8 @@ public class OrderAdatper extends BaseAdapter {
 					// TODO Auto-generated method stub
 					if(ckwl.getText().equals("查看物流"));
 					Toast.makeText(context, "查看物流",1).show();
+					Intent intent=new Intent(context,CheckLogisticsActivity.class);
+					context.startActivity(intent);
 				}
 			});
 			vh.chakanwuliu.setText("确认收货");

@@ -68,6 +68,11 @@ public class KuaiDiAdapter extends BaseAdapter {
 		}else{
 			vh=(viewholder) convertView.getTag();
 		}
+		if(list.get(position).isIschecked()){
+			vh.tubiao.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.checkbox_check));
+		}else{
+			vh.tubiao.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.checkbox_uncheck));
+		}
 		vh.title.setText(list.get(position).getExpress_title());
 		return convertView;
 	}

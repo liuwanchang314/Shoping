@@ -26,6 +26,13 @@ public class KuaiDiBean {
 	private String express_title;
 	private String express_id;
 	private String express_note;
+	private boolean ischecked=false;
+	public boolean isIschecked() {
+		return ischecked;
+	}
+	public void setIschecked(boolean ischecked) {
+		this.ischecked = ischecked;
+	}
 	public String getTransport_id() {
 		return transport_id;
 	}

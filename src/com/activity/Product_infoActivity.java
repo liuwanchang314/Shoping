@@ -1,6 +1,8 @@
 package com.activity;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -96,6 +98,8 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 	int a=0;
 	int b=0;
 	private Tencent tencent;
+	private Map<Integer, View> maps;
+	private Map<Integer, View> map_yanse;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -257,23 +261,28 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 					            //现在在这里开始给添加标签
 					            xDimesion=(XCFlowLayout) dialogView.findViewById(R.id.proii_xcf_chi);
 					            xColor=(XCFlowLayout) dialogView.findViewById(R.id.proii_xcf_color);
-					            MarginLayoutParams ml= new MarginLayoutParams(
+					            final MarginLayoutParams ml= new MarginLayoutParams(
 					                    LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
 					            ml.leftMargin = 5;
 					            ml.rightMargin = 5;
 					            ml.topMargin = 5;
 					            ml.bottomMargin = 5;
-					            
-					            for(int i=0; i < list_chicun.size(); i ++){
+					            maps=new HashMap<Integer, View>();
+					            final int size=list_chicun.size();
+					            for(int i=0; i < list_chicun.size(); i++){
 					                final TextView view = new TextView(Product_infoActivity.this);
 					                view.setText(list_chicun.get(i).getValue());
 					                view.setTextColor(Color.WHITE);
 					                view.setBackgroundDrawable(getResources().getDrawable(R.drawable.textview_bg));
+					                maps.put(i,view);
 					                view.setOnClickListener(new OnClickListener() {
 					    				
 					    				public void onClick(View v) {
 					    					// TODO Auto-generated method stub
-					    					Toast.makeText(Product_infoActivity.this,view.getText(),Toast.LENGTH_SHORT).show();	
+					    					Toast.makeText(Product_infoActivity.this,view.getText(),Toast.LENGTH_SHORT).show();
+					    					//先将标记只为被点击的下表
+					    					changeimagebg(xDimesion, size);
+					    					addview(xDimesion, maps, size, view.getText().toString(), ml);
 					    					//获取id
 					    					for(int j=0;j<list_chicun.size();j++){
 					    						if(list_chicun.get(j).getValue().equals(view.getText().toString())){
@@ -285,16 +294,20 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 					    			});
 					                xDimesion.addView(view,ml);
 					            }
+					            map_yanse=new HashMap<Integer, View>();
+					            final int nums=list_yanse.size();
 					            for(b = 0; b < list_yanse.size(); b ++){
 					                final TextView view = new TextView(Product_infoActivity.this);
 					                view.setText(list_yanse.get(b).getValue());
 					                view.setTextColor(Color.WHITE);
 					                view.setBackgroundDrawable(getResources().getDrawable(R.drawable.textview_bg));
+					                map_yanse.put(b,view);
 					                view.setOnClickListener(new OnClickListener() {
 					    				
 					    				public void onClick(View v) {
 					    					// TODO Auto-generated method stub
-					    					Toast.makeText(Product_infoActivity.this,view.getText(),Toast.LENGTH_SHORT).show();	
+					    					changeimagebg(xColor, nums);
+					    					addview(xColor, map_yanse, nums, view.getText().toString(), ml);
 					    					for(int j=0;j<list_yanse.size();j++){
 					    						if(list_yanse.get(j).getValue().equals(view.getText().toString())){
 					    							colors=list_yanse.get(j).getId();
@@ -522,6 +535,7 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 		mChoice.setOnClickListener(this);
 		mBigpic=(WebView) findViewById(R.id.productinfo_datu);
 		layyout_add=(RelativeLayout) findViewById(R.id.productinfo_jiarugouwuche);
+		layyout_add.setOnClickListener(this);
 		WebSettings webSettings = mBigpic.getSettings();
 		webSettings.setSavePassword(false);
 		webSettings.setSaveFormData(false);
@@ -557,19 +571,11 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 			Toast.makeText(Product_infoActivity.this, "拍照",Toast.LENGTH_SHORT).show();
 			break;
 		case R.id.productinfo_jiarugouwuche:
-			Toast.makeText(Product_infoActivity.this, "加入购物车",Toast.LENGTH_SHORT).show();
-			layyout_add.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					AlertDialog.Builder dialog=new AlertDialog.Builder(Product_infoActivity.this);
 					dialog.setTitle("温馨提示");
 					dialog.setMessage("请先选择尺寸以及颜色之后再添加宝贝哦");
 					dialog.create().show();
 //					dialog.setPositiveButton("确定",dialo)
-				}
-			});
 			break;
 		default:
 			break;
@@ -741,6 +747,39 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 	}
 	
 
+	/**
+	 * @author JZKJ-LWC
+	 * @date : 2015-12-26 下午6:49:48
+	 * 用来给taglayout动态的添加标签布局以及设置标签颜色
+	 */  
+	public void addview(XCFlowLayout layout,Map<Integer, View> map,
+			int size,String tag,MarginLayoutParams ml) {
+		layout.removeAllViews();
+		for(int i=0;i<size;i++){
+			TextView view=(TextView) map.get(i);
+			if(view.getText().toString().equals(tag)){
+				view.setBackgroundDrawable(getResources().getDrawable(R.drawable.textview_bgchange));
+				layout.addView(view);
+			}else{
+				layout.addView(view);
+			}
+			
+		}
+		
+	}
+	/**
+	 * @author JZKJ-LWC
+	 * @date : 2015-12-27 下午2:35:28
+	 * 用来还原xlayout中的子view的标签背景
+	 */  
+	public void changeimagebg(XCFlowLayout layout,int size){
+		
+		for(int i=0;i<size;i++){
+			layout.getChildAt(i).setBackgroundDrawable(getResources().getDrawable(R.drawable.textview_bg));
+			
+		}
+		
+	}
 
 	
 

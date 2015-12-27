@@ -22,9 +22,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class oederactivity1 extends Activity {
@@ -49,7 +51,7 @@ public class oederactivity1 extends Activity {
 		params.addBodyParameter("type", "order");
 		params.addBodyParameter("part", "order_list_nokey");
 		params.addBodyParameter("user_name",SysApplication.getInstance().getUserInfo().getName());
-		params.addBodyParameter("limit", "30");
+		params.addBodyParameter("limit", "100");
 		params.addBodyParameter("limit_start", "0");
 		HttpUtils http = new HttpUtils();
 		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
@@ -75,6 +77,17 @@ public class oederactivity1 extends Activity {
 		        	Log.i("现在有多少条订单数据", list.size()+"");
 		        	OrderAdatper adapter=new OrderAdatper(list, oederactivity1.this);
 		        	mListview.setAdapter(adapter);
+		        	mListview.setEmptyView(findViewById(R.id.order_all_empty));
+		        	TextView tv=(TextView) findViewById(R.id.order_all_liulan);
+		        	tv.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							// TODO Auto-generated method stub
+							Intent intent=new Intent(oederactivity1.this,AllProductActivity.class);
+							startActivity(intent);
+						}
+					});
 		        }
 
 		        @Override

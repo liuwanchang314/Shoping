@@ -1,4 +1,7 @@
 package com.bean;
+
+import java.io.Serializable;
+
 /**
  * {
     "api": "APISUCCESS",
@@ -55,7 +58,7 @@ package com.bean;
             ]
         },
  * */
-public class OrderBean {
+public class OrderBean implements Serializable {
 	
 	private OrderGoodsBean ordergoods;
 	public OrderGoodsBean getOrdergoods() {

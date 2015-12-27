@@ -237,6 +237,10 @@
            <activity 
             android:name=".oederactivity5"
             ></activity>
+           <!-- 查看物流详情界面 -->
+           <activity 
+               android:name=".CheckLogisticsActivity"
+               ></activity>
         <!-- QZONE -->
         <activity
             android:name="com.tencent.tauth.AuthActivity" 

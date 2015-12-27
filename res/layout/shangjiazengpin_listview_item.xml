@@ -12,7 +12,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
-        android:src="@drawable/checkbox_uncheck" />
+        android:background="@drawable/checkbox_uncheck"
+         />
 
     <ImageView
         android:id="@+id/shangjiazengpin_image"
