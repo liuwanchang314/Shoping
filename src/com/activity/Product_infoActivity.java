@@ -742,6 +742,7 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 
 		        @Override
 		        public void onFailure(HttpException error, String msg) {
+		        	Toast.makeText(Product_infoActivity.this,"加入失败",1).show();
 		        }
 		});
 	}

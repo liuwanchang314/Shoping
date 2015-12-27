@@ -19,10 +19,13 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.other.NetReceiver;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -103,6 +106,7 @@ public class BillActivity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_billinfo);
 		ViewUtils.inject(BillActivity.this);
+		isconnecions();
 		initview();
 		//首先需要获取用户发票记录，然后展示到listview中
 		getdatas();
@@ -305,7 +309,18 @@ public class BillActivity extends Activity {
 			}
 		});
 	}
-	
+	/**
+	 * @author JZKJ-LWC
+	 * @date : 2015-12-27 下午9:49:45
+	 * 用于实时检测网络是否连接
+	 */  
+	private void isconnecions() {
+		// TODO Auto-generated method stub
+		NetReceiver mReceiver = new NetReceiver();
+	    IntentFilter mFilter = new IntentFilter();
+		 mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+		registerReceiver(mReceiver, mFilter);
+	}
 	/**
 	 * @author JZKJ-LWC
 	 * @date : 2015-12-18 下午5:23:56

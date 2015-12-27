@@ -15,10 +15,15 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.other.InternerIsConnection;
+import com.other.NetReceiver;
+
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -50,17 +55,48 @@ public class AllProductActivity extends Activity {
 	private List<AllProductBean> list=new ArrayList<AllProductBean>();
 	public static Boolean isGridView= true;
 	private ImageView listimage;
+	private ConnectivityManager manager;//网络管理器对象
 	//http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2013/0626/1392.html
 	private boolean Tag=true;//定义一个标记，默认用来控制显示方式
+	private boolean isconnection;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_allproduct);
+		isconnecions();
+		initmanager();
 		initview();
-		GetData();
+		if(isconnection){
+			//说明网络是联通的
+			GetData();
+		}else{
+			Toast.makeText(AllProductActivity.this,"网络异常",1).show();
+		}
 		
+	}
+	/**
+	 * @author JZKJ-LWC
+	 * @date : 2015-12-27 下午9:49:45
+	 * 用于实时检测网络是否连接
+	 */  
+	private void isconnecions() {
+		// TODO Auto-generated method stub
+		NetReceiver mReceiver = new NetReceiver();
+	    IntentFilter mFilter = new IntentFilter();
+		 mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+		registerReceiver(mReceiver, mFilter);
+	}
+	/**
+	 * @author JZKJ-LWC
+	 * @date : 2015-12-27 下午9:11:36
+	 * 初始化网络管理对象
+	 */  
+	private void initmanager() {
+		// TODO Auto-generated method stub
+		manager =(ConnectivityManager) AllProductActivity.this.getSystemService(AllProductActivity.this.CONNECTIVITY_SERVICE);//获得网络连接的管理者对象
+		isconnection=InternerIsConnection.network(manager,AllProductActivity.this);
 	}
 	/**
 	 * @author JZKJ-LWC
