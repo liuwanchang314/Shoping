@@ -110,6 +110,8 @@ public class UserActivity extends Activity implements OnClickListener,OnCheckedC
 			break;
 		case R.id.user_erweima://二维码
 			Toast.makeText(UserActivity.this, "二维码", Toast.LENGTH_SHORT).show();
+			Intent intens=new Intent(UserActivity.this,TwoDimensionCodeActivity.class);
+			startActivity(intens);
 			break;
 		case R.id.horder_lt_list6://退出当前账号
 			Toast.makeText(UserActivity.this, "退出当前账号", Toast.LENGTH_SHORT).show();

@@ -23,6 +23,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,6 +36,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -59,6 +61,10 @@ public class AllProductActivity extends Activity {
 	//http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2013/0626/1392.html
 	private boolean Tag=true;//定义一个标记，默认用来控制显示方式
 	private boolean isconnection;
+	private TextView jiage;//点击切换，重新获取
+	private TextView xiaoliang;//点击切换，重新获取
+	private boolean jiageIS=false;//价格是否切换
+	private boolean xiaoliangIS=false;//销量是否切换
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -104,8 +110,51 @@ public class AllProductActivity extends Activity {
 	 */  
 	private void initview() {
 		// TODO Auto-generated method stub
+		jiage=(TextView) findViewById(R.id.allprodyct_jiage);
+		Drawable drawable=getResources().getDrawable(R.drawable.jiantoudown);
+		drawable.setBounds(0,0,20,20);
+		jiage.setCompoundDrawables(null,null,drawable, null);
+		jiage.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				jiageIS=!jiageIS;
+				if(jiageIS){
+					Drawable drawable=getResources().getDrawable(R.drawable.jiantouup);
+					drawable.setBounds(0,0,20,20);
+					jiage.setCompoundDrawables(null,null,drawable, null);
+				}else{
+					Drawable drawable=getResources().getDrawable(R.drawable.jiantoudown);
+					drawable.setBounds(0,0,20,20);
+					jiage.setCompoundDrawables(null,null,drawable, null);
+				}
+				
+			}
+		});
+		xiaoliang=(TextView) findViewById(R.id.allprodyct_liulanliang);
+		Drawable drawables=getResources().getDrawable(R.drawable.jiantoudown);
+		drawable.setBounds(0,0,20,20);
+		xiaoliang.setCompoundDrawables(null,null,drawable, null);
+		xiaoliang.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				xiaoliangIS=!xiaoliangIS;
+				if(xiaoliangIS){
+					Drawable drawable=getResources().getDrawable(R.drawable.jiantouup);
+					drawable.setBounds(0,0,20,20);
+					xiaoliang.setCompoundDrawables(null,null,drawable, null);
+				}else{
+					Drawable drawable=getResources().getDrawable(R.drawable.jiantoudown);
+					drawable.setBounds(0,0,20,20);
+					xiaoliang.setCompoundDrawables(null,null,drawable, null);
+				}
+			}
+		});
 		mTubiaoqiehuan=(ImageView) findViewById(R.id.allproduct_gridview_or_listview);
-		listimage=(ImageView) findViewById(R.id.allproduct_gridview_or_listviews);
+//		listimage=(ImageView) findViewById(R.id.allproduct_gridview_or_listviews);
 		mTubiaoqiehuan.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -115,30 +164,35 @@ public class AllProductActivity extends Activity {
 					isGridView=!isGridView;
 					if(isGridView){
 						//说明是listview
-						mTubiaoqiehuan.setVisibility(View.GONE);
-						listimage.setVisibility(View.VISIBLE);
-					}
-					GetData();
-			}
-		});
-		listimage.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				//目前没有写数据库，所以从网络再次获取，到数据库写好，则在这里从数据库获取数据来加载
-					isGridView=!isGridView;
-					if(isGridView){
-						//说明是listview
+						mTubiaoqiehuan.setBackgroundDrawable(AllProductActivity.this.getResources().getDrawable(R.drawable.listview_tu));
 //						mTubiaoqiehuan.setVisibility(View.GONE);
 //						listimage.setVisibility(View.VISIBLE);
 					}else{
-						mTubiaoqiehuan.setVisibility(View.VISIBLE);
-						listimage.setVisibility(View.GONE);
+						mTubiaoqiehuan.setBackgroundDrawable(AllProductActivity.this.getResources().getDrawable(R.drawable.tuwenbiebiao));
+//						mTubiaoqiehuan.setVisibility(View.VISIBLE);
+//						listimage.setVisibility(View.GONE);
 					}
 					GetData();
 			}
 		});
+//		listimage.setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				//目前没有写数据库，所以从网络再次获取，到数据库写好，则在这里从数据库获取数据来加载
+//					isGridView=!isGridView;
+//					if(isGridView){
+//						//说明是listview
+////						mTubiaoqiehuan.setVisibility(View.GONE);
+////						listimage.setVisibility(View.VISIBLE);
+//					}else{
+//						mTubiaoqiehuan.setVisibility(View.VISIBLE);
+//						listimage.setVisibility(View.GONE);
+//					}
+//					GetData();
+//			}
+//		});
 		mGridview=(PullToRefreshGridView) findViewById(R.id.allproduct_grid);
 		mGridview.setOnRefreshListener(new OnRefreshListener() {
 			public void onRefresh() {

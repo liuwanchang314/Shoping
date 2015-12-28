@@ -68,4 +68,11 @@
         android:background="#A4A4A4"
         />
 
+    <ImageView
+        android:id="@+id/erweima_im"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        />
+
 </LinearLayout>
