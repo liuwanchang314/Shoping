@@ -44,7 +44,7 @@ public class PayForActivity extends Activity implements OnClickListener {
 	private ImageView mCaifutong;
 	private ImageView mWeixin;
 	private TextView mSureButton;
-	private String payTAG=null;//用来记录当前用户选择了哪种支付方式
+	private String payTAG="zw";//用来记录当前用户选择了哪种支付方式
 	private TextView forgetPassword;//忘记密码
 	private TextView yanzheng;//验证
 	private TextView quxiao;//取消
@@ -121,7 +121,7 @@ public class PayForActivity extends Activity implements OnClickListener {
 			MweixinBG.setBackgroundColor(Color.GRAY);
 			break;
 		case R.id.payfor_querentijiao:
-			if(payTAG.equals("")&&payTAG==null){
+			if(payTAG.equals("zw")&&payTAG!=null){
 				Toast.makeText(PayForActivity.this,"请选择支付方式",1).show();
 			}else if(payTAG.equals("zfb")){
 				//在这里进行相应的支付操作

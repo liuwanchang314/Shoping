@@ -7,6 +7,8 @@ import com.activity.BillActivity;
 import com.activity.CheckLogisticsActivity;
 import com.activity.PayForActivity;
 import com.activity.R;
+import com.activity.SureTakeGoodsActivity;
+import com.activity.TousuActivity;
 import com.bean.BillBean;
 import com.bean.BuyCartBean;
 import com.bean.OrderBean;
@@ -162,7 +164,10 @@ public class OrderAdatper extends BaseAdapter {
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					if(tousu.getText().equals("投诉")){
-						Toast.makeText(context, "投诉被点击了",1).show();					}
+						Toast.makeText(context, "投诉被点击了",1).show();
+						Intent intent=new Intent(context, TousuActivity.class);
+						context.startActivity(intent);
+						}
 				}
 			});
 			vh.chakanwuliu.setText("查看物流");
@@ -203,11 +208,36 @@ public class OrderAdatper extends BaseAdapter {
 					if(ckwl.getText().equals("查看物流"));
 					Toast.makeText(context, "查看物流",1).show();
 					Intent intent=new Intent(context,CheckLogisticsActivity.class);
+					intent.putExtra("bean",list.get(arg0));
 					context.startActivity(intent);
 				}
 			});
 			vh.chakanwuliu.setText("确认收货");
+			final TextView qrsh=vh.chakanwuliu;
+			qrsh.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					Intent intent=new Intent(context, SureTakeGoodsActivity.class);
+					intent.putExtra("order",list.get(arg0).getOrder_sn());
+					context.startActivity(intent);
+				}
+			});
 			vh.shanchudingdan.setText("投诉");
+			final TextView tousu=vh.shanchudingdan;
+			tousu.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					if(tousu.getText().equals("投诉")){
+						Toast.makeText(context, "投诉被点击了",1).show();
+						Intent intent=new Intent(context, TousuActivity.class);
+						context.startActivity(intent);
+						}
+				}
+			});
 			vh.goodsname.setText(list.get(arg0).getOrdergoods().getGoods_name());
 			vh.goodschicun.setText(list.get(arg0).getOrdergoods().getSpec_id());
 			vh.goodsyanse.setText(list.get(arg0).getOrdergoods().getSpec_id());
@@ -220,6 +250,19 @@ public class OrderAdatper extends BaseAdapter {
 			vh.dingdanfenglei.setText("交易成功");
 			vh.pingjia.setText("查看物流");
 			vh.chakanwuliu.setText("投诉");
+			final TextView tousu=vh.chakanwuliu;
+			tousu.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					if(tousu.getText().equals("投诉")){
+						Toast.makeText(context, "投诉被点击了",1).show();
+						Intent intent=new Intent(context, TousuActivity.class);
+						context.startActivity(intent);
+						}
+				}
+			});
 			vh.shanchudingdan.setText("评价");
 			vh.goodsname.setText(list.get(arg0).getOrdergoods().getGoods_name());
 			vh.goodschicun.setText(list.get(arg0).getOrdergoods().getSpec_id());

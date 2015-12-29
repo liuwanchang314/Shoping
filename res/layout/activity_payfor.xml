@@ -211,19 +211,23 @@
             <RelativeLayout 
                 android:id="@+id/payfor_zhifubao_bg_zhifubao"
                 android:layout_weight="1"
-                android:layout_width="0dp"
                 android:layout_marginLeft="3dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginRight="3dp"
-                android:layout_marginBottom="3dp"
+	                android:layout_marginTop="3dp"
+	                android:layout_marginRight="3dp"
+	                android:layout_marginBottom="3dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 >
 
                 <ImageView
                     android:id="@+id/payfor_zhifubao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
+                     android:layout_marginLeft="3dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_marginBottom="3dp"
                     android:layout_centerVertical="true"
                     android:background="#ffffff"
                     android:src="@drawable/zhifubao" />
@@ -235,17 +239,21 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_marginLeft="3dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginRight="3dp"
-                android:layout_marginBottom="3dp"
+	                android:layout_marginTop="3dp"
+	                android:layout_marginRight="3dp"
+	                android:layout_marginBottom="3dp"
                 android:layout_height="match_parent"
                 >
 
                   <ImageView
                       android:id="@+id/payfor_weixin"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
                       android:layout_centerHorizontal="true"
+                       android:layout_marginLeft="3dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_marginBottom="3dp"
                       android:background="#ffffff"
                       android:layout_centerVertical="true"
                       android:src="@drawable/weixinzhifu" />
@@ -256,19 +264,22 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_marginLeft="3dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginRight="3dp"
-                android:layout_marginBottom="3dp"
+	                android:layout_marginTop="3dp"
+	                android:layout_marginRight="3dp"
+	                android:layout_marginBottom="3dp"
                 android:layout_height="match_parent"
                 >
 
                  <ImageView
                      android:id="@+id/payfor_caifutong"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
                      android:layout_centerHorizontal="true"
                      android:background="#ffffff"
-                     android:layout_margin="3dp"
+                      android:layout_marginLeft="3dp"
+	                android:layout_marginTop="3dp"
+	                android:layout_marginRight="3dp"
+	                android:layout_marginBottom="3dp"
                      android:layout_centerVertical="true"
                      android:src="@drawable/yucunkuan" />
 

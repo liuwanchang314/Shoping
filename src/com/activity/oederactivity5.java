@@ -33,6 +33,8 @@ public class oederactivity5 extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.orderactivity5);
+		initview();
+		getdata();
 	}
 	
 	private void getdata() {
@@ -69,7 +71,7 @@ public class oederactivity5 extends Activity {
 				        	Log.i("订单数据获取了没有", str);
 				        	List<OrderBean> list=OrderJsonParser.getlist(str);
 				        	Log.i("现在有多少条订单数据", list.size()+"");
-				        	//现在需要将数据分拣出来，order_status为10的是待付款
+				        	//现在需要将数据分拣出来，order_status为40的是待评级
 				        	List<OrderBean> list_daipingjia=new ArrayList<OrderBean>();
 				        	int count=list.size();
 				        	for(int i=0;i<count;i++){
@@ -78,11 +80,11 @@ public class oederactivity5 extends Activity {
 				        			list_daipingjia.add(list.get(i));
 				        		}
 				        	}
-				        	Log.i("现在待付款的数据有多少",list_daipingjia.size()+"");
+				        	Log.i("现在待评价s的数据有多少",list_daipingjia.size()+"");
 				        	OrderAdatper adapter=new OrderAdatper(list_daipingjia, oederactivity5.this);
 				        	mListview.setAdapter(adapter);
 				        	mListview.setEmptyView(findViewById(R.id.order_daipingjia_empty));
-				        	TextView tv=(TextView) findViewById(R.id.order_daipingjia_liulan);
+				        	TextView tv=(TextView) findViewById(R.id.order_daipingjia_liulans);
 				        	tv.setOnClickListener(new OnClickListener() {
 								
 								@Override

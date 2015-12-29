@@ -281,7 +281,12 @@
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
+                     android:layout_marginTop="2dp"
+                     android:layout_marginLeft="2dp"
+                     android:layout_marginRight="2dp"
+                     android:layout_marginBottom="2dp"
                     android:gravity="center"
+                    android:background="@drawable/biankuang"
                     android:text="删除订单" />
 
             </RelativeLayout>
@@ -298,6 +303,11 @@
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
+                     android:background="@drawable/biankuang"
+                     android:layout_marginTop="2dp"
+                     android:layout_marginLeft="2dp"
+                     android:layout_marginRight="2dp"
+                     android:layout_marginBottom="2dp"
                     android:gravity="center"
                     android:text="查看物流" />
 
@@ -315,6 +325,11 @@
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
+                     android:background="@drawable/biankuang"
+                      android:layout_marginTop="2dp"
+                     android:layout_marginLeft="2dp"
+                     android:layout_marginRight="2dp"
+                     android:layout_marginBottom="2dp"
                     android:gravity="center"
                     android:text="评价"
                      />

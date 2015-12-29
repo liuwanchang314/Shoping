@@ -57,6 +57,7 @@ public class CheckLogisticsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_checklogistics);
+		Log.i("进入这里了吗","好像");
 		initview();
 		Intent intent=getIntent();
 		OrderBean bean=(OrderBean) intent.getSerializableExtra("bean");
@@ -82,7 +83,7 @@ public class CheckLogisticsActivity extends Activity {
 		BitmapUtils bmp=new BitmapUtils(CheckLogisticsActivity.this);
 		bmp.display(mProductPic,bean.getOrdergoods().getGoods_image());
 		
-		getdata(bean.getShipping_code(),bean.getExpress_id());
+//		getdata(bean.getShipping_code(),bean.getExpress_id());
 //		getdatadc(bean.getOrdergoods().getSpec_id());
 		
 	}

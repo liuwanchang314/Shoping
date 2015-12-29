@@ -241,6 +241,14 @@
            <activity 
                android:name=".CheckLogisticsActivity"
                ></activity>
+           <!-- 确认收货界面 -->
+           <activity 
+               android:name=".SureTakeGoodsActivity"
+               ></activity>
+           <!-- 投诉 -->
+           <activity 
+               android:name=".TousuActivity"
+               ></activity>
         <!-- QZONE -->
         <activity
             android:name="com.tencent.tauth.AuthActivity" 
