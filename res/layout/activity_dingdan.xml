@@ -1,18 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TabHost  
-    xmlns:android="http://schemas.android.com/apk/res/android"  
+<LinearLayout 
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        >
+        <RelativeLayout 
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:background="#a9a9a9"
+            android:layout_height="match_parent"
+            >
+
+            <ImageView
+                android:id="@+id/orderactivity_image_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/back" />
+
+        </RelativeLayout>
+        <RelativeLayout 
+            android:layout_weight="8"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textSize="20sp"
+                android:text="我的订单" />
+
+        </RelativeLayout>
+        <RelativeLayout 
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            >
+
+            <ImageView
+                android:id="@+id/orderactivity_image_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/home" />
+
+        </RelativeLayout>
+    </LinearLayout>
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#a9a9a9"
+        />
+    <TabHost  
     android:id="@android:id/tabhost"  
-    android:layout_width="fill_parent"  
+    android:layout_width="fill_parent" 
     android:layout_height="fill_parent">  
+    
+    
     <LinearLayout  
         android:orientation="vertical"  
         android:layout_width="fill_parent"  
-        android:layout_height="fill_parent">  
-     
-        <TabWidget android:id="@android:id/tabs"  
-            android:layout_width="wrap_content"  
-           android:layout_height="wrap_content"  
-        />  
+        android:layout_height="fill_parent">
+
+        
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             >
+        </TabWidget>
           
        <FrameLayout android:id="@android:id/tabcontent"  
            android:layout_width="fill_parent"  
@@ -21,3 +89,4 @@
        />       
     </LinearLayout>  
 </TabHost> 
+</LinearLayout>

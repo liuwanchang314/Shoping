@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-     <LinearLayout 
+     <LinearLayout
+         android:id="@+id/layout_tops" 
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
@@ -57,8 +58,10 @@
         </RelativeLayout>
     </LinearLayout>
     <ScrollView 
+        android:layout_below="@+id/layout_tops"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:transcriptMode="alwaysScroll"
         >
         <LinearLayout 
             android:layout_width="match_parent"
@@ -226,17 +229,36 @@
     </RelativeLayout>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/tousu_dianjixuanzezhaopian"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/shangchuan" />
 
     <EditText
+        android:id="@+id/tousu_yijianlan"
         android:layout_width="match_parent"
-        android:layout_height="127dp" />
+        android:layout_height="150dp" />
 
         </LinearLayout>
     </ScrollView>
-    
 
-</LinearLayout>
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        >
+        <TextView 
+            android:id="@+id/tousu_tijiao"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/button_style1"
+            android:layout_marginBottom="5dp"
+            android:text="提交"
+            android:gravity="center"
+            />
+    </RelativeLayout>
+</RelativeLayout>

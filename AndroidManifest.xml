@@ -248,6 +248,15 @@
            <!-- 投诉 -->
            <activity 
                android:name=".TousuActivity"
+               android:windowSoftInputMode="stateUnchanged"
+               ></activity>
+           <!-- 发表评价界面 -->
+           <activity 
+               android:name=".FaBiaoPingJiaActivity"
+               ></activity>
+           <!-- 订单详情界面 -->
+           <activity 
+               android:name=".DingDanXQActivity"
                ></activity>
         <!-- QZONE -->
         <activity

@@ -5,6 +5,7 @@ import java.util.List;
 import com.Application.SysApplication;
 import com.activity.BillActivity;
 import com.activity.CheckLogisticsActivity;
+import com.activity.FaBiaoPingJiaActivity;
 import com.activity.PayForActivity;
 import com.activity.R;
 import com.activity.SureTakeGoodsActivity;
@@ -166,6 +167,7 @@ public class OrderAdatper extends BaseAdapter {
 					if(tousu.getText().equals("投诉")){
 						Toast.makeText(context, "投诉被点击了",1).show();
 						Intent intent=new Intent(context, TousuActivity.class);
+						intent.putExtra("bean", list.get(arg0));
 						context.startActivity(intent);
 						}
 				}
@@ -234,6 +236,7 @@ public class OrderAdatper extends BaseAdapter {
 					if(tousu.getText().equals("投诉")){
 						Toast.makeText(context, "投诉被点击了",1).show();
 						Intent intent=new Intent(context, TousuActivity.class);
+						intent.putExtra("bean", list.get(arg0));
 						context.startActivity(intent);
 						}
 				}
@@ -259,11 +262,26 @@ public class OrderAdatper extends BaseAdapter {
 					if(tousu.getText().equals("投诉")){
 						Toast.makeText(context, "投诉被点击了",1).show();
 						Intent intent=new Intent(context, TousuActivity.class);
+						intent.putExtra("bean", list.get(arg0));
 						context.startActivity(intent);
 						}
 				}
 			});
 			vh.shanchudingdan.setText("评价");
+			final TextView pingjia=vh.shanchudingdan;
+			pingjia.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					if(pingjia.getText().equals("评价")){
+						Toast.makeText(context, "评价",1).show();
+						Intent intent=new Intent(context, FaBiaoPingJiaActivity.class);
+						intent.putExtra("bean", list.get(arg0));
+						context.startActivity(intent);
+						}
+				}
+			});
 			vh.goodsname.setText(list.get(arg0).getOrdergoods().getGoods_name());
 			vh.goodschicun.setText(list.get(arg0).getOrdergoods().getSpec_id());
 			vh.goodsyanse.setText(list.get(arg0).getOrdergoods().getSpec_id());
