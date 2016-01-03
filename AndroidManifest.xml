@@ -258,6 +258,10 @@
            <activity 
                android:name=".DingDanXQActivity"
                ></activity>
+           <!-- 退款与售后界面 -->
+           <activity 
+               android:name=".TuiKuanYuSHActivity"
+               ></activity>
         <!-- QZONE -->
         <activity
             android:name="com.tencent.tauth.AuthActivity" 

@@ -247,6 +247,13 @@ public class OrderBean implements Serializable {
 	private String deliver_explain;
 	private String daddress_id;
 	private String reciver_name;
+	private String pay_time;
+	public String getPay_time() {
+		return pay_time;
+	}
+	public void setPay_time(String pay_time) {
+		this.pay_time = pay_time;
+	}
 	private OrderRecieveInfoBean recieveinfobean;
 	private String reciver_province_id;
 	

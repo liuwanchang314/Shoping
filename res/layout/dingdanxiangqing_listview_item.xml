@@ -65,7 +65,7 @@
                 >
 			<!-- 商品图片 -->
                 <ImageView
-                    android:id="@+id/orderfragment_listviewa_item_picture"
+                    android:id="@+id/dingdan_goodsimage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
@@ -92,7 +92,7 @@
                     >
 					 <!-- item当中的商品名称 -->
                     <TextView
-                        android:id="@+id/orderfragment_listviewa_item_shangpingmingcheng"
+                        android:id="@+id/dingdan_goodname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -125,7 +125,7 @@
                          android:text="颜色分类：" />
 						<!-- item当中的尺寸大小 -->
                      <TextView
-                         android:id="@+id/orderfragment_listviewa_item_chicun"
+                         android:id="@+id/dingdan_goodschicun"
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:layout_alignParentTop="true"
@@ -134,11 +134,11 @@
                          android:text="1.8（6英尺）" />
 					<!-- item当中的颜色分类 -->
                      <TextView
-                         android:id="@+id/orderfragment_listviewa_item_yansefenlei"
+                         android:id="@+id/dingdan_goodsyanse"
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:layout_alignParentBottom="true"
-                         android:layout_alignRight="@+id/orderfragment_listviewa_item_chicun"
+                         android:layout_alignRight="@+id/dingdan_goodschicun"
                          android:text="蒲公因种子" />
 
                  </RelativeLayout>
@@ -150,7 +150,7 @@
                 >
 				<!-- item当中的价格-->
                 <TextView
-                    android:id="@+id/orderfragment_listviewa_item_jiage"
+                    android:id="@+id/dingdan_goodsjiage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -159,12 +159,23 @@
                     android:text="￥ 23.9" />
 				<!-- item当中的数量-->
                 <TextView
-                    android:id="@+id/orderfragment_listviewa_item_shuliang"
+                    android:id="@+id/dingdan_goodsshuliang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_centerVertical="true"
                     android:text="x1" />
+
+                <TextView
+                    android:id="@+id/dingdan_goodsgezhong"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/button_style"
+                    android:text="TextView" />
 
             </RelativeLayout>
         </LinearLayout>
@@ -183,7 +194,7 @@
                 android:text="运费" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/dingdan_goodsyunfei"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -198,7 +209,7 @@
         >
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/dingdan_goodsshifukuan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -219,7 +230,7 @@
         </RelativeLayout>
         <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:orientation="horizontal"
         >
             <RelativeLayout 
@@ -253,7 +264,7 @@
                 >
 
                 <TextView
-                    android:id="@+id/orderfragment_listviewa_item_pingjia"
+                    android:id="@+id/dingdan_goodsdianhua"
                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
@@ -264,7 +275,7 @@
                      android:layout_marginRight="2dp"
                      android:layout_marginBottom="2dp"
                     android:gravity="center"
-                    android:text="评价"
+                    android:text="电话"
                      />
 
             </RelativeLayout>

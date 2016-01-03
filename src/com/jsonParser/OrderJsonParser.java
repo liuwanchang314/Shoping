@@ -106,6 +106,7 @@ public class OrderJsonParser {
 				bean.setOrder_status(objs.getString("order_status"));
 				bean.setOrder_time(objs.getString("order_time"));
 				bean.setPay_sn(objs.getString("pay_sn"));
+				bean.setPay_time(objs.getString("pay_time"));
 				JSONObject objz=objs.getJSONObject("reciver_info");
 				OrderRecieveInfoBean beansss=new OrderRecieveInfoBean();
 				beansss.setAddress(objz.getString("address"));

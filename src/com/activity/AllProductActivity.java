@@ -23,6 +23,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,7 +47,6 @@ import android.widget.Toast;
  * @date : 2015-12-10 下午9:17:31
  * 全部商品界面
  */  
-@SuppressLint("NewApi")
 public class AllProductActivity extends Activity {
 	
 	private ImageView mTubiaoqiehuan;
@@ -65,6 +66,7 @@ public class AllProductActivity extends Activity {
 	private TextView xiaoliang;//点击切换，重新获取
 	private boolean jiageIS=false;//价格是否切换
 	private boolean xiaoliangIS=false;//销量是否切换
+	private ProgressBar mbar;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -217,6 +219,7 @@ public class AllProductActivity extends Activity {
 				
 			}
 		});
+		mbar=(ProgressBar) findViewById(R.id.widget43);
 	}
 	
 	
@@ -235,10 +238,11 @@ public class AllProductActivity extends Activity {
 		params.addBodyParameter("limit_start", "1");
 		HttpUtils http = new HttpUtils();
 		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
-
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	Log.i("开始启动","hhhhhh");
+		        	mbar.setVisibility(View.VISIBLE);
 		        }
 
 		        @Override
@@ -251,6 +255,7 @@ public class AllProductActivity extends Activity {
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mbar.setVisibility(View.GONE);
 		        	String str=responseInfo.result;
 		        	Log.i("网络请求下来的参数是",str);
 		        	list=AllProductDataJson.GetProductData(str);

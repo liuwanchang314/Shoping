@@ -21,6 +21,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -72,7 +74,7 @@ public class oederactivity3 extends Activity {
 				        	//请求成功
 				        	String str=responseInfo.result;
 				        	Log.i("订单数据获取了没有", str);
-				        	List<OrderBean> list=OrderJsonParser.getlist(str);
+				        	final List<OrderBean> list=OrderJsonParser.getlist(str);
 				        	Log.i("现在有多少条订单数据", list.size()+"");
 				        	//现在需要将数据分拣出来，order_status为10的是待付款
 				        	List<OrderBean> list_daifahuo=new ArrayList<OrderBean>();
@@ -94,6 +96,17 @@ public class oederactivity3 extends Activity {
 								public void onClick(View v) {
 									// TODO Auto-generated method stub
 									Intent intent=new Intent(oederactivity3.this,AllProductActivity.class);
+									startActivity(intent);
+								}
+							});
+				        	mListview.setOnItemClickListener(new OnItemClickListener() {
+
+								@Override
+								public void onItemClick(AdapterView<?> arg0,
+										View arg1, int arg2, long arg3) {
+									// TODO Auto-generated method stub
+									Intent intent=new Intent(oederactivity3.this,DingDanXQActivity.class);
+									intent.putExtra("bean",list.get(arg2));
 									startActivity(intent);
 								}
 							});
