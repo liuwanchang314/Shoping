@@ -17,10 +17,17 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 
+import com.other.InternerIsConnection;
+import com.other.NetReceiver;
+
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +38,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -39,7 +48,6 @@ import android.widget.Toast;
  * @date : 2015-12-10 下午9:17:31
  * 全部商品界面
  */  
-@SuppressLint("NewApi")
 public class AllProductActivity extends Activity {
 	
 	private ImageView mTubiaoqiehuan;
@@ -51,17 +59,53 @@ public class AllProductActivity extends Activity {
 	private List<AllProductBean> list=new ArrayList<AllProductBean>();
 	public static Boolean isGridView= true;
 	private ImageView listimage;
+	private ConnectivityManager manager;//网络管理器对象
 	//http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2013/0626/1392.html
 	private boolean Tag=true;//定义一个标记，默认用来控制显示方式
+	private boolean isconnection;
+	private TextView jiage;//点击切换，重新获取
+	private TextView xiaoliang;//点击切换，重新获取
+	private boolean jiageIS=false;//价格是否切换
+	private boolean xiaoliangIS=false;//销量是否切换
+	private ProgressBar mbar;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_allproduct);
+		isconnecions();
+		initmanager();
 		initview();
-		GetData();
+		if(isconnection){
+			//说明网络是联通的
+			GetData();
+		}else{
+			Toast.makeText(AllProductActivity.this,"网络异常",1).show();
+		}
 		
+	}
+	/**
+	 * @author JZKJ-LWC
+	 * @date : 2015-12-27 下午9:49:45
+	 * 用于实时检测网络是否连接
+	 */  
+	private void isconnecions() {
+		// TODO Auto-generated method stub
+		NetReceiver mReceiver = new NetReceiver();
+	    IntentFilter mFilter = new IntentFilter();
+		 mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+		registerReceiver(mReceiver, mFilter);
+	}
+	/**
+	 * @author JZKJ-LWC
+	 * @date : 2015-12-27 下午9:11:36
+	 * 初始化网络管理对象
+	 */  
+	private void initmanager() {
+		// TODO Auto-generated method stub
+		manager =(ConnectivityManager) AllProductActivity.this.getSystemService(AllProductActivity.this.CONNECTIVITY_SERVICE);//获得网络连接的管理者对象
+		isconnection=InternerIsConnection.network(manager,AllProductActivity.this);
 	}
 	/**
 	 * @author JZKJ-LWC
@@ -69,8 +113,51 @@ public class AllProductActivity extends Activity {
 	 */  
 	private void initview() {
 		// TODO Auto-generated method stub
+		jiage=(TextView) findViewById(R.id.allprodyct_jiage);
+		Drawable drawable=getResources().getDrawable(R.drawable.jiantoudown);
+		drawable.setBounds(0,0,20,20);
+		jiage.setCompoundDrawables(null,null,drawable, null);
+		jiage.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				jiageIS=!jiageIS;
+				if(jiageIS){
+					Drawable drawable=getResources().getDrawable(R.drawable.jiantouup);
+					drawable.setBounds(0,0,20,20);
+					jiage.setCompoundDrawables(null,null,drawable, null);
+				}else{
+					Drawable drawable=getResources().getDrawable(R.drawable.jiantoudown);
+					drawable.setBounds(0,0,20,20);
+					jiage.setCompoundDrawables(null,null,drawable, null);
+				}
+				
+			}
+		});
+		xiaoliang=(TextView) findViewById(R.id.allprodyct_liulanliang);
+		Drawable drawables=getResources().getDrawable(R.drawable.jiantoudown);
+		drawable.setBounds(0,0,20,20);
+		xiaoliang.setCompoundDrawables(null,null,drawable, null);
+		xiaoliang.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				xiaoliangIS=!xiaoliangIS;
+				if(xiaoliangIS){
+					Drawable drawable=getResources().getDrawable(R.drawable.jiantouup);
+					drawable.setBounds(0,0,20,20);
+					xiaoliang.setCompoundDrawables(null,null,drawable, null);
+				}else{
+					Drawable drawable=getResources().getDrawable(R.drawable.jiantoudown);
+					drawable.setBounds(0,0,20,20);
+					xiaoliang.setCompoundDrawables(null,null,drawable, null);
+				}
+			}
+		});
 		mTubiaoqiehuan=(ImageView) findViewById(R.id.allproduct_gridview_or_listview);
-		listimage=(ImageView) findViewById(R.id.allproduct_gridview_or_listviews);
+//		listimage=(ImageView) findViewById(R.id.allproduct_gridview_or_listviews);
 		mTubiaoqiehuan.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -80,30 +167,35 @@ public class AllProductActivity extends Activity {
 					isGridView=!isGridView;
 					if(isGridView){
 						//说明是listview
-						mTubiaoqiehuan.setVisibility(View.GONE);
-						listimage.setVisibility(View.VISIBLE);
-					}
-					GetData();
-			}
-		});
-		listimage.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				//目前没有写数据库，所以从网络再次获取，到数据库写好，则在这里从数据库获取数据来加载
-					isGridView=!isGridView;
-					if(isGridView){
-						//说明是listview
+						mTubiaoqiehuan.setBackgroundDrawable(AllProductActivity.this.getResources().getDrawable(R.drawable.listview_tu));
 //						mTubiaoqiehuan.setVisibility(View.GONE);
 //						listimage.setVisibility(View.VISIBLE);
 					}else{
-						mTubiaoqiehuan.setVisibility(View.VISIBLE);
-						listimage.setVisibility(View.GONE);
+						mTubiaoqiehuan.setBackgroundDrawable(AllProductActivity.this.getResources().getDrawable(R.drawable.tuwenbiebiao));
+//						mTubiaoqiehuan.setVisibility(View.VISIBLE);
+//						listimage.setVisibility(View.GONE);
 					}
 					GetData();
 			}
 		});
+//		listimage.setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				//目前没有写数据库，所以从网络再次获取，到数据库写好，则在这里从数据库获取数据来加载
+//					isGridView=!isGridView;
+//					if(isGridView){
+//						//说明是listview
+////						mTubiaoqiehuan.setVisibility(View.GONE);
+////						listimage.setVisibility(View.VISIBLE);
+//					}else{
+//						mTubiaoqiehuan.setVisibility(View.VISIBLE);
+//						listimage.setVisibility(View.GONE);
+//					}
+//					GetData();
+//			}
+//		});
 		mGridview=(PullToRefreshGridView) findViewById(R.id.allproduct_grid);
 		mGridview.setOnRefreshListener(new OnRefreshListener() {
 			public void onRefresh() {
@@ -128,6 +220,7 @@ public class AllProductActivity extends Activity {
 				
 			}
 		});
+		mbar=(ProgressBar) findViewById(R.id.widget43);
 	}
 	
 	
@@ -146,10 +239,11 @@ public class AllProductActivity extends Activity {
 		params.addBodyParameter("limit_start", "1");
 		HttpUtils http = new HttpUtils();
 		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
-
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	Log.i("开始启动","hhhhhh");
+		        	mbar.setVisibility(View.VISIBLE);
 		        }
 
 		        @Override
@@ -162,6 +256,7 @@ public class AllProductActivity extends Activity {
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mbar.setVisibility(View.GONE);
 		        	String str=responseInfo.result;
 		        	Log.i("网络请求下来的参数是",str);
 		        	list=AllProductDataJson.GetProductData(str);

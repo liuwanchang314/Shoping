@@ -1,17 +1,16 @@
+
 package com.jf.storeapp.activity;
 
+import java.lang.annotation.Annotation;
 import java.util.List;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Window;
-import android.widget.ListView;
-
 import com.Application.SysApplication;
+import com.adapter.BillAdapter;
 import com.adapter.OrderAdatper;
+import com.bean.BillBean;
 import com.bean.OrderBean;
 import com.jf.storeapp.R;
+import com.jsonParser.BillJsonPaser;
 import com.jsonParser.OrderJsonParser;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -19,6 +18,20 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.lidroid.xutils.view.annotation.event.OnClick;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.Window;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class oederactivity1 extends Activity {
 
@@ -42,7 +55,7 @@ public class oederactivity1 extends Activity {
 		params.addBodyParameter("type", "order");
 		params.addBodyParameter("part", "order_list_nokey");
 		params.addBodyParameter("user_name",SysApplication.getInstance().getUserInfo().getName());
-		params.addBodyParameter("limit", "30");
+		params.addBodyParameter("limit", "100");
 		params.addBodyParameter("limit_start", "0");
 		HttpUtils http = new HttpUtils();
 		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
@@ -64,10 +77,32 @@ public class oederactivity1 extends Activity {
 		        	//请求成功
 		        	String str=responseInfo.result;
 		        	Log.i("订单数据获取了没有", str);
-		        	List<OrderBean> list=OrderJsonParser.getlist(str);
+		        	final List<OrderBean> list=OrderJsonParser.getlist(str);
 		        	Log.i("现在有多少条订单数据", list.size()+"");
 		        	OrderAdatper adapter=new OrderAdatper(list, oederactivity1.this);
 		        	mListview.setAdapter(adapter);
+		        	mListview.setEmptyView(findViewById(R.id.order_all_empty));
+		        	TextView tv=(TextView) findViewById(R.id.order_all_liulan);
+		        	tv.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							// TODO Auto-generated method stub
+							Intent intent=new Intent(oederactivity1.this,AllProductActivity.class);
+							startActivity(intent);
+						}
+					});
+		        	mListview.setOnItemClickListener(new OnItemClickListener() {
+
+						@Override
+						public void onItemClick(AdapterView<?> arg0, View arg1,
+								int arg2, long arg3) {
+							// TODO Auto-generated method stub
+							Intent intent=new Intent(oederactivity1.this,DingDanXQActivity.class);
+							intent.putExtra("bean",list.get(arg2));
+							startActivity(intent);
+						}
+					});
 		        }
 
 		        @Override

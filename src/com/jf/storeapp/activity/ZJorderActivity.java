@@ -1,15 +1,18 @@
 package com.jf.storeapp.activity;
 
+import com.jf.storeapp.R;
+
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.TabHost;
+import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
-
-import com.jf.storeapp.R;
 
 public class ZJorderActivity extends TabActivity {
 	
@@ -50,15 +53,15 @@ public class ZJorderActivity extends TabActivity {
 		// TODO Auto-generated method stub
 		Intent internt1 = new Intent();
 		internt1.setClass(ZJorderActivity.this,oederactivity2.class);
-		
 		TabSpec tabSpec = _tabHost.newTabSpec("order2");
 		//指定选项卡的显示名称
-//		tabSpec.setIndicator("待付款");
-		TextView tv=new TextView(ZJorderActivity.this);
-		tv.setText("待付款");
-		tv.setGravity(Gravity.CENTER);
-		tv.setTextSize(12);
-		tabSpec.setIndicator(tv);
+		tabSpec.setIndicator("待付款");
+//		TextView tv=new TextView(ZJorderActivity.this);
+//		tv.setText("待付款");
+//		tv.setGravity(Gravity.CENTER);
+//		tv.setTextSize(12);
+//		tv.setHeight(30);
+//		tabSpec.setIndicator(tv);
 		//指定跳转方向
 		tabSpec.setContent(internt1);          
 		_tabHost.addTab(tabSpec);
@@ -70,12 +73,12 @@ public class ZJorderActivity extends TabActivity {
 		
 		TabSpec tabSpec = _tabHost.newTabSpec("order3");
 		//指定选项卡的显示名称
-//		tabSpec.setIndicator("待发货");
-		TextView tv=new TextView(ZJorderActivity.this);
-		tv.setText("待发货");
-		tv.setGravity(Gravity.CENTER);
-		tv.setTextSize(12);
-		tabSpec.setIndicator(tv);
+		tabSpec.setIndicator("待发货");
+//		TextView tv=new TextView(ZJorderActivity.this);
+//		tv.setText("待发货");
+//		tv.setGravity(Gravity.CENTER);
+//		tv.setTextSize(12);
+//		tabSpec.setIndicator(tv);
 		//指定跳转方向
 		tabSpec.setContent(internt1);          
 		_tabHost.addTab(tabSpec);
@@ -87,12 +90,12 @@ public class ZJorderActivity extends TabActivity {
 		
 		TabSpec tabSpec = _tabHost.newTabSpec("order4");
 		//指定选项卡的显示名称
-//		tabSpec.setIndicator("待收货");
-		TextView tv=new TextView(ZJorderActivity.this);
-		tv.setText("待收货");
-		tv.setGravity(Gravity.CENTER);
-		tv.setTextSize(12);
-		tabSpec.setIndicator(tv);
+		tabSpec.setIndicator("待收货");
+//		TextView tv=new TextView(ZJorderActivity.this);
+//		tv.setText("待收货");
+//		tv.setGravity(Gravity.CENTER);
+//		tv.setTextSize(12);
+//		tabSpec.setIndicator(tv);
 		//指定跳转方向
 		tabSpec.setContent(internt1);          
 		_tabHost.addTab(tabSpec);
@@ -104,12 +107,12 @@ public class ZJorderActivity extends TabActivity {
 		
 		TabSpec tabSpec = _tabHost.newTabSpec("order5");
 		//指定选项卡的显示名称
-//		tabSpec.setIndicator("待评价");
-		TextView tv=new TextView(ZJorderActivity.this);
-		tv.setText("评价");
-		tv.setGravity(Gravity.CENTER);
-		tv.setTextSize(12);
-		tabSpec.setIndicator(tv);
+		tabSpec.setIndicator("待评价");
+//		TextView tv=new TextView(ZJorderActivity.this);
+//		tv.setText("评价");
+//		tv.setGravity(Gravity.CENTER);
+//		tv.setTextSize(12);
+//		tabSpec.setIndicator(tv);
 		//指定跳转方向
 		tabSpec.setContent(internt1);          
 		_tabHost.addTab(tabSpec);

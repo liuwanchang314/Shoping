@@ -222,27 +222,52 @@
             ></activity>
         <!-- 支付界面 -->
         <activity 
-            android:name=".activity.PayForActivity"
+            android:name=".PayForActivity"
             ></activity>
          <!-- 投诉列表界面 -->
         <activity 
-            android:name=".activity.ComplaintActivity"
+            android:name=".ComplaintActivity"
             ></activity>
         <activity 
-            android:name=".activity.oederactivity1"
+            android:name=".oederactivity1"
             ></activity>
           <activity 
-            android:name=".activity.oederactivity2"
+            android:name=".oederactivity2"
             ></activity>
            <activity 
-            android:name=".activity.oederactivity3"
+            android:name=".oederactivity3"
             ></activity>
            <activity 
-            android:name=".activity.oederactivity4"
+            android:name=".oederactivity4"
             ></activity>
            <activity 
-            android:name=".activity.oederactivity5"
+            android:name=".oederactivity5"
             ></activity>
+           <!-- 查看物流详情界面 -->
+           <activity 
+               android:name=".CheckLogisticsActivity"
+               ></activity>
+           <!-- 确认收货界面 -->
+           <activity 
+               android:name=".SureTakeGoodsActivity"
+               ></activity>
+           <!-- 投诉 -->
+           <activity 
+               android:name=".TousuActivity"
+               android:windowSoftInputMode="stateUnchanged"
+               ></activity>
+           <!-- 发表评价界面 -->
+           <activity 
+               android:name=".FaBiaoPingJiaActivity"
+               ></activity>
+           <!-- 订单详情界面 -->
+           <activity 
+               android:name=".DingDanXQActivity"
+               ></activity>
+           <!-- 退款与售后界面 -->
+           <activity 
+               android:name=".TuiKuanYuSHActivity"
+               ></activity>
         <!-- QZONE -->
         <activity
             android:name="com.tencent.tauth.AuthActivity" 

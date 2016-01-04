@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#ffffff"
     android:orientation="vertical"
     >
     <ListView 
@@ -9,6 +10,41 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="#e4e4e4"
+        android:visibility="gone"
         android:dividerHeight="5dp"
         ></ListView>
+    <RelativeLayout 
+        android:id="@+id/order_all_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+         <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="暂无此类订单，您现在可以去" />
+
+    <TextView
+        android:id="@+id/order_all_liulan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:textColor="#ff4500"
+        android:textSize="20sp"
+        android:text="浏览商品" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/order_all_liulan"
+        android:layout_marginLeft="17dp"
+        android:layout_toRightOf="@+id/order_all_liulan"
+        android:text="选择下单" />
+
+    </RelativeLayout>
+   
 </LinearLayout>

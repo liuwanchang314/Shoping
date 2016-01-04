@@ -95,7 +95,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:drawableRight="@drawable/jiantoudown"
                 android:text="浏览量" />
 
         </RelativeLayout>
@@ -126,15 +125,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/tuwenbiebiao" />
-             <ImageView
-                android:id="@+id/allproduct_gridview_or_listviews"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:visibility="gone"
-                android:layout_centerVertical="true"
-                android:src="@drawable/listview_tu" />
+                android:background="@drawable/tuwenbiebiao"
+                />
 
         </RelativeLayout>
     </LinearLayout>
@@ -144,7 +136,12 @@
         android:background="#a9a9a9"
         />
     
-    
+   
+     <ProgressBar android:id="@+id/widget43" 
+     android:layout_width="30dp"  
+     android:layout_height="30dp"
+     android:visibility="gone"
+     android:layout_gravity="center_horizontal"/> 
     <com.customview.PullToRefreshListView
         android:id="@+id/allproduct_list"
         android:layout_width="match_parent"
@@ -162,7 +159,7 @@
         android:verticalSpacing="10dp"
          >
     </com.customview.PullToRefreshGridView> 
-        
+   
     
    
 </LinearLayout>

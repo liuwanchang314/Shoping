@@ -9,13 +9,16 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
+import com.other.NetReceiver;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
@@ -29,7 +32,8 @@ public class MainActivity extends TabActivity {
 
 	//协作开发测试第一次
 	//协作开发测试arige-1
-	
+	NetReceiver mReceiver = new NetReceiver();
+    IntentFilter mFilter = new IntentFilter();
 	RadioButton t1, t2, t3, t4;
 	
 	private static TabHost tabHost;
@@ -48,6 +52,8 @@ public class MainActivity extends TabActivity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
+		 mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+		registerReceiver(mReceiver, mFilter);
 		context = this;
 		regToWx();
 		initview();

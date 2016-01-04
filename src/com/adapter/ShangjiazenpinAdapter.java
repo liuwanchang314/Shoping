@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -56,6 +57,7 @@ public class ShangjiazenpinAdapter extends BaseAdapter {
 			vh.im=(ImageView) convertView.findViewById(R.id.shangjiazengpin_image);
 			vh.price=(TextView) convertView.findViewById(R.id.shangjiazenpin_jiage);
 			vh.weight=(TextView) convertView.findViewById(R.id.shangjiazenppin_zhongliang);
+			vh.cb=(ImageView) convertView.findViewById(R.id.shangjiazenpin_tubiao);
 			convertView.setTag(vh);
 		}else{
 			vh=(viewholder) convertView.getTag();
@@ -63,6 +65,11 @@ public class ShangjiazenpinAdapter extends BaseAdapter {
 		vh.title.setText(list.get(position).getGoods_name());
 		vh.price.setText(list.get(position).getGoods_price());
 		vh.weight.setText(list.get(position).getGoods_weight());
+		if(list.get(position).isIschecked()){
+			vh.cb.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.checkbox_check));
+		}else{
+			vh.cb.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.checkbox_uncheck));
+		}
 		BitmapUtils bm=new BitmapUtils(context);
 		bm.display(vh.im,list.get(position).getGoods_image());
 		
@@ -75,6 +82,7 @@ public class ShangjiazenpinAdapter extends BaseAdapter {
 		ImageView im;
 		TextView price;
 		TextView weight;
+		ImageView cb;
 	}
 	
 

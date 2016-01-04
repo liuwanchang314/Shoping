@@ -16,6 +16,14 @@ package com.bean;
  * */
 public class ShangjiazengpingBean {
 	
+	
+	private boolean ischecked=false;
+	public boolean isIschecked() {
+		return ischecked;
+	}
+	public void setIschecked(boolean ischecked) {
+		this.ischecked = ischecked;
+	}
 	private String goods_name;
 	public String getGoods_name() {
 		return goods_name;

@@ -2,6 +2,24 @@ package com.adapter;
 
 import java.util.List;
 
+
+
+
+
+
+import com.Application.SysApplication;
+import com.bean.BillBean;
+import com.bean.BuyCartBean;
+import com.bean.OrderBean;
+import com.jsonParser.BillJsonPaser;
+import com.lidroid.xutils.BitmapUtils;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -19,7 +37,11 @@ import android.widget.Toast;
 import com.Application.SysApplication;
 import com.bean.OrderBean;
 import com.jf.storeapp.R;
+import com.jf.storeapp.activity.CheckLogisticsActivity;
+import com.jf.storeapp.activity.FaBiaoPingJiaActivity;
 import com.jf.storeapp.activity.PayForActivity;
+import com.jf.storeapp.activity.SureTakeGoodsActivity;
+import com.jf.storeapp.activity.TousuActivity;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -56,7 +78,7 @@ public class OrderAdatper extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int arg0, View arg1, ViewGroup arg2) {
+	public View getView(final int arg0, View arg1, ViewGroup arg2) {
 		// TODO Auto-generated method stub
 		orderviewholder vh=null;
 		if(arg1==null){
@@ -119,6 +141,7 @@ public class OrderAdatper extends BaseAdapter {
 							public void onClick(DialogInterface dialog, int which) {
 								// TODO Auto-generated method stub
 								getdata(orderid);
+								notifyDataSetChanged();
 							}
 						});
 						dialog.setNegativeButton("ȡ��",new DialogInterface.OnClickListener() {
@@ -151,8 +174,13 @@ public class OrderAdatper extends BaseAdapter {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
+
 					if(tousu.getText().equals("Ͷ��")){
-						Toast.makeText(context, "Ͷ�߱������",1).show();					}
+						Toast.makeText(context, "Ͷ�߱������",1).show();
+						Intent intent=new Intent(context, TousuActivity.class);
+						intent.putExtra("bean", list.get(arg0));
+						context.startActivity(intent);
+						}
 				}
 			});
 			vh.chakanwuliu.setText("�鿴����");
@@ -162,8 +190,13 @@ public class OrderAdatper extends BaseAdapter {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
+
 					if(chakanwuliu.getText().equals("�鿴����")){
 						Toast.makeText(context, "�鿴�����������",1).show();
+						//����Ҫ���ݹ�ȥһ��ʵ�����
+						Intent intent=new Intent(context,CheckLogisticsActivity.class);
+						intent.putExtra("bean",list.get(arg0));
+						context.startActivity(intent);
 					}
 					
 				}
@@ -186,12 +219,41 @@ public class OrderAdatper extends BaseAdapter {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
+
 					if(ckwl.getText().equals("�鿴����"));
 					Toast.makeText(context, "�鿴����",1).show();
+					Intent intent=new Intent(context,CheckLogisticsActivity.class);
+					intent.putExtra("bean",list.get(arg0));
+					context.startActivity(intent);
 				}
 			});
 			vh.chakanwuliu.setText("ȷ���ջ�");
+			final TextView qrsh=vh.chakanwuliu;
+			qrsh.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					Intent intent=new Intent(context, SureTakeGoodsActivity.class);
+					intent.putExtra("order",list.get(arg0).getOrder_sn());
+					context.startActivity(intent);
+				}
+			});
 			vh.shanchudingdan.setText("Ͷ��");
+			final TextView tousu=vh.shanchudingdan;
+			tousu.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					if(tousu.getText().equals("Ͷ��")){
+						Toast.makeText(context, "Ͷ�߱������",1).show();
+						Intent intent=new Intent(context, TousuActivity.class);
+						intent.putExtra("bean", list.get(arg0));
+						context.startActivity(intent);
+						}
+				}
+			});
 			vh.goodsname.setText(list.get(arg0).getOrdergoods().getGoods_name());
 			vh.goodschicun.setText(list.get(arg0).getOrdergoods().getSpec_id());
 			vh.goodsyanse.setText(list.get(arg0).getOrdergoods().getSpec_id());
@@ -200,11 +262,40 @@ public class OrderAdatper extends BaseAdapter {
 			BitmapUtils bmp=new BitmapUtils(context);
 			bmp.display(vh.goodsimg,list.get(arg0).getOrdergoods().getGoods_image());
 		}else if(list.get(arg0).getOrder_status().equals("40")){
+
 			//���ڴ�����״̬
 			vh.dingdanfenglei.setText("���׳ɹ�");
 			vh.pingjia.setText("�鿴����");
 			vh.chakanwuliu.setText("Ͷ��");
+			final TextView tousu=vh.chakanwuliu;
+			tousu.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					if(tousu.getText().equals("Ͷ��")){
+						Toast.makeText(context, "Ͷ�߱������",1).show();
+						Intent intent=new Intent(context, TousuActivity.class);
+						intent.putExtra("bean", list.get(arg0));
+						context.startActivity(intent);
+						}
+				}
+			});
 			vh.shanchudingdan.setText("����");
+			final TextView pingjia=vh.shanchudingdan;
+			pingjia.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					if(pingjia.getText().equals("����")){
+						Toast.makeText(context, "����",1).show();
+						Intent intent=new Intent(context, FaBiaoPingJiaActivity.class);
+						intent.putExtra("bean", list.get(arg0));
+						context.startActivity(intent);
+						}
+				}
+			});
 			vh.goodsname.setText(list.get(arg0).getOrdergoods().getGoods_name());
 			vh.goodschicun.setText(list.get(arg0).getOrdergoods().getSpec_id());
 			vh.goodsyanse.setText(list.get(arg0).getOrdergoods().getSpec_id());

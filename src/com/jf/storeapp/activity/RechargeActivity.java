@@ -32,8 +32,6 @@ public class RechargeActivity extends Activity implements OnClickListener{
 	private TextView mPayclass;//支付方式
 	private ImageView mZzhifubao;//支付宝
 	private RelativeLayout mBgzhifubao;//支付宝需改变背景
-	private ImageView mCaifutong;//财付通
-	private RelativeLayout mBgcaifutong;//财付通需改变背景
 	private ImageView mWeixin;//微信
 	private RelativeLayout mBgweixin;//微信需改变北京
 	private TextView mPay;//确认支付
@@ -59,15 +57,11 @@ public class RechargeActivity extends Activity implements OnClickListener{
 		mZzhifubao=(ImageView) findViewById(R.id.rechrageactivity_imageview_zhifubao);
 		mZzhifubao.setOnClickListener(this);
 		mBgzhifubao=(RelativeLayout) findViewById(R.id.rechrageactivity_bg_zhifubao);
-		mCaifutong=(ImageView) findViewById(R.id.rechrageactivity_imageview_caifutong);
-		mCaifutong.setOnClickListener(this);
-		mBgcaifutong=(RelativeLayout) findViewById(R.id.rechrageactivity_bg_caifutong);
 		mWeixin=(ImageView) findViewById(R.id.rechrageactivity_imageview_weixin);
 		mWeixin.setOnClickListener(this);
 		mBgweixin=(RelativeLayout) findViewById(R.id.rechrageactivity_bg_weixin);
 		mPay=(TextView) findViewById(R.id.rechrageactivity_textview_querenzhifu);
 		mPay.setOnClickListener(this);
-		mBgcaifutong.setBackgroundColor(Color.WHITE);
 		mBgzhifubao.setBackgroundColor(Color.WHITE);
 		mBgweixin.setBackgroundColor(Color.WHITE);
 	}
@@ -85,29 +79,19 @@ public class RechargeActivity extends Activity implements OnClickListener{
 			Toast.makeText(RechargeActivity.this,"支付宝", Toast.LENGTH_SHORT).show();
 			//进行背景填充
 			mBgzhifubao.setBackgroundColor(Color.GRAY);
-			mBgcaifutong.setBackgroundColor(Color.WHITE);
 			mBgweixin.setBackgroundColor(Color.WHITE);
 			//改变支付说明
 			mPayclass.setText("你选择了支付宝支付");
-			break;
-		case R.id.rechrageactivity_imageview_caifutong://财付通
-			Toast.makeText(RechargeActivity.this,"财付通", Toast.LENGTH_SHORT).show();
-			mBgcaifutong.setBackgroundColor(Color.GRAY);
-			mBgzhifubao.setBackgroundColor(Color.WHITE);
-			mBgweixin.setBackgroundColor(Color.WHITE);
-			mPayclass.setText("你选择了财付通支付");
 			break;
 		case R.id.rechrageactivity_imageview_weixin://威信
 			Toast.makeText(RechargeActivity.this,"威信", Toast.LENGTH_SHORT).show();
 			mBgweixin.setBackgroundColor(Color.GRAY);
 			mBgzhifubao.setBackgroundColor(Color.WHITE);
-			mBgcaifutong.setBackgroundColor(Color.WHITE);
 			mPayclass.setText("你选择了微信支付");
 			break;
 		case R.id.rechrageactivity_textview_querenzhifu://支付
 			Toast.makeText(RechargeActivity.this,"支付", Toast.LENGTH_SHORT).show();
 			mBgzhifubao.setBackgroundColor(Color.WHITE);
-			mBgcaifutong.setBackgroundColor(Color.WHITE);
 			mBgweixin.setBackgroundColor(Color.WHITE);
 			break;
 			

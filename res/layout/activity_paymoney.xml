@@ -218,6 +218,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:gravity="center"
+                    android:background="@drawable/button_style"
                     android:text="确认" />
                 
             </RelativeLayout>

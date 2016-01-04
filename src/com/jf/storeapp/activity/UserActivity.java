@@ -65,23 +65,28 @@ public class UserActivity extends Activity implements OnClickListener,OnCheckedC
 		switch (checkedId) {
 		case R.id.user_tab_rb_1://带付款
 			Toast.makeText(UserActivity.this, "代付款", Toast.LENGTH_SHORT).show();
-			
+			Intent intent=new Intent(UserActivity.this,ZJorderActivity.class);
+			startActivity(intent);
 			break;
 		case R.id.user_tab_rb_2://待发货
 			Toast.makeText(UserActivity.this, "待发货", Toast.LENGTH_SHORT).show();
-			
+			Intent intent1=new Intent(UserActivity.this,ZJorderActivity.class);
+			startActivity(intent1);
 			break;
 		case R.id.user_tab_rb_3://待收货
 			Toast.makeText(UserActivity.this, "待收货", Toast.LENGTH_SHORT).show();
-			
+			Intent intent2=new Intent(UserActivity.this,ZJorderActivity.class);
+			startActivity(intent2);
 			break;
 		case R.id.user_tab_rb_4://待评价
 			Toast.makeText(UserActivity.this, "待评价", Toast.LENGTH_SHORT).show();
-			
+			Intent intent3=new Intent(UserActivity.this,ZJorderActivity.class);
+			startActivity(intent3);
 			break;
 		case R.id.user_tab_rb_5://退款售后
 			Toast.makeText(UserActivity.this, "退款售后", Toast.LENGTH_SHORT).show();
-			
+			Intent intent4=new Intent(UserActivity.this,TuiKuanYuSHActivity.class);
+			startActivity(intent4);
 			break;
 
 		default:
@@ -110,6 +115,8 @@ public class UserActivity extends Activity implements OnClickListener,OnCheckedC
 			break;
 		case R.id.user_erweima://二维码
 			Toast.makeText(UserActivity.this, "二维码", Toast.LENGTH_SHORT).show();
+			Intent intens=new Intent(UserActivity.this,TwoDimensionCodeActivity.class);
+			startActivity(intens);
 			break;
 		case R.id.horder_lt_list6://退出当前账号
 			Toast.makeText(UserActivity.this, "退出当前账号", Toast.LENGTH_SHORT).show();

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     android:orientation="vertical" >
     
     <!--  查看物流界面-->
@@ -9,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        
         android:orientation="vertical"
         
         >
@@ -20,12 +22,13 @@
             >
             <RelativeLayout 
                 android:layout_weight="1"
+                android:background="#e4e4e4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 >
 
                 <ImageView
-                    android:id="@+id/imageView1"
+                    android:id="@+id/checklogistics_iamgeview_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -40,7 +43,6 @@
                 >
 
                 <TextView
-                    android:id="@+id/checklogistics_iamgeview_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -65,6 +67,11 @@
 
             </RelativeLayout>
         </LinearLayout>
+        <View 
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="#e4e4e4"
+            />
          <LinearLayout 
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -159,6 +166,11 @@
 
              </RelativeLayout>
          </LinearLayout>
+         <View 
+             android:layout_width="match_parent"
+             android:layout_height="5dp"
+             android:background="#e4e4e4"
+             />
           <LinearLayout 
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -182,6 +194,11 @@
                       android:text="物品信息" />
 
               </RelativeLayout>
+                       <View 
+             android:layout_width="match_parent"
+             android:layout_height="2dp"
+             android:background="#e4e4e4"
+             />
               <LinearLayout 
                   android:layout_weight="2"
                   android:layout_width="match_parent"
@@ -199,10 +216,10 @@
                           android:layout_width="match_parent"
                           android:layout_height="match_parent"
                           android:layout_centerHorizontal="true"
-                          android:layout_marginTop="10dp"
+                          android:layout_marginTop="5dp"
 	                     android:layout_marginLeft="10dp"
 	                     android:layout_marginRight="10dp"
-	                     android:layout_marginBottom="10dp"
+	                     android:layout_marginBottom="5dp"
                           android:layout_centerVertical="true"
                           android:src="@drawable/logo" />
 
@@ -214,7 +231,7 @@
                       android:orientation="vertical"
                       >
                       <RelativeLayout 
-                          android:layout_weight="1"
+                          android:layout_weight="0.8"
                           android:layout_width="match_parent"
                           android:layout_height="0dp"
                           >
@@ -295,6 +312,11 @@
               </LinearLayout>
           </LinearLayout>
     </LinearLayout>
+             <View 
+             android:layout_width="match_parent"
+             android:layout_height="5dp"
+             android:background="#e4e4e4"
+             />
      <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -319,6 +341,11 @@
                  android:text="物流跟踪" />
              
          </RelativeLayout>
+                  <View 
+             android:layout_width="match_parent"
+             android:layout_height="2dp"
+             android:background="#e4e4e4"
+             />
          <ListView 
              android:id="@+id/checklogistics_listview"
              android:layout_width="match_parent"

@@ -28,6 +28,7 @@ public class PayActivity extends Activity {
 		
 		api = WXAPIFactory.createWXAPI(this, CommonConstants.WXAPP_ID);
 
+	
 //		Button appayBtn = (Button) findViewById(R.id.appay_btn);
 //		appayBtn.setOnClickListener(new View.OnClickListener() {
 //			
@@ -88,6 +89,7 @@ public class PayActivity extends Activity {
 	public void WXpay(String appid,String partnerid,
 			String prepayid, String noncestr,String timestamp,
 			String packagev,String sign){
+		
 		PayReq req = new PayReq();
 		//req.appId = "wxf8b4f85f3a794e77";  // ������appId
 		req.appId			= CommonConstants.WXAPP_ID;
@@ -103,5 +105,8 @@ public class PayActivity extends Activity {
 		// ��֧��֮ǰ�����Ӧ��û��ע�ᵽ΢�ţ�Ӧ���ȵ���IWXMsg.registerApp��Ӧ��ע�ᵽ΢��
 		api.sendReq(req);
 	}
+	
+	
+	
 	
 }

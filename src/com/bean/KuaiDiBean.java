@@ -6,13 +6,13 @@ package com.bean;
     "data": [
         {
             "transport_id": "3",
-            "express_title": "ÉêÍ¨¿ìµÝ",
+            "express_title": "ï¿½ï¿½Í¨ï¿½ï¿½ï¿½",
             "express_id": null,
             "express_note": ""
         },
         {
             "transport_id": "4",
-            "express_title": "TNT¿ìµÝ",
+            "express_title": "TNTï¿½ï¿½ï¿½",
             "express_id": null,
             "express_note": ""
         }
@@ -26,6 +26,13 @@ public class KuaiDiBean {
 	private String express_title;
 	private String express_id;
 	private String express_note;
+	private boolean ischecked=false;
+	public boolean isIschecked() {
+		return ischecked;
+	}
+	public void setIschecked(boolean ischecked) {
+		this.ischecked = ischecked;
+	}
 	public String getTransport_id() {
 		return transport_id;
 	}

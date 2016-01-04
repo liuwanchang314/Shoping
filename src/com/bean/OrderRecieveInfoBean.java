@@ -1,6 +1,8 @@
 package com.bean;
 
-public class OrderRecieveInfoBean {
+import java.io.Serializable;
+
+public class OrderRecieveInfoBean implements Serializable{
 	
 	/**
 	 * reciver_info": {

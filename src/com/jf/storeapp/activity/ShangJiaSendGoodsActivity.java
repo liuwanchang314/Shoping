@@ -1,7 +1,28 @@
-
 package com.jf.storeapp.activity;
 
+import java.io.Serializable;
+import java.lang.annotation.Annotation;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import com.adapter.BuyCartAdapter;
+import com.adapter.KuaiDiAdapter;
+import com.adapter.ShangjiazenpinAdapter;
+import com.bean.BuyCartBean;
+import com.bean.KuaiDiBean;
+import com.bean.ShangjiazengpingBean;
+import com.jf.storeapp.R;
+import com.jsonParser.BuyCartJsonP;
+import com.jsonParser.KuaiDiJsonParser;
+import com.jsonParser.ShangjiazenpinJsonparser;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,20 +38,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.adapter.KuaiDiAdapter;
-import com.adapter.ShangjiazenpinAdapter;
-import com.bean.KuaiDiBean;
-import com.bean.ShangjiazengpingBean;
-import com.jf.storeapp.R;
-import com.jsonParser.KuaiDiJsonParser;
-import com.jsonParser.ShangjiazenpinJsonparser;
-import com.lidroid.xutils.HttpUtils;
-import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.RequestParams;
-import com.lidroid.xutils.http.ResponseInfo;
-import com.lidroid.xutils.http.callback.RequestCallBack;
-import com.lidroid.xutils.http.client.HttpRequest;
-
 public class ShangJiaSendGoodsActivity extends Activity {
 	
 	private ImageView mBack,mHome;
@@ -43,6 +50,8 @@ public class ShangJiaSendGoodsActivity extends Activity {
 	private String zengpinid;
 	private String zenpinnum;
 	private String kuaidiid;
+	private ShangjiazenpinAdapter adapter_zenpin;
+	private KuaiDiAdapter adapter_kuaidi;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -114,14 +123,16 @@ public class ShangJiaSendGoodsActivity extends Activity {
 		        	String CallBackString=responseInfo.result;
 		        	Log.i("商家赠品请求有数据吗？",CallBackString);
 		        	final List<ShangjiazengpingBean> list=ShangjiazenpinJsonparser.getlist(CallBackString);
-		        	ShangjiazenpinAdapter adapter=new ShangjiazenpinAdapter(list, ShangJiaSendGoodsActivity.this);
-		        	listview_zengpin.setAdapter(adapter);
+		        	adapter_zenpin=new ShangjiazenpinAdapter(list, ShangJiaSendGoodsActivity.this);
+		        	listview_zengpin.setAdapter(adapter_zenpin);
 		        	listview_zengpin.setOnItemClickListener(new OnItemClickListener() {
 
 						@Override
 						public void onItemClick(AdapterView<?> arg0, View arg1,
 								int arg2, long arg3) {
 							// TODO Auto-generated method stub
+							list.get(arg2).setIschecked(!list.get(arg2).isIschecked());
+							adapter_zenpin.notifyDataSetChanged();
 							zengpinid=list.get(arg2).getGoods_id();
 						}
 					});
@@ -163,14 +174,16 @@ public class ShangJiaSendGoodsActivity extends Activity {
 		        	String CallBackString=responseInfo.result;
 		        	Log.i("商家快递请求有数据吗？",CallBackString);
 		        	final List<KuaiDiBean> list=KuaiDiJsonParser.getlist(CallBackString);
-		        	KuaiDiAdapter adapter=new KuaiDiAdapter(list,ShangJiaSendGoodsActivity.this);
-		        	listview_kuaidi.setAdapter(adapter);
+		        	adapter_kuaidi=new KuaiDiAdapter(list,ShangJiaSendGoodsActivity.this);
+		        	listview_kuaidi.setAdapter(adapter_kuaidi);
 		        	listview_kuaidi.setOnItemClickListener(new OnItemClickListener() {
 
 						@Override
 						public void onItemClick(AdapterView<?> arg0, View arg1,
 								int arg2, long arg3) {
 							// TODO Auto-generated method stub
+							list.get(arg2).setIschecked(!list.get(arg2).isIschecked());
+							adapter_kuaidi.notifyDataSetChanged();
 							kuaidiid=list.get(arg2).getTransport_id();
 							Log.i("快递id是多少",kuaidiid);
 						}
