@@ -187,7 +187,7 @@
                    android:layout_height="match_parent"
                    android:layout_gravity="center"
                    android:gravity="center"
-                   android:background="#FF6600"
+                   android:background="@drawable/button_style"
                    android:text="结算"
                    android:textSize="18sp"
                     />

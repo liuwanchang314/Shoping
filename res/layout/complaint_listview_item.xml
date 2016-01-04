@@ -34,15 +34,16 @@
             android:layout_alignBaseline="@+id/textView1"
             android:layout_alignBottom="@+id/textView1"
             android:layout_toRightOf="@+id/textView1"
+            android:textColor="#ff8000"
             android:text="TextView" />
 
         <TextView
             android:id="@+id/complaint_listview_item_zhuangtai"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/imageView1"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="21dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
             android:text="已完成" />
 
     </RelativeLayout>
@@ -87,12 +88,14 @@
 
         <TextView
             android:id="@+id/complaint_listview_item_chakanxiangqing"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
             android:layout_alignBaseline="@+id/complaint_listview_item_time"
             android:layout_alignBottom="@+id/complaint_listview_item_time"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:background="@drawable/biankuang"
             android:text="查看详情" />
 
     </RelativeLayout>

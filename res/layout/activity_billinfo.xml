@@ -235,7 +235,7 @@
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:background="#ff4500"
+                android:background="@drawable/button_style"
                 android:gravity="center"
                 android:textSize="20sp"
                 android:text="保存发票信息" />
@@ -253,7 +253,7 @@
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:background="#e4e4e4"
+                android:background="@drawable/button_style1"
                 android:gravity="center"
                 android:textSize="20sp"
                 android:text="不需要发票" />

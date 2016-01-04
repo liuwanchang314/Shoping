@@ -123,12 +123,15 @@
 
     <Button
         android:id="@+id/editpwd_btn_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/editpwd_lt_from"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:background="@drawable/ret_btn_submit" />
+        android:background="@drawable/button_style"
+        android:text="确认"
+        android:gravity="center"
+        android:textColor="#ffffff"
+         />
 
 </RelativeLayout>

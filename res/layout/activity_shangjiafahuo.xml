@@ -95,7 +95,7 @@
             android:layout_height="50dp"
             android:text="下一步"
             android:gravity="center"
-            android:background="#ff4500"
+            android:background="@drawable/button_style"
             android:layout_alignParentBottom="true"
             />
 
