@@ -3,11 +3,6 @@ package com.adapter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.zip.Inflater;
-
-import com.CommonConstants;
-import com.activity.R;
-import com.lidroid.xutils.BitmapUtils;
 
 import android.content.Context;
 import android.view.View;
@@ -15,6 +10,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.jf.storeapp.CommonConstants;
+import com.jf.storeapp.R;
+import com.lidroid.xutils.BitmapUtils;
 
 public class indexListviewAdapter extends BaseAdapter {
 

@@ -2,15 +2,15 @@ package com.adapter;
 
 import java.util.List;
 
-import com.activity.R;
-import com.bean.CompanyNoticeBean;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.bean.CompanyNoticeBean;
+import com.jf.storeapp.R;
 
 public class CompanyNoticeAdapter extends BaseAdapter {
 	

@@ -1,14 +1,10 @@
 package com.adapter;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.activity.R;
-
 import android.content.Context;
 import android.graphics.Color;
-import android.opengl.Visibility;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +12,11 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jf.storeapp.R;
+
 public class myexlistviewadapter extends BaseExpandableListAdapter {
 
-	//ÔÚÕâÀïĞèÒªÓĞÈı¸ö²ÎÊı£¬ÉÏÏÂÎÄ¶ÔÏó£¬×éÊı¾İÔ´£¬×Ó×éÊı¾İÔ´
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´
 	private List<Map<String, String>> groupData;
 	private List<List<Map<String, String>>> childData ;
 	private Context context;

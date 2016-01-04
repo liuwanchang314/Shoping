@@ -2,14 +2,24 @@ package com.adapter;
 
 import java.util.List;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.Application.SysApplication;
-import com.activity.BillActivity;
-import com.activity.PayForActivity;
-import com.activity.R;
-import com.bean.BillBean;
-import com.bean.BuyCartBean;
 import com.bean.OrderBean;
-import com.jsonParser.BillJsonPaser;
+import com.jf.storeapp.R;
+import com.jf.storeapp.activity.PayForActivity;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -17,24 +27,6 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
-
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Color;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class OrderAdatper extends BaseAdapter {
 
@@ -86,11 +78,11 @@ public class OrderAdatper extends BaseAdapter {
 		}else{
 			vh=(orderviewholder) arg1.getTag();
 		}
-		//ÏÈÅÐ¶ÏÊý¾ÝÖÖÀà
+		//ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		if(list.get(arg0).getOrder_status().equals("10")){
-			//´¦ÓÚ´ý¸¶¿î×´Ì¬
-			vh.dingdanfenglei.setText("µÈ´ýÂò¼Ò¸¶¿î");
-			vh.pingjia.setText("¸¶¿î");
+			//ï¿½ï¿½ï¿½Ú´ï¿½ï¿½×´Ì¬
+			vh.dingdanfenglei.setText("ï¿½È´ï¿½ï¿½ï¿½Ò¸ï¿½ï¿½ï¿½");
+			vh.pingjia.setText("ï¿½ï¿½ï¿½ï¿½");
 			final String price=list.get(arg0).getOrdergoods().getGoods_price();
 			final String order=list.get(arg0).getOrder_sn();
 			final String fhfs=list.get(arg0).getShipping_mode();
@@ -100,7 +92,7 @@ public class OrderAdatper extends BaseAdapter {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					if(tv.getText().equals("¸¶¿î")){
+					if(tv.getText().equals("ï¿½ï¿½ï¿½ï¿½")){
 						Intent intent=new Intent(context,PayForActivity.class);
 						intent.putExtra("price",price);
 						intent.putExtra("fhfs",fhfs);
@@ -109,7 +101,7 @@ public class OrderAdatper extends BaseAdapter {
 					}
 				}
 			});
-			vh.chakanwuliu.setText("È¡Ïû¶©µ¥");
+			vh.chakanwuliu.setText("È¡ï¿½ï¿½");
 			final TextView tvs=vh.chakanwuliu;
 			final String orderid=list.get(arg0).getOrder_id();
 			tvs.setOnClickListener(new OnClickListener() {
@@ -117,11 +109,11 @@ public class OrderAdatper extends BaseAdapter {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					if(tvs.getText().equals("È¡Ïû¶©µ¥")){
+					if(tvs.getText().equals("È¡ï¿½ï¿½")){
 						AlertDialog.Builder dialog=new AlertDialog.Builder(context);
-						dialog.setTitle("ÎÂÜ°ÌáÊ¾");
-						dialog.setMessage("ÄúÈ·¶¨ÒªÈ¡Ïû¶©µ¥Âð£¿");
-						dialog.setPositiveButton("È·¶¨",new DialogInterface.OnClickListener() {
+						dialog.setTitle("ï¿½ï¿½Ü°ï¿½ï¿½Ê¾");
+						dialog.setMessage("ï¿½ï¿½È·ï¿½ï¿½ÒªÈ¡ï¿½ï¿½ï¿½ï¿½");
+						dialog.setPositiveButton("È·ï¿½ï¿½",new DialogInterface.OnClickListener() {
 							
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
@@ -129,7 +121,7 @@ public class OrderAdatper extends BaseAdapter {
 								getdata(orderid);
 							}
 						});
-						dialog.setNegativeButton("È¡Ïû",new DialogInterface.OnClickListener() {
+						dialog.setNegativeButton("È¡ï¿½ï¿½",new DialogInterface.OnClickListener() {
 							
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
@@ -150,28 +142,28 @@ public class OrderAdatper extends BaseAdapter {
 			BitmapUtils bmp=new BitmapUtils(context);
 			bmp.display(vh.goodsimg,list.get(arg0).getOrdergoods().getGoods_image());
 		}else if(list.get(arg0).getOrder_status().equals("20")){
-			//´¦ÓÚ´ý·¢»õ×´Ì¬
-			vh.dingdanfenglei.setText("Âò¼ÒÒÑ¸¶¿î");
-			vh.pingjia.setText("Í¶Ëß");
+			//ï¿½ï¿½ï¿½Ú´ï¿½ï¿½×´Ì¬
+			vh.dingdanfenglei.setText("ï¿½ï¿½ï¿½ï¿½Ñ¸ï¿½ï¿½ï¿½");
+			vh.pingjia.setText("Í¶ï¿½ï¿½");
 			final TextView tousu=vh.pingjia;
 			tousu.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					if(tousu.getText().equals("Í¶Ëß")){
-						Toast.makeText(context, "Í¶Ëß±»µã»÷ÁË",1).show();					}
+					if(tousu.getText().equals("Í¶ï¿½ï¿½")){
+						Toast.makeText(context, "Í¶ï¿½ß±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",1).show();					}
 				}
 			});
-			vh.chakanwuliu.setText("²é¿´ÎïÁ÷");
+			vh.chakanwuliu.setText("ï¿½é¿´ï¿½ï¿½ï¿½ï¿½");
 			final TextView chakanwuliu=vh.chakanwuliu;
 			chakanwuliu.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					if(chakanwuliu.getText().equals("²é¿´ÎïÁ÷")){
-						Toast.makeText(context, "²é¿´ÎïÁ÷±»µã»÷ÁË",1).show();
+					if(chakanwuliu.getText().equals("ï¿½é¿´ï¿½ï¿½ï¿½ï¿½")){
+						Toast.makeText(context, "ï¿½é¿´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",1).show();
 					}
 					
 				}
@@ -185,21 +177,21 @@ public class OrderAdatper extends BaseAdapter {
 			BitmapUtils bmp=new BitmapUtils(context);
 			bmp.display(vh.goodsimg,list.get(arg0).getOrdergoods().getGoods_image());
 		}else if(list.get(arg0).getOrder_status().equals("30")){
-			//´¦ÓÚ´ýÊÕ»õ×´Ì¬
-			vh.dingdanfenglei.setText("Âô¼ÒÒÑ·¢»õ");
-			vh.pingjia.setText("²é¿´ÎïÁ÷");
+			//ï¿½ï¿½ï¿½Ú´ï¿½ï¿½Õ»ï¿½×´Ì¬
+			vh.dingdanfenglei.setText("ï¿½ï¿½ï¿½ï¿½ï¿½Ñ·ï¿½ï¿½ï¿½");
+			vh.pingjia.setText("ï¿½é¿´ï¿½ï¿½ï¿½ï¿½");
 			final TextView ckwl=vh.pingjia;
 			ckwl.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					if(ckwl.getText().equals("²é¿´ÎïÁ÷"));
-					Toast.makeText(context, "²é¿´ÎïÁ÷",1).show();
+					if(ckwl.getText().equals("ï¿½é¿´ï¿½ï¿½ï¿½ï¿½"));
+					Toast.makeText(context, "ï¿½é¿´ï¿½ï¿½ï¿½ï¿½",1).show();
 				}
 			});
-			vh.chakanwuliu.setText("È·ÈÏÊÕ»õ");
-			vh.shanchudingdan.setText("Í¶Ëß");
+			vh.chakanwuliu.setText("È·ï¿½ï¿½ï¿½Õ»ï¿½");
+			vh.shanchudingdan.setText("Í¶ï¿½ï¿½");
 			vh.goodsname.setText(list.get(arg0).getOrdergoods().getGoods_name());
 			vh.goodschicun.setText(list.get(arg0).getOrdergoods().getSpec_id());
 			vh.goodsyanse.setText(list.get(arg0).getOrdergoods().getSpec_id());
@@ -208,11 +200,11 @@ public class OrderAdatper extends BaseAdapter {
 			BitmapUtils bmp=new BitmapUtils(context);
 			bmp.display(vh.goodsimg,list.get(arg0).getOrdergoods().getGoods_image());
 		}else if(list.get(arg0).getOrder_status().equals("40")){
-			//´¦ÓÚ´ýÆÀ¼Û×´Ì¬
-			vh.dingdanfenglei.setText("½»Ò×³É¹¦");
-			vh.pingjia.setText("²é¿´ÎïÁ÷");
-			vh.chakanwuliu.setText("Í¶Ëß");
-			vh.shanchudingdan.setText("ÆÀ¼Û");
+			//ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
+			vh.dingdanfenglei.setText("ï¿½ï¿½ï¿½×³É¹ï¿½");
+			vh.pingjia.setText("ï¿½é¿´ï¿½ï¿½ï¿½ï¿½");
+			vh.chakanwuliu.setText("Í¶ï¿½ï¿½");
+			vh.shanchudingdan.setText("ï¿½ï¿½ï¿½ï¿½");
 			vh.goodsname.setText(list.get(arg0).getOrdergoods().getGoods_name());
 			vh.goodschicun.setText(list.get(arg0).getOrdergoods().getSpec_id());
 			vh.goodsyanse.setText(list.get(arg0).getOrdergoods().getSpec_id());
@@ -239,7 +231,7 @@ public class OrderAdatper extends BaseAdapter {
 	
 	public void getdata(String id){
 		RequestParams params = new RequestParams();
-		// Ö»°üº¬×Ö·û´®²ÎÊýÊ±Ä¬ÈÏÊ¹ÓÃBodyParamsEntity£¬
+		// Ö»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ê±Ä¬ï¿½ï¿½Ê¹ï¿½ï¿½BodyParamsEntityï¿½ï¿½
 		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
 		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
 		params.addBodyParameter("type", "order");
@@ -252,7 +244,7 @@ public class OrderAdatper extends BaseAdapter {
 
 		        @Override
 		        public void onStart() {
-		        	//¿ªÊ¼ÇëÇó
+		        	//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 		        }
 
 		        @Override
@@ -264,9 +256,9 @@ public class OrderAdatper extends BaseAdapter {
 
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
-		        	//ÇëÇó³É¹¦
+		        	//ï¿½ï¿½ï¿½ï¿½É¹ï¿½
 		        	String str=responseInfo.result;
-		        	Log.i("¶©µ¥È¡ÏûÁËÃ»ÓÐ", str);
+		        	Log.i("ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½", str);
 		        }
 
 		        @Override

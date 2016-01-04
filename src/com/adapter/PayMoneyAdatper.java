@@ -2,10 +2,6 @@ package com.adapter;
 
 import java.util.List;
 
-import com.activity.R;
-import com.bean.BuyCartBean;
-import com.lidroid.xutils.BitmapUtils;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -14,6 +10,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bean.BuyCartBean;
+import com.jf.storeapp.R;
+import com.lidroid.xutils.BitmapUtils;
 
 public class PayMoneyAdatper extends BaseAdapter {
 

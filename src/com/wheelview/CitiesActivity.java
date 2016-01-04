@@ -6,21 +6,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.activity.R;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.jf.storeapp.R;
 
 /**
  * 
@@ -29,46 +30,46 @@ import android.widget.Toast;
  */
 public class CitiesActivity extends Activity implements OnWheelChangedListener {
 	/**
-	 * °ÑÈ«¹úµÄÊ¡ÊÐÇøµÄÐÅÏ¢ÒÔjsonµÄ¸ñÊ½±£´æ£¬½âÎöÍê³Éºó¸³ÖµÎªnull
+	 * ï¿½ï¿½È«ï¿½ï¿½ï¿½Ê¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½jsonï¿½Ä¸ï¿½Ê½ï¿½ï¿½ï¿½æ£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éºï¿½ÖµÎªnull
 	 */
 	private JSONObject mJsonObj;
 	/**
-	 * Ê¡µÄWheelView¿Ø¼þ
+	 * Ê¡ï¿½ï¿½WheelViewï¿½Ø¼ï¿½
 	 */
 	private WheelView mProvince;
 	/**
-	 * ÊÐµÄWheelView¿Ø¼þ
+	 * ï¿½Ðµï¿½WheelViewï¿½Ø¼ï¿½
 	 */
 	private WheelView mCity;
 	/**
-	 * ÇøµÄWheelView¿Ø¼þ
+	 * ï¿½ï¿½ï¿½WheelViewï¿½Ø¼ï¿½
 	 */
 	private WheelView mArea;
 
 	/**
-	 * ËùÓÐÊ¡
+	 * ï¿½ï¿½ï¿½ï¿½Ê¡
 	 */
 	private String[] mProvinceDatas;
 	List<ProvienceBean> list = new ArrayList<ProvienceBean>();
 	/**
-	 * key - Ê¡ value - ÊÐs
+	 * key - Ê¡ value - ï¿½ï¿½s
 	 */
 	private Map<String, String[]> mCitisDatasMap = new HashMap<String, String[]>();
 	/**
-	 * key - ÊÐ values - Çøs
+	 * key - ï¿½ï¿½ values - ï¿½ï¿½s
 	 */
 	private Map<String, String[]> mAreaDatasMap = new HashMap<String, String[]>();
 
 	/**
-	 * µ±Ç°Ê¡µÄÃû³Æ
+	 * ï¿½ï¿½Ç°Ê¡ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	private String mCurrentProviceName;
 	/**
-	 * µ±Ç°ÊÐµÄÃû³Æ
+	 * ï¿½ï¿½Ç°ï¿½Ðµï¿½ï¿½ï¿½ï¿½
 	 */
 	private String mCurrentCityName;
 	/**
-	 * µ±Ç°ÇøµÄÃû³Æ
+	 * ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	private String mCurrentAreaName = "";
 	private Button btn;
@@ -122,13 +123,13 @@ public class CitiesActivity extends Activity implements OnWheelChangedListener {
 				String Pid=list.get(mProvince.getCurrentItem()).getId();
 				String Cid=list.get(mProvince.getCurrentItem()).getList().get(mCity.getCurrentItem()).getId();
 				String Did=list.get(mProvince.getCurrentItem()).getList().get(mCity.getCurrentItem()).getList().get(mArea.getCurrentItem()).getId();
-				Log.i("Ê¡ÃûÊÇ", Pname);
-				Log.i("ÊÐÃûÊÇ", Cname);
-				Log.i("ÏØÃûÊÇ", Dname);
-				Log.i("Ê¡idÊÇ", Pid);
-				Log.i("Ê¡idÊÇ", Cid);
-				Log.i("Ê¡idÊÇ", Did);
-				//½«ÕâÁù¸öÖµ»Ø´«
+				Log.i("Ê¡ï¿½ï¿½ï¿½ï¿½", Pname);
+				Log.i("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Cname);
+				Log.i("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Dname);
+				Log.i("Ê¡idï¿½ï¿½", Pid);
+				Log.i("Ê¡idï¿½ï¿½", Cid);
+				Log.i("Ê¡idï¿½ï¿½", Did);
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½Ø´ï¿½
 				Intent intent=new Intent();
 				intent.putExtra("pname", Pname);
 				intent.putExtra("cname", Cname);
@@ -144,7 +145,7 @@ public class CitiesActivity extends Activity implements OnWheelChangedListener {
 	}
 
 	/**
-	 * ¸ù¾Ýµ±Ç°µÄÊÐ£¬¸üÐÂÇøWheelViewµÄÐÅÏ¢
+	 * ï¿½ï¿½Ýµï¿½Ç°ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½WheelViewï¿½ï¿½ï¿½ï¿½Ï¢
 	 */
 	private void updateAreas() {
 		int pCurrent = mCity.getCurrentItem();
@@ -174,7 +175,7 @@ public class CitiesActivity extends Activity implements OnWheelChangedListener {
 	}
 
 	/**
-	 * ¸ù¾Ýµ±Ç°µÄÊ¡£¬¸üÐÂÊÐWheelViewµÄÐÅÏ¢
+	 * ï¿½ï¿½Ýµï¿½Ç°ï¿½ï¿½Ê¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½WheelViewï¿½ï¿½ï¿½ï¿½Ï¢
 	 */
 	private void updateCities() {
 		int pCurrent = mProvince.getCurrentItem();
@@ -189,7 +190,7 @@ public class CitiesActivity extends Activity implements OnWheelChangedListener {
 	}
 
 	/**
-	 * ½âÎöÕû¸öJson¶ÔÏó£¬Íê³ÉºóÊÍ·ÅJson¶ÔÏóµÄÄÚ´æ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Jsonï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éºï¿½ï¿½Í·ï¿½Jsonï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½
 	 */
 	private void initDatas() {
 		try {
@@ -200,44 +201,44 @@ public class CitiesActivity extends Activity implements OnWheelChangedListener {
 				JSONObject objs = array.getJSONObject(i);
 				bean.setId(objs.getString("id"));
 				bean.setName(objs.getString("name"));
-				// µ±µ½cityµÄÊ±ºò£¬·¢ÏÖÊÇÒ»¸ö¼¯ºÏ
+				// ï¿½ï¿½ï¿½ï¿½cityï¿½ï¿½Ê±ï¿½ò£¬·ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				JSONArray arraycity = objs.getJSONArray("city");
-				// Éú³É´æ´¢³ÇÊÐµÄ¼¯ºÏ
+				// ï¿½ï¿½É´æ´¢ï¿½ï¿½ï¿½ÐµÄ¼ï¿½ï¿½ï¿½
 				List<CityBean> listcity=new ArrayList<CityBean>();
 				String[] mCitiesDatas = new String[arraycity.length()];
-				// ¼¯ºÏÄÚ²¿ÏÖÔÚÊÇobj
+				// ï¿½ï¿½ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½obj
 				for (int j = 0; j < arraycity.length(); j++) {
 					JSONObject objcity = arraycity.getJSONObject(j);
-					// Éú³É³ÇÊÐÊµÌå¶ÔÏó
+					// ï¿½ï¿½É³ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½
 					CityBean citybean = new CityBean();
 					citybean.setId(objcity.getString("id"));
 					citybean.setName(objcity.getString("name"));
 					mCitiesDatas[j] = objcity.getString("name");
-					// µ±½âÎöµ½districtµÄÊ±ºò£¬·¢ÏÖÊÇÓÖÊÇÒ»¸ö¼¯ºÏ
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½districtï¿½ï¿½Ê±ï¿½ò£¬·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					JSONArray arraydistrict = objcity.getJSONArray("district");
-					// ÐèÒªÉú³É´æ´¢ÏØÇøµÄ¼¯ºÏ
+					// ï¿½ï¿½Òªï¿½ï¿½É´æ´¢ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
 					List<DirectBean> listdistrict=new ArrayList<DirectBean>();
 //					String[] mAreasDatas = new String[arraydistrict.length()];
 					for (int h = 0; h < arraydistrict.length(); h++) {
-						// ·¢ÏÖÄÚ²¿ÊÇÊµÌåÀà
+						// ï¿½ï¿½ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½
 						DirectBean directbean = new DirectBean();
 						JSONObject objdirect = arraydistrict.getJSONObject(h);
 						directbean.setId(objdirect.getString("id"));
 						directbean.setName(objdirect.getString("name"));
-						// ½«ÏØÇø¶ÔÏóÌí¼Óµ½¼¯ºÏÖÐ
+						// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 						listdistrict.add(directbean);
 //						mAreasDatas[h] = objdirect.getString("name");
 					}
-					// ½«ÊÐËùÊôµÄÏØÇøÊôÐÔ£¬Ò²¾ÍÊÇ¼¯ºÏÉèÖÃµ½ÊÐ¶ÔÏó
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô£ï¿½Ò²ï¿½ï¿½ï¿½Ç¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½Ð¶ï¿½ï¿½ï¿½
 					citybean.setList(listdistrict);
 //					mAreaDatasMap.put(citybean.getName(), mAreasDatas);
-					// ²¢ÇÒ½«ÊÐÌí¼Óµ½¼¯ºÏÖÐ
+					// ï¿½ï¿½ï¿½Ò½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					listcity.add(citybean);
 				}
-				// ½«Ê¡ËùÊôµÄÊÐµÄ¼¯ºÏÉèÖÃµ½Ê¡µÄ¼¯ºÏÊôÐÔÖÐ
+				// ï¿½ï¿½Ê¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½Ê¡ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				bean.setList(listcity);
 				mCitisDatasMap.put(objs.getString("name"), mCitiesDatas);
-				// ×îºó½«ËùÓÐÊ¡Ìí¼Óµ½´æ·ÅÊ¡µÄ¼¯ºÏÖÐ
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¡ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½Ê¡ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 				list.add(bean);
 				mJsonObj=null;
 			}
@@ -251,7 +252,7 @@ public class CitiesActivity extends Activity implements OnWheelChangedListener {
 	}
 
 	/**
-	 * ´ÓassertÎÄ¼þ¼ÐÖÐ¶ÁÈ¡Ê¡ÊÐÇøµÄjsonÎÄ¼þ£¬È»ºó×ª»¯Îªjson¶ÔÏó
+	 * ï¿½ï¿½assertï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½È¡Ê¡ï¿½ï¿½ï¿½ï¿½ï¿½jsonï¿½Ä¼ï¿½ï¿½ï¿½È»ï¿½ï¿½×ªï¿½ï¿½Îªjsonï¿½ï¿½ï¿½ï¿½
 	 */
 	private void initJsonData() {
 		try {
@@ -272,7 +273,7 @@ public class CitiesActivity extends Activity implements OnWheelChangedListener {
 	}
 
 	/**
-	 * changeÊÂ¼þµÄ´¦Àí
+	 * changeï¿½Â¼ï¿½ï¿½Ä´ï¿½ï¿½ï¿½
 	 */
 	@Override
 	public void onChanged(WheelView wheel, int oldValue, int newValue) {

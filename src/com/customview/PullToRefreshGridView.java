@@ -1,12 +1,13 @@
 package com.customview;
 
-import com.activity.R;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View;
 import android.widget.GridView;
+
+import com.jf.storeapp.R;
 public class PullToRefreshGridView extends PullToRefreshAdapterViewBase<GridView> {
 
 	class InternalGridView extends GridView implements EmptyViewMethodAccessor {

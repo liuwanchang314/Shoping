@@ -2,9 +2,6 @@ package com.adapter;
 
 import java.util.List;
 
-import com.activity.R;
-import com.bean.TakeGoodsAddressBean;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -14,6 +11,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.bean.TakeGoodsAddressBean;
+import com.jf.storeapp.R;
 
 public class TakeGoodsAddressAdapter extends BaseAdapter {
 	
@@ -61,14 +61,14 @@ public class TakeGoodsAddressAdapter extends BaseAdapter {
 		else{
 			vh=(viewHolder) convertView.getTag();
 		}
-		//ÏÈÈ¡³ö±ê¼Ç£¬À´ÅÐ¶ÏÊÇ·ñÊÇÄ¬ÈÏµØÖ·
+		//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ç£ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ä¬ï¿½Ïµï¿½Ö·
 		String defaults=list.get(position).getDefaults();
 		if(defaults.equals("1")){
-			//ËµÃ÷ÊÇÄ¬ÈÏµØÖ·
+			//Ëµï¿½ï¿½ï¿½ï¿½Ä¬ï¿½Ïµï¿½Ö·
 			vh.name.setText(list.get(position).getReceive_name());
-			//Í¼±êÏÔÊ¾
+			//Í¼ï¿½ï¿½ï¿½ï¿½Ê¾
 			vh.tubiao.setVisibility(View.VISIBLE);
-			vh.address.setText("[Ä¬ÈÏ]"+list.get(position).getArea_info());
+			vh.address.setText("[Ä¬ï¿½ï¿½]"+list.get(position).getArea_info());
 			vh.phone.setText(list.get(position).getMob_phone());
 			vh.layout.setBackgroundColor(Color.GRAY);
 		}else{

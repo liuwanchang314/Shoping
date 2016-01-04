@@ -5,20 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.activity.BuyActivity;
-import com.activity.R;
-import com.bean.BuyCartBean;
-import com.bean.CompanyNoticeBean;
-import com.jsonParser.BuyCartJsonP;
-import com.lidroid.xutils.BitmapUtils;
-import com.lidroid.xutils.HttpUtils;
-import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.RequestParams;
-import com.lidroid.xutils.http.ResponseInfo;
-import com.lidroid.xutils.http.callback.RequestCallBack;
-import com.lidroid.xutils.http.client.HttpRequest;
-
-import android.R.integer;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
@@ -32,17 +18,26 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bean.BuyCartBean;
+import com.jf.storeapp.R;
+import com.lidroid.xutils.BitmapUtils;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 
 public class BuyCartAdapter extends BaseAdapter {
 	
 	private List<BuyCartBean> list;
 	private Context context;
-	private static boolean IsChange=false;//ÓÃÀ´¼ÇÂ¼±êÊ¾listviewµÄ²¼¾ÖÊÇ·ñÐèÒª·¢Éú¸Ä±ä
-	private static boolean IsChoise=false;//ÓÃÀ´¼ÇÂ¼±êÊ¾itemÖÐµÄµÄrandobuttonÊÇ·ñ±»Ñ¡¶¨
+	private static boolean IsChange=false;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ê¾listviewï¿½Ä²ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Ä±ï¿½
+	private static boolean IsChoise=false;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ê¾itemï¿½ÐµÄµï¿½randobuttonï¿½Ç·ï¿½Ñ¡ï¿½ï¿½
 	private static boolean istag=false;
 	private TextView total;
 	private double totalprice=0.0;
@@ -50,7 +45,7 @@ public class BuyCartAdapter extends BaseAdapter {
 	
 	Double price;
 	Double number;
-	//½¨Á¢Ò»¸ö¼¯ºÏ£¬ÓÃÀ´´æ´¢listviewµ±ÖÐ±»Ñ¡ÖÐµÄÉÌÆ·µÄÏÂ±ê
+	//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ï£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ´¢listviewï¿½ï¿½ï¿½Ð±ï¿½Ñ¡ï¿½Ðµï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½Â±ï¿½
 	private List<Map<String,BuyCartBean>> newlists=new ArrayList<Map<String,BuyCartBean>>();
 	
 	public List<Map<String, BuyCartBean>> getNewlists() {
@@ -77,7 +72,7 @@ public class BuyCartAdapter extends BaseAdapter {
 		this.total=total;
 		initDate();
 	}
-	// ³õÊ¼»¯isSelectedµÄÊý¾Ý  
+	// ï¿½ï¿½Ê¼ï¿½ï¿½isSelectedï¿½ï¿½ï¿½ï¿½ï¿½  
     private void initDate() {  
         for (int i = 0; i < list.size(); i++) {  
             getIsSelected().put(i, false);  
@@ -91,21 +86,21 @@ public class BuyCartAdapter extends BaseAdapter {
     	BuyCartAdapter.isSelected = isSelected;  
     }  
 
-	//¸Ã·½·¨ÓÃÀ´¶¯Ì¬Í¨Öªlistview²¼¾ÖÒÔ¼°Êý¾ÝÏÔÊ¾·¢Éú¸Ä±ä
+	//ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¬Í¨Öªlistviewï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Ä±ï¿½
 	public static void isshow(){
 		IsChange=true;
 	}
 
-	//¸Ã·½·¨ÓÃÀ´¶¯Ì¬Í¨Öªlistview²¼¾ÖÒÔ¼°Êý¾ÝÏÔÊ¾·¢Éú¸Ä±ä
+	//ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¬Í¨Öªlistviewï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Ä±ï¿½
 	public static void unshow(){
 		IsChange=false;
 	}
 	
-	//ÓÃÀ´¶¯Ì¬Í¨Öª±à¼­µÄÊ±ºòrandiobuttonÊÇ·ñ±»Ñ¡¶¨
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¬Í¨Öªï¿½à¼­ï¿½ï¿½Ê±ï¿½ï¿½randiobuttonï¿½Ç·ï¿½Ñ¡ï¿½ï¿½
 	public static void isChoice(){
 		IsChoise=true;
 	}
-	//ÓÃÀ´¶¯Ì¬Í¨Öª±à¼­µÄÊ±ºòrandiobuttonÊÇ·ñ±»Ñ¡¶¨
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¬Í¨Öªï¿½à¼­ï¿½ï¿½Ê±ï¿½ï¿½randiobuttonï¿½Ç·ï¿½Ñ¡ï¿½ï¿½
 	public static void unChoice(){
 		IsChoise=false;
 	}
@@ -143,13 +138,13 @@ public class BuyCartAdapter extends BaseAdapter {
 			vhs.yanse=(TextView) convertView.findViewById(R.id.buy_yanse);
 			vhs.jiage=(TextView) convertView.findViewById(R.id.buy_jiage);
 			vhs.shuliang=(TextView) convertView.findViewById(R.id.buy_shuliang);
-			//ÏÂÃæ¿ªÊ¼»ñÈ¡ÐèÒªÒþ²ØµÄ½çÃæ
+			//ï¿½ï¿½ï¿½æ¿ªÊ¼ï¿½ï¿½È¡ï¿½ï¿½Òªï¿½ï¿½ï¿½ØµÄ½ï¿½ï¿½ï¿½
 			vhs.tubiao=(CheckBox) convertView.findViewById(R.id.buy_yincang_tubiao);
 			vhs.bitoti=(LinearLayout) convertView.findViewById(R.id.buy_yincang_biaoti);
 			vhs.anniu=(LinearLayout) convertView.findViewById(R.id.buy_yincang_anniu);
 			vhs.shanchu=(RelativeLayout) convertView.findViewById(R.id.buy_yingcang_shanchu);
 			vhs.jiageheshuliang=(RelativeLayout) convertView.findViewById(R.id.buy_yingcang_jiageheshuliang);
-			//¿ØÖÆÊýÁ¿²¿·Ö
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			vhs.add=(ImageView) convertView.findViewById(R.id.buy_jia);
 			vhs.jian=(ImageView) convertView.findViewById(R.id.buy_jian);
 			vhs.num=(TextView) convertView.findViewById(R.id.buy_num);
@@ -160,26 +155,26 @@ public class BuyCartAdapter extends BaseAdapter {
 		}
 		
 		if(IsChange){
-			//Ê×ÏÈ£¬Í¼±êÐèÒªÏÔÊ¾³öÀ´
+			//ï¿½ï¿½ï¿½È£ï¿½Í¼ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
 			BitmapUtils bitmapUtils=new BitmapUtils(context);
 			bitmapUtils.display(vhs.img,list.get(position).getGoods_image());
-			vhs.tubiao.setVisibility(View.VISIBLE);//Í¼±êÐèÒªxianshi
+			vhs.tubiao.setVisibility(View.VISIBLE);//Í¼ï¿½ï¿½ï¿½ï¿½Òªxianshi
 			vhs.tubiao.setTag(position);
 			vhs.tubiao.setChecked(getIsSelected().get(position));
 			vhs.tubiao.setOnCheckedChangeListener(new CheckBoxChangedListener());
-			vhs.bitoti.setVisibility(View.GONE);//±êÌâÐèÒªÒþ²Ø
-			vhs.anniu.setVisibility(View.VISIBLE);//°´Å¥²¿·ÖÐèÒªÏÔÊ¾
-			vhs.shanchu.setVisibility(View.VISIBLE);//ÊýÁ¿²¿·ÖÐèÒªÒþ²Ø
+			vhs.bitoti.setVisibility(View.GONE);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½
+			vhs.anniu.setVisibility(View.VISIBLE);//ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½Ê¾
+			vhs.shanchu.setVisibility(View.VISIBLE);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½
 			vhs.shanchu.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-						//É¾³ý±»µã»÷ÁË
-					Toast.makeText(context, "±»É¾³ýÁËÁË",1).show();
-					list.remove(position);//´ÓÊý¾ÝÔ´ÖÐÉ¾³ý
-					notifyDataSetChanged();//Í¨ÖªÊÊÅäÆ÷·¢Éú¸Ä±ä
-					//µ÷ÓÃ·½·¨£¬ÔÚ·þÎñÆ÷ÖÐ½øÐÐÉ¾³ýÊý¾Ý
+						//É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+					Toast.makeText(context, "ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",1).show();
+					list.remove(position);//ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½É¾ï¿½ï¿½
+					notifyDataSetChanged();//Í¨Öªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½
+					//ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½
 					getdata(list.get(position).getCart_id());
 				}
 			});
@@ -187,20 +182,20 @@ public class BuyCartAdapter extends BaseAdapter {
 			vhs.chicun.setText(list.get(position).getSpec_id());
 			vhs.yanse.setText(list.get(position).getSpec_id());
 			vhs.num.setText(list.get(position).getGoods_num());
-			//µ±¼Ó¼õ°´Å¥±»µã»÷µÄÊ±ºò£¬¿ªÊ¼·¢Éú±ä»¯
+			//ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ò£¬¿ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ä»¯
 			final TextView tv=vhs.num;
 			vhs.add.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					Toast.makeText(context, "..¼Ó.",1).show();
+					Toast.makeText(context, "..ï¿½ï¿½.",1).show();
 					int i=Integer.parseInt(tv.getText().toString());
 					i++;
 					list.get(position).setGoods_num(i+"");
 					tv.setText(i+"");
-					//µ÷ÓÃ·½·¨£¬½øÐÐÌí¼ÓÊýÁ¿
-					//Í¬Ê±µ÷ÓÃ·½·¨ÔÚ·þÎñÆ÷ÖÐ¼ÓÉÏÉÌÆ·ÊýÁ¿
+					//ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+					//Í¬Ê±ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¼ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
 					getdataadd(list.get(position).getCart_id(),1+"");
 				}
 			});
@@ -209,7 +204,7 @@ public class BuyCartAdapter extends BaseAdapter {
 							@Override
 							public void onClick(View v) {
 								// TODO Auto-generated method stub
-								Toast.makeText(context, "..¼õ..",1).show();
+								Toast.makeText(context, "..ï¿½ï¿½..",1).show();
 								int i=Integer.parseInt(tv.getText().toString());
 								if(i==1){
 									list.get(position).setGoods_num(i+"");
@@ -218,7 +213,7 @@ public class BuyCartAdapter extends BaseAdapter {
 									i--;
 									tv.setText(i+"");
 									list.get(position).setGoods_num(i+"");
-									//µ÷ÓÃ·½·¨£¬½øÐÐ¼õÈ¥ÊýÁ¿
+									//ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¼ï¿½È¥ï¿½ï¿½ï¿½ï¿½
 									getdatajianqu(list.get(position).getCart_id(),1+"");
 								}
 								
@@ -226,10 +221,10 @@ public class BuyCartAdapter extends BaseAdapter {
 						});
 			
 		}else{
-			//Ä¬ÈÏÎªfalse£¬Ò²¾ÍÊÇ½çÃæÕý³£ÏÔÊ¾	
-			vhs.tubiao.setVisibility(View.GONE);//Í¼±êÐèÒªÒþ²Ø
-			vhs.bitoti.setVisibility(View.VISIBLE);//±êÌâÐèÒªÏÔÊ¾
-			vhs.anniu.setVisibility(View.GONE);//°´Å¥²¿·ÖÐèÒªÒþ²Ø£»
+			//Ä¬ï¿½ï¿½Îªfalseï¿½ï¿½Ò²ï¿½ï¿½ï¿½Ç½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾	
+			vhs.tubiao.setVisibility(View.GONE);//Í¼ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½
+			vhs.bitoti.setVisibility(View.VISIBLE);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½Ê¾
+			vhs.anniu.setVisibility(View.GONE);//ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Ø£ï¿½
 			vhs.shanchu.setVisibility(View.GONE);
 			vhs.jiageheshuliang.setVisibility(View.VISIBLE);
 			BitmapUtils bitmapUtils=new BitmapUtils(context);
@@ -247,10 +242,10 @@ public class BuyCartAdapter extends BaseAdapter {
 	}
 	
 	static class viewholder{
-		CheckBox tubiao;//Ñ¡ÔñÍ¼±ê
-		ImageView img;//ÉÌÆ·Í¼Æ¬
-		ImageView add,jian;//¼Ó¼õ°´Å¥
-		TextView title;//±êÌâ
+		CheckBox tubiao;//Ñ¡ï¿½ï¿½Í¼ï¿½ï¿½
+		ImageView img;//ï¿½ï¿½Æ·Í¼Æ¬
+		ImageView add,jian;//ï¿½Ó¼ï¿½ï¿½ï¿½Å¥
+		TextView title;//ï¿½ï¿½ï¿½ï¿½
 		TextView chicun,yanse;
 		TextView jiage;
 		TextView num;
@@ -261,11 +256,11 @@ public class BuyCartAdapter extends BaseAdapter {
 		RelativeLayout jiageheshuliang;
 	}
 	
-	//»ñÈ¡Êý¾Ý
+	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½
 		private void getdata(String id) {
 			// TODO Auto-generated method stub
 			RequestParams params = new RequestParams();
-			// Ö»°üº¬×Ö·û´®²ÎÊýÊ±Ä¬ÈÏÊ¹ÓÃBodyParamsEntity£¬
+			// Ö»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ê±Ä¬ï¿½ï¿½Ê¹ï¿½ï¿½BodyParamsEntityï¿½ï¿½
 			params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
 			params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
 			params.addBodyParameter("type", "order");
@@ -276,7 +271,7 @@ public class BuyCartAdapter extends BaseAdapter {
 
 			        @Override
 			        public void onStart() {
-			        	//¿ªÊ¼ÇëÇó
+			        	//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 			        }
 
 			        @Override
@@ -288,9 +283,9 @@ public class BuyCartAdapter extends BaseAdapter {
 
 			        @Override
 			        public void onSuccess(ResponseInfo<String> responseInfo) {
-			        	//ÇëÇó³É¹¦
+			        	//ï¿½ï¿½ï¿½ï¿½É¹ï¿½
 			        	String str=responseInfo.result;
-			        	Log.i("É¾³ýµôÁËÊý¾ÝÂð", str);
+			        	Log.i("É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", str);
 			        }
 
 			        @Override
@@ -300,7 +295,7 @@ public class BuyCartAdapter extends BaseAdapter {
 		}
 		
 		
-		//CheckBoxÑ¡Ôñ¸Ä±ä¼àÌýÆ÷
+		//CheckBoxÑ¡ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		private final class CheckBoxChangedListener implements OnCheckedChangeListener{
 			public void onCheckedChanged(CompoundButton cb, boolean flag) {
 				int position = (Integer)cb.getTag();
@@ -308,16 +303,16 @@ public class BuyCartAdapter extends BaseAdapter {
 				BuyCartBean bean = list.get(position);
 				bean.setChoosed(flag);
 //				mHandler.sendMessage(mHandler.obtainMessage(10, getTotalPrice()));
-//				//Èç¹ûËùÓÐµÄÎïÆ·È«²¿±»Ñ¡ÖÐ£¬ÔòÈ«Ñ¡°´Å¥Ò²Ä¬ÈÏ±»Ñ¡ÖÐ
+//				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½Æ·È«ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½Ð£ï¿½ï¿½ï¿½È«Ñ¡ï¿½ï¿½Å¥Ò²Ä¬ï¿½Ï±ï¿½Ñ¡ï¿½ï¿½
 //				mHandler.sendMessage(mHandler.obtainMessage(11, isAllSelected()));
 			}
 		}
 		
-		//»ñÈ¡Êý¾Ý
+		//ï¿½ï¿½È¡ï¿½ï¿½ï¿½
 		private void getdataadd(String id,String num) {
 					// TODO Auto-generated method stub
 					RequestParams params = new RequestParams();
-					// Ö»°üº¬×Ö·û´®²ÎÊýÊ±Ä¬ÈÏÊ¹ÓÃBodyParamsEntity£¬
+					// Ö»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ê±Ä¬ï¿½ï¿½Ê¹ï¿½ï¿½BodyParamsEntityï¿½ï¿½
 					params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
 					params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
 					params.addBodyParameter("type", "order");
@@ -329,7 +324,7 @@ public class BuyCartAdapter extends BaseAdapter {
 
 					        @Override
 					        public void onStart() {
-					        	//¿ªÊ¼ÇëÇó
+					        	//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 					        }
 
 					        @Override
@@ -341,9 +336,9 @@ public class BuyCartAdapter extends BaseAdapter {
 
 					        @Override
 					        public void onSuccess(ResponseInfo<String> responseInfo) {
-					        	//ÇëÇó³É¹¦
+					        	//ï¿½ï¿½ï¿½ï¿½É¹ï¿½
 					        	String str=responseInfo.result;
-					        	Log.i("Ìí¼ÓÉÏÁËÊý¾ÝÂð", str);
+					        	Log.i("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", str);
 					        }
 
 					        @Override
@@ -351,11 +346,11 @@ public class BuyCartAdapter extends BaseAdapter {
 					        }
 					});
 				}
-		//»ñÈ¡Êý¾Ý
+		//ï¿½ï¿½È¡ï¿½ï¿½ï¿½
 				private void getdatajianqu(String id,String num) {
 							// TODO Auto-generated method stub
 							RequestParams params = new RequestParams();
-							// Ö»°üº¬×Ö·û´®²ÎÊýÊ±Ä¬ÈÏÊ¹ÓÃBodyParamsEntity£¬
+							// Ö»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ê±Ä¬ï¿½ï¿½Ê¹ï¿½ï¿½BodyParamsEntityï¿½ï¿½
 							params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
 							params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
 							params.addBodyParameter("type", "order");
@@ -367,7 +362,7 @@ public class BuyCartAdapter extends BaseAdapter {
 
 							        @Override
 							        public void onStart() {
-							        	//¿ªÊ¼ÇëÇó
+							        	//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 							        }
 
 							        @Override
@@ -379,9 +374,9 @@ public class BuyCartAdapter extends BaseAdapter {
 
 							        @Override
 							        public void onSuccess(ResponseInfo<String> responseInfo) {
-							        	//ÇëÇó³É¹¦
+							        	//ï¿½ï¿½ï¿½ï¿½É¹ï¿½
 							        	String str=responseInfo.result;
-							        	Log.i("Ìí¼ÓÉÏÁËÊý¾ÝÂð", str);
+							        	Log.i("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", str);
 							        }
 
 							        @Override

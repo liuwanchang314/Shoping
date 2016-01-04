@@ -2,15 +2,6 @@ package com.adapter;
 
 import java.util.List;
 
-import com.activity.R;
-import com.bean.BillBean;
-import com.lidroid.xutils.HttpUtils;
-import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.RequestParams;
-import com.lidroid.xutils.http.ResponseInfo;
-import com.lidroid.xutils.http.callback.RequestCallBack;
-import com.lidroid.xutils.http.client.HttpRequest;
-
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +11,15 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bean.BillBean;
+import com.jf.storeapp.R;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 
 public class BillAdapter extends BaseAdapter {
 	
@@ -94,7 +94,7 @@ public class BillAdapter extends BaseAdapter {
 	private void delete(String id) {
 		// TODO Auto-generated method stub
 		RequestParams params = new RequestParams();
-		// Ö»°üº¬×Ö·û´®²ÎÊýÊ±Ä¬ÈÏÊ¹ÓÃBodyParamsEntity£¬
+		// Ö»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ê±Ä¬ï¿½ï¿½Ê¹ï¿½ï¿½BodyParamsEntityï¿½ï¿½
 		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
 		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
 		params.addBodyParameter("type", "user");
@@ -105,7 +105,7 @@ public class BillAdapter extends BaseAdapter {
 
 		        @Override
 		        public void onStart() {
-		        	//¿ªÊ¼ÇëÇó
+		        	//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 		        }
 
 		        @Override
@@ -117,9 +117,9 @@ public class BillAdapter extends BaseAdapter {
 
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
-		        	//ÇëÇó³É¹¦
+		        	//ï¿½ï¿½ï¿½ï¿½É¹ï¿½
 		        	String str=responseInfo.result;
-		        	Log.i("É¾³ýµôÁËÊý¾ÝÂð", str);
+		        	Log.i("É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", str);
 		        }
 
 		        @Override

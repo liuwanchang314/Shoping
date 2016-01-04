@@ -2,7 +2,7 @@ package com.Extension;
 
 import java.lang.reflect.Field;
 
-import com.activity.IndexActivity.NotifyPageChanged;
+import com.jf.storeapp.activity.IndexActivity.NotifyPageChanged;
 
 import android.content.Context;
 import android.os.Handler;

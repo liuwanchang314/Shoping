@@ -1,6 +1,6 @@
 package com.Extension;
 
-import com.activity.R;
+
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -17,6 +17,8 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+
+import com.jf.storeapp.R;
 
 public class RoundImageView extends ImageView {
 	private int mBorderThickness = 0;

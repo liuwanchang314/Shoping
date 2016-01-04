@@ -2,26 +2,17 @@ package com.adapter;
 
 import java.util.List;
 
-import com.activity.R;
-import com.bean.BillBean;
-import com.bean.ComplaintBean;
-import com.lidroid.xutils.HttpUtils;
-import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.RequestParams;
-import com.lidroid.xutils.http.ResponseInfo;
-import com.lidroid.xutils.http.callback.RequestCallBack;
-import com.lidroid.xutils.http.client.HttpRequest;
-
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bean.ComplaintBean;
+import com.jf.storeapp.R;
 
 public class ComplaintAdapter extends BaseAdapter {
 	
@@ -78,7 +69,7 @@ public class ComplaintAdapter extends BaseAdapter {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Toast.makeText(context, "²é¿´ÏêÇé",1).show();
+				Toast.makeText(context, "ï¿½é¿´ï¿½ï¿½ï¿½ï¿½",1).show();
 			}
 		});
 		return convertView;

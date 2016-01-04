@@ -2,23 +2,13 @@ package com.other;
 
 import java.util.List;
 import java.util.Map;
-import java.util.zip.Inflater;
-
-import com.activity.Product_infoActivity;
-import com.activity.R;
-import com.adapter.indexListviewAdapter;
-import com.customview.MyGridView;
-import com.customview.Mylistview;
-import com.utils.StringManager;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
-import android.opengl.Visibility;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -28,6 +18,12 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.adapter.indexListviewAdapter;
+import com.customview.MyGridView;
+import com.jf.storeapp.R;
+import com.jf.storeapp.activity.Product_infoActivity;
+import com.utils.StringManager;
 
 public class index_product_item extends RelativeLayout {
 

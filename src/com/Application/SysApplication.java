@@ -5,7 +5,12 @@ import java.util.List;
 
 
 
+
+
 import com.Model.UserInfo;
+import com.jf.storeapp.CommonConstants;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import android.app.Activity;
 import android.app.Application;
@@ -22,6 +27,13 @@ public class SysApplication extends Application {
 	
 	private boolean  islogin = false;
 	
+@Override
+public void onCreate() {
+	// TODO Auto-generated method stub
+	super.onCreate();
+	IWXAPI api = WXAPIFactory.createWXAPI(this, CommonConstants.WXAPP_ID);
+	api.registerApp(CommonConstants.WXAPP_ID);
+}
 	
 	public boolean getIsLogin(){
 		return islogin;

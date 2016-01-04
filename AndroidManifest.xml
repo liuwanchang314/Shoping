@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.activity"
+    package="com.jf.storeapp"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -26,7 +26,21 @@
         android:name="com.baidu.lbsapi.API_KEY"  
         android:value="ILBma1GqS3whAbMzcyZLFzFg" />  
         
+        <!-- 支付宝 -->
+        <activity 
+            android:name="com.pay.ali.PayDemoActivity">
+             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         
+         <!-- 微信回调页面 -->
+        <activity 
+            android:name=".wxapi.WXEntryActicity"
+            android:label="@string/app_name"
+            android:exported="true"></activity>
         <!-- Ping++ sdk -->
 <activity
     android:name="com.pingplusplus.android.PaymentActivity"
@@ -58,132 +72,128 @@
 <!-- ping++ -->
         
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/app_name" 
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"
             >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+           
         </activity>
         <activity
-            android:name=".IndexActivity"
+            android:name=".activity.IndexActivity"
             android:label="@string/title_activity_index" >
         </activity>
         <activity
-            android:name=".ShopsActivity"
+            android:name=".activity.ShopsActivity"
             android:label="@string/title_activity_shops" >
         </activity>
         <activity
-            android:name=".BuyActivity"
+            android:name=".activity.BuyActivity"
             android:label="@string/title_activity_buy" >
         </activity>
         <activity
-            android:name=".UserActivity"
+            android:name=".activity.UserActivity"
             android:label="@string/title_activity_user" >
         </activity>
         <activity
-            android:name=".CarouselActivity"
+            android:name=".activity.CarouselActivity"
             android:label="a" >
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
         <activity
-            android:name=".RetrieveActivity"
+            android:name=".activity.activityRetrieveActivity"
             android:label="@string/title_activity_retrieve" >
         </activity>
         <activity
-            android:name=".EditPwdActivity"
+            android:name=".activity.EditPwdActivity"
             android:label="@string/title_activity_edit_pwd" >
         </activity>
         <activity
-            android:name=".FinanInfoActivity"
+            android:name=".activity.FinanInfoActivity"
             android:label="@string/title_activity_finan_info" >
         </activity>
         <activity
-            android:name=".RegnActivity"
+            android:name=".activity.RegnActivity"
             android:label="@string/title_activity_regn" >
         </activity>
         <activity
-            android:name=".Product_infoActivity"
+            android:name=".activity.Product_infoActivity"
             android:label="@string/title_activity_product_info" >
         </activity>
         <activity
-            android:name=".Product_info_itemActivity"
+            android:name=".activity.Product_info_itemActivity"
             android:label="@string/title_activity_product_info_item" >
         </activity>
         <!-- 公司公告 -->
         <activity 
-            android:name=".CompanyNoticeActivity"
+            android:name=".activity.CompanyNoticeActivity"
             ></activity>
         <!--公告详情  -->
         <activity 
-            android:name=".DynamicDetailsActivity"
+            android:name=".activity.DynamicDetailsActivity"
             ></activity>
         <!-- 充值 -->
         <activity 
-            android:name=".RechargeActivity"
+            android:name=".activity.RechargeActivity"
             ></activity>
         <!--订单  -->
         <activity 
-            android:name=".OrderActivity"
+            android:name=".activity.OrderActivity"
             ></activity>
         <!-- 个人资料 -->
         <activity 
-            android:name=".PersonDataActivity"
+            android:name=".activity.PersonDataActivity"
             ></activity>
         <!-- 管理收货地址 -->
         <activity 
-            android:name=".TakeGoodsAddressActivity"
+            android:name=".activity.TakeGoodsAddressActivity"
             ></activity>
         <!-- 提现界面 -->
         <activity 
-            android:name=".WithDrawAcivity"
+            android:name=".activity.WithDrawAcivity"
             android:windowSoftInputMode="stateUnchanged"
             ></activity>
         <!-- 公司简介详情 -->
         <activity 
-            android:name=".CompanyInfoActivity"
+            android:name=".activity.CompanyInfoActivity"
             ></activity>
         <!-- 产品分类详情 -->
         <activity 
-            android:name=".ProductClassNumberActivity"
+            android:name=".activity.ProductClassNumberActivity"
             ></activity>
         <!-- 下架公告界面 -->
         <activity 
-            android:name=".SoldOutActivity"
+            android:name=".activity.SoldOutActivity"
             ></activity>
         <!-- 全部商品界面 -->
         <activity 
-            android:name=".AllProductActivity"
+            android:name=".activity.AllProductActivity"
             ></activity>
         <!-- 支付密码找回界面 -->
         <activity 
-            android:name=".PayPassWordFindBackActivity"
+            android:name=".activity.PayPassWordFindBackActivity"
             android:windowSoftInputMode="stateUnchanged"
             ></activity>
         <!-- 修改安全信息界面 -->
         <activity 
-            android:name=".ChangeSafetyActivity"
+            android:name=".activity.ChangeSafetyActivity"
             android:windowSoftInputMode="stateUnchanged"
             ></activity>
         <!--二维码界面  -->
         <activity 
-            android:name=".TwoDimensionCodeActivity"
+            android:name=".activity.TwoDimensionCodeActivity"
             ></activity>
         <!-- 新建 收货地址界面-->
         <activity 
-            android:name=".NewTakeOverGoodsAddress"
+            android:name=".activity.NewTakeOverGoodsAddress"
             android:windowSoftInputMode="stateUnchanged"
             ></activity>
         <!-- 确认支付界面 -->
         <activity 
-            android:name=".PayMoneyActivity"
+            android:name=".activity.PayMoneyActivity"
             android:windowSoftInputMode="adjustPan"
             ></activity>
         <!-- 选择省市县界面 -->
@@ -192,50 +202,46 @@
             ></activity>
         <!-- 修改地址界面 -->
         <activity 
-            android:name=".ChangeTakeGoodsAddressActivity"
+            android:name=".activity.ChangeTakeGoodsAddressActivity"
             ></activity>
         <!-- 发票信息界面 -->
         <activity 
-            android:name=".BillActivity"
+            android:name=".activity.BillActivity"
             android:windowSoftInputMode="stateUnchanged"
             ></activity>
-        <!-- 微信回调页面 -->
-        <activity 
-            android:name="com.activity.wxapi.WXEntryActicity"
-            android:label="@string/app_name"
-            android:exported="true"></activity>
+       
         <!-- 商家发货界面 -->
         <activity 
-            android:name=".ShangJiaSendGoodsActivity"
+            android:name=".activity.ShangJiaSendGoodsActivity"
             ></activity>
         
 
         <!-- 订单界面 -->
         <activity 
-            android:name=".ZJorderActivity"
+            android:name=".activity.ZJorderActivity"
             ></activity>
         <!-- 支付界面 -->
         <activity 
-            android:name=".PayForActivity"
+            android:name=".activity.PayForActivity"
             ></activity>
          <!-- 投诉列表界面 -->
         <activity 
-            android:name=".ComplaintActivity"
+            android:name=".activity.ComplaintActivity"
             ></activity>
         <activity 
-            android:name=".oederactivity1"
+            android:name=".activity.oederactivity1"
             ></activity>
           <activity 
-            android:name=".oederactivity2"
+            android:name=".activity.oederactivity2"
             ></activity>
            <activity 
-            android:name=".oederactivity3"
+            android:name=".activity.oederactivity3"
             ></activity>
            <activity 
-            android:name=".oederactivity4"
+            android:name=".activity.oederactivity4"
             ></activity>
            <activity 
-            android:name=".oederactivity5"
+            android:name=".activity.oederactivity5"
             ></activity>
         <!-- QZONE -->
         <activity

@@ -2,26 +2,17 @@ package com.adapter;
 
 import java.util.List;
 
-import com.activity.R;
-import com.bean.BillBean;
-import com.bean.ShangjiazengpingBean;
-import com.lidroid.xutils.BitmapUtils;
-import com.lidroid.xutils.HttpUtils;
-import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.RequestParams;
-import com.lidroid.xutils.http.ResponseInfo;
-import com.lidroid.xutils.http.callback.RequestCallBack;
-import com.lidroid.xutils.http.client.HttpRequest;
-
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bean.ShangjiazengpingBean;
+import com.jf.storeapp.R;
+import com.lidroid.xutils.BitmapUtils;
 
 public class ShangjiazenpinAdapter extends BaseAdapter {
 	

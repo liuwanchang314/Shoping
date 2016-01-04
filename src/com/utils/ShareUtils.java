@@ -3,25 +3,24 @@ package com.utils;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
-
-
-import com.listenter.BaseUiListener;
-import com.tencent.connect.common.UIListenerManager;
-import com.tencent.connect.share.QQShare;
-import com.tencent.connect.share.QzoneShare;
-import com.tencent.mm.sdk.openapi.IWXAPI;
-import com.tencent.mm.sdk.openapi.SendMessageToWX;
-import com.tencent.mm.sdk.openapi.WXMediaMessage;
-import com.tencent.mm.sdk.openapi.WXWebpageObject;
-import com.tencent.tauth.IUiListener;
-import com.tencent.tauth.Tencent;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+
+import com.jf.storeapp.CommonConstants;
+import com.jf.storeapp.R;
+import com.listenter.BaseUiListener;
+import com.tencent.connect.share.QQShare;
+import com.tencent.connect.share.QzoneShare;
+import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
+import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
+import com.tencent.mm.sdk.modelmsg.WXWebpageObject;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
 
 public class ShareUtils {
 
@@ -70,19 +69,36 @@ public class ShareUtils {
 	
 	public static void shareWebToWX(Context context, IWXAPI api, String url,String title, String des,
 			boolean isFri){
+//		WXWebpageObject webpage = new WXWebpageObject();
+//		webpage.webpageUrl = url;
+//		WXMediaMessage msg = new WXMediaMessage(webpage);
+//		msg.title = title;
+//		msg.description = des;
+//		Bitmap thumb = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher);
+//		msg.thumbData = bmpToByteArray(thumb, true);
+//		
+//		SendMessageToWX.Req req = new SendMessageToWX.Req();
+//		req.transaction = buildTransaction("webpage");
+//		req.message = msg;
+//		req.scene = isFri ? SendMessageToWX.Req.WXSceneTimeline : SendMessageToWX.Req.WXSceneSession;
+//		api.sendReq(req);
+		
 		WXWebpageObject webpage = new WXWebpageObject();
 		webpage.webpageUrl = url;
 		WXMediaMessage msg = new WXMediaMessage(webpage);
 		msg.title = title;
 		msg.description = des;
-		Bitmap thumb = BitmapFactory.decodeResource(context.getResources(), com.activity.R.drawable.ic_launcher);
+		Bitmap thumb = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher);
 		msg.thumbData = bmpToByteArray(thumb, true);
 		
 		SendMessageToWX.Req req = new SendMessageToWX.Req();
 		req.transaction = buildTransaction("webpage");
 		req.message = msg;
 		req.scene = isFri ? SendMessageToWX.Req.WXSceneTimeline : SendMessageToWX.Req.WXSceneSession;
+		req.openId = CommonConstants.WXAPP_ID;
 		api.sendReq(req);
+		
+		
 	}
 	
 	

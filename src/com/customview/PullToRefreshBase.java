@@ -1,6 +1,6 @@
 package com.customview;
 
-import com.activity.R;
+
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
+
+import com.jf.storeapp.R;
 public abstract class PullToRefreshBase<T extends View> extends LinearLayout {
 
 	final class SmoothScrollRunnable implements Runnable {

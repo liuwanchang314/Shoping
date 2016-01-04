@@ -2,12 +2,6 @@ package com.adapter;
 
 import java.util.List;
 
-import com.activity.AllProductActivity;
-import com.activity.R;
-import com.bean.AllProductBean;
-import com.lidroid.xutils.BitmapUtils;
-import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +9,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bean.AllProductBean;
+import com.jf.storeapp.R;
+import com.jf.storeapp.activity.AllProductActivity;
+import com.lidroid.xutils.BitmapUtils;
 
 public class MyAllproductAdapter extends BaseAdapter {
 
@@ -50,7 +49,7 @@ public class MyAllproductAdapter extends BaseAdapter {
 		AllProductBean bean=list.get(position);
 		viewhlder vh=null;
 		if(convertView==null){
-			//ÏÖÔÚ¿ªÊ¼¼ÓÔØµÚÒ»ÆÁÄ»µÄÊý¾Ý
+			//ï¿½ï¿½ï¿½Ú¿ï¿½Ê¼ï¿½ï¿½ï¿½Øµï¿½Ò»ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½ï¿½
 			LayoutInflater inflater=(LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 			  if (AllProductActivity.isGridView)
 	            {
@@ -73,7 +72,7 @@ public class MyAllproductAdapter extends BaseAdapter {
 		}else{
 			vh=(viewhlder) convertView.getTag();
 		}
-		//ÕâÀï¿ªÊ¼¼ÓÔØÊý¾Ý
+		//ï¿½ï¿½ï¿½ï¿ªÊ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		bitmaputils=new BitmapUtils(context);
 		vh.price.setText(list.get(position).getPrice());
 		vh.title.setText(list.get(position).getName());
