@@ -12,6 +12,7 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.pay.ali.Ali_Pay;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -128,6 +129,10 @@ public class PayForActivity extends Activity implements OnClickListener {
 			}else if(payTAG.equals("zfb")){
 				//在这里进行相应的支付操作
 				Log.i("当前选择了支付宝支付", payTAG);
+				Ali_Pay ali_Pay = new Ali_Pay(PayForActivity.this);
+//				String []sa = price.split(".");
+//				int p = Integer.parseInt(sa[0])*100+Integer.parseInt(sa[1]);
+				ali_Pay.pay("支付", mOrderNum.getText().toString(), price);
 			}else if(payTAG.equals("cft")){
 				//财付通的操作,这里到时候需要换一张图片
 				Log.i("当前选择了财付通支付", payTAG);

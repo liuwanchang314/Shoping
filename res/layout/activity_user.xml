@@ -497,7 +497,7 @@
 
 
                 <ImageView
-                    android:id="@+id/right3"
+                    android:id="@+id/right31"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
                     android:layout_alignParentRight="true"

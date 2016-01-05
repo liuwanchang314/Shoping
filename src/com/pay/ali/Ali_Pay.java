@@ -7,7 +7,9 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,34 +22,50 @@ import android.widget.Toast;
 import com.alipay.sdk.app.PayTask;
 import com.jf.storeapp.R;
 
-public class PayDemoActivity extends FragmentActivity {
+public class Ali_Pay {
 
+	
 	// 商户PID
 	public static final String PARTNER = "2088301949475552";
 	// 商户收款账号
 	public static final String SELLER = "tonyhyf@gmail.com";
 	// 商户私钥，pkcs8格式
-	public static final String RSA_PRIVATE = "MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgE"
-			+ "AAoGBAMiAec6fsssguUoRN3oEVEnQaqBLZjeafXAxCbKH3MTJaXPmnXOtqFFqFtcB8J9KqyFI1+o6YBDNId"
-			+ "FWMKqOwDDWPKqtdo90oGav3QMikjGYjIpe/gYYCQ/In/oVMVj326GmKrSpp0P+5LNCx59ajRpO8/"
-			+ "/rnOLd6h/tNxnfahanAgMBAAECgYEAusouMFfJGsIWvLEDbPIhkE7RNxpnVP/hQqb8sM0v2EkHrAk5w"
-			+ "G4VNBvQwWe2QsAuY6jYNgdCPgTNL5fLaOnqkyy8IobrddtT/t3vDX96NNjHP4xfhnMbpGjkKZuljWKd"
-			+ "uK2FAh83eegrSH48TuWS87LjeZNHhr5x4C0KHeBTYekCQQD5cyrFuKua6GNG0dTj5gA67R9jcmtcD"
-			+ "WgSsuIXS0lzUeGxZC4y/y/76l6S7jBYuGkz/x2mJaZ/b3MxxcGQ01YNAkEAzcRGLTXgTMg33UOR13o"
-			+ "qXiV9cQbraHR/aPmS8kZxkJNYows3K3umNVjLhFGusstmLIY2pIpPNUOho1YYatPGgwJBANq8vnj"
-			+ "64p/Hv6ZOQZxGB1WksK2Hm9TwfJ5I9jDu982Ds6DV9B0L4IvKjHvTGdnye234+4rB4SpGFIFEo+PXL"
-			+ "dECQBiOPMW2cT8YgboxDx2E4bt8g9zSM5Oym2Xeqs+o4nKbcu96LipNRkeFgjwXN1708"
-			+ "QuNNMYsD0nO+WIxqxZMkZsCQHtS+Jj/LCnQZgLKxXZAllxqSTlBln2YnBgk6HqHLp8Eknx2rUX"
-			+ "hoxE1vD9tNmom6PiaZlQyukrQkp5GOMWDMkU=";
+	public static final String RSA_PRIVATE = "MIIEpAIBAAKCAQEA2JljBcEjE30M+Vw1qG9z3PL65v2KIVF7JvaAFhIwfI997jsp"
++"JKTHg4VoGd0+3twbEX2GEyMzelG4OLF9xYLdo5Z4xltipkqQPZ2XQTpxe/hxd4hG"
++"Uqx/HdfxvuNymqWTyyso3S1lTckrmxgx7w4Mv2QVSHvbqKD4mHH2iwrhjQ/w0N8g"
++"KVKFz20aJq4zbU+Xy5iBTrR6qgwcfAjZvpTL19cYou7GM6aMMCwLXxWsjy0Zyh7V"
++"L76jWwlpf6AnVabQoVLpWBN5/VTLtCRI5Bz3QmFPluRDcjYYPlL4Iaz2OoJn53Ut"
++"IHb+hMzDIOOlcaMZtK4omMGYXbtT0VaP6pVtzwIDAQABAoIBADkt/QMm4nChoYwu"
++"uIeXrJmWl3/lTNLQ5Nb7WgL5mE05wD/k5E6lJXpl/H5fdtp0drzeS0fAEjXnXt+w"
++"k4hRrNsjvQx4UYmew4dQk/6HRDA6/RFWK2Jl4UTqngoLl1SWA3cuFKKW+lhXlChk"
++"ccIvDlR0Ql4ZPHq+zAHKjBBWtgZ7w3fGcbJR70ySVNFC8m0+ZUyS35CZQ6/ak50G"
++"X78o5SVdNRju5ff6HZeXBdgvXolYQ/AVu3lFXaZPmfg4/XnQwJFTkK3jXukijxZi"
++"T956VQjVYp3+PPBLUaq1xzt+u4exaKqn4uDXXjej6rtCpWa9xeioPKdZVybEYvwx"
++"tHrSqDkCgYEA8DKZA7cDVRqxuchQd5H2Wz9TFx+2X5CnIXrhPUljIAVwanOX/1S5"
++"LO8ZTlnCUULGvMrM1hyFLHQ3YgUpwME5ljN9U6O9sufINLSqGBFxEfF9JMPOc/vU"
++"kuW5YAV7eQQHNay9lyoC90i8Qyf6tdL74CjueYaZNhoygeTvUiWb1BsCgYEA5tlY"
++"GNq4o1vxDbgzgh3kfwucMjcHoXt2xi+LAT70QoJM9Olk9+yVXe1FBsAWi7fIjQXO"
++"YpVwYG4W3+3VgSDQziUILNFZ1cFRk6ebmSTKeSYQIwVhu+Sko8/1ndUcH0LtIGIo"
++"RUPK6hWxvEgVCRvkGqiV7DAfFYLTzJpQpr7CIF0CgYBSNv9o5hud5aUvkgD47F0G"
++"noYyRAiIbVrHeufdsmDbdQElbqt4GefIGY7v4olAhzq/JCs4nkp3DNBoHJxN/dVY"
++"NAeRuVoVAoDkiXIvCslI+v96tgrUaD46iacJ1taMdXSCSr4aH6ckPSEzW1vVIIJW"
++"F6yIrCmE+zKOg23nEDhmQQKBgQDGddftFixiFKr51oBBvp0wM7UG3pRq2Y/U9g6U"
++"9aBchVTPwM8S7YvEAjWzhfRcDZYW1wUFb9/6pup3fSpuJt4cO235yclnoRkWzaNR"
++"V3XSDU0WLoxFUl3QjvpjxFC293yQuJJSaePKtvfkHDwpZpcF7CVntj8i6SRY49mu"
++"YJTX6QKBgQDVofNS4Y0SnFrcAVU87ozFkeN43SoldXEgXePPIPQQtjUF7AVI61Ao"
++"pNtqlVNdHbvPAUbcvxH/tHD/WICU+FlzjIA0z/yAtQtT3fKYLYmj/lxMUgfza5Sx"
++"Vka06Uq+Ur6YAwCxEULh+qexEqm++Rf4+BJnqI7LGD1NyE/pO6gRUg==";
 	// 支付宝公钥
-	public static final String RSA_PUBLIC = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDIgH"
-			+ "nOn7LLILlKETd6BFRJ0GqgS2Y3mn1wMQmyh9zEyWlz5p1zrahRahbXAfCfSqshSNfqOmAQzSH"
-			+ "RVjCqjsAw1jyqrXaPdKBmr90DIpIxmIyKXv4GGAkPyJ/6FTFY99uhpiq0qadD/uSzQsefWo0"
-			+ "aTvP/65zi3eof7TcZ32oWpwIDAQAB";
+	public static final String RSA_PUBLIC = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNA"
+			+ "DCBiQKBgQCnxj/9qwVfgoUh/y2W89L6BkRAFljhNhgPdyPuBV64bfQNN1"
+			+ "PjbCzkIM6qRdKBoLPXmKKMiFYnkd6rAoprih3/PrQEB/VsW8OoM8fxn67"
+			+ "UDYuyBTqA23MML9q1+ilIZwBC2AQ2UBVOrFXfFl75p6/B5KsiNG9zpgmL"
+			+ "CUYuLkxpLQIDAQAB";
 	private static final int SDK_PAY_FLAG = 1;
 
 	private static final int SDK_CHECK_FLAG = 2;
 
+	private Activity context;
 	private Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -61,18 +79,18 @@ public class PayDemoActivity extends FragmentActivity {
 
 				// 判断resultStatus 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档
 				if (TextUtils.equals(resultStatus, "9000")) {
-					Toast.makeText(PayDemoActivity.this, "支付成功",
+					Toast.makeText(context, "支付成功",
 							Toast.LENGTH_SHORT).show();
 				} else {
 					// 判断resultStatus 为非“9000”则代表可能支付失败
 					// “8000”代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
 					if (TextUtils.equals(resultStatus, "8000")) {
-						Toast.makeText(PayDemoActivity.this, "支付结果确认中",
+						Toast.makeText(context, "支付结果确认中",
 								Toast.LENGTH_SHORT).show();
 
 					} else {
 						// 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
-						Toast.makeText(PayDemoActivity.this, "支付失败",
+						Toast.makeText(context, "支付失败",
 								Toast.LENGTH_SHORT).show();
 
 					}
@@ -80,7 +98,7 @@ public class PayDemoActivity extends FragmentActivity {
 				break;
 			}
 			case SDK_CHECK_FLAG: {
-				Toast.makeText(PayDemoActivity.this, "检查结果为：" + msg.obj,
+				Toast.makeText(context, "检查结果为：" + msg.obj,
 						Toast.LENGTH_SHORT).show();
 				break;
 			}
@@ -90,34 +108,19 @@ public class PayDemoActivity extends FragmentActivity {
 		};
 	};
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.pay_main);
+	public Ali_Pay(Context context){
+		this.context = (Activity) context;
 	}
+
 
 	/**
 	 * call alipay sdk pay. 调用SDK支付
 	 * 
 	 */
-	public void pay(View v) {
-		if (TextUtils.isEmpty(PARTNER) || TextUtils.isEmpty(RSA_PRIVATE)
-				|| TextUtils.isEmpty(SELLER)) {
-			new AlertDialog.Builder(this)
-					.setTitle("警告")
-					.setMessage("需要配置PARTNER | RSA_PRIVATE| SELLER")
-					.setPositiveButton("确定",
-							new DialogInterface.OnClickListener() {
-								public void onClick(
-										DialogInterface dialoginterface, int i) {
-									//
-									finish();
-								}
-							}).show();
-			return;
-		}
+	public void pay(String subject,String body,String price) {
+		
 		// 订单
-		String orderInfo = getOrderInfo("测试的商品", "该测试商品的详细描述", "0.01");
+		String orderInfo = getOrderInfo(subject, body, price);
 
 		// 对订单做RSA 签名
 		String sign = sign(orderInfo);
@@ -137,7 +140,7 @@ public class PayDemoActivity extends FragmentActivity {
 			@Override
 			public void run() {
 				// 构造PayTask 对象
-				PayTask alipay = new PayTask(PayDemoActivity.this);
+				PayTask alipay = new PayTask(context);
 				// 调用支付接口，获取支付结果
 				String result = alipay.pay(payInfo);
 
@@ -164,7 +167,7 @@ public class PayDemoActivity extends FragmentActivity {
 			@Override
 			public void run() {
 				// 构造PayTask 对象
-				PayTask payTask = new PayTask(PayDemoActivity.this);
+				PayTask payTask = new PayTask(context);
 				// 调用查询接口，获取查询结果
 				boolean isExist = payTask.checkAccountIfExist();
 
@@ -185,9 +188,9 @@ public class PayDemoActivity extends FragmentActivity {
 	 * 
 	 */
 	public void getSDKVersion() {
-		PayTask payTask = new PayTask(this);
+		PayTask payTask = new PayTask(context);
 		String version = payTask.getVersion();
-		Toast.makeText(this, version, Toast.LENGTH_SHORT).show();
+		Toast.makeText(context, version, Toast.LENGTH_SHORT).show();
 	}
 
 	/**

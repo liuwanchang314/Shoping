@@ -17,7 +17,6 @@ import com.Extension.DownLoadImage;
 import com.adapter.indexListviewAdapter;
 import com.jf.storeapp.R;
 import com.other.index_product_item;
-import com.pay.ali.PayDemoActivity;
 import com.utils.StringManager;
 
 import android.app.Activity;
@@ -226,10 +225,9 @@ public class IndexActivity extends Activity implements OnPageChangeListener {
 					startActivity(intent);
 					break;
 				case R.id.index_tab_rb_4://下架公告
-					startActivity(new Intent(IndexActivity.this, PayDemoActivity.class));
 					
 					Toast.makeText(IndexActivity.this,"下架公告",Toast.LENGTH_SHORT).show();
-//					startActivity(new Intent(IndexActivity.this,SoldOutActivity.class));
+					startActivity(new Intent(IndexActivity.this,SoldOutActivity.class));
 					break;
 				default:
 					break;

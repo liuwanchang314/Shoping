@@ -10,7 +10,7 @@
         android:scaleType="center"
         android:src="@drawable/bg_checkbox_icon_menu_0"
         tools:ignore="ContentDescription" />
-  <!-- <TextView 
+   <TextView 
         android:id="@+id/editText_prepay_id"
         android:layout_height="60dp"
         android:layout_width="60dp"/>
@@ -29,7 +29,7 @@
         android:layout_height="60dp"
         android:layout_width="60dp"
         android:text="生成签名参数"/>
-  --> 
+ 
 <include 
     layout="@layout/pay_external"/>
 
