@@ -94,7 +94,6 @@ public class BillAdapter extends BaseAdapter {
 	private void delete(String id) {
 		// TODO Auto-generated method stub
 		RequestParams params = new RequestParams();
-		// ֻ���ַ����ʱĬ��ʹ��BodyParamsEntity��
 		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
 		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
 		params.addBodyParameter("type", "user");
@@ -105,7 +104,6 @@ public class BillAdapter extends BaseAdapter {
 
 		        @Override
 		        public void onStart() {
-		        	//��ʼ����
 		        }
 
 		        @Override
@@ -117,9 +115,7 @@ public class BillAdapter extends BaseAdapter {
 
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
-		        	//����ɹ�
 		        	String str=responseInfo.result;
-		        	Log.i("ɾ����������", str);
 		        }
 
 		        @Override

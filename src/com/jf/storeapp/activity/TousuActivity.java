@@ -1,6 +1,5 @@
 package com.jf.storeapp.activity;
 
-import com.Application.SysApplication;
 import com.bean.OrderBean;
 import com.jf.storeapp.R;
 import com.lidroid.xutils.HttpUtils;

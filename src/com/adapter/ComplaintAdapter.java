@@ -3,6 +3,7 @@ package com.adapter;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.bean.ComplaintBean;
 import com.jf.storeapp.R;
+import com.jf.storeapp.activity.TousuXiangqingActivity;
 
 public class ComplaintAdapter extends BaseAdapter {
 	
@@ -69,7 +71,8 @@ public class ComplaintAdapter extends BaseAdapter {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Toast.makeText(context, "�鿴����",1).show();
+				Intent intent=new Intent(context, TousuXiangqingActivity.class);
+				context.startActivity(intent);
 			}
 		});
 		return convertView;

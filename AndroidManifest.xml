@@ -29,11 +29,6 @@
         <!-- 支付宝 -->
         <activity 
             android:name="com.pay.ali.PayDemoActivity">
-             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         
          <!-- 微信回调页面 -->
@@ -77,7 +72,7 @@
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"
             >
-           
+          
         </activity>
         <activity
             android:name=".activity.IndexActivity"
@@ -222,51 +217,66 @@
             ></activity>
         <!-- 支付界面 -->
         <activity 
-            android:name=".PayForActivity"
+            android:name=".activity.PayForActivity"
             ></activity>
          <!-- 投诉列表界面 -->
         <activity 
-            android:name=".ComplaintActivity"
+            android:name=".activity.ComplaintActivity"
             ></activity>
         <activity 
-            android:name=".oederactivity1"
+            android:name=".activity.oederactivity1"
             ></activity>
           <activity 
-            android:name=".oederactivity2"
+            android:name=".activity.oederactivity2"
             ></activity>
            <activity 
-            android:name=".oederactivity3"
+            android:name=".activity.oederactivity3"
             ></activity>
            <activity 
-            android:name=".oederactivity4"
+            android:name=".activity.oederactivity4"
             ></activity>
            <activity 
-            android:name=".oederactivity5"
+            android:name=".activity.oederactivity5"
             ></activity>
            <!-- 查看物流详情界面 -->
            <activity 
-               android:name=".CheckLogisticsActivity"
+               android:name=".activity.CheckLogisticsActivity"
                ></activity>
            <!-- 确认收货界面 -->
            <activity 
-               android:name=".SureTakeGoodsActivity"
+               android:name=".activity.SureTakeGoodsActivity"
                ></activity>
            <!-- 投诉 -->
            <activity 
-               android:name=".TousuActivity"
+               android:name=".activity.TousuActivity"
                android:windowSoftInputMode="stateUnchanged"
                ></activity>
            <!-- 发表评价界面 -->
            <activity 
-               android:name=".FaBiaoPingJiaActivity"
+               android:name=".activity.FaBiaoPingJiaActivity"
                ></activity>
            <!-- 订单详情界面 -->
            <activity 
-               android:name=".DingDanXQActivity"
+               android:name=".activity.DingDanXQActivity"
                ></activity>
            <!-- 退款与售后界面 -->
            <activity 
-               android:name=".TuiKuanYuSHActivity"
+               android:name=".activity.TuiKuanYuSHActivity"
+               ></activity>
+           <activity 
+               android:name=".activity.TousuXiangqingActivity"
+               ></activity>
+           <activity 
+               android:name=".activity.ViewPagerActivity"
+               >
+               <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+           </activity>
+           <activity 
+               android:name=".activity.activity_qidongye"
                ></activity>
         <!-- QZONE -->
         <activity
