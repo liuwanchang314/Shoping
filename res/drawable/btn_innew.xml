@@ -8,6 +8,7 @@
             <!--
 	        	按钮四个圆角
 	        	radius:半径            -->
+            <solid android:color="#00000000"/>
             <corners android:bottomLeftRadius="5px" android:bottomRightRadius="5px" android:topLeftRadius="5px" android:topRightRadius="5px" />
 
                     <!-- 按钮文字和边缘距离(内边距) -->
@@ -21,6 +22,7 @@
 	        	按钮四个圆角
 	        	radius:半径
             -->
+            <solid android:color="#00000000"/>
             <corners android:bottomLeftRadius="5px" android:bottomRightRadius="5px" android:topLeftRadius="5px" android:topRightRadius="5px" />
 
                     <!-- 按钮文字和边缘距离(内边距) -->
@@ -34,6 +36,7 @@
 	        	按钮四个圆角
 	        	radius:半径
             -->
+            <solid android:color="#00000000"/>
             <corners android:bottomLeftRadius="5px" android:bottomRightRadius="5px" android:topLeftRadius="5px" android:topRightRadius="5px" />
 
             <!-- 按钮文字和边缘距离(内边距) -->
