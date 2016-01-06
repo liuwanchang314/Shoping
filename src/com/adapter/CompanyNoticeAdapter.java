@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.alljf.jf.R;
 import com.bean.CompanyNoticeBean;
-import com.jf.storeapp.R;
 
 public class CompanyNoticeAdapter extends BaseAdapter {
 	

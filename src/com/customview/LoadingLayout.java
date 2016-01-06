@@ -15,7 +15,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.jf.storeapp.R;
+import com.alljf.jf.R;
+
 public class LoadingLayout extends FrameLayout {
 
 	static final int DEFAULT_ROTATION_ANIMATION_DURATION = 150;

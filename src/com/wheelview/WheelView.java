@@ -35,7 +35,9 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
 
-import com.jf.storeapp.R;
+import com.alljf.jf.R;
+
+
 
 /**
  * Numeric wheel view.

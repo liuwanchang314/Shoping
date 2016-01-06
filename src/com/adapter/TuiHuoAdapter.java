@@ -2,10 +2,6 @@ package com.adapter;
 
 import java.util.List;
 
-import com.bean.TuikuanSHBean;
-import com.jf.storeapp.R;
-import com.lidroid.xutils.BitmapUtils;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +11,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.alljf.jf.R;
+import com.bean.TuikuanSHBean;
+import com.lidroid.xutils.BitmapUtils;
 
 /** 
  * @author ���� E-mail: 

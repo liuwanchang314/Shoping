@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jf.storeapp"
+    package="com.alljf.jf"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -73,7 +73,7 @@
 <!-- ping++ -->
         
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.alljf.jf.activity.MainActivity"
             android:label="@string/app_name" 
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"
@@ -85,120 +85,120 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.IndexActivity"
+            android:name="com.alljf.jf.activity.IndexActivity"
             android:label="@string/title_activity_index" >
         </activity>
         <activity
-            android:name=".activity.ShopsActivity"
+            android:name="com.alljf.jf.activity.ShopsActivity"
             android:label="@string/title_activity_shops" >
         </activity>
         <activity
-            android:name=".activity.BuyActivity"
+            android:name="com.alljf.jf.activity.BuyActivity"
             android:label="@string/title_activity_buy" >
         </activity>
         <activity
-            android:name=".activity.UserActivity"
+            android:name="com.alljf.jf.activity.UserActivity"
             android:label="@string/title_activity_user" >
         </activity>
         <activity
-            android:name=".activity.CarouselActivity"
+            android:name="com.alljf.jf.activity.CarouselActivity"
             android:label="a" >
         </activity>
         <activity
-            android:name=".activity.LoginActivity"
+            android:name="com.alljf.jf.activity.LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
         <activity
-            android:name=".activity.activityRetrieveActivity"
+            android:name="com.alljf.jf.activity.activityRetrieveActivity"
             android:label="@string/title_activity_retrieve" >
         </activity>
         <activity
-            android:name=".activity.EditPwdActivity"
+            android:name="com.alljf.jf.activity.EditPwdActivity"
             android:label="@string/title_activity_edit_pwd" >
         </activity>
         <activity
-            android:name=".activity.FinanInfoActivity"
+            android:name="com.alljf.jf.activity.FinanInfoActivity"
             android:label="@string/title_activity_finan_info" >
         </activity>
         <activity
-            android:name=".activity.RegnActivity"
+            android:name="com.alljf.jf.activity.RegnActivity"
             android:label="@string/title_activity_regn" >
         </activity>
         <activity
-            android:name=".activity.Product_infoActivity"
+            android:name="com.alljf.jf.activity.Product_infoActivity"
             android:label="@string/title_activity_product_info" >
         </activity>
         <activity
-            android:name=".activity.Product_info_itemActivity"
+            android:name="com.alljf.jf.activity.Product_info_itemActivity"
             android:label="@string/title_activity_product_info_item" >
         </activity>
         <!-- 公司公告 -->
         <activity 
-            android:name=".activity.CompanyNoticeActivity"
+            android:name="com.alljf.jf.activity.CompanyNoticeActivity"
             ></activity>
         <!--公告详情  -->
         <activity 
-            android:name=".activity.DynamicDetailsActivity"
+            android:name="com.alljf.jf.activity.DynamicDetailsActivity"
             ></activity>
         <!-- 充值 -->
         <activity 
-            android:name=".activity.RechargeActivity"
+            android:name="com.alljf.jf.activity.RechargeActivity"
             ></activity>
         <!--订单  -->
         <activity 
-            android:name=".activity.OrderActivity"
+            android:name="com.alljf.jf.activity.OrderActivity"
             ></activity>
         <!-- 个人资料 -->
         <activity 
-            android:name=".activity.PersonDataActivity"
+            android:name="com.alljf.jf.activity.PersonDataActivity"
             ></activity>
         <!-- 管理收货地址 -->
         <activity 
-            android:name=".activity.TakeGoodsAddressActivity"
+            android:name="com.alljf.jf.activity.TakeGoodsAddressActivity"
             ></activity>
         <!-- 提现界面 -->
         <activity 
-            android:name=".activity.WithDrawAcivity"
+            android:name="com.alljf.jf.activity.WithDrawAcivity"
             android:windowSoftInputMode="stateUnchanged"
             ></activity>
         <!-- 公司简介详情 -->
         <activity 
-            android:name=".activity.CompanyInfoActivity"
+            android:name="com.alljf.jf.activity.CompanyInfoActivity"
             ></activity>
         <!-- 产品分类详情 -->
         <activity 
-            android:name=".activity.ProductClassNumberActivity"
+            android:name="com.alljf.jf.activity.ProductClassNumberActivity"
             ></activity>
         <!-- 下架公告界面 -->
         <activity 
-            android:name=".activity.SoldOutActivity"
+            android:name="com.alljf.jf.activity.SoldOutActivity"
             ></activity>
         <!-- 全部商品界面 -->
         <activity 
-            android:name=".activity.AllProductActivity"
+            android:name="com.alljf.jf.activity.AllProductActivity"
             ></activity>
         <!-- 支付密码找回界面 -->
         <activity 
-            android:name=".activity.PayPassWordFindBackActivity"
+            android:name="com.alljf.jf.activity.PayPassWordFindBackActivity"
             android:windowSoftInputMode="stateUnchanged"
             ></activity>
         <!-- 修改安全信息界面 -->
         <activity 
-            android:name=".activity.ChangeSafetyActivity"
+            android:name="com.alljf.jf.activity.ChangeSafetyActivity"
             android:windowSoftInputMode="stateUnchanged"
             ></activity>
         <!--二维码界面  -->
         <activity 
-            android:name=".activity.TwoDimensionCodeActivity"
+            android:name="com.alljf.jf.activity.TwoDimensionCodeActivity"
             ></activity>
         <!-- 新建 收货地址界面-->
         <activity 
-            android:name=".activity.NewTakeOverGoodsAddress"
+            android:name="com.alljf.jf.activity.NewTakeOverGoodsAddress"
             android:windowSoftInputMode="stateUnchanged"
             ></activity>
         <!-- 确认支付界面 -->
         <activity 
-            android:name=".activity.PayMoneyActivity"
+            android:name="com.alljf.jf.activity.PayMoneyActivity"
             android:windowSoftInputMode="adjustPan"
             ></activity>
         <!-- 选择省市县界面 -->
@@ -207,71 +207,71 @@
             ></activity>
         <!-- 修改地址界面 -->
         <activity 
-            android:name=".activity.ChangeTakeGoodsAddressActivity"
+            android:name="com.alljf.jf.activity.ChangeTakeGoodsAddressActivity"
             ></activity>
         <!-- 发票信息界面 -->
         <activity 
-            android:name=".activity.BillActivity"
+            android:name="com.alljf.jf.activity.BillActivity"
             android:windowSoftInputMode="stateUnchanged"
             ></activity>
        
         <!-- 商家发货界面 -->
         <activity 
-            android:name=".activity.ShangJiaSendGoodsActivity"
+            android:name="com.alljf.jf.activity.ShangJiaSendGoodsActivity"
             ></activity>
         
 
         <!-- 订单界面 -->
         <activity 
-            android:name=".activity.ZJorderActivity"
+            android:name="com.alljf.jf.activity.ZJorderActivity"
             ></activity>
         <!-- 支付界面 -->
         <activity 
-            android:name=".activity.PayForActivity"
+            android:name="com.alljf.jf.activity.PayForActivity"
             ></activity>
          <!-- 投诉列表界面 -->
         <activity 
-            android:name=".activity.ComplaintActivity"
+            android:name="com.alljf.jf.activity.ComplaintActivity"
             ></activity>
         <activity 
-            android:name=".activity.oederactivity1"
+            android:name="com.alljf.jf.activity.oederactivity1"
             ></activity>
           <activity 
-            android:name=".activity.oederactivity2"
+            android:name="com.alljf.jf.activity.oederactivity2"
             ></activity>
            <activity 
-            android:name=".activity.oederactivity3"
+            android:name="com.alljf.jf.activity.oederactivity3"
             ></activity>
            <activity 
-            android:name=".activity.oederactivity4"
+            android:name="com.alljf.jf.activity.oederactivity4"
             ></activity>
            <activity 
-            android:name=".activity.oederactivity5"
+            android:name="com.alljf.jf.activity.oederactivity5"
             ></activity>
            <!-- 查看物流详情界面 -->
            <activity 
-               android:name=".activity.CheckLogisticsActivity"
+               android:name="com.alljf.jf.activity.CheckLogisticsActivity"
                ></activity>
            <!-- 确认收货界面 -->
            <activity 
-               android:name=".activity.SureTakeGoodsActivity"
+               android:name="com.alljf.jf.activity.SureTakeGoodsActivity"
                ></activity>
            <!-- 投诉 -->
            <activity 
-               android:name=".activity.TousuActivity"
+               android:name="com.alljf.jf.activity.TousuActivity"
                android:windowSoftInputMode="stateUnchanged"
                ></activity>
            <!-- 发表评价界面 -->
            <activity 
-               android:name=".activity.FaBiaoPingJiaActivity"
+               android:name="com.alljf.jf.activity.FaBiaoPingJiaActivity"
                ></activity>
            <!-- 订单详情界面 -->
            <activity 
-               android:name=".activity.DingDanXQActivity"
+               android:name="com.alljf.jf.activity.DingDanXQActivity"
                ></activity>
            <!-- 退款与售后界面 -->
            <activity 
-               android:name=".activity.TuiKuanYuSHActivity"
+               android:name="com.alljf.jf.activity.TuiKuanYuSHActivity"
                ></activity>
         <!-- QZONE -->
         <activity

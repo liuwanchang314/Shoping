@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activityLayout"
+    android:background="@android:color/transparent" >
+
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/layout_sumbitChooseImg"
+        android:background="#E9E9E9"
+        android:gravity="center"
+        android:horizontalSpacing="5dp"
+        android:numColumns="3"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:scrollbarStyle="outsideOverlay"
+        android:stretchMode="columnWidth" >
+    </GridView>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_above="@+id/layout_sumbitChooseImg"
+        android:background="#cccccc" />
+<!-- 
+    <LinearLayout
+        android:id="@+id/layout_sumbitChooseImg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_45"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/count_ChooseImg"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="0/0"
+            android:textColor="#666666"
+            android:textSize="@dimen/sp_13" />
+
+        <TextView
+            android:id="@+id/tv_sumbitChooseImg"
+            android:layout_width="@dimen/dp_70"
+            android:layout_height="@dimen/dp_25"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/dp_15"
+            android:background="@drawable/btn_change_color"
+            android:gravity="center"
+            android:text="完成"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/sp_13" />
+    </LinearLayout>
+ -->
+    <RelativeLayout
+        android:id="@+id/showImgView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" >
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#77000000" />
+
+        <ImageView
+            android:id="@+id/iv_itemIsFine"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@android:color/transparent" />
+    </RelativeLayout>
+
+</RelativeLayout>

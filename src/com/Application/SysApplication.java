@@ -10,8 +10,9 @@ import java.util.List;
 
 
 
+
 import com.Model.UserInfo;
-import com.jf.storeapp.CommonConstants;
+import com.alljf.jf.CommonConstants;
 import com.other.NetReceiver;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;

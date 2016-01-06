@@ -21,7 +21,9 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.jf.storeapp.R;
+import com.alljf.jf.R;
+
+
 
 /**
  * 

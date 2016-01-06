@@ -10,8 +10,8 @@ import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
-import com.jf.storeapp.CommonConstants;
-import com.jf.storeapp.R;
+import com.alljf.jf.CommonConstants;
+import com.alljf.jf.R;
 import com.listenter.BaseUiListener;
 import com.tencent.connect.share.QQShare;
 import com.tencent.connect.share.QzoneShare;

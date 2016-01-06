@@ -15,7 +15,8 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
 
-import com.jf.storeapp.R;
+import com.alljf.jf.R;
+
 public abstract class PullToRefreshBase<T extends View> extends LinearLayout {
 
 	final class SmoothScrollRunnable implements Runnable {

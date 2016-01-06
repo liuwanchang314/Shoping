@@ -11,8 +11,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alljf.jf.R;
 import com.bean.ComplaintBean;
-import com.jf.storeapp.R;
 
 public class ComplaintAdapter extends BaseAdapter {
 	

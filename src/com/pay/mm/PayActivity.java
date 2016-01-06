@@ -1,36 +1,36 @@
 
 package com.pay.mm;
 
-import java.io.*;
+import java.io.StringReader;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
-import java.util.*;
-
-import android.util.Xml;
-import android.widget.TextView;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.xmlpull.v1.XmlPullParser;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Xml;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
-
-
-
-import com.jf.storeapp.CommonConstants;
-import com.jf.storeapp.R;
+import com.alljf.jf.CommonConstants;
+import com.alljf.jf.R;
 import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
-
-import org.xmlpull.v1.XmlPullParser;
 
 /**
  * 微信支付
@@ -255,7 +255,7 @@ public class PayActivity extends Activity {
 			packageParams.add(new BasicNameValuePair("body", "APP pay test"));
 			packageParams.add(new BasicNameValuePair("mch_id", CommonConstants.WXSHANGHAO));
 			packageParams.add(new BasicNameValuePair("nonce_str", nonceStr));
-			packageParams.add(new BasicNameValuePair("notify_url", "http://shenghuomofang.com"));
+			packageParams.add(new BasicNameValuePair("notify_url", "http://www.91jf.com/nabin/api/wap_buy/alipay/notify_url.php"));
 			packageParams.add(new BasicNameValuePair("out_trade_no",genOutTradNo()));
 			packageParams.add(new BasicNameValuePair("spbill_create_ip",getPhoneIp()));
 			packageParams.add(new BasicNameValuePair("total_fee", "1"));

@@ -20,9 +20,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.adapter.indexListviewAdapter;
+import com.alljf.jf.R;
+import com.alljf.jf.activity.Product_infoActivity;
 import com.customview.MyGridView;
-import com.jf.storeapp.R;
-import com.jf.storeapp.activity.Product_infoActivity;
 import com.utils.StringManager;
 
 public class index_product_item extends RelativeLayout {

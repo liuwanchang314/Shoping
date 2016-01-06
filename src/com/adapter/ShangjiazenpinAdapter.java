@@ -7,12 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alljf.jf.R;
 import com.bean.ShangjiazengpingBean;
-import com.jf.storeapp.R;
 import com.lidroid.xutils.BitmapUtils;
 
 public class ShangjiazenpinAdapter extends BaseAdapter {

@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.alljf.jf.R;
 import com.bean.FinanceBean;
-import com.jf.storeapp.R;
 
 public class FinanceAdapter extends BaseAdapter {
 	

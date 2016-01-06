@@ -7,7 +7,8 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View;
 import android.widget.GridView;
 
-import com.jf.storeapp.R;
+import com.alljf.jf.R;
+
 public class PullToRefreshGridView extends PullToRefreshAdapterViewBase<GridView> {
 
 	class InternalGridView extends GridView implements EmptyViewMethodAccessor {

@@ -11,8 +11,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.jf.storeapp.CommonConstants;
-import com.jf.storeapp.R;
+import com.alljf.jf.CommonConstants;
+import com.alljf.jf.R;
 import com.lidroid.xutils.BitmapUtils;
 
 public class indexListviewAdapter extends BaseAdapter {

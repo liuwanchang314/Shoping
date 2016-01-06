@@ -2,24 +2,6 @@ package com.adapter;
 
 import java.util.List;
 
-
-
-
-
-
-import com.Application.SysApplication;
-import com.bean.BillBean;
-import com.bean.BuyCartBean;
-import com.bean.OrderBean;
-import com.jsonParser.BillJsonPaser;
-import com.lidroid.xutils.BitmapUtils;
-import com.lidroid.xutils.HttpUtils;
-import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.RequestParams;
-import com.lidroid.xutils.http.ResponseInfo;
-import com.lidroid.xutils.http.callback.RequestCallBack;
-import com.lidroid.xutils.http.client.HttpRequest;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -35,13 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.Application.SysApplication;
+import com.alljf.jf.R;
+import com.alljf.jf.activity.CheckLogisticsActivity;
+import com.alljf.jf.activity.FaBiaoPingJiaActivity;
+import com.alljf.jf.activity.PayForActivity;
+import com.alljf.jf.activity.SureTakeGoodsActivity;
+import com.alljf.jf.activity.TousuActivity;
 import com.bean.OrderBean;
-import com.jf.storeapp.R;
-import com.jf.storeapp.activity.CheckLogisticsActivity;
-import com.jf.storeapp.activity.FaBiaoPingJiaActivity;
-import com.jf.storeapp.activity.PayForActivity;
-import com.jf.storeapp.activity.SureTakeGoodsActivity;
-import com.jf.storeapp.activity.TousuActivity;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;

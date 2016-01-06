@@ -10,8 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alljf.jf.R;
 import com.bean.KuaiDiBean;
-import com.jf.storeapp.R;
 
 public class KuaiDiAdapter extends BaseAdapter {
 	

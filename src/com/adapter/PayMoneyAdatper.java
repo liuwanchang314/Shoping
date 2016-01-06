@@ -11,8 +11,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alljf.jf.R;
 import com.bean.BuyCartBean;
-import com.jf.storeapp.R;
 import com.lidroid.xutils.BitmapUtils;
 
 public class PayMoneyAdatper extends BaseAdapter {

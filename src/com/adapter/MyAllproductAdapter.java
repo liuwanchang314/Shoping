@@ -10,9 +10,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alljf.jf.R;
+import com.alljf.jf.activity.AllProductActivity;
 import com.bean.AllProductBean;
-import com.jf.storeapp.R;
-import com.jf.storeapp.activity.AllProductActivity;
 import com.lidroid.xutils.BitmapUtils;
 
 public class MyAllproductAdapter extends BaseAdapter {

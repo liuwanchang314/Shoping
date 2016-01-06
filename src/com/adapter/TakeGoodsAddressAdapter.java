@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alljf.jf.R;
 import com.bean.TakeGoodsAddressBean;
-import com.jf.storeapp.R;
 
 public class TakeGoodsAddressAdapter extends BaseAdapter {
 	

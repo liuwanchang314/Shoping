@@ -18,7 +18,8 @@ import android.graphics.drawable.NinePatchDrawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import com.jf.storeapp.R;
+import com.alljf.jf.R;
+
 
 public class RoundImageView extends ImageView {
 	private int mBorderThickness = 0;
