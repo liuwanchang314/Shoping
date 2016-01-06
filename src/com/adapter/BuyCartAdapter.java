@@ -36,16 +36,15 @@ public class BuyCartAdapter extends BaseAdapter {
 
 	private List<BuyCartBean> list;
 	private Context context;
-	private static boolean IsChange = false;// ������¼��ʾlistview�Ĳ����Ƿ���Ҫ����ı�
-	private static boolean IsChoise = false;// ������¼��ʾitem�еĵ�randobutton�Ƿ�ѡ��
+	private static boolean IsChoise = false;
 	private static boolean istag = false;
 	private TextView total;
 	private double totalprice = 0.0;
 	private static HashMap<Integer, Boolean> isSelected;
 
+	public static boolean IsChange;
 	Double price;
 	Double number;
-	// ����һ�����ϣ������洢listview���б�ѡ�е���Ʒ���±�
 	private List<Map<String, BuyCartBean>> newlists = new ArrayList<Map<String, BuyCartBean>>();
 
 	public List<Map<String, BuyCartBean>> getNewlists() {
@@ -75,7 +74,6 @@ public class BuyCartAdapter extends BaseAdapter {
 		initDate();
 	}
 
-	// ��ʼ��isSelected�����
 	private void initDate() {
 		for (int i = 0; i < list.size(); i++) {
 			getIsSelected().put(i, false);
@@ -90,22 +88,18 @@ public class BuyCartAdapter extends BaseAdapter {
 		BuyCartAdapter.isSelected = isSelected;
 	}
 
-	// �÷���������̬֪ͨlistview�����Լ������ʾ����ı�
 	public static void isshow() {
 		IsChange = true;
 	}
 
-	// �÷���������̬֪ͨlistview�����Լ������ʾ����ı�
 	public static void unshow() {
 		IsChange = false;
 	}
 
-	// ������̬֪ͨ�༭��ʱ��randiobutton�Ƿ�ѡ��
 	public static void isChoice() {
 		IsChoise = true;
 	}
 
-	// ������̬֪ͨ�༭��ʱ��randiobutton�Ƿ�ѡ��
 	public static void unChoice() {
 		IsChoise = false;
 	}
@@ -146,7 +140,6 @@ public class BuyCartAdapter extends BaseAdapter {
 			vhs.jiage = (TextView) convertView.findViewById(R.id.buy_jiage);
 			vhs.shuliang = (TextView) convertView
 					.findViewById(R.id.buy_shuliang);
-			// ���濪ʼ��ȡ��Ҫ���صĽ���
 			vhs.tubiao = (CheckBox) convertView
 					.findViewById(R.id.buy_yincang_tubiao);
 			vhs.bitoti = (LinearLayout) convertView
@@ -157,7 +150,6 @@ public class BuyCartAdapter extends BaseAdapter {
 					.findViewById(R.id.buy_yingcang_shanchu);
 			vhs.jiageheshuliang = (RelativeLayout) convertView
 					.findViewById(R.id.buy_yingcang_jiageheshuliang);
-			// ������������
 			vhs.add = (ImageView) convertView.findViewById(R.id.buy_jia);
 			vhs.jian = (ImageView) convertView.findViewById(R.id.buy_jian);
 			vhs.num = (TextView) convertView.findViewById(R.id.buy_num);
@@ -168,7 +160,6 @@ public class BuyCartAdapter extends BaseAdapter {
 		}
 
 		if (IsChange) {
-			// ���ȣ�ͼ����Ҫ��ʾ����
 			BitmapUtils bitmapUtils = new BitmapUtils(context);
 			bitmapUtils.display(vhs.img, list.get(position).getGoods_image());
 			vhs.tubiao.setVisibility(View.VISIBLE);// ͼ����Ҫxianshi
@@ -184,8 +175,6 @@ public class BuyCartAdapter extends BaseAdapter {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					// ɾ������
-					Toast.makeText(context, "��ɾ������", 1).show();
 					list.remove(position);// �����Դ��ɾ��
 					notifyDataSetChanged();// ֪ͨ����������ı�
 					// ���÷������ڷ������н���ɾ�����
@@ -193,11 +182,9 @@ public class BuyCartAdapter extends BaseAdapter {
 				}
 			});
 			vhs.jiageheshuliang.setVisibility(View.GONE);
-			// �ȵ��÷�������ȡ�ߴ����
 			vhs.chicun.setText(list.get(position).getSpec_id());
 			vhs.yanse.setText(list.get(position).getSpec_id());
 			vhs.num.setText(list.get(position).getGoods_num());
-			// ���Ӽ���ť�������ʱ�򣬿�ʼ����仯
 			final TextView tv = vhs.num;
 			vhs.add.setOnClickListener(new OnClickListener() {
 
@@ -209,8 +196,6 @@ public class BuyCartAdapter extends BaseAdapter {
 					i++;
 					list.get(position).setGoods_num(i + "");
 					tv.setText(i + "");
-					// ���÷����������������
-					// ͬʱ���÷����ڷ������м�����Ʒ����
 					getdataadd(list.get(position).getCart_id(), 1 + "");
 				}
 			});
@@ -219,7 +204,6 @@ public class BuyCartAdapter extends BaseAdapter {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					Toast.makeText(context, "..��..", 1).show();
 					int i = Integer.parseInt(tv.getText().toString());
 					if (i == 1) {
 						list.get(position).setGoods_num(i + "");
@@ -228,7 +212,6 @@ public class BuyCartAdapter extends BaseAdapter {
 						i--;
 						tv.setText(i + "");
 						list.get(position).setGoods_num(i + "");
-						// ���÷��������м�ȥ����
 						getdatajianqu(list.get(position).getCart_id(), 1 + "");
 					}
 
@@ -236,7 +219,6 @@ public class BuyCartAdapter extends BaseAdapter {
 			});
 
 		} else {
-			// Ĭ��Ϊfalse��Ҳ���ǽ�������ʾ
 			vhs.tubiao.setVisibility(View.GONE);// ͼ����Ҫ����
 			vhs.bitoti.setVisibility(View.VISIBLE);// ������Ҫ��ʾ
 			vhs.anniu.setVisibility(View.GONE);// ��ť������Ҫ���أ�
@@ -271,11 +253,9 @@ public class BuyCartAdapter extends BaseAdapter {
 		RelativeLayout jiageheshuliang;
 	}
 
-	// ��ȡ���
 	private void getdata(String id) {
 		// TODO Auto-generated method stub
 		RequestParams params = new RequestParams();
-		// ֻ���ַ����ʱĬ��ʹ��BodyParamsEntity��
 		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
 		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
 		params.addBodyParameter("type", "order");
@@ -287,7 +267,6 @@ public class BuyCartAdapter extends BaseAdapter {
 
 					@Override
 					public void onStart() {
-						// ��ʼ����
 					}
 
 					@Override
@@ -300,9 +279,7 @@ public class BuyCartAdapter extends BaseAdapter {
 
 					@Override
 					public void onSuccess(ResponseInfo<String> responseInfo) {
-						// ����ɹ�
 						String str = responseInfo.result;
-						Log.i("ɾ����������", str);
 					}
 
 					@Override
@@ -319,19 +296,12 @@ public class BuyCartAdapter extends BaseAdapter {
 			getIsSelected().put(position, flag);
 			BuyCartBean bean = list.get(position);
 			bean.setChoosed(flag);
-			// mHandler.sendMessage(mHandler.obtainMessage(10,
-			// getTotalPrice()));
-			// //������е���Ʒȫ����ѡ�У���ȫѡ��ťҲĬ�ϱ�ѡ��
-			// mHandler.sendMessage(mHandler.obtainMessage(11,
-			// isAllSelected()));
 		}
 	}
 
-	// ��ȡ���
 	private void getdataadd(String id, String num) {
 		// TODO Auto-generated method stub
 		RequestParams params = new RequestParams();
-		// ֻ���ַ����ʱĬ��ʹ��BodyParamsEntity��
 		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
 		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
 		params.addBodyParameter("type", "order");
@@ -344,7 +314,6 @@ public class BuyCartAdapter extends BaseAdapter {
 
 					@Override
 					public void onStart() {
-						// ��ʼ����
 					}
 
 					@Override
@@ -357,9 +326,7 @@ public class BuyCartAdapter extends BaseAdapter {
 
 					@Override
 					public void onSuccess(ResponseInfo<String> responseInfo) {
-						// ����ɹ�
 						String str = responseInfo.result;
-						Log.i("������������", str);
 					}
 
 					@Override
@@ -367,12 +334,9 @@ public class BuyCartAdapter extends BaseAdapter {
 					}
 				});
 	}
-
-	// ��ȡ���
 	private void getdatajianqu(String id, String num) {
 		// TODO Auto-generated method stub
 		RequestParams params = new RequestParams();
-		// ֻ���ַ����ʱĬ��ʹ��BodyParamsEntity��
 		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
 		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
 		params.addBodyParameter("type", "order");
@@ -385,7 +349,6 @@ public class BuyCartAdapter extends BaseAdapter {
 
 					@Override
 					public void onStart() {
-						// ��ʼ����
 					}
 
 					@Override
@@ -398,9 +361,7 @@ public class BuyCartAdapter extends BaseAdapter {
 
 					@Override
 					public void onSuccess(ResponseInfo<String> responseInfo) {
-						// ����ɹ�
 						String str = responseInfo.result;
-						Log.i("������������", str);
 					}
 
 					@Override
@@ -411,13 +372,11 @@ public class BuyCartAdapter extends BaseAdapter {
 
 	/**
 	 * @author JZKJ-LWC
-	 * @date : 2015-12-27 ����10:13:48
-	 * ��ݹ��id����ȡ��Ʒ�ĳߴ��Լ���ɫ
-	 */  
-	private void getdatachicun(String id,TextView chicun,TextView yanse) {
+	 * @date : 2015-12-27 ����10:13:48 ��ݹ��id����ȡ��Ʒ�ĳߴ��Լ���ɫ
+	 */
+	private void getdatachicun(String id, TextView chicun, TextView yanse) {
 		// TODO Auto-generated method stub
 		RequestParams params = new RequestParams();
-		// ֻ���ַ����ʱĬ��ʹ��BodyParamsEntity��
 		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
 		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
 		params.addBodyParameter("type", "order");
@@ -429,7 +388,6 @@ public class BuyCartAdapter extends BaseAdapter {
 
 					@Override
 					public void onStart() {
-						// ��ʼ����
 					}
 
 					@Override
@@ -444,7 +402,6 @@ public class BuyCartAdapter extends BaseAdapter {
 					public void onSuccess(ResponseInfo<String> responseInfo) {
 						// ����ɹ�
 						String str = responseInfo.result;
-						Log.i("������������", str);
 					}
 
 					@Override
@@ -452,6 +409,5 @@ public class BuyCartAdapter extends BaseAdapter {
 					}
 				});
 	}
-
 
 }

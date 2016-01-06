@@ -29,7 +29,7 @@
         <!-- 支付宝 -->
         <activity 
             android:name="com.pay.ali.PayDemoActivity">
-            
+
         </activity>
         
          <!-- 微信回调页面 -->
@@ -78,11 +78,13 @@
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"
             >
+
            <intent-filter>		
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name="com.alljf.jf.activity.IndexActivity"
@@ -259,6 +261,7 @@
            <!-- 投诉 -->
            <activity 
                android:name="com.alljf.jf.activity.TousuActivity"
+
                android:windowSoftInputMode="stateUnchanged"
                ></activity>
            <!-- 发表评价界面 -->
@@ -272,6 +275,18 @@
            <!-- 退款与售后界面 -->
            <activity 
                android:name="com.alljf.jf.activity.TuiKuanYuSHActivity"
+
+               ></activity>
+           <activity 
+               android:name=".activity.TousuXiangqingActivity"
+               ></activity>
+           <activity 
+               android:name=".activity.ViewPagerActivity"
+               >
+           </activity>
+           <activity 
+               android:name=".activity.activity_qidongye"
+
                ></activity>
         <!-- QZONE -->
         <activity
