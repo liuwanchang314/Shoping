@@ -6,6 +6,8 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -54,7 +56,7 @@ public class DingDanXQActivity extends Activity {
 	private void initdata() {
 		// TODO Auto-generated method stub
 		Intent intent=getIntent();
-		OrderBean bean=(OrderBean) intent.getSerializableExtra("bean");
+		final OrderBean bean=(OrderBean) intent.getSerializableExtra("bean");
 		List<OrderBean> list=new ArrayList<OrderBean>();
 		list.add(bean);
 		//由于无订单详情接口，而且订单列表接口里面也无此数据，所以暂时不写
@@ -76,6 +78,26 @@ public class DingDanXQActivity extends Activity {
 		
 		adapter=new DingdanxiangqingAdapter(list,DingDanXQActivity.this);
 		Mlistview.setAdapter(adapter);
+		
+		mPingjia.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent=new Intent(DingDanXQActivity.this, FaBiaoPingJiaActivity.class);
+				startActivity(intent);
+			}
+		});
+		mChakanwuliu.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent=new Intent(DingDanXQActivity.this, CheckLogisticsActivity.class);
+				intent.putExtra("bean",bean);
+				startActivity(intent);
+			}
+		});
 		
 	}
 	/**

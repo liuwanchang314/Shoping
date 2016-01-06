@@ -91,6 +91,7 @@ public class BillActivity extends Activity {
 	private BillAdapter adapter;
 	
 	private TextView buxuyaofapiao;
+	private ImageView mBack,mHome;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -356,6 +357,25 @@ public class BillActivity extends Activity {
 		Mshoupiaodizhhi=(EditText) findViewById(R.id.bill_z_songpiaodizhi);
 		listview=(Mylistview) findViewById(R.id.bill_listview);
 		buxuyaofapiao=(TextView) findViewById(R.id.bill_buyaofapiao);
+		mBack=(ImageView) findViewById(R.id.bill_back);
+		mHome=(ImageView) findViewById(R.id.bill_home);
+		mBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				BillActivity.this.finish();
+			}
+		});
+		mHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent=new Intent(BillActivity.this,MainActivity.class);
+				startActivity(intent);
+			}
+		});
 	}
 	
 	

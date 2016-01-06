@@ -128,6 +128,22 @@ public class ChangeTakeGoodsAddressActivity extends Activity {
 		mDelete=(LinearLayout) findViewById(R.id.changeaddress_shanchu);
 		mSet=(LinearLayout) findViewById(R.id.changeaddress_shezhiweimoren);
 		mSure=(TextView) findViewById(R.id.changeaddress_tijiao);
+		mBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ChangeTakeGoodsAddressActivity.this.finish();
+			}
+		});
+		mQuxiao.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ChangeTakeGoodsAddressActivity.this.finish();
+			}
+		});
 	}
 	
 	

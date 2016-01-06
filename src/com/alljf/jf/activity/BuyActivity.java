@@ -238,6 +238,22 @@ public class BuyActivity extends Activity implements OnClickListener{
 		mTotalPrice=(TextView) findViewById(R.id.buyactivity_textview_totalprice);
 		mJiesuan=(TextView) findViewById(R.id.buyacttivity_textview_jiesuan);
 		im_quanzuantubiao=(CheckBox) findViewById(R.id.image_quanxuan);
+		mBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+			}
+		});
+		mHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent=new Intent(BuyActivity.this,MainActivity.class);
+				startActivity(intent);
+			}
+		});
 	}
 	@Override
 	public void onClick(View v) {

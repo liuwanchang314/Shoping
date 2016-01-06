@@ -65,6 +65,7 @@ public class AllProductActivity extends Activity {
 	private boolean jiageIS=false;//价格是否切换
 	private boolean xiaoliangIS=false;//销量是否切换
 	private ProgressBar mbar;
+	private ImageView mBack,mHome;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -110,6 +111,25 @@ public class AllProductActivity extends Activity {
 	 */  
 	private void initview() {
 		// TODO Auto-generated method stub
+		mBack=(ImageView) findViewById(R.id.allprodyct_back);
+		mHome=(ImageView) findViewById(R.id.allprodyct_home);
+		mBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				AllProductActivity.this.finish();
+			}
+		});
+		mHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent=new Intent(AllProductActivity.this,MainActivity.class);
+				startActivity(intent);
+			}
+		});
 		jiage=(TextView) findViewById(R.id.allprodyct_jiage);
 		Drawable drawable=getResources().getDrawable(R.drawable.jiantoudown);
 		drawable.setBounds(0,0,20,20);

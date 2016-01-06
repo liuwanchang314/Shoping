@@ -61,14 +61,11 @@ public class TakeGoodsAddressAdapter extends BaseAdapter {
 		else{
 			vh=(viewHolder) convertView.getTag();
 		}
-		//��ȡ����ǣ����ж��Ƿ���Ĭ�ϵ�ַ
 		String defaults=list.get(position).getDefaults();
 		if(defaults.equals("1")){
-			//˵����Ĭ�ϵ�ַ
 			vh.name.setText(list.get(position).getReceive_name());
-			//ͼ����ʾ
 			vh.tubiao.setVisibility(View.VISIBLE);
-			vh.address.setText("[Ĭ��]"+list.get(position).getArea_info());
+			vh.address.setText("[默认]"+list.get(position).getArea_info());
 			vh.phone.setText(list.get(position).getMob_phone());
 			vh.layout.setBackgroundColor(Color.GRAY);
 		}else{

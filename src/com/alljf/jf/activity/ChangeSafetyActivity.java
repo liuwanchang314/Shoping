@@ -146,6 +146,23 @@ public class ChangeSafetyActivity extends Activity {
 				getdata();
 			}
 		});
+		mBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ChangeSafetyActivity.this.finish();
+			}
+		});
+		mHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent=new Intent(ChangeSafetyActivity.this,MainActivity.class);
+				startActivity(intent);
+			}
+		});
 	}
 	
 	public ChangeSafetBean getbean(String str){

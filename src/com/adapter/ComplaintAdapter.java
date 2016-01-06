@@ -73,6 +73,7 @@ public class ComplaintAdapter extends BaseAdapter {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent=new Intent(context, TousuXiangqingActivity.class);
+				intent.putExtra("id",list.get(position).getComplain_id());
 				context.startActivity(intent);
 			}
 		});
