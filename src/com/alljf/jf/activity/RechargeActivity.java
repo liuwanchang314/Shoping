@@ -3,6 +3,7 @@ package com.alljf.jf.activity;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -71,13 +72,13 @@ public class RechargeActivity extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.rechrageactivity_imageView_callback://返回
-			Toast.makeText(RechargeActivity.this,"返回", Toast.LENGTH_SHORT).show();
+			RechargeActivity.this.finish();
 			break;
 		case R.id.rechrageactivity_imageView_home://主页
-			Toast.makeText(RechargeActivity.this,"主页", Toast.LENGTH_SHORT).show();
+			RechargeActivity.this.finish();
+			startActivity(new Intent(RechargeActivity.this,MainActivity.class));
 			break;
 		case R.id.rechrageactivity_imageview_zhifubao://支付宝
-			Toast.makeText(RechargeActivity.this,"支付宝", Toast.LENGTH_SHORT).show();
 			//进行背景填充
 			mBgzhifubao.setBackgroundColor(Color.GRAY);
 			mBgweixin.setBackgroundColor(Color.WHITE);
@@ -85,7 +86,6 @@ public class RechargeActivity extends Activity implements OnClickListener{
 			mPayclass.setText("你选择了支付宝支付");
 			break;
 		case R.id.rechrageactivity_imageview_weixin://威信
-			Toast.makeText(RechargeActivity.this,"威信", Toast.LENGTH_SHORT).show();
 			mBgweixin.setBackgroundColor(Color.GRAY);
 			mBgzhifubao.setBackgroundColor(Color.WHITE);
 			mPayclass.setText("你选择了微信支付");

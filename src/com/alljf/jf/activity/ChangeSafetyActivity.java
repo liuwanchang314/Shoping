@@ -159,6 +159,7 @@ public class ChangeSafetyActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				ChangeSafetyActivity.this.finish();
 				Intent intent=new Intent(ChangeSafetyActivity.this,MainActivity.class);
 				startActivity(intent);
 			}

@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -39,7 +42,25 @@ public class SoldOutActivity extends Activity {
 	private void initview() {
 		// TODO Auto-generated method stub
 		mBack=(TextView) findViewById(R.id.soldout_back);
+		mBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				SoldOutActivity.this.finish();
+			}
+		});
+		
 		mHome=(TextView) findViewById(R.id.soldout_home);
+		mHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				SoldOutActivity.this.finish();
+				startActivity(new Intent(SoldOutActivity.this,MainActivity.class));
+			}
+		});
 		mListview=(ListView) findViewById(R.id.soldout_listview);
 		
 	}

@@ -3,8 +3,11 @@ package com.alljf.jf.activity;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -83,7 +86,25 @@ public class ComplaintActivity extends Activity {
 	private void initview() {
 		// TODO Auto-generated method stub
 		mBack=(ImageView) findViewById(R.id.complaint_back);
+		mBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ComplaintActivity.this.finish();
+			}
+		});
 		mHome=(ImageView) findViewById(R.id.complaint_home);
+		mHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ComplaintActivity.this.finish();
+				Intent intent=new Intent(ComplaintActivity.this,MainActivity.class);
+				startActivity(intent);
+			}
+		});
 		mListview=(ListView) findViewById(R.id.complaint_listview);
 	}
 

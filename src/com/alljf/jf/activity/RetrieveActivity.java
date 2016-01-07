@@ -11,7 +11,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import com.Extension.DataService;
@@ -31,7 +34,7 @@ public class RetrieveActivity extends Activity {
 	Handler handler;
 	HashMap<String, String> list = new HashMap<String, String>();
 	private String name;
-	
+	private Button back;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -57,7 +60,15 @@ public class RetrieveActivity extends Activity {
 			}
 		};
 		addRetItem();
-
+		back=(Button) findViewById(R.id.ret_btn_back);
+		back.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
 	}
 
 	private void addRetItem() {

@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -70,10 +71,11 @@ public class WithDrawAcivity extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.withdraw_back:
-			Toast.makeText(WithDrawAcivity.this,"返回",Toast.LENGTH_SHORT).show();
+			WithDrawAcivity.this.finish();
 			break;
 		case R.id.withdraw_home:
-			Toast.makeText(WithDrawAcivity.this,"主页",Toast.LENGTH_SHORT).show();
+			WithDrawAcivity.this.finish();
+			startActivity(new Intent(WithDrawAcivity.this,MainActivity.class));
 			break;
 		case R.id.withdraw_querentixian:
 			Toast.makeText(WithDrawAcivity.this,"确认",Toast.LENGTH_SHORT).show();

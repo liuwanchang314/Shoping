@@ -4,7 +4,10 @@ package com.alljf.jf.activity;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 
@@ -14,6 +17,7 @@ public class ZJorderActivity extends TabActivity {
 	
 	private TabHost _tabHost;
 	@SuppressWarnings("deprecation")
+	private ImageView mback,mhome;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -26,6 +30,25 @@ public class ZJorderActivity extends TabActivity {
 	     AddTabPage3();
 	     AddTabPage4();
 	     AddTabPage5();
+	     mback=(ImageView) findViewById(R.id.orderactivity_image_back);
+	     mback.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ZJorderActivity.this.finish();
+			}
+		});
+	     mhome=(ImageView) findViewById(R.id.orderactivity_image_home);
+	     mhome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ZJorderActivity.this.finish();
+				startActivity(new Intent(ZJorderActivity.this,MainActivity.class));
+			}
+		});
 	}
 	private void AddTabPage1() {
 		// TODO Auto-generated method stub

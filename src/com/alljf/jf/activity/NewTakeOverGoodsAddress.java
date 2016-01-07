@@ -101,7 +101,24 @@ public class NewTakeOverGoodsAddress extends Activity{
 	private void initview() {
 		// TODO Auto-generated method stub
 		mBack=(ImageView) findViewById(R.id.newtakeoveraddress_back);
+		mBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				NewTakeOverGoodsAddress.this.finish();
+			}
+		});
 		mHome=(ImageView) findViewById(R.id.newtakeoveraddress_home);
+		mHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				NewTakeOverGoodsAddress.this.finish();
+				startActivity(new Intent(NewTakeOverGoodsAddress.this,MainActivity.class));
+			}
+		});
 		mName=(EditText) findViewById(R.id.newtakeoveraddress_name);
 		mPhone=(EditText) findViewById(R.id.newtakeoveraddress_phone);
 		mYoubian=(EditText) findViewById(R.id.newtakeoveraddress_youzhenbianma);

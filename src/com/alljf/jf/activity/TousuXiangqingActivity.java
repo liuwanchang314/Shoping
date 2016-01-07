@@ -105,7 +105,24 @@ public class TousuXiangqingActivity extends Activity {
 	private void initview() {
 		// TODO Auto-generated method stub
 		mBack=(ImageView) findViewById(R.id.tousuxiangqing_back);
+		mBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				TousuXiangqingActivity.this.finish();
+			}
+		});
 		mHome=(ImageView) findViewById(R.id.tousuxiangqing_home);
+		mHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				TousuXiangqingActivity.this.finish();
+				startActivity(new Intent(TousuXiangqingActivity.this,MainActivity.class));
+			}
+		});
 		mTousudianpu=(TextView) findViewById(R.id.tousuxiangqing_beitousudianpu);
 		mTousujincheng=(TextView) findViewById(R.id.tousuxiangqing_jincheng);
 		mTousuneirong=(TextView) findViewById(R.id.tousuxiangqing_tousuneirong);

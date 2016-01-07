@@ -2,7 +2,10 @@ package com.alljf.jf.activity;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -42,7 +45,24 @@ public class FaBiaoPingJiaActivity extends Activity {
 	private void initview() {
 		// TODO Auto-generated method stub
 		mBack=(ImageView) findViewById(R.id.pingjia_back);
+		mBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				FaBiaoPingJiaActivity.this.finish();
+			}
+		});
 		mHome=(ImageView) findViewById(R.id.pingjia_home);
+		mHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				FaBiaoPingJiaActivity.this.finish();
+				startActivity(new Intent(FaBiaoPingJiaActivity.this, MainActivity.class));
+			}
+		});
 		mGoodsImage=(ImageView) findViewById(R.id.pingjia_goodsimage);
 		mPingjia=(EditText) findViewById(R.id.pingjia_pingjia);
 		mBBPF1=(CheckBox) findViewById(R.id.checkBox_baobeipingjia1);

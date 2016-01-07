@@ -34,6 +34,7 @@ public class EditPwdActivity extends Activity {
 	String UserName;
 	SysApplication Application = SysApplication.getInstance();
 	EditText txtone, txttwo;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

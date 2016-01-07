@@ -119,7 +119,24 @@ public class DingDanXQActivity extends Activity {
 		mFahuoshijian=(TextView) findViewById(R.id.ddxq_fahuoshijian);
 		mChengjiaoshijian=(TextView) findViewById(R.id.ddxq_chengjiaoshijian);
 		mBack=(ImageView) findViewById(R.id.dingdanxiangqing_back);
+		mBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				DingDanXQActivity.this.finish();
+			}
+		});
 		mHome=(ImageView) findViewById(R.id.dingdanxiangqing_home);
+		mHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				DingDanXQActivity.this.finish();
+				startActivity(new Intent(DingDanXQActivity.this,MainActivity.class));
+			}
+		});
 		mPingjia=(TextView) findViewById(R.id.ddxq_pingjia);
 		mChakanwuliu=(TextView) findViewById(R.id.ddxq_chakanwuliu);
 	}

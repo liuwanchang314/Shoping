@@ -133,9 +133,12 @@ public class PersonDataActivity extends Activity implements OnClickListener{
 		switch (v.getId()) {
 		case R.id.persondata_back://返回
 			Toast.makeText(PersonDataActivity.this,"返回",Toast.LENGTH_SHORT).show();
+			PersonDataActivity.this.finish();
 			break;
 		case R.id.persondata_home://zhuye 
 			Toast.makeText(PersonDataActivity.this,"主页",Toast.LENGTH_SHORT).show();
+			PersonDataActivity.this.finish();
+			startActivity(new Intent(PersonDataActivity.this, MainActivity.class));
 			break;
 		case R.id.persondata_anquanxinxi://安全
 			Toast.makeText(PersonDataActivity.this,"安全",Toast.LENGTH_SHORT).show();

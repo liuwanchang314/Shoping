@@ -3,10 +3,13 @@ package com.alljf.jf.activity;
 import java.io.UnsupportedEncodingException;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
 
@@ -32,6 +35,7 @@ public class TwoDimensionCodeActivity extends Activity {
 		private Bitmap mBitmap;
 		// 需要插图图片的大小 这里设定为40*40
 		int[] pixels = new int[2*IMAGE_HALFWIDTH * 2*IMAGE_HALFWIDTH];
+		private ImageView mback,mhome;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -61,6 +65,26 @@ public class TwoDimensionCodeActivity extends Activity {
 				} catch (UnsupportedEncodingException e) {
 					e.printStackTrace();
 				}
+				
+				mback=(ImageView) findViewById(R.id.erweima_back);
+				mback.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						TwoDimensionCodeActivity.this.finish();
+					}
+				});
+				mhome=(ImageView) findViewById(R.id.erweima_home);
+				mhome.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						TwoDimensionCodeActivity.this.finish();
+						startActivity(new Intent(TwoDimensionCodeActivity.this,MainActivity.class));
+					}
+				});
 		
 	}
 	/**

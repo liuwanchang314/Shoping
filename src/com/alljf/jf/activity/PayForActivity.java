@@ -86,7 +86,24 @@ public class PayForActivity extends Activity implements OnClickListener {
 	private void initview() {
 		// TODO Auto-generated method stub
 		mBack=(ImageView) findViewById(R.id.payfor_back);
+		mBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				PayForActivity.this.finish();
+			}
+		});
 		mHome=(ImageView) findViewById(R.id.payfor_home);
+		mHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				PayForActivity.this.finish();
+				startActivity(new Intent(PayForActivity.this,MainActivity.class));
+			}
+		});
 		mMoneyNum=(TextView) findViewById(R.id.payfor_moneynum);
 		mOrderNum=(TextView) findViewById(R.id.payfor_dingdanhao);
 		mPeisongWay=(TextView) findViewById(R.id.payfor_peisongfangshi);

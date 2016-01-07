@@ -39,10 +39,11 @@ import com.Extension.AutoScrollViewPager;
 import com.Extension.DataService;
 import com.Extension.DownLoadImage;
 import com.alljf.jf.R;
+import com.customview.RefreshableView;
 import com.other.index_product_item;
 import com.utils.StringManager;
 
-public class IndexActivity extends Activity implements OnPageChangeListener {
+public class IndexActivity extends Activity implements OnPageChangeListener ,RefreshableView.RefreshListener{
 	private static final String[] strs = new String[] { "first", "second",
 			"third", "fourth", "fifth" };
 	private String[] mPicsUrl;
@@ -65,14 +66,27 @@ public class IndexActivity extends Activity implements OnPageChangeListener {
 	private EditText edittext;
 	
 	private RadioGroup mRadiogroup;
+	/**
+	 * 可下拉刷新的scrollview
+	 * */
+	private RefreshableView mRefreshableView;
+	Handler handlerR = new Handler() {//刷新界面的线程
+		public void handleMessage(Message message) {
+			super.handleMessage(message);
+			mRefreshableView.finishRefresh();
+		};
+	};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_index);
+		mRefreshableView = (RefreshableView) findViewById(R.id.refresh_root);
+		mRefreshableView.setRefreshListener(this);
 		initradiogroup();
-		edittext=(EditText) findViewById(R.id.fanslist_txt_search);
+		edittext=(EditText)mRefreshableView.findViewById(R.id.fanslist_txt_search);
+		
 		initinputmanager(edittext);
-		mLisView =  (LinearLayout) findViewById(R.id.index_product_list);
+		mLisView =  (LinearLayout)mRefreshableView.findViewById(R.id.index_product_list);
 		//获取头部布局
 		View view = LayoutInflater.from(this).inflate(
 				R.layout.activity_carousel, null);
@@ -196,7 +210,7 @@ public class IndexActivity extends Activity implements OnPageChangeListener {
 
 	private void initradiogroup() {
 		// TODO Auto-generated method stub
-		mRadiogroup=(RadioGroup) findViewById(R.id.index_tab_rg_menu);
+		mRadiogroup=(RadioGroup) mRefreshableView.findViewById(R.id.index_tab_rg_menu);
 		mRadiogroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
@@ -374,5 +388,16 @@ public class IndexActivity extends Activity implements OnPageChangeListener {
 
 	public interface NotifyPageChanged {
 		public void notifyChange(int pos);
+	}
+
+	/**
+	 * 
+	 * 当界面下拉的时候执行
+	 * */
+	@Override
+	public void onRefresh(RefreshableView view) {
+		// TODO Auto-generated method stub
+		//这里只是伪处理了一下
+		handlerR.sendEmptyMessageDelayed(1, 2000);
 	}
 }

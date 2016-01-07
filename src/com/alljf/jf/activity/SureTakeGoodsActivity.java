@@ -79,7 +79,24 @@ public class SureTakeGoodsActivity extends Activity {
 		mDingdanhao=(TextView) findViewById(R.id.confirmationtakegoods_dingdanbianhao);
 		mSure=(TextView) findViewById(R.id.confirmationtakegoods_queren);
 		mBack=(ImageView) findViewById(R.id.confirmationtakegoods_back);
+		mBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				SureTakeGoodsActivity.this.finish();
+			}
+		});		
 		mHome=(ImageView) findViewById(R.id.confirmationtakegoods_home);
+		mHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				SureTakeGoodsActivity.this.finish();
+				startActivity(new Intent(SureTakeGoodsActivity.this,MainActivity.class));
+			}
+		});
 	}
 	
 	/**

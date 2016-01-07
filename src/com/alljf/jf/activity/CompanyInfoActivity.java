@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,21 +21,18 @@ public class CompanyInfoActivity extends Activity implements OnClickListener{
 	private ImageView mBack;
 	private ImageView mHome;
 	private TextView mCompanyinfo;
-	private ActionBar actionbar;
 	private String str="这里是测试数据这里是测试数据这里是测试数据这里是测试数据这里是测试数据这里是测试数据这里是测试数据这里是测试数据这里是测试数据这里是测试数据这里是测试数据这里是测试数据";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_companyinfo);
 		initview();
 	}
 	
 	private void initview() {
 		// TODO Auto-generated method stub
-		actionbar=getActionBar();
-		actionbar.hide();
-
 		mBack=(ImageView) findViewById(R.id.companyinfo_back);
 		mBack.setOnClickListener(this);
 		mHome=(ImageView) findViewById(R.id.companyinfo_home);

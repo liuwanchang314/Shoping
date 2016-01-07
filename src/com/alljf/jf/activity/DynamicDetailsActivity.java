@@ -105,7 +105,23 @@ public class DynamicDetailsActivity extends Activity implements OnClickListener{
 	private void initview() {
 		// TODO Auto-generated method stub
 		mCallback=(TextView) findViewById(R.id.dynamicdetails_top_textview_back);
+		mCallback.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				DynamicDetailsActivity.this.finish();
+			}
+		});
 		mHome=(TextView) findViewById(R.id.dynamicdetails_top_textview_home);
+		mHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				startActivity(new Intent(DynamicDetailsActivity.this,MainActivity.class));
+			}
+		});
 		mTitle=(TextView) findViewById(R.id.dynamicdetais_tv_title);
 		mTime=(TextView) findViewById(R.id.dynamicdetais_tv_time);
 		mContent=(WebView) findViewById(R.id.dy_webview);

@@ -4,6 +4,7 @@ package com.alljf.jf.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -65,27 +66,22 @@ public class UserActivity extends Activity implements OnClickListener,OnCheckedC
 		// TODO Auto-generated method stub
 		switch (checkedId) {
 		case R.id.user_tab_rb_1://带付款
-			Toast.makeText(UserActivity.this, "代付款", Toast.LENGTH_SHORT).show();
 			Intent intent=new Intent(UserActivity.this,ZJorderActivity.class);
 			startActivity(intent);
 			break;
 		case R.id.user_tab_rb_2://待发货
-			Toast.makeText(UserActivity.this, "待发货", Toast.LENGTH_SHORT).show();
 			Intent intent1=new Intent(UserActivity.this,ZJorderActivity.class);
 			startActivity(intent1);
 			break;
 		case R.id.user_tab_rb_3://待收货
-			Toast.makeText(UserActivity.this, "待收货", Toast.LENGTH_SHORT).show();
 			Intent intent2=new Intent(UserActivity.this,ZJorderActivity.class);
 			startActivity(intent2);
 			break;
 		case R.id.user_tab_rb_4://待评价
-			Toast.makeText(UserActivity.this, "待评价", Toast.LENGTH_SHORT).show();
 			Intent intent3=new Intent(UserActivity.this,ZJorderActivity.class);
 			startActivity(intent3);
 			break;
 		case R.id.user_tab_rb_5://退款售后
-			Toast.makeText(UserActivity.this, "退款售后", Toast.LENGTH_SHORT).show();
 			Intent intent4=new Intent(UserActivity.this,TuiKuanYuSHActivity.class);
 			startActivity(intent4);
 			break;
@@ -99,39 +95,39 @@ public class UserActivity extends Activity implements OnClickListener,OnCheckedC
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.horder_lt_list5://财务明细
-			Toast.makeText(UserActivity.this, "财务明细", Toast.LENGTH_SHORT).show();
+//			Toast.makeText(UserActivity.this, "财务明细", Toast.LENGTH_SHORT).show();
 			startActivity(new Intent(UserActivity.this, FinanInfoActivity.class));
 			break;
 		case R.id.horder_lt_list4://充值
-			Toast.makeText(UserActivity.this, "充值", Toast.LENGTH_SHORT).show();
+//			Toast.makeText(UserActivity.this, "充值", Toast.LENGTH_SHORT).show();
 			startActivity(new Intent(UserActivity.this, RechargeActivity.class));
 			break;
 		case R.id.horder_lt_list2://收货地址
-			Toast.makeText(UserActivity.this, "收货地址", Toast.LENGTH_SHORT).show();
+//			Toast.makeText(UserActivity.this, "收货地址", Toast.LENGTH_SHORT).show();
 			startActivity(new Intent(UserActivity.this, TakeGoodsAddressActivity.class));
 			break;
 		case R.id.horder_lt_list1://个人信息
-			Toast.makeText(UserActivity.this, "个人信息", Toast.LENGTH_SHORT).show();
+//			Toast.makeText(UserActivity.this, "个人信息", Toast.LENGTH_SHORT).show();
 			startActivity(new Intent(UserActivity.this,PersonDataActivity.class));
 			break;
 		case R.id.user_erweima://二维码
-			Toast.makeText(UserActivity.this, "二维码", Toast.LENGTH_SHORT).show();
+//			Toast.makeText(UserActivity.this, "二维码", Toast.LENGTH_SHORT).show();
 			Intent intens=new Intent(UserActivity.this,TwoDimensionCodeActivity.class);
 			startActivity(intens);
 			break;
 		case R.id.horder_lt_list6://退出当前账号
-			Toast.makeText(UserActivity.this, "退出当前账号", Toast.LENGTH_SHORT).show();
+//			Toast.makeText(UserActivity.this, "退出当前账号", Toast.LENGTH_SHORT).show();
 			break;
 		case R.id.horder_lt_list://全部订单
-			Toast.makeText(UserActivity.this, "全部订单", Toast.LENGTH_SHORT).show();
+//			Toast.makeText(UserActivity.this, "全部订单", Toast.LENGTH_SHORT).show();
 			startActivity(new Intent(UserActivity.this, ZJorderActivity.class));
 			break;
 		case R.id.horder_lt_list3://我的投诉
-			Toast.makeText(UserActivity.this, "投诉", Toast.LENGTH_SHORT).show();
+//			Toast.makeText(UserActivity.this, "投诉", Toast.LENGTH_SHORT).show();
 			startActivity(new Intent(UserActivity.this,ComplaintActivity.class));
 			break;
 		case R.id.horder_lt_list_tixian://体现
-			Toast.makeText(UserActivity.this,"提现", Toast.LENGTH_SHORT).show();
+//			Toast.makeText(UserActivity.this,"提现", Toast.LENGTH_SHORT).show();
 			startActivity(new Intent(UserActivity.this, WithDrawAcivity.class));
 			break;
 		default:

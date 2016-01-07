@@ -18,7 +18,7 @@
             >
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/erweima_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -51,7 +51,7 @@
             >
 
               <ImageView
-                  android:id="@+id/imageView2"
+                  android:id="@+id/erweima_home"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_centerHorizontal="true"

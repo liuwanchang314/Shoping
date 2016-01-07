@@ -52,6 +52,8 @@ public class RegnActivity extends Activity implements OnClickListener{
 	List<String> strList,idlist;
 	private int i;//计时
 	
+	private Button mback;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

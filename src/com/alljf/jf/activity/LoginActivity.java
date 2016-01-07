@@ -55,6 +55,7 @@ public class LoginActivity extends Activity {
 	
 	private IWXAPI api;
 	private int i;//读秒计数
+	private Button back;
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -81,7 +82,16 @@ public class LoginActivity extends Activity {
 		tvtwo = (TextView) findViewById(R.id.login_tv_two);// 第二行标题
 		codetwo = (TextView) findViewById(R.id.login_code_two);// 第二行验证码&显示
 		txtone = (EditText) findViewById(R.id.login_txt_one);// 第一行文本
-		
+		back=(Button) findViewById(R.id.login_btn_back);
+		back.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				LoginActivity.this.finish();
+				startActivity(new Intent(LoginActivity.this,MainActivity.class));
+			}
+		});
 		txttwo = (EditText) findViewById(R.id.login_txt_two);
 		btn_left = (Button) findViewById(R.id.login_btn_left);
 		btn_submit = (Button) findViewById(R.id.login_btn_submit);
@@ -216,6 +226,7 @@ public class LoginActivity extends Activity {
 						RetrieveActivity.class);
 				intent.putExtra("name", txttwo.getText().toString());
 				startActivity(intent);
+				break;
 			default:
 				break;
 			}

@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.alljf.jf.R;
@@ -23,6 +26,7 @@ import com.lidroid.xutils.http.client.HttpRequest;
  */
 public class TousuActivity extends Activity {
 	private ListView mListview;
+	private ImageView mback,mhome;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -43,6 +47,26 @@ public class TousuActivity extends Activity {
 	private void initview() {
 		// TODO Auto-generated method stub
 		mListview=(ListView) findViewById(R.id.tousu_listview);
+		mback=(ImageView) findViewById(R.id.tousu_back);
+		mback.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				TousuActivity.this.finish();
+			}
+		});
+		mhome=(ImageView) findViewById(R.id.tousu_home);
+		mhome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				TousuActivity.this.finish();
+				startActivity(new Intent(TousuActivity.this,MainActivity.class));
+			}
+		});
+		
 	}
 	
 	/**

@@ -372,6 +372,7 @@ public class BillActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				BillActivity.this.finish();
 				Intent intent=new Intent(BillActivity.this,MainActivity.class);
 				startActivity(intent);
 			}

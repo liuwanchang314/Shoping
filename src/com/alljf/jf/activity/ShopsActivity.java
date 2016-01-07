@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.alljf.jf.R;
 import com.baidu.mapapi.SDKInitializer;
@@ -24,6 +25,8 @@ public class ShopsActivity extends Activity implements OnClickListener{
 	private MapView mMapView = null;
 	private BaiduMap mBaidumap;
 	private RelativeLayout mDetails;//详情
+	private TextView back;
+	private TextView home;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -57,6 +60,23 @@ public class ShopsActivity extends Activity implements OnClickListener{
         
 		mDetails=(RelativeLayout) findViewById(R.id.shops_companydetails);
 		mDetails.setOnClickListener(this);
+		back=(TextView) findViewById(R.id.relationactivity_top_textview_back);
+		back.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+			}
+		});
+		home=(TextView) findViewById(R.id.relationactivity_top_textview_home);
+		home.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ShopsActivity.this.finish();
+			}
+		});
 	}
 	@Override  
     protected void onDestroy() {  

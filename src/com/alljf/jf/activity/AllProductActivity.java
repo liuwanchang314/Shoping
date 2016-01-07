@@ -126,6 +126,7 @@ public class AllProductActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				AllProductActivity.this.finish();
 				Intent intent=new Intent(AllProductActivity.this,MainActivity.class);
 				startActivity(intent);
 			}

@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
@@ -78,7 +79,24 @@ public class ProductClassNumberActivity extends Activity {
 	private void initview() {
 		// TODO Auto-generated method stub
 		mBack=(ImageView) findViewById(R.id.productclassnumber_bake);
+		mBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ProductClassNumberActivity.this.finish();
+			}
+		});
 		mHome=(ImageView) findViewById(R.id.productclassnumber_home);
+		mHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ProductClassNumberActivity.this.finish();
+				startActivity(new Intent(ProductClassNumberActivity.this,MainActivity.class));
+			}
+		});
 		mListview=(ExpandableListView) findViewById(R.id.productclassnumber_list);
 	}
 	private void GetData() {
