@@ -35,7 +35,7 @@ public class RefreshableView extends LinearLayout {
     private Scroller scroller;
     private View refreshView;
     private ImageView refreshIndicatorView;
-    private int refreshTargetTop = -60;//这段距离为下拉之后所显示的大小
+    private int refreshTargetTop = -80;//这段距离为下拉之后所显示的大小
     private ProgressBar bar;
     private TextView downTextView;
     private TextView timeTextView;

@@ -10,6 +10,7 @@ import android.view.Window;
 import android.webkit.WebView;
 import android.widget.TextView;
 
+import com.Application.SysApplication;
 import com.alljf.jf.R;
 import com.bean.Dynamicdetailsbean;
 import com.jsonParser.DyJsonpaser;
@@ -46,6 +47,7 @@ public class DynamicDetailsActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_dynamicdetails);
+		SysApplication.getInstance().addActivity(this);
 		Intent intent=getIntent();
 		Bundle budle=intent.getExtras();
 		mId=budle.getString("id");

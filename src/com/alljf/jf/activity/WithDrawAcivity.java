@@ -46,6 +46,7 @@ public class WithDrawAcivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_withdraw);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		//首先，在进入该界面以后，先要网络获取用户的可提现额度
 		getdatatixianedu();

@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.Application.SysApplication;
 import com.alljf.jf.CommonConstants;
 import com.alljf.jf.R;
 import com.alljf.jf.R.string;
@@ -52,6 +53,7 @@ public class PayPassWordFindBackActivity extends Activity implements OnClickList
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_paypasswordfindback);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 	}
 

@@ -191,7 +191,6 @@ public class BuyCartAdapter extends BaseAdapter {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					Toast.makeText(context, "..��.", 1).show();
 					int i = Integer.parseInt(tv.getText().toString());
 					i++;
 					list.get(position).setGoods_num(i + "");

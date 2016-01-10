@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 
+import com.Application.SysApplication;
 import com.alljf.jf.R;
 
 public class activity_qidongye extends Activity {
@@ -15,6 +16,7 @@ public class activity_qidongye extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_qidongye);
+		SysApplication.getInstance().addActivity(this);
 		new Thread(new Runnable() {
 			
 			@Override

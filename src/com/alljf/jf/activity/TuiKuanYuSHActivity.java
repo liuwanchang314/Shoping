@@ -39,6 +39,7 @@ public class TuiKuanYuSHActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.antivity_tuikuanshouhou);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		initdata();
 	}

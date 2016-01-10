@@ -60,6 +60,7 @@ public class CheckLogisticsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_checklogistics);
+		SysApplication.getInstance().addActivity(this);
 		Log.i("进入这里了吗","好像");
 		initview();
 		Intent intent=getIntent();
@@ -77,7 +78,7 @@ public class CheckLogisticsActivity extends Activity {
 		if(bean.getOrdergoods().getGoods_name().equals("")){
 			mProductName.setText(bean.getOrdergoods().getGoods_name());
 		}else{
-			mProductName.setText("");
+			mProductName.setText(bean.getOrdergoods().getGoods_name());
 		}
 		mProductDimens.setText(bean.getOrdergoods().getSpec_id());
 		mProductColor.setText(bean.getOrdergoods().getSpec_id());

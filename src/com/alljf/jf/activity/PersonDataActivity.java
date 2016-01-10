@@ -49,6 +49,7 @@ public class PersonDataActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_persondata);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		UserName=getUserName();
 		Log.i("获取到username没有",UserName);

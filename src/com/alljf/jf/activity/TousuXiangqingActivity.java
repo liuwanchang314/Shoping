@@ -49,6 +49,7 @@ public class TousuXiangqingActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_tousuxiangqing);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		Intent intent=getIntent();
 		String id=intent.getStringExtra("id");

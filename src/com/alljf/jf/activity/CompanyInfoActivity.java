@@ -12,6 +12,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.Application.SysApplication;
 import com.alljf.jf.R;
 
 @SuppressLint("NewApi")
@@ -28,6 +29,7 @@ public class CompanyInfoActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_companyinfo);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 	}
 	

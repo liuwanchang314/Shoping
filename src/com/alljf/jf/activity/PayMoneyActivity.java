@@ -72,6 +72,7 @@ public class PayMoneyActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_paymoney);
+		SysApplication.getInstance().addActivity(this);
 		Intent intent=getIntent();
 		list=(List<BuyCartBean>) getIntent().getSerializableExtra("list");
 		Log.i("现在传递过来了多少数据",list.size()+"");
@@ -229,9 +230,6 @@ public class PayMoneyActivity extends Activity {
 									}
 									
 								}
-								
-								
-								
 							}
 							
 						}

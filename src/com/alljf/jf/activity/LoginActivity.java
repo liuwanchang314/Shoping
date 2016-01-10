@@ -77,6 +77,7 @@ public class LoginActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_login);
+		SysApplication.getInstance().addActivity(this);
 		api = WXAPIFactory.createWXAPI(this, CommonConstants.WXAPP_ID, false);
 		tvone = (TextView) findViewById(R.id.login_tv_one);// 第一行标题
 		tvtwo = (TextView) findViewById(R.id.login_tv_two);// 第二行标题

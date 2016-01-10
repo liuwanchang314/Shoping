@@ -25,15 +25,18 @@ public class SysApplication extends Application {
 
 	NetReceiver mReceiver = new NetReceiver();
     IntentFilter mFilter = new IntentFilter();
-	private List<Activity> mlist = new LinkedList<Activity>();
-
-	private static UserInfo user;
+	private static UserInfo user=new UserInfo();
 
 	private static SysApplication instance;
 
 	private Activity tempActivitie = new Activity();
 	
 	private boolean  islogin = false;
+	
+	/**
+	 * 用于存储或者记录所有打开过的activity
+	 */
+	private List<Activity> mList = new LinkedList<Activity>();
 	
 @Override
 public void onCreate() {
@@ -61,7 +64,7 @@ public void onCreate() {
 
 	// 锟斤拷锟斤拷锟揭拷锟斤拷锟缴撅拷锟斤拷页锟斤拷
 	public void addActivity(Activity activity) {
-		mlist.add(activity);
+		mList.add(activity);
 	}
 
 	// 锟斤拷锟矫碉拷陆锟矫伙拷锟斤拷锟斤拷息
@@ -75,9 +78,9 @@ public void onCreate() {
 		return user;
 	}
 
-	// 锟斤拷锟斤拷锟剿筹拷
+	// 用于退出应用程序
 	public void exit() {
-		for (Activity activity : mlist)
+		for (Activity activity : mList)
 			if (activity != null)
 				activity.finish();
 	}

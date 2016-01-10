@@ -42,6 +42,7 @@ public class SureTakeGoodsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_confirmationtakegoods);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		initdata();
 		

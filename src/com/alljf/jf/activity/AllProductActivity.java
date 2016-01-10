@@ -23,6 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.Application.SysApplication;
 import com.adapter.MyAllproductAdapter;
 import com.alljf.jf.R;
 import com.bean.AllProductBean;
@@ -72,6 +73,7 @@ public class AllProductActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_allproduct);
+		SysApplication.getInstance().addActivity(this);
 		isconnecions();
 		initmanager();
 		initview();

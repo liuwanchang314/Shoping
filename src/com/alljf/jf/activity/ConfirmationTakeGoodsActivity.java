@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.Application.SysApplication;
 import com.alljf.jf.R;
 /**
  * @author JZKJ-LWC
@@ -33,6 +34,7 @@ public class ConfirmationTakeGoodsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_confirmationtakegoods);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 	}
 	

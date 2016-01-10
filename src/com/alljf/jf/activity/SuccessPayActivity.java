@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
 
+import com.Application.SysApplication;
 import com.alljf.jf.R;
 
 /**
@@ -26,6 +27,7 @@ public class SuccessPayActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_successpay);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 	}
 

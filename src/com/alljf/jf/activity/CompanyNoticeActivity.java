@@ -15,6 +15,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.Application.SysApplication;
 import com.adapter.CompanyNoticeAdapter;
 import com.alljf.jf.R;
 import com.bean.CompanyNoticeBean;
@@ -37,6 +38,7 @@ public class CompanyNoticeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_companynotice);
+		SysApplication.getInstance().addActivity(this);
 
 		initview();
 		//准备数据源

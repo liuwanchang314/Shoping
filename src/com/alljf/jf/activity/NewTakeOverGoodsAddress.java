@@ -76,6 +76,7 @@ public class NewTakeOverGoodsAddress extends Activity{
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_newtaskeovergoodsaddress);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		//省市县被点击的时候，弹出布局来进行处理
 		mSSX.setOnClickListener(new OnClickListener() {

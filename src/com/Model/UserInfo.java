@@ -21,7 +21,7 @@ public class UserInfo {
 		PassWord = passWord;
 	}
 
-	private String Name;
-	private String PassWord;
+	private String Name="user";
+	private String PassWord=new String();
 
 }

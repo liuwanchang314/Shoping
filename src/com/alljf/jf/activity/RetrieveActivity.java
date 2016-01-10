@@ -17,6 +17,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.Application.SysApplication;
 import com.Extension.DataService;
 import com.Model.RelInfo;
 import com.alljf.jf.R;
@@ -40,6 +41,7 @@ public class RetrieveActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_retrieve);
+		SysApplication.getInstance().addActivity(this);
 		Intent intent = getIntent();
 		name = intent.getStringExtra("name");
 		spinner = (Spinner) findViewById(R.id.ret_txt_one);

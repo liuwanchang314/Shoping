@@ -17,6 +17,7 @@ import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ImageView;
 
+import com.Application.SysApplication;
 import com.adapter.myexlistviewadapter;
 import com.alljf.jf.R;
 import com.bean.productclassgroup;
@@ -45,6 +46,7 @@ public class ProductClassNumberActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_productclassnumber);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		GetData();
 		

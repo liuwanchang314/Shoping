@@ -7,9 +7,11 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Window;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TabHost;
 
@@ -44,6 +46,7 @@ public class MainActivity extends TabActivity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
+		SysApplication.getInstance().addActivity(this);
 		 mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
 		registerReceiver(mReceiver, mFilter);
 		context = this;
@@ -165,6 +168,25 @@ public class MainActivity extends TabActivity {
 				tabHost.setCurrentTabByTag("个人中心");
 			}
 		}
+	}
+	
+	private long mExitTime;
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			
+				if ((System.currentTimeMillis() - mExitTime) > 2000) {
+					Toast.makeText(this, "再点一次，退出程序",
+							Toast.LENGTH_SHORT).show();
+					mExitTime = System.currentTimeMillis();
+				} else {
+					finish();
+					SysApplication.getInstance().exit();
+				}
+			}
+		return true;
+	
 	}
 	
 }

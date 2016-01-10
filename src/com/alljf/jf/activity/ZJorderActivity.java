@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 
+import com.Application.SysApplication;
 import com.alljf.jf.R;
 
 public class ZJorderActivity extends TabActivity {
@@ -24,6 +25,7 @@ public class ZJorderActivity extends TabActivity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_dingdan);
+		SysApplication.getInstance().addActivity(this);
 		 _tabHost = getTabHost();
 		 AddTabPage1();
 	     AddTabPage2();

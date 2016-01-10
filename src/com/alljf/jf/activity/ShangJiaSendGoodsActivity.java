@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.Application.SysApplication;
 import com.adapter.KuaiDiAdapter;
 import com.adapter.ShangjiazenpinAdapter;
 import com.alljf.jf.R;
@@ -50,6 +51,7 @@ public class ShangJiaSendGoodsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_shangjiafahuo);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		Intent in=getIntent();
 		final String modeString=in.getStringExtra("mode");

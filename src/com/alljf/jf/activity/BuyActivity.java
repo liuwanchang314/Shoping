@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -53,6 +54,7 @@ public class BuyActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_buy);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		getdata();
 		
@@ -263,6 +265,25 @@ public class BuyActivity extends Activity implements OnClickListener{
 	//定义一个方法，在adapter中，当radiobuutton的状态发生改变的时候，都调用一次该方法，并且将该item的价格传递过来
 	public static void setdata(double d){
 		
+	}
+	
+	private long mExitTime;
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			
+				if ((System.currentTimeMillis() - mExitTime) > 2000) {
+					Toast.makeText(this, "再点一次，退出程序",
+							Toast.LENGTH_SHORT).show();
+					mExitTime = System.currentTimeMillis();
+				} else {
+					finish();
+					SysApplication.getInstance().exit();
+				}
+			}
+		return true;
+	
 	}
 
 

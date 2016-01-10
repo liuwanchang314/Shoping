@@ -12,6 +12,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.Application.SysApplication;
 import com.adapter.DingdanxiangqingAdapter;
 import com.alljf.jf.R;
 import com.bean.OrderBean;
@@ -46,6 +47,7 @@ public class DingDanXQActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_dingdanxiangqingye);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		initdata();
 	}

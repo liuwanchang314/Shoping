@@ -101,6 +101,7 @@ public class BillActivity extends Activity {
 		setContentView(R.layout.activity_billinfo);
 		ViewUtils.inject(BillActivity.this);
 		isconnecions();
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		//首先需要获取用户发票记录，然后展示到listview中
 		getdatas();

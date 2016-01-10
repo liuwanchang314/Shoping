@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.Application.SysApplication;
 import com.alljf.jf.R;
 
 /**
@@ -43,6 +44,7 @@ public class RechargeActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_recharge);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 	}
 	@SuppressLint("NewApi")

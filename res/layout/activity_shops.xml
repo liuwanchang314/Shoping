@@ -167,12 +167,13 @@
         android:layout_weight="4"
         android:orientation="vertical"
         >
-        <!-- 这里需要写baidumap -->
+        <!-- 这里需要写baidumap  -->
        <com.baidu.mapapi.map.MapView  
 	    android:id="@+id/bmapView"  
 	    android:layout_width="fill_parent"  
 	    android:layout_height="fill_parent"  
 	    android:clickable="true" />
+	   
     </LinearLayout>
 	
   

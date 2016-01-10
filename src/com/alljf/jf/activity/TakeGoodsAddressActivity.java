@@ -53,6 +53,7 @@ public class TakeGoodsAddressActivity extends Activity implements OnClickListene
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_takegoodsaddress);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		getdata();
 	}

@@ -37,6 +37,7 @@ public class ComplaintActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_complaint);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		getdata();
 	}

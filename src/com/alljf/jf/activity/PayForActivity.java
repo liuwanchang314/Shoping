@@ -62,6 +62,7 @@ public class PayForActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_payfor);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		//首先分析，需要从之前界面传递过来的数据有
 		/**

@@ -13,6 +13,7 @@ import android.view.Window;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.Application.SysApplication;
 import com.adapter.CompanyNoticeAdapter;
 import com.alljf.jf.R;
 import com.bean.CompanyNoticeBean;
@@ -35,6 +36,7 @@ public class SoldOutActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_soldout);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		GetData();
 	}

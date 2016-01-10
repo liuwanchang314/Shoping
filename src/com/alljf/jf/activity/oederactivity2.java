@@ -37,6 +37,7 @@ public class oederactivity2 extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.orderactivity2);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		getdate();
 	}

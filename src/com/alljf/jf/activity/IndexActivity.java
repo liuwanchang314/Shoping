@@ -20,6 +20,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,6 +36,7 @@ import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Toast;
 
+import com.Application.SysApplication;
 import com.Extension.AutoScrollViewPager;
 import com.Extension.DataService;
 import com.Extension.DownLoadImage;
@@ -80,6 +82,7 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_index);
+		SysApplication.getInstance().addActivity(this);
 		mRefreshableView = (RefreshableView) findViewById(R.id.refresh_root);
 		mRefreshableView.setRefreshListener(this);
 		initradiogroup();
@@ -399,5 +402,25 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 		// TODO Auto-generated method stub
 		//这里只是伪处理了一下
 		handlerR.sendEmptyMessageDelayed(1, 2000);
+	}
+	
+	
+	private long mExitTime;
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			
+				if ((System.currentTimeMillis() - mExitTime) > 2000) {
+					Toast.makeText(this, "再点一次，退出程序",
+							Toast.LENGTH_SHORT).show();
+					mExitTime = System.currentTimeMillis();
+				} else {
+					finish();
+					SysApplication.getInstance().exit();
+				}
+			}
+		return true;
+	
 	}
 }

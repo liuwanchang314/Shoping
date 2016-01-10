@@ -102,6 +102,7 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_product_info);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		_id=getid();
 		getdata(_id);

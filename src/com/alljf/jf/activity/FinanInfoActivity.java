@@ -48,6 +48,7 @@ public class FinanInfoActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_finan_info);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		getdata();
 	}
