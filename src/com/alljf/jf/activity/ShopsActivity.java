@@ -2,9 +2,15 @@ package com.alljf.jf.activity;
 
 
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.R.integer;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -31,6 +37,7 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.lidroid.xutils.view.annotation.ViewInject;
 
 public class ShopsActivity extends Activity implements OnClickListener{
 
@@ -40,6 +47,13 @@ public class ShopsActivity extends Activity implements OnClickListener{
 	private TextView back;
 	private TextView home;
 	private String username=new String();
+	private TextView mGongsimincheng;
+	private TextView mName;
+	private TextView mPhone;
+	private TextView mQQstring;
+	private TextView mAddress;
+	private String map=new String();
+	private Handler handle;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,22 +64,39 @@ public class ShopsActivity extends Activity implements OnClickListener{
         //注意该方法要再setContentView方法之前实现  
 		setContentView(R.layout.activity_shops);
 		initview();
-		initviemapw();
 		username=SysApplication.getInstance().getUserInfo().getName();
-		getdataFromeInternet(username);
+		if(username.equals("user")){
+			//说明是空值
+			getdataFromeInternet();
+		}else{
+			getdataFromeInternets(username);
+		}
+		handle=new Handler(){
+			public void handleMessage(android.os.Message msg) {
+				switch (msg.arg1) {
+				case 0:
+					Log.i("现在地图数据是多少",(String) msg.obj);
+//					initviemapw((String) msg.obj);
+					break;
+
+				default:
+					break;
+				}
+			};
+		};
+		initviemapw();
 	}
 	/**
 	 * @param username2 
 	 * @2016-1-10下午5:29:23
 	 * 网络获取店铺信息数据
 	 */
-	private void getdataFromeInternet(String username2) {
+	private void getdataFromeInternet() {
 				RequestParams params = new RequestParams();
 				params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
 				params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
 				params.addBodyParameter("type", "user");
-				params.addBodyParameter("part", "userinfo");
-				params.addBodyParameter("username",username2);
+				params.addBodyParameter("part", "storeinfo");
 				HttpUtils http = new HttpUtils();
 				http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
 
@@ -84,6 +115,28 @@ public class ShopsActivity extends Activity implements OnClickListener{
 				        public void onSuccess(ResponseInfo<String> responseInfo) {
 				        	String str=responseInfo.result;
 				        	Log.i("店铺信息的数据是",str+"");
+				        	try {
+								JSONObject obj=new JSONObject(str);
+								JSONObject objs=obj.getJSONObject("data");
+								String storename=objs.getString("company_name");
+								String name=objs.getString("real_name");
+								String phone=objs.getString("link_tel");
+								String QQstring=objs.getString("qqnum");
+								String address=objs.getString("address");
+								String map=objs.getString("map");
+								Message msg=handle.obtainMessage();
+								msg.arg1=0;
+								msg.obj=map;
+								handle.sendMessage(msg);
+								mGongsimincheng.setText(storename);
+								mName.setText(name);
+								mPhone.setText(phone);
+								mQQstring.setText(QQstring);
+								mAddress.setText(address);
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 				        }
 
 				        @Override
@@ -91,12 +144,71 @@ public class ShopsActivity extends Activity implements OnClickListener{
 				        }
 				});
 	}
+	private void getdataFromeInternets(String username2) {
+		RequestParams params = new RequestParams();
+		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
+		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
+		params.addBodyParameter("type", "user");
+		params.addBodyParameter("part", "userinfo");
+		params.addBodyParameter("username",username2);
+		HttpUtils http = new HttpUtils();
+		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
+
+		        @Override
+		        public void onStart() {
+		        }
+
+		        @Override
+		        public void onLoading(long total, long current, boolean isUploading) {
+		            if (isUploading) {
+		            } else {
+		            }
+		        }
+
+		        @Override
+		        public void onSuccess(ResponseInfo<String> responseInfo) {
+		        	String str=responseInfo.result;
+		        	Log.i("店铺信息的数据是",str+"");
+		        	try {
+						JSONObject obj=new JSONObject(str);
+						JSONObject objs=obj.getJSONObject("data");
+						String storename=objs.getString("company_name");
+						String name=objs.getString("real_name");
+						String phone=objs.getString("link_tel");
+						String QQstring=objs.getString("qqnum");
+						String address=objs.getString("address");
+						String map=objs.getString("map");
+						Message msg=handle.obtainMessage();
+						msg.arg1=0;
+						msg.obj=map;
+						handle.sendMessage(msg);
+						mGongsimincheng.setText(storename);
+						mName.setText(name);
+						mPhone.setText(phone);
+						mQQstring.setText(QQstring);
+						mAddress.setText(address);
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		        }
+
+		        @Override
+		        public void onFailure(HttpException error, String msg) {
+		        }
+		});
+}
 	private void initviemapw() {
 		// TODO Auto-generated method stub
+//		String[] key_vealue=str.split(",");
+//		String key=key_vealue[0];
+//		String value=key_vealue[1];
+//		int weidu=Integer.parseInt(key);
+//		int jingdu=Integer.parseInt(value);
 		mMapView = (MapView) findViewById(R.id.bmapView); 
 		mBaidumap = mMapView.getMap();
 		//定义Maker坐标点  
-		LatLng point = new LatLng(39.963175, 116.400244);  
+		LatLng point = new LatLng(35.69,121.36);  
 		//构建Marker图标  
 		BitmapDescriptor bitmap = BitmapDescriptorFactory  
 		    .fromResource(R.drawable.icon_gcoding);  
@@ -130,6 +242,12 @@ public class ShopsActivity extends Activity implements OnClickListener{
 				ShopsActivity.this.finish();
 			}
 		});
+		mGongsimincheng=(TextView) findViewById(R.id.relation_tv_goongsimingcheng);
+		mName=(TextView) findViewById(R.id.relation_tv_relationname);
+		mPhone=(TextView) findViewById(R.id.relation_tv_relationphone);
+		mQQstring=(TextView) findViewById(R.id.relation_tv_relaitonQQ);
+		mAddress=(TextView) findViewById(R.id.relation_tv_relaitonadress);
+		
 	}
 	@Override  
     protected void onDestroy() {  

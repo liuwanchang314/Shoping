@@ -79,7 +79,66 @@ public class AllProductActivity extends Activity {
 		initview();
 		if(isconnection){
 			//说明网络是联通的
-			GetData();
+			//先判断是否是从搜索界面跳转过来的意图对象
+			Intent intent=getIntent();
+			String data=intent.getStringExtra("data");
+			if(data==null&&data.equals("")){
+				//说明无数据,则直接从网络获取
+				GetData();
+			}else{
+				Log.i("传递过来的的参数是",data);
+	        	list=AllProductDataJson.GetProductData(data);
+	        	Log.i("这一步走了没有？",data+"现在有多少数据"+list.size()+"");
+	        		//说明要宫格显示
+	        	if(isGridView){
+	        		mGridview.setVisibility(View.VISIBLE);
+	        		mmyAllproductAdapter=new MyAllproductAdapter(list,AllProductActivity.this);
+		    		GridView gv=mGridview.getRefreshableView();
+		    		gv.setAdapter(mmyAllproductAdapter);
+		    		mGridview.onRefreshComplete();
+		    		gv.setOnItemClickListener(new OnItemClickListener() {
+
+						@Override
+						public void onItemClick(AdapterView<?> arg0,
+								View arg1, int arg2, long arg3) {
+							// TODO Auto-generated method stub
+							String id=list.get(arg2).getId();//商品id
+							Bundle budle=new Bundle();
+							budle.putString("id",id);
+							Intent intent=new Intent(AllProductActivity.this,Product_infoActivity.class);
+							intent.putExtras(budle);
+							startActivity(intent);
+						}
+					});
+		    		mListview.setVisibility(View.GONE);
+	        	}else{
+	        		mListview.setVisibility(View.VISIBLE);
+	        		mmyAllproductAdapter=new MyAllproductAdapter(list,AllProductActivity.this);
+		    		ListView lv=mListview.getRefreshableView();
+		    		lv.setAdapter(mmyAllproductAdapter);
+		    		mGridview.setVisibility(View.GONE);
+		    		mListview.onRefreshComplete();
+		    		lv.setOnItemClickListener(new OnItemClickListener() {
+
+						@Override
+						public void onItemClick(AdapterView<?> arg0,
+								View arg1, int arg2, long arg3) {
+							// TODO Auto-generated method stub
+							//在这里开始打开商品详情
+							String id=list.get(arg2).getId();//商品id
+							Bundle budle=new Bundle();
+							budle.putString("id",id);
+							Intent intent=new Intent(AllProductActivity.this,Product_infoActivity.class);
+							intent.putExtras(budle);
+							startActivity(intent);
+						}
+					});
+	        	}
+	        		
+	        		
+	        	
+			}
+			
 		}else{
 			Toast.makeText(AllProductActivity.this,"网络异常",1).show();
 		}

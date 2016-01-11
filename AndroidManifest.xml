@@ -292,6 +292,10 @@
                android:name=".activity.activity_qidongye"
 
                ></activity>
+           <!--搜索界面  -->
+           <activity 
+               android:name=".activity.SousuoActivity"
+               ></activity>
         <!-- QZONE -->
         <activity
             android:name="com.tencent.tauth.AuthActivity" 

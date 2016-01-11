@@ -1,11 +1,29 @@
 package com.alljf.jf.activity;
 
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.security.PublicKey;
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -15,10 +33,12 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.Application.SysApplication;
 import com.adapter.SubjectAdapter;
@@ -33,7 +53,6 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
-
 /** 
  * @author 作者 E-mail: 
  * @version 创建时间：2015-12-29 下午11:07:38 
@@ -45,21 +64,32 @@ public class TousuActivity extends Activity implements OnClickListener{
 	 * 选择投诉的按钮
 	 */
 	private RelativeLayout mXuanzetousu;
-	private String SubjectId=null;
+	private String SubjectId=new String();
 	private ImageView mGoodsImage;
 	private TextView mGoodsName;
 	private TextView mGoodsPrice;
 	private TextView mGoodsNum;
+	private ImageView mXuanzezhaopian;
+	private Bitmap myBitmap=null;
+	private byte[] mContent;
+	private TextView mTousuzhuti;
+	private TextView mTousuTijiao;
+	private OrderBean bean;
+	private EditText mYijianlan;
+	private String cachePath;
+	private Uri originalUri;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
 		setContentView(R.layout.activity_tousu);
+		cachePath = Environment.getExternalStorageDirectory() + "/cacheImage";;
 		SysApplication.getInstance().addActivity(this);
 		initview();
 		Intent intent=getIntent();
-		OrderBean bean=(OrderBean) intent.getSerializableExtra("bean");
+		bean=(OrderBean) intent.getSerializableExtra("bean");
 		getdata(bean.getOrdergoods().getSpec_id());
 		BitmapUtils bmp=new BitmapUtils(TousuActivity.this);
 		bmp.display(mGoodsImage,bean.getOrdergoods().getGoods_image());
@@ -98,7 +128,11 @@ public class TousuActivity extends Activity implements OnClickListener{
 		mGoodsName=(TextView) findViewById(R.id.tousu_goods_title);
 		mGoodsPrice=(TextView) findViewById(R.id.tousu_shangpinjiage);
 		mGoodsNum=(TextView) findViewById(R.id.tousu_shangpinshuliang);
-		
+		mXuanzezhaopian=(ImageView) findViewById(R.id.tousu_dianjixuanzezhaopian);
+		mXuanzezhaopian.setOnClickListener(this);
+		mTousuzhuti=(TextView) findViewById(R.id.tousu_zhuti);
+		mTousuTijiao=(TextView) findViewById(R.id.tousu_tijiao);
+		mYijianlan=(EditText) findViewById(R.id.tousu_yijianlan);
 	}
 	
 	/**
@@ -204,6 +238,7 @@ public class TousuActivity extends Activity implements OnClickListener{
 										View arg1, int arg2, long arg3) {
 									// TODO Auto-generated method stub
 									SubjectId=list.get(arg2).getSubject_id();
+									mTousuzhuti.setText(list.get(arg2).getSubject_content());
 									dialog.dismiss();
 								}
 							});
@@ -215,43 +250,230 @@ public class TousuActivity extends Activity implements OnClickListener{
 			        }
 			});
 			break;
+		case R.id.tousu_dianjixuanzezhaopian:
+			final CharSequence[] items =
+		{ "相册", "拍照" };
+			AlertDialog dlg = new AlertDialog.Builder(TousuActivity.this).setTitle("选择图片").setItems(items,
+					new DialogInterface.OnClickListener()
+					{
+						public void onClick ( DialogInterface dialog , int item )
+						{
+							// 这里item是根据选择的方式，
+							// 在items数组里面定义了两种方式，拍照的下标为1所以就调用拍照方法
+							if (item == 1)
+							{
+								Intent getImageByCamera = new Intent("android.media.action.IMAGE_CAPTURE");
+								startActivityForResult(getImageByCamera, 1);
+							} else
+							{
+								Intent getImage = new Intent(Intent.ACTION_GET_CONTENT);
+								getImage.addCategory(Intent.CATEGORY_OPENABLE);
+								getImage.setType("image/jpeg");
+								startActivityForResult(getImage, 0);
+							}
+						}
+					}).create();
+			dlg.show();
+			
+			break;
 
 		default:
 			break;
 		}
 	}
-	
+	@ Override
+	protected void onActivityResult ( int requestCode , int resultCode , Intent data )
+	{
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
 
+		ContentResolver resolver = getContentResolver();
+		/**
+		 * 因为两种方式都用到了startActivityForResult方法，
+		 * 这个方法执行完后都会执行onActivityResult方法， 所以为了区别到底选择了那个方式获取图片要进行判断，
+		 * 这里的requestCode跟startActivityForResult里面第二个参数对应
+		 */
+		if (requestCode == 0)
+		{
+			try
+			{
+				// 获得图片的uri
+				originalUri = data.getData();
+				if(originalUri==null){
+					
+				}else{
+					// 将图片内容解析成字节数组
+					mContent = readStream(resolver.openInputStream(Uri.parse(originalUri.toString())));
+					// 将字节数组转换为ImageView可调用的Bitmap对象
+					myBitmap = getPicFromBytes(mContent, null);
+					// //把得到的图片绑定在控件上显示
+					mXuanzezhaopian.setImageBitmap(myBitmap);
+				}
+			
+			} catch ( Exception e )
+			{
+				System.out.println(e.getMessage());
+			}
+
+		} else if (requestCode == 1)
+		{
+			try
+			{
+				super.onActivityResult(requestCode, resultCode, data);
+				Bundle extras = data.getExtras();
+				myBitmap = (Bitmap) extras.get("data");
+				if(myBitmap==null){
+					
+				}else{
+					ByteArrayOutputStream baos = new ByteArrayOutputStream();
+					myBitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+					mContent = baos.toByteArray();
+					// 把得到的图片绑定在控件上显示
+					mXuanzezhaopian.setImageBitmap(myBitmap);
+				}
+				
+			} catch ( Exception e )
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		mTousuTijiao.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				//调用方法，进行投诉
+				String orderid=bean.getOrder_id();
+				String username=SysApplication.getInstance().getUserInfo().getName();
+				String subid=SubjectId;
+				String subcon=mYijianlan.getText().toString();
+				String goodsid=bean.getOrdergoods().getGoods_id();
+//				File file=new File(originalUri.toString());
+				if(subid.equals("")){
+					Toast.makeText(TousuActivity.this,"请选择投诉主题", 1).show();
+				}else{
+					if(originalUri==null){
+					}else{
+						getdaTousu(orderid,username,subid,subcon,goodsid);
+					}
+					
+				}
+				
+			}
+		});
+	}
+	
 	/**
-	 * {
-    "api": "APISUCCESS",
-    "data": {
-        "spec_name": [
-            {
-                "id": 11,
-                "name": "颜色分类"
-            },
-            {
-                "id": 10,
-                "name": "适用床尺寸"
-            }
-        ],
-        "spec_price": "12.00",
-        "spec_storage": "86",
-        "spec_salenum": "0",
-        "spec_main": [
-            {
-                "id": 51,
-                "key": null
-            },
-            {
-                "id": 41,
-                "key": null
-            }
-        ]
-    },
-    "status": 1
-}
-	 * */
+	 * @2016-1-11下午9:12:58
+	 * 进行投诉
+	 * 
+	 */
+	private void getdaTousu(String orderid,String username,String subid,String subcon,String goodsid) {
+		// TODO Auto-generated method stub
+		RequestParams params = new RequestParams();
+		// 只包含字符串参数时默认使用BodyParamsEntity，
+		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
+		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
+		params.addBodyParameter("type", "order");
+		params.addBodyParameter("part", "do_complain");
+		params.addBodyParameter("order_id", orderid);
+		params.addBodyParameter("user_name", username);
+		params.addBodyParameter("complain_subject", subid);
+		params.addBodyParameter("complain_content",subcon);
+		params.addBodyParameter("goods_values",goodsid);
+		params.addBodyParameter("input_complain_pic1","");
+		HttpUtils http = new HttpUtils();
+		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
+
+		        @Override
+		        public void onStart() {
+		        	//开始请求
+		        }
+
+		        @Override
+		        public void onLoading(long total, long current, boolean isUploading) {
+		            if (isUploading) {
+		            } else {
+		            }
+		        }
+
+		        @Override
+		        public void onSuccess(ResponseInfo<String> responseInfo) {
+		        	//请求成功
+		        	String str=responseInfo.result;
+		        	Log.i("投诉完毕以后的返回结果是", str);
+		        	try {
+						JSONObject obj=new JSONObject(str);
+						String status=obj.getString("status");
+						if(status.equals("0")){
+							Toast.makeText(TousuActivity.this,"投诉成功",1).show();
+							TousuActivity.this.finish();
+						}
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		        }
+
+		        @Override
+		        public void onFailure(HttpException error, String msg) {
+		        }
+		});
+	}
+	
+	public static Bitmap getPicFromBytes ( byte[] bytes , BitmapFactory.Options opts )
+	{
+		if (bytes != null)
+			if (opts != null)
+				return BitmapFactory.decodeByteArray(bytes, 0, bytes.length, opts);
+			else
+				return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+		return null;
+	}
+
+	public static byte[] readStream ( InputStream inStream ) throws Exception
+	{
+		byte[] buffer = new byte[1024];
+		int len = -1;
+		ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+		while ((len = inStream.read(buffer)) != -1)
+		{
+			outStream.write(buffer, 0, len);
+		}
+		byte[] data = outStream.toByteArray();
+		outStream.close();
+		inStream.close();
+		return data;
+
+	}
+	
+	/** 
+	39.     * 把字节数组保存为一个文件  
+	40.     * @EditTime 2007-8-13 上午11:45:56  
+	41.     */   
+	    public  File getFileFromBytes(byte[] b, String outputFile) {   
+	        BufferedOutputStream stream = null;   
+	        File file = null;   
+	        try {   
+	           file = new File(outputFile);   
+	            FileOutputStream fstream = new FileOutputStream(file);   
+            stream = new BufferedOutputStream(fstream);   
+	            stream.write(b);   
+	       } catch (Exception e) {   
+	            e.printStackTrace();   
+	        } finally {   
+	            if (stream != null) {   
+	                try {   
+	                    stream.close();   
+	                } catch (IOException e1) {   
+	                    e1.printStackTrace();   
+	               }   
+	            }   
+	        }   
+	        return file;   
+	   }   
+
 
 }

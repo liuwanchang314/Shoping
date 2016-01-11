@@ -68,6 +68,7 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 	private EditText edittext;
 	
 	private RadioGroup mRadiogroup;
+	private LinearLayout indeLayout;
 	/**
 	 * 可下拉刷新的scrollview
 	 * */
@@ -250,6 +251,15 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 
 	private void init() {
 
+		indeLayout=(LinearLayout) findViewById(R.id.index_lt_search);
+		indeLayout.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				startActivity(new Intent(IndexActivity.this,SousuoActivity.class).putExtra("data", edittext.getText().toString()));
+			}
+		});
 		mDotTips = new ImageView[mPicsUrl.length];
 		int length = mDotTips.length;
 		group.removeAllViews();
