@@ -62,28 +62,30 @@ public class TuiHuoAdapter extends BaseAdapter {
 			convertView.setTag(vh);
 		}else{
 			vh=(viewholderss) convertView.getTag();
-			if(list.get(position).getRefund_type().equals("1")){
-				vh.zhuangtai.setText("退款");
-			}else if(list.get(position).getRefund_status().equals("2")){
-				vh.zhuangtai.setText("退货");
-			}
-			vh.title.setText(list.get(position).getGoods_name());
-			vh.jiaoyijin.setText(list.get(position).getRefund_price());
-			vh.tuikuanjin.setText(list.get(position).getRefund_price());
-			vh.chicun.setText(list.get(position).getSpec_id());
-			vh.yanse.setText(list.get(position).getSpec_id());
-			BitmapUtils b=new BitmapUtils(context);
-			b.display(vh.im,list.get(position).getGoods_image());
-			final TextView tv=vh.xiangqing;
-			tv.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					
-				}
-			});
+			
 		}
+		
+		if(list.get(position).getRefund_type().equals("1")){
+			vh.zhuangtai.setText("退款");
+		}else if(list.get(position).getRefund_status().equals("2")){
+			vh.zhuangtai.setText("退货");
+		}
+		vh.title.setText(list.get(position).getGoods_name());
+		vh.jiaoyijin.setText(list.get(position).getRefund_price());
+		vh.tuikuanjin.setText(list.get(position).getRefund_price());
+		vh.chicun.setText(list.get(position).getSpec_id());
+		vh.yanse.setText(list.get(position).getSpec_id());
+		BitmapUtils b=new BitmapUtils(context);
+		b.display(vh.im,list.get(position).getGoods_image());
+		final TextView tv=vh.xiangqing;
+		tv.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		return convertView;
 	}

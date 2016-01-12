@@ -178,7 +178,6 @@ public class TousuXiangqingActivity extends Activity {
 			bitmap.display(mTousuzhengju1,bean.getComplain_pic1());
 			bitmap.display(mTousuzhengju1,bean.getComplain_pic2());
 			bitmap.display(mTousuzhengju1,bean.getComplain_pic3());
-			
 			mTousuzhuti.setText(bean.getComplain_subject_content());
 			
 			

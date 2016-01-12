@@ -77,7 +77,6 @@ public class DingDanXQActivity extends Activity {
 		mFukuanshijian.setText(bean.getPay_time());
 		mFahuoshijian.setText(bean.getShipping_time());
 		mChengjiaoshijian.setText(bean.getPay_time());
-		
 		adapter=new DingdanxiangqingAdapter(list,DingDanXQActivity.this);
 		Mlistview.setAdapter(adapter);
 		
@@ -87,6 +86,7 @@ public class DingDanXQActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent=new Intent(DingDanXQActivity.this, FaBiaoPingJiaActivity.class);
+				intent.putExtra("bean",bean);
 				startActivity(intent);
 			}
 		});

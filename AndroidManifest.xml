@@ -296,6 +296,15 @@
            <activity 
                android:name=".activity.SousuoActivity"
                ></activity>
+           <!-- 选择服务界面 -->
+           <activity 
+               android:name=".activity.XuanzefuwuActivity"
+               ></activity>
+           <!-- 申请退款界面 -->
+           <activity 
+               android:name=".activity.ShenQingTuiKuanActivity"
+               android:windowSoftInputMode="stateUnchanged"
+               ></activity>
         <!-- QZONE -->
         <activity
             android:name="com.tencent.tauth.AuthActivity" 

@@ -82,7 +82,7 @@ public class AllProductActivity extends Activity {
 			//先判断是否是从搜索界面跳转过来的意图对象
 			Intent intent=getIntent();
 			String data=intent.getStringExtra("data");
-			if(data==null&&data.equals("")){
+			if(data==null){
 				//说明无数据,则直接从网络获取
 				GetData();
 			}else{

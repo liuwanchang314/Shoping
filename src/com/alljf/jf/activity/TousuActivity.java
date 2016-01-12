@@ -132,6 +132,31 @@ public class TousuActivity extends Activity implements OnClickListener{
 		mXuanzezhaopian.setOnClickListener(this);
 		mTousuzhuti=(TextView) findViewById(R.id.tousu_zhuti);
 		mTousuTijiao=(TextView) findViewById(R.id.tousu_tijiao);
+		mTousuTijiao.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				//调用方法，进行投诉
+				String orderid=bean.getOrder_id();
+				String username=SysApplication.getInstance().getUserInfo().getName();
+				String subid=SubjectId;
+				String subcon=mYijianlan.getText().toString();
+				String goodsid=bean.getOrdergoods().getGoods_id();
+//				File file=new File(originalUri.toString());
+				if(subid.equals("")){
+					Toast.makeText(TousuActivity.this,"请选择投诉主题", 1).show();
+				}else{
+//					if(originalUri==null){
+//					}else{
+//						getdaTousu(orderid,username,subid,subcon,goodsid);
+//					}
+					getdaTousu(orderid,username,subid,subcon,goodsid);
+					
+				}
+				
+			}
+		});
 		mYijianlan=(EditText) findViewById(R.id.tousu_yijianlan);
 	}
 	
@@ -339,30 +364,7 @@ public class TousuActivity extends Activity implements OnClickListener{
 			}
 			
 		}
-		mTousuTijiao.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				//调用方法，进行投诉
-				String orderid=bean.getOrder_id();
-				String username=SysApplication.getInstance().getUserInfo().getName();
-				String subid=SubjectId;
-				String subcon=mYijianlan.getText().toString();
-				String goodsid=bean.getOrdergoods().getGoods_id();
-//				File file=new File(originalUri.toString());
-				if(subid.equals("")){
-					Toast.makeText(TousuActivity.this,"请选择投诉主题", 1).show();
-				}else{
-					if(originalUri==null){
-					}else{
-						getdaTousu(orderid,username,subid,subcon,goodsid);
-					}
-					
-				}
-				
-			}
-		});
+		
 	}
 	
 	/**

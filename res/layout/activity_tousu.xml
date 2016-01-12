@@ -291,14 +291,9 @@
         android:id="@+id/tousu_yijianlan"
         android:layout_width="match_parent"
         android:layout_height="150dp" />
-
-        </LinearLayout>
-    </ScrollView>
-
-    <RelativeLayout 
+<RelativeLayout 
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
         android:background="#ffffff"
         >
         <TextView 
@@ -314,4 +309,8 @@
             android:gravity="center"
             />
     </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    
 </RelativeLayout>

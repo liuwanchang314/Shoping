@@ -59,14 +59,19 @@ public class SureTakeGoodsActivity extends Activity {
 		Intent intent=getIntent();
 		final String orderid=intent.getStringExtra("order");
 		mDingdanhao.setText(orderid);
-		mSure.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				getdata(orderid, mPassword.getText().toString());
-			}
-		});
+		if(mPassword.getText().toString()==null){
+			Toast.makeText(SureTakeGoodsActivity.this,"请输入支付密码",1).show();
+		}else{
+			mSure.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					getdata(orderid, mPassword.getText().toString());
+				}
+			});
+		}
+		
 	}
 
 	/**
@@ -134,7 +139,7 @@ public class SureTakeGoodsActivity extends Activity {
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
 		        	String str=responseInfo.result;
-		        	Log.i("订单取消了没有", str);
+		        	Log.i("确认收货界面数据返回", str);
 		        	try {
 						JSONObject obj=new JSONObject(str);
 						String strs=obj.getString("status");
@@ -142,6 +147,7 @@ public class SureTakeGoodsActivity extends Activity {
 							Toast.makeText(SureTakeGoodsActivity.this,"确认失败",1).show();
 						}else{
 							Toast.makeText(SureTakeGoodsActivity.this,"确认成功",1).show();
+							SureTakeGoodsActivity.this.finish();
 						}
 					} catch (JSONException e) {
 						e.printStackTrace();

@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.alljf.jf.R;
 import com.alljf.jf.activity.PayForActivity;
+import com.alljf.jf.activity.ShenQingTuiKuanActivity;
 import com.bean.OrderBean;
 import com.lidroid.xutils.BitmapUtils;
 
@@ -99,8 +100,9 @@ public class DingdanxiangqingAdapter extends BaseAdapter {
 					@Override
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
-//						Intent intent=new Intent(context, PayForActivity.class);
-//						context.startActivity(intent);
+						Intent intent=new Intent(context, ShenQingTuiKuanActivity.class);
+						intent.putExtra("bean",list.get(position));
+						context.startActivity(intent);
 					}
 				});
 			}else if(list.get(position).getOrder_status().equals("30")){
@@ -110,8 +112,9 @@ public class DingdanxiangqingAdapter extends BaseAdapter {
 					@Override
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
-//						Intent intent=new Intent(context, PayForActivity.class);
-//						context.startActivity(intent);
+						Intent intent=new Intent(context, ShenQingTuiKuanActivity.class);
+						intent.putExtra("bean",list.get(position));
+						context.startActivity(intent);
 					}
 				});
 			}else if(list.get(position).getOrder_status().equals("40")){
@@ -121,8 +124,9 @@ public class DingdanxiangqingAdapter extends BaseAdapter {
 					@Override
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
-//						Intent intent=new Intent(context, PayForActivity.class);
-//						context.startActivity(intent);
+						Intent intent=new Intent(context, ShenQingTuiKuanActivity.class);
+						intent.putExtra("bean",list.get(position));
+						context.startActivity(intent);
 					}
 				});
 			}
