@@ -34,7 +34,7 @@
         android:layout_marginTop="26dp"
         android:drawableLeft="@drawable/login_password"
         android:ems="10"
-        android:hint="请输入支付密码进行验证"
+        android:hint="请输入支付密码"
         android:inputType="textPassword" >
 
         <requestFocus />
@@ -68,7 +68,6 @@
         android:layout_alignTop="@+id/tv_quxiao"
         android:layout_marginTop="18dp" >
     </RelativeLayout>
-
     <TextView
         android:id="@+id/tv_yanzheng"
         android:layout_width="50dp"

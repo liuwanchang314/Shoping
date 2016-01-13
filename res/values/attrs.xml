@@ -33,5 +33,11 @@
             <flag name="both" value="0x3" />
         </attr>
     </declare-styleable>
-
+    
+     <declare-styleable name="Dialog">
+        <attr name="DialogTitleAppearance" format="reference" />
+        <attr name="DialogTitleText" format="reference|string" />
+        <attr name="DialogSpotColor" format="reference|color"/>
+        <attr name="DialogSpotCount" format="integer"/>
+    </declare-styleable>
 </resources>

@@ -16,6 +16,7 @@ import com.Application.SysApplication;
 import com.adapter.TuiHuoAdapter;
 import com.alljf.jf.R;
 import com.bean.TuikuanSHBean;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.jsonParser.TuiHuoJsonpaser;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -33,6 +34,8 @@ public class TuiKuanYuSHActivity extends Activity {
 	private ImageView mBack;
 	private ImageView mHome;
 	private ListView mListview;
+	
+	private SpotsDialog mdialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -65,6 +68,7 @@ public class TuiKuanYuSHActivity extends Activity {
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -77,6 +81,7 @@ public class TuiKuanYuSHActivity extends Activity {
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	String str=responseInfo.result;
 		        	Log.i("tixian请求下来的参数是",str);
 		        	List<TuikuanSHBean> list=TuiHuoJsonpaser.getlist(str);
@@ -97,6 +102,9 @@ public class TuiKuanYuSHActivity extends Activity {
 	 */
 	private void initview() {
 		// TODO Auto-generated method stub
+		SpotsDialog.TAG=R.style.SpotsDialogDefault_tijiao;
+		mdialog=new SpotsDialog(TuiKuanYuSHActivity.this);
+		mdialog.setCanceledOnTouchOutside(false);
 		mBack=(ImageView) findViewById(R.id.shouhoutuikuan_back);
 		mBack.setOnClickListener(new OnClickListener() {
 			

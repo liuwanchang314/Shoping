@@ -19,6 +19,7 @@ import com.Application.SysApplication;
 import com.adapter.OrderAdatper;
 import com.alljf.jf.R;
 import com.bean.OrderBean;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.jsonParser.OrderJsonParser;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -30,6 +31,7 @@ import com.lidroid.xutils.http.client.HttpRequest;
 public class oederactivity3 extends Activity {
 
 	private ListView mListview;
+	private SpotsDialog mdialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -62,6 +64,7 @@ public class oederactivity3 extends Activity {
 				        @Override
 				        public void onStart() {
 				        	//开始请求
+				        	mdialog.show();
 				        }
 
 				        @Override
@@ -74,6 +77,7 @@ public class oederactivity3 extends Activity {
 				        @Override
 				        public void onSuccess(ResponseInfo<String> responseInfo) {
 				        	//请求成功
+				        	mdialog.dismiss();
 				        	String str=responseInfo.result;
 				        	Log.i("订单数据获取了没有", str);
 				        	final List<OrderBean> list=OrderJsonParser.getlist(str);
@@ -126,6 +130,9 @@ public class oederactivity3 extends Activity {
 	 */  
 	private void initview() {
 		// TODO Auto-generated method stub
+		SpotsDialog.TAG=R.style.SpotsDialogDefault;
+		mdialog=new SpotsDialog(oederactivity3.this);
+		mdialog.setCanceledOnTouchOutside(false);
 		mListview=(ListView) findViewById(R.id.order_daifahuo);
 	}
 }

@@ -8,6 +8,7 @@ import com.alljf.jf.CommonConstants;
 import com.alljf.jf.R;
 import com.bean.ChangeSafetBean;
 import com.bean.OrderBean;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;
@@ -45,6 +46,7 @@ public class ShenQingTuiKuanActivity extends Activity implements OnClickListener
 	private RelativeLayout mXuanzehuowuzhuangtai;
 	private ImageView mback,mhome;
 	private OrderBean bean;
+	private SpotsDialog mdialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -62,6 +64,9 @@ public class ShenQingTuiKuanActivity extends Activity implements OnClickListener
 	 */
 	private void initview() {
 		// TODO Auto-generated method stub
+		SpotsDialog.TAG=R.style.SpotsDialogDefault_tijiao;
+		mdialog=new SpotsDialog(ShenQingTuiKuanActivity.this);
+		mdialog.setCanceledOnTouchOutside(false);
 		mFuwuleixing=(TextView) findViewById(R.id.shenqingtuikuan_fuwu);
 		mHuowuzhuangtai=(TextView) findViewById(R.id.shenqingtuikuan_huowuzhuangtai);
 		mTijiaoshenqing=(TextView) findViewById(R.id.shenqingtuikuan_tijiaoshenqing);
@@ -128,6 +133,7 @@ public class ShenQingTuiKuanActivity extends Activity implements OnClickListener
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -141,6 +147,7 @@ public class ShenQingTuiKuanActivity extends Activity implements OnClickListener
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	try {
 						//请求成功
+		        		mdialog.dismiss();
 						String str=responseInfo.result;
 						Log.i("退款请求下来的参数是",str);
 						JSONObject obj=new JSONObject(str);

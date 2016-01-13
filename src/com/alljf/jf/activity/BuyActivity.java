@@ -23,6 +23,7 @@ import com.Application.SysApplication;
 import com.adapter.BuyCartAdapter;
 import com.alljf.jf.R;
 import com.bean.BuyCartBean;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.jsonParser.BuyCartJsonP;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -49,6 +50,10 @@ public class BuyActivity extends Activity implements OnClickListener{
 	private CheckBox im_quanzuantubiao;
 	
 	private boolean flag = true;		//全选或全取消
+	/**
+	 * 进度条
+	 */
+	private SpotsDialog mdialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -106,6 +111,7 @@ public class BuyActivity extends Activity implements OnClickListener{
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -117,6 +123,7 @@ public class BuyActivity extends Activity implements OnClickListener{
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	CallBackString=responseInfo.result;
 		        	Log.i("解析前网络请求有数据吗？",CallBackString);
 		        	list=BuyCartJsonP.getlist(CallBackString);
@@ -230,6 +237,9 @@ public class BuyActivity extends Activity implements OnClickListener{
 	 * 
 	 */
 	public void initview(){
+		SpotsDialog.TAG=R.style.SpotsDialogDefault;
+		mdialog=new SpotsDialog(BuyActivity.this);
+		mdialog.setCanceledOnTouchOutside(false);
 		mBack=(TextView) findViewById(R.id.buyactivity_top_textview_back);
 		mHome=(TextView) findViewById(R.id.buyactivity_top_textview_home);
 		mNameXuanDing=(ImageView) findViewById(R.id.buyactivity_imageview_gongsimingchengxuanding);

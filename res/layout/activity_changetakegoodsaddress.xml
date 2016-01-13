@@ -316,11 +316,13 @@
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="25dp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="25dp"
-                    android:textColor="#aa00aa"
+                    android:textColor="#ff4500"
+                    android:gravity="center"
+                    android:background="@drawable/bg_maintext"
                     android:text="删除该收货地址" />
 
             </RelativeLayout>
@@ -347,11 +349,13 @@
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="25dp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="25dp"
-                    android:textColor="#aa00aa"
+                    android:textColor="#ff4500"
+                    android:gravity="center"
+                    android:background="@drawable/bg_maintext"
                     android:text="设置为默认收货地址" />
 
             </RelativeLayout>

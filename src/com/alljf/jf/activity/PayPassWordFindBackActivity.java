@@ -24,6 +24,7 @@ import com.alljf.jf.CommonConstants;
 import com.alljf.jf.R;
 import com.alljf.jf.R.string;
 import com.bean.ChangeSafetBean;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;
@@ -47,6 +48,7 @@ public class PayPassWordFindBackActivity extends Activity implements OnClickList
 	private TextView mTijiao;
 	private TextView mHuoquyanzhengma;//获取验证码
 	private int i;
+	private SpotsDialog mdialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -64,6 +66,9 @@ public class PayPassWordFindBackActivity extends Activity implements OnClickList
 	@SuppressLint("NewApi")
 	private void initview() {
 		// TODO Auto-generated method stub
+		SpotsDialog.TAG=R.style.SpotsDialogDefault_tijiao;
+		mdialog=new SpotsDialog(PayPassWordFindBackActivity.this);
+		mdialog.setCanceledOnTouchOutside(false);
 		mBack=(ImageView) findViewById(R.id.passwordfindback_back);
 		mBack.setOnClickListener(new OnClickListener() {
 			
@@ -173,6 +178,7 @@ public class PayPassWordFindBackActivity extends Activity implements OnClickList
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -185,6 +191,7 @@ public class PayPassWordFindBackActivity extends Activity implements OnClickList
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	String str=responseInfo.result;
 		        	Log.i("网络请求下来的参数是",str);
 		        	try {

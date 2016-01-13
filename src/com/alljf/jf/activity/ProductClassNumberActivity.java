@@ -21,6 +21,7 @@ import com.Application.SysApplication;
 import com.adapter.myexlistviewadapter;
 import com.alljf.jf.R;
 import com.bean.productclassgroup;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.jsonParser.ProductClassJsonpaser;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -40,6 +41,10 @@ public class ProductClassNumberActivity extends Activity {
 	List<Map<String, String>> groupData = new ArrayList<Map<String, String>>();//组数据源集合
 	List<List<Map<String, String>>> childData = new ArrayList<List<Map<String, String>>>();//子数据源集合
 	private myexlistviewadapter mAdapter;
+	/**
+	 * 进度条
+	 */
+	private SpotsDialog mdialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -79,6 +84,9 @@ public class ProductClassNumberActivity extends Activity {
 	 */  
 	@SuppressLint("NewApi")
 	private void initview() {
+		SpotsDialog.TAG=R.style.SpotsDialogDefault;
+		mdialog=new SpotsDialog(ProductClassNumberActivity.this);
+		mdialog.setCanceledOnTouchOutside(false);
 		// TODO Auto-generated method stub
 		mBack=(ImageView) findViewById(R.id.productclassnumber_bake);
 		mBack.setOnClickListener(new OnClickListener() {
@@ -115,6 +123,7 @@ public class ProductClassNumberActivity extends Activity {
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -127,6 +136,7 @@ public class ProductClassNumberActivity extends Activity {
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	String str=responseInfo.result;
 		        	Log.i("网络请求下来的参数是",str);
 		        	List<productclassgroup> list=ProductClassJsonpaser.getlist(str);

@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.Application.SysApplication;
 import com.alljf.jf.R;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;
@@ -47,6 +48,10 @@ public class ChangeTakeGoodsAddressActivity extends Activity {
 	private String xxdz;
 	private String defaults;
 	private  String id;
+	/**
+	 * 进度条
+	 */
+	private SpotsDialog mdialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -120,6 +125,9 @@ public class ChangeTakeGoodsAddressActivity extends Activity {
 	 */  
 	private void initview() {
 		// TODO Auto-generated method stub
+		SpotsDialog.TAG=R.style.SpotsDialogDefault_changeaddress;
+		mdialog=new SpotsDialog(ChangeTakeGoodsAddressActivity.this);
+		mdialog.setCanceledOnTouchOutside(false);
 		mBack=(ImageView) findViewById(R.id.changeaddress_back);
 		mQuxiao=(TextView) findViewById(R.id.changeaddress_quxiao);
 		mName=(EditText) findViewById(R.id.changeaddress_shouhuorennanme);
@@ -144,6 +152,42 @@ public class ChangeTakeGoodsAddressActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				ChangeTakeGoodsAddressActivity.this.finish();
+			}
+		});
+		
+		mDelete.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				deleteAddress(id);
+				Intent intent=new Intent();
+				ChangeTakeGoodsAddressActivity.this.setResult(3,intent);
+				ChangeTakeGoodsAddressActivity.this.finish();
+			}
+		});
+		mSure.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Toast.makeText(ChangeTakeGoodsAddressActivity.this,"提交",1).show();
+				//首先需要将数据提交上去，然后finsh掉这个界面，跳回地址列表界面
+				if(mName.getText().equals("")){
+					Toast.makeText(ChangeTakeGoodsAddressActivity.this,"姓名不能为空",1).show();
+				}
+				if(mPhone.getText().equals("")||mPhone.getText().length()<11){
+					Toast.makeText(ChangeTakeGoodsAddressActivity.this,"请检查手机号",1).show();
+				}
+				if(mYoubian.getText().equals("")||mYoubian.getText().length()!=6){
+					Toast.makeText(ChangeTakeGoodsAddressActivity.this,"邮编格式错误",1).show();
+				}
+				if(mXXaddress.getText().equals("")){
+					Toast.makeText(ChangeTakeGoodsAddressActivity.this,"请输入详细地址",1).show();
+				}
+				if(mSuozaidiqu.getText().equals("请选择所在省市县")){
+					Toast.makeText(ChangeTakeGoodsAddressActivity.this,"请输入详细地址",1).show();
+				}
 			}
 		});
 	}
@@ -199,6 +243,7 @@ public class ChangeTakeGoodsAddressActivity extends Activity {
 					ChangeTakeGoodsAddressActivity.this.finish();
 				}
 			});
+			
 		}
 	}
 	
@@ -218,6 +263,7 @@ public class ChangeTakeGoodsAddressActivity extends Activity {
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -230,6 +276,7 @@ public class ChangeTakeGoodsAddressActivity extends Activity {
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	String str=responseInfo.result;
 		        	String status = null;
 		        	Log.i("网络请求下来的参数是",str);
@@ -268,6 +315,7 @@ public class ChangeTakeGoodsAddressActivity extends Activity {
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -280,6 +328,7 @@ public class ChangeTakeGoodsAddressActivity extends Activity {
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	String str=responseInfo.result;
 		        	String status = null;
 		        	Log.i("网络请求下来的参数是",str);
@@ -325,6 +374,7 @@ public class ChangeTakeGoodsAddressActivity extends Activity {
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -337,6 +387,7 @@ public class ChangeTakeGoodsAddressActivity extends Activity {
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	String str=responseInfo.result;
 		        	String status = null;
 		        	Log.i("网络请求下来的shengfen 参数是",str);

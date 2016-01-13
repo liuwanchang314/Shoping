@@ -89,6 +89,7 @@ public class OrderAdatper extends BaseAdapter {
 			final String price=list.get(arg0).getOrdergoods().getGoods_price();
 			final String order=list.get(arg0).getOrder_sn();
 			final String fhfs=list.get(arg0).getShipping_mode();
+			final String pay=list.get(arg0).getPay_sn();
 			final TextView tv=vh.pingjia;
 			tv.setOnClickListener(new OnClickListener() {
 				
@@ -100,6 +101,7 @@ public class OrderAdatper extends BaseAdapter {
 						intent.putExtra("price",price);
 						intent.putExtra("fhfs",fhfs);
 						intent.putExtra("order",order);
+						intent.putExtra("pay", pay);
 						context.startActivity(intent);
 					}
 				}

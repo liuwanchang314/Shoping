@@ -19,6 +19,7 @@ import com.Application.SysApplication;
 import com.adapter.CompanyNoticeAdapter;
 import com.alljf.jf.R;
 import com.bean.CompanyNoticeBean;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.jsonParser.CompanyNoticeJsonPaser;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -32,6 +33,10 @@ public class CompanyNoticeActivity extends Activity {
 	private ListView mListview;
 	List<CompanyNoticeBean> list;
 	private TextView mback,mhome;
+	/**
+	 * 进度条
+	 */
+	private SpotsDialog mdialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -62,6 +67,7 @@ public class CompanyNoticeActivity extends Activity {
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -74,6 +80,7 @@ public class CompanyNoticeActivity extends Activity {
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	String str=responseInfo.result;
 		        	Log.i("公司公告网络请求下来的参数是",str);
 		        	list=CompanyNoticeJsonPaser.GetBean(str);
@@ -103,6 +110,9 @@ public class CompanyNoticeActivity extends Activity {
 	}
 	private void initview() {
 		// TODO Auto-generated method stub
+		SpotsDialog.TAG=R.style.SpotsDialogDefault;
+		mdialog=new SpotsDialog(CompanyNoticeActivity.this);
+		mdialog.setCanceledOnTouchOutside(false);
 		mListview=(ListView) findViewById(R.id.companynotice_listview);
 		mback=(TextView) findViewById(R.id.companynotice_top_textview_back);
 		mback.setOnClickListener(new OnClickListener() {

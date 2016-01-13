@@ -42,6 +42,7 @@ import com.Extension.DataService;
 import com.Extension.DownLoadImage;
 import com.alljf.jf.R;
 import com.customview.RefreshableView;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.other.index_product_item;
 import com.utils.StringManager;
 
@@ -73,6 +74,10 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 	 * 可下拉刷新的scrollview
 	 * */
 	private RefreshableView mRefreshableView;
+	/**
+	 * 进度条
+	 */
+	private SpotsDialog mdialog;
 	Handler handlerR = new Handler() {//刷新界面的线程
 		public void handleMessage(Message message) {
 			super.handleMessage(message);
@@ -84,6 +89,10 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_index);
 		SysApplication.getInstance().addActivity(this);
+		SpotsDialog.TAG=R.style.SpotsDialogDefault;
+		mdialog=new SpotsDialog(IndexActivity.this);
+		mdialog.setCanceledOnTouchOutside(true);
+		mdialog.show();
 		mRefreshableView = (RefreshableView) findViewById(R.id.refresh_root);
 		mRefreshableView.setRefreshListener(this);
 		initradiogroup();
@@ -118,6 +127,7 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 				JSONObject jsonObject;
 				try {
 					if (msg.arg1 == 0) {
+						mdialog.dismiss();
 						jsonObject = new JSONObject(msg.obj.toString());
 						data = jsonObject.getString("status");
 						if (data.equals("1")) {

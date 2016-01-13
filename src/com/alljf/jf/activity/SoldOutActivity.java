@@ -17,6 +17,7 @@ import com.Application.SysApplication;
 import com.adapter.CompanyNoticeAdapter;
 import com.alljf.jf.R;
 import com.bean.CompanyNoticeBean;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.jsonParser.CompanyNoticeJsonPaser;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -30,6 +31,10 @@ public class SoldOutActivity extends Activity {
 	private TextView mBack;
 	private TextView mHome;
 	private ListView mListview;
+	/**
+	 * 进度条
+	 */
+	private SpotsDialog mdialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -43,6 +48,8 @@ public class SoldOutActivity extends Activity {
 	
 	private void initview() {
 		// TODO Auto-generated method stub
+		mdialog=new SpotsDialog(SoldOutActivity.this);
+		mdialog.setCanceledOnTouchOutside(false);
 		mBack=(TextView) findViewById(R.id.soldout_back);
 		mBack.setOnClickListener(new OnClickListener() {
 			
@@ -89,6 +96,7 @@ public class SoldOutActivity extends Activity {
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -101,6 +109,7 @@ public class SoldOutActivity extends Activity {
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	String str=responseInfo.result;
 		        	Log.i("下架公告网络请求下来的参数是",str);
 		        	List<CompanyNoticeBean> list=new ArrayList<CompanyNoticeBean>();

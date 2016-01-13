@@ -45,6 +45,7 @@ import com.adapter.SubjectAdapter;
 import com.alljf.jf.R;
 import com.bean.OrderBean;
 import com.bean.SubjectBean;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.jsonParser.SubjectJsonparser;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
@@ -78,6 +79,7 @@ public class TousuActivity extends Activity implements OnClickListener{
 	private EditText mYijianlan;
 	private String cachePath;
 	private Uri originalUri;
+	private SpotsDialog mdialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -104,6 +106,9 @@ public class TousuActivity extends Activity implements OnClickListener{
 	 */
 	private void initview() {
 		// TODO Auto-generated method stub
+		SpotsDialog.TAG=R.style.SpotsDialogDefault_tijiao;
+		mdialog=new SpotsDialog(TousuActivity.this);
+		mdialog.setCanceledOnTouchOutside(false);
 		mback=(ImageView) findViewById(R.id.tousu_back);
 		mback.setOnClickListener(new OnClickListener() {
 			@Override
@@ -179,6 +184,7 @@ public class TousuActivity extends Activity implements OnClickListener{
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -191,6 +197,7 @@ public class TousuActivity extends Activity implements OnClickListener{
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	String str=responseInfo.result;
 		        	Log.i("获取的规格id是", str);
 		        }

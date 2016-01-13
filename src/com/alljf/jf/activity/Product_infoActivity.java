@@ -47,6 +47,7 @@ import com.alljf.jf.activity.IndexActivity.NotifyPageChanged;
 import com.bean.PIdimesionAndColor;
 import com.bean.PIspec;
 import com.bean.ProductInfoBean;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.jsonParser.PIjsonParser;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
@@ -97,6 +98,7 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 	private Tencent tencent;
 	private Map<Integer, View> maps;
 	private Map<Integer, View> map_yanse;
+	private SpotsDialog mdialog_info;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -108,13 +110,14 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 		getdata(_id);
 		
 		
+		
 	}
 	/**
 	 * @author JZKJ-LWC
 	 * @date : 2015-12-14 上午9:35:57
 	 * 获取网络数据
 	 */  
-	private void getdata(String id) {
+	public void getdata(String id) {
 		// TODO Auto-generated method stub
 		RequestParams params = new RequestParams();
 		// 只包含字符串参数时默认使用BodyParamsEntity，
@@ -129,6 +132,7 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog_info.show();
 		        }
 
 		        @Override
@@ -141,6 +145,7 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog_info.dismiss();
 		        	String str=responseInfo.result;
 		        	Log.i("网络请求下来的参数是",str);
 		        	final ProductInfoBean bean=PIjsonParser.getbean(str);
@@ -358,6 +363,8 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 									}
 								});				
 								Button 	addGouwuche=(Button) dialogView.findViewById(R.id.login_btn_submits);
+								SpotsDialog.TAG=R.style.SpotsDialogDefault_addProduct;
+								final SpotsDialog newdialog=new SpotsDialog(Product_infoActivity.this);
 								addGouwuche.setOnClickListener(new OnClickListener() {
 									
 									@Override
@@ -394,6 +401,7 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 											        @Override
 											        public void onStart() {
 											        	//开始请求
+											        	newdialog.show();
 											        }
 
 											        @Override
@@ -406,6 +414,7 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 											        @Override
 											        public void onSuccess(ResponseInfo<String> responseInfo) {
 											        	//请求成功
+											        	newdialog.dismiss();
 											        	String str=responseInfo.result;
 											        	Log.i("网络请求下来规格id 参数是",str);
 											        	/**
@@ -513,6 +522,9 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 	@SuppressLint("NewApi")
 	private void initview() {
 		// TODO Auto-generated method stub
+		SpotsDialog.TAG=R.style.SpotsDialogDefault;
+		mdialog_info=new SpotsDialog(Product_infoActivity.this);
+		mdialog_info.setCanceledOnTouchOutside(true);
 		mBack=(Button) findViewById(R.id.producinfo_back);
 		mBack.setOnClickListener(this);
 		mHome=(Button) findViewById(R.id.producinfo_home);

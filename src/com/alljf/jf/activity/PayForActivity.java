@@ -56,6 +56,8 @@ public class PayForActivity extends Activity implements OnClickListener {
 	private TextView yue;
 	private TextView xuzhifu;
 	private String price;
+	private String pay_sn;
+	private int Tag=0;//用来标记用户是用支付密码验证成功
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -72,6 +74,7 @@ public class PayForActivity extends Activity implements OnClickListener {
 		price=intent.getStringExtra("price");
 		String psfs=intent.getStringExtra("fhfs");
 		String order=intent.getStringExtra("order");
+		pay_sn=intent.getStringExtra("pay");
 		mMoneyNum.setText(price);
 		mPeisongWay.setText(psfs);
 		mOrderNum.setText(order);
@@ -176,10 +179,36 @@ public class PayForActivity extends Activity implements OnClickListener {
 	            dialog.setContentView(dialogView);
 	            dialog.show();
 	            forgetPassword=(TextView) dialogView.findViewById(R.id.tv_wangjimima);
+	            forgetPassword.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						startActivity(new Intent(PayForActivity.this,PayPassWordFindBackActivity.class));
+					}
+				});
 	            yanzheng=(TextView) dialogView.findViewById(R.id.tv_yanzheng);
 	            mima=(EditText) dialogView.findViewById(R.id.ed_mima);
 	            yue=(TextView) dialogView.findViewById(R.id.tv_dangqianyue);
 	            queren=(TextView) dialogView.findViewById(R.id.tv_queren);
+	            queren.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						//调用方法进行账号支付
+						if(Tag==1){
+							//说明已经验证成功
+							//调用方法，支付
+							payformoney();
+						}else if(Tag==0){
+							//说明验证失败
+							Toast.makeText(PayForActivity.this,"请用支付密码进行验证",1);
+						}
+					}
+
+					
+				});
 	            quxiao=(TextView) dialogView.findViewById(R.id.tv_quxiao);
 	            xuzhifu=(TextView) dialogView.findViewById(R.id.tv_xuzhifu);
 	            xuzhifu.setText(price);
@@ -191,6 +220,7 @@ public class PayForActivity extends Activity implements OnClickListener {
 						getdatayanzhenmima(mima.getText().toString());//获取密码进行验证
 					}
 				});
+//	            getdatatixianedu();
 				
 			}else if(payTAG.equals("wx")){
 				//微信操作
@@ -202,6 +232,47 @@ public class PayForActivity extends Activity implements OnClickListener {
 		default:
 			break;
 		}
+	}
+	/**
+	 * @2016-1-14上午12:05:03
+	 * 使用预存款进行支付
+	 */
+	private void payformoney() {
+		// TODO Auto-generated method stub
+		RequestParams params = new RequestParams();
+		// 只包含字符串参数时默认使用BodyParamsEntity，
+		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
+		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
+		params.addBodyParameter("type", "order");
+		params.addBodyParameter("part", "predeposit_order");
+		params.addBodyParameter("pay_sn", pay_sn);
+		params.addBodyParameter("user_name", SysApplication.getInstance().getUserInfo().getName());
+		HttpUtils http = new HttpUtils();
+		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
+
+		        @Override
+		        public void onStart() {
+		        	//开始请求
+		        }
+
+		        @Override
+		        public void onLoading(long total, long current, boolean isUploading) {
+		            if (isUploading) {
+		            } else {
+		            }
+		        }
+
+		        @Override
+		        public void onSuccess(ResponseInfo<String> responseInfo) {
+		        	//请求成功
+		        	String str=responseInfo.result;
+		        	Log.i("账号支付请求下来的参数是",str);
+		        }
+
+		        @Override
+		        public void onFailure(HttpException error, String msg) {
+		        }
+		});
 	}
 	//验证支付密码
 	/**
@@ -216,7 +287,7 @@ public class PayForActivity extends Activity implements OnClickListener {
 			params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
 			params.addBodyParameter("type", "user");
 			params.addBodyParameter("part", "pay_password");
-			params.addBodyParameter("user_name", SysApplication.getInstance().getUserInfo().getName());
+			params.addBodyParameter("username", SysApplication.getInstance().getUserInfo().getName());
 			params.addBodyParameter("password",str);
 			HttpUtils http = new HttpUtils();
 			http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
@@ -243,6 +314,7 @@ public class PayForActivity extends Activity implements OnClickListener {
 							String status=obj.getString("check_status");
 							if(status!=null&&status.equals("1")){
 								//正确
+								Tag=1;
 								RequestParams params = new RequestParams();
 								// 只包含字符串参数时默认使用BodyParamsEntity，
 								params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
@@ -288,8 +360,10 @@ public class PayForActivity extends Activity implements OnClickListener {
 								        public void onFailure(HttpException error, String msg) {
 								        }
 								});
+								
 							}else if(status!=null&&status.equals("0")){
 								//错误
+								Tag=0;
 								Toast.makeText(PayForActivity.this,"验证失败",1).show();
 							}
 						} catch (JSONException e) {
@@ -297,6 +371,55 @@ public class PayForActivity extends Activity implements OnClickListener {
 							e.printStackTrace();
 						}
 			        	
+			        }
+
+			        @Override
+			        public void onFailure(HttpException error, String msg) {
+			        }
+			});
+		}
+		
+		private void getdatatixianedu() {
+			// TODO Auto-generated method stub
+			RequestParams params = new RequestParams();
+			// 只包含字符串参数时默认使用BodyParamsEntity，
+			params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
+			params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
+			params.addBodyParameter("type", "finance");
+			params.addBodyParameter("part", "user_finance_91");
+			params.addBodyParameter("user_name", SysApplication.getInstance().getUserInfo().getName());
+			HttpUtils http = new HttpUtils();
+			http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
+
+			        @Override
+			        public void onStart() {
+			        	//开始请求
+			        }
+
+			        @Override
+			        public void onLoading(long total, long current, boolean isUploading) {
+			            if (isUploading) {
+			            } else {
+			            }
+			        }
+
+			        @Override
+			        public void onSuccess(ResponseInfo<String> responseInfo) {
+			        	//请求成功
+			        	String str=responseInfo.result;
+			        	Log.i("caiwu 请求下来的参数是",str);
+			        	
+//			        	这里接口有问题，需要改动
+			        	try {
+							JSONObject obj=new JSONObject(str);
+							JSONObject objs=obj.getJSONObject("data");
+							String banace=objs.getString("user_balance");
+							yue.setText(banace);
+							String user_conbalance=objs.getString("user_conbalance");
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 			        }
 
 			        @Override

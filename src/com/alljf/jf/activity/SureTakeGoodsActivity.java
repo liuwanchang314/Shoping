@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.Application.SysApplication;
 import com.alljf.jf.R;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;
@@ -36,6 +37,10 @@ public class SureTakeGoodsActivity extends Activity {
 	private TextView mSure;//确认
 	private ImageView mBack;
 	private ImageView mHome;
+	/**
+	 * 进度条
+	 */
+	private SpotsDialog mdialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -81,6 +86,9 @@ public class SureTakeGoodsActivity extends Activity {
 	 */
 	private void initview() {
 		// TODO Auto-generated method stub
+		SpotsDialog.TAG=R.style.SpotsDialogDefault_tijiao;
+		mdialog=new SpotsDialog(SureTakeGoodsActivity.this);
+		mdialog.setCanceledOnTouchOutside(false);
 		mPassword=(EditText) findViewById(R.id.confirmationtakegoods_mimakuang);
 		mDingdanhao=(TextView) findViewById(R.id.confirmationtakegoods_dingdanbianhao);
 		mSure=(TextView) findViewById(R.id.confirmationtakegoods_queren);
@@ -126,6 +134,7 @@ public class SureTakeGoodsActivity extends Activity {
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -138,6 +147,7 @@ public class SureTakeGoodsActivity extends Activity {
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	String str=responseInfo.result;
 		        	Log.i("确认收货界面数据返回", str);
 		        	try {

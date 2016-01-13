@@ -2,6 +2,7 @@ package com.alljf.jf.activity;
 
 import java.util.List;
 
+import android.R.bool;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -19,12 +20,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.Application.SysApplication;
 import com.adapter.BillAdapter;
 import com.alljf.jf.R;
 import com.bean.BillBean;
 import com.customview.Mylistview;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.jsonParser.BillJsonPaser;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
@@ -92,6 +95,14 @@ public class BillActivity extends Activity {
 	
 	private TextView buxuyaofapiao;
 	private ImageView mBack,mHome;
+	
+	/**
+	 * 进度条
+	 */
+	private SpotsDialog mdialog;
+	/**
+	 * 标记是否选定使用新的发票信息
+	 */
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -241,54 +252,62 @@ public class BillActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if(PZtag==1){
-					//说明现在需要保存普通发票
-					Log.i("现在内容有没有",content);
-					String username=SysApplication.getInstance().getUserInfo().getName();
-					String leibie=PZtag+"";
-					String title=fapiaotaitou;
-					String danweimingchengs=danweimingcheng.getText().toString();
-					if(tag==1){
-						//说明是个人
-						getdata(username, leibie, title, content, "", "", "", "", "", "", "", "", "", "");
+				//先判断是否需要使用新发票
+				if(!mchoiceis){
+					Toast.makeText(BillActivity.this,"请填写发票信息", 1).show();
+				}else{
+					
+					if(PZtag==1){
+						//说明现在需要保存普通发票
+						Log.i("现在内容有没有",content);
+						String username=SysApplication.getInstance().getUserInfo().getName();
+						String leibie=PZtag+"";
+						String title=fapiaotaitou;
+						String danweimingchengs=danweimingcheng.getText().toString();
+						if(tag==1){
+							//说明是个人
+							getdata(username, leibie, title, content, "", "", "", "", "", "", "", "", "", "");
+							getdatas();
+							new BillAdapter().notifyDataSetChanged();
+						}
+						else if(tag==2){
+							//说明是单位
+							getdata(username, leibie, title, content,danweimingchengs, "", "", "", "", "", "", "", "", "");
+							getdatas();
+							new BillAdapter().notifyDataSetChanged();
+						}
+					}else if(PZtag==2){
+						//说明现在需要添加增值发票
+						String username=SysApplication.getInstance().getUserInfo().getName();
+						String leibie=PZtag+"";
+						String danweimingchengss=null;
+							danweimingchengss=Mdanweimingheng.getText().toString();
+						String nashuirenshibiehao=null;
+							nashuirenshibiehao=mShibiehao.getText().toString();
+						String zhucedizhi=null;
+							zhucedizhi=mZhucedizhi.getText().toString();
+						String zhucedianhua=null;
+							zhucedianhua=mZhucedianhua.getText().toString();
+						String kaihuyinhang=null;
+							kaihuyinhang=mKaihuyinhang.getText().toString();
+						String yinhangzhanghao=null;
+							yinhangzhanghao=mYinhangzhhanghao.getText().toString();
+						String shoupiaorenxingming=null;
+							shoupiaorenxingming=mShoupiaorenxingming.getText().toString();
+						String shoupiaorenshoujihao=null;
+						shoupiaorenshoujihao=mShoupiarenshojihao.getText().toString();
+						
+						String shoupiaorendizhi=null;
+						String songpiaodizhi=null;
+						
+						getdata(username, leibie,"","", danweimingchengss, nashuirenshibiehao, zhucedizhi, zhucedianhua, kaihuyinhang, yinhangzhanghao, 
+								shoupiaorenxingming, shoupiaorenshoujihao, shoupiaorendizhi, songpiaodizhi);
+						
+						getdatas();
+						new BillAdapter().notifyDataSetChanged();
+						
 					}
-					else if(tag==2){
-						//说明是单位
-						getdata(username, leibie, title, content,danweimingchengs, "", "", "", "", "", "", "", "", "");
-					}
-				}else if(PZtag==2){
-					//说明现在需要添加增值发票
-					String username=SysApplication.getInstance().getUserInfo().getName();
-					String leibie=PZtag+"";
-					String danweimingchengss=null;
-						danweimingchengss=Mdanweimingheng.getText().toString();
-					String nashuirenshibiehao=null;
-						nashuirenshibiehao=mShibiehao.getText().toString();
-					String zhucedizhi=null;
-						zhucedizhi=mZhucedizhi.getText().toString();
-					String zhucedianhua=null;
-						zhucedianhua=mZhucedianhua.getText().toString();
-					String kaihuyinhang=null;
-						kaihuyinhang=mKaihuyinhang.getText().toString();
-					String yinhangzhanghao=null;
-						yinhangzhanghao=mYinhangzhhanghao.getText().toString();
-					String shoupiaorenxingming=null;
-						shoupiaorenxingming=mShoupiaorenxingming.getText().toString();
-					String shoupiaorenshoujihao=null;
-					shoupiaorenshoujihao=mShoupiarenshojihao.getText().toString();
-					
-					String shoupiaorendizhi=null;
-					String songpiaodizhi=null;
-					
-					getdata(username, leibie,"","", danweimingchengss, nashuirenshibiehao, zhucedizhi, zhucedianhua, kaihuyinhang, yinhangzhanghao, 
-							shoupiaorenxingming, shoupiaorenshoujihao, shoupiaorendizhi, songpiaodizhi);
-					
-					
-					
 				}
-				
-				getdatas();
-				new BillAdapter().notifyDataSetChanged();
 		}
 		});
 		
@@ -322,6 +341,9 @@ public class BillActivity extends Activity {
 	 */  
 	private void initview() {
 		// TODO Auto-generated method stub
+		SpotsDialog.TAG=R.style.SpotsDialogDefault_UPbill;
+		mdialog=new SpotsDialog(BillActivity.this);
+		mdialog.setCanceledOnTouchOutside(true);
 		mSureUserNewBill=(RelativeLayout) findViewById(R.id.bill_shiyongxinfapiao);
 		mFapiaoFenlei=(LinearLayout) findViewById(R.id.bill_yincang_fapiaofenlei);
 		mImPTim=(ImageView) findViewById(R.id.bill_yincang_fapiaofenlei_pt_im);
@@ -385,7 +407,9 @@ public class BillActivity extends Activity {
 			String companyname,String code,String address,String dianhua,String yinhang,
 			String yinhangzhanghu,String shoupiaoname,String shoupiaodianhua,String shoupiaoshenfen,
 			String songpiaodizhi){
-		
+		SpotsDialog.TAG=R.style.SpotsDialogDefault_UPsave;
+		final SpotsDialog dialog=new SpotsDialog(BillActivity.this);
+		dialog.setCanceledOnTouchOutside(false);
 		RequestParams params = new RequestParams();
 		// 只包含字符串参数时默认使用BodyParamsEntity，
 		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
@@ -412,6 +436,7 @@ public class BillActivity extends Activity {
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	dialog.show();
 		        }
 
 		        @Override
@@ -424,6 +449,7 @@ public class BillActivity extends Activity {
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	dialog.dismiss();
 		        	String str=responseInfo.result;
 		        	Log.i("加入进去了没有", str);
 		        }
@@ -449,6 +475,7 @@ public class BillActivity extends Activity {
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -461,6 +488,7 @@ public class BillActivity extends Activity {
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	String str=responseInfo.result;
 		        	Log.i("发票数据获取了没有", str);
 		        	final List<BillBean> list=BillJsonPaser.getlist(str);

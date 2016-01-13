@@ -31,6 +31,7 @@ import com.Extension.DataService;
 import com.Model.UserInfo;
 import com.alljf.jf.CommonConstants;
 import com.alljf.jf.R;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.tencent.mm.sdk.modelmsg.SendAuth;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
@@ -56,6 +57,7 @@ public class LoginActivity extends Activity {
 	private IWXAPI api;
 	private int i;//读秒计数
 	private Button back;
+	private SpotsDialog mdialog;
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -79,6 +81,8 @@ public class LoginActivity extends Activity {
 		setContentView(R.layout.activity_login);
 		SysApplication.getInstance().addActivity(this);
 		api = WXAPIFactory.createWXAPI(this, CommonConstants.WXAPP_ID, false);
+		SpotsDialog.TAG=R.style.SpotsDialogDefault_denglu;
+		mdialog=new SpotsDialog(LoginActivity.this);
 		tvone = (TextView) findViewById(R.id.login_tv_one);// 第一行标题
 		tvtwo = (TextView) findViewById(R.id.login_tv_two);// 第二行标题
 		codetwo = (TextView) findViewById(R.id.login_code_two);// 第二行验证码&显示
@@ -138,6 +142,7 @@ public class LoginActivity extends Activity {
 				String data = "";
 				JSONObject jsonObject;
 				if(msg.arg1 == 0){
+					mdialog.dismiss();
 					try {
 
 						jsonObject = new JSONObject(msg.obj.toString());
@@ -208,6 +213,7 @@ public class LoginActivity extends Activity {
 				rightClint();
 				break;
 			case R.id.login_btn_submit:
+				mdialog.show();
 				Login();
 				break;
 			case R.id.login_btn_reg:

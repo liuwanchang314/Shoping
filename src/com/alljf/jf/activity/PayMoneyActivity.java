@@ -25,6 +25,7 @@ import com.adapter.PayMoneyAdatper;
 import com.alljf.jf.R;
 import com.bean.BuyCartBean;
 import com.customview.Mylistview;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;
@@ -66,6 +67,11 @@ public class PayMoneyActivity extends Activity {
 	
 	
 	private String fahuoTAG="sj";
+	
+	/**
+	 * 进度条
+	 */
+	private SpotsDialog mdialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -236,10 +242,12 @@ public class PayMoneyActivity extends Activity {
 			}
 		});
 	}
-
 	@SuppressLint("CutPasteId")
 	private void initview() {
 		// TODO Auto-generated method stub
+		SpotsDialog.TAG=R.style.SpotsDialogDefault_UPorder;//设置dialong的样式为提交订单的样式
+		mdialog=new SpotsDialog(PayMoneyActivity.this);
+		mdialog.setCanceledOnTouchOutside(false);
 		layout_shouhuodizhi=(LinearLayout) findViewById(R.id.pay_shouhuodizhi);
 		layout_shouhuodizhi.setOnClickListener(new OnClickListener() {
 			
@@ -383,6 +391,7 @@ public class PayMoneyActivity extends Activity {
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -395,6 +404,7 @@ public class PayMoneyActivity extends Activity {
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	String str=responseInfo.result;
 		        	Log.i("生成订单了么请求下来的参数是",str);
 		        	try {
@@ -415,6 +425,7 @@ public class PayMoneyActivity extends Activity {
 								intent.putExtra("fhfs", "嘉禾配送");
 							}
 							intent.putExtra("order",order_sn);
+							intent.putExtra("pay",pay_sn);
 							startActivity(intent);
 						}
 					} catch (JSONException e) {
