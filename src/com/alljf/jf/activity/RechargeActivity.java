@@ -1,12 +1,18 @@
 package com.alljf.jf.activity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -14,7 +20,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.Application.SysApplication;
 import com.alljf.jf.R;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
+import com.pay.ali.Ali_Pay;
 
 /**
  * @author JZKJ-LWC
@@ -36,13 +50,20 @@ public class RechargeActivity extends Activity implements OnClickListener{
 	private ImageView mWeixin;//微信
 	private RelativeLayout mBgweixin;//微信需改变北京
 	private TextView mPay;//确认支付
+	private String TAG=new String();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_recharge);
+		SysApplication.getInstance().addActivity(this);
 		initview();
+		getdatatixianedu();
+		initdata();
+	}
+	private void initdata() {
+		// TODO Auto-generated method stub
 	}
 	@SuppressLint("NewApi")
 	private void initview() {
@@ -71,35 +92,95 @@ public class RechargeActivity extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.rechrageactivity_imageView_callback://返回
-			Toast.makeText(RechargeActivity.this,"返回", Toast.LENGTH_SHORT).show();
+			RechargeActivity.this.finish();
 			break;
 		case R.id.rechrageactivity_imageView_home://主页
-			Toast.makeText(RechargeActivity.this,"主页", Toast.LENGTH_SHORT).show();
+			RechargeActivity.this.finish();
+			startActivity(new Intent(RechargeActivity.this,MainActivity.class));
 			break;
 		case R.id.rechrageactivity_imageview_zhifubao://支付宝
-			Toast.makeText(RechargeActivity.this,"支付宝", Toast.LENGTH_SHORT).show();
 			//进行背景填充
+			TAG="ZFB";
+			String str=mJine.getText().toString();
+			mcurrentrechange.setText("￥"+str);
 			mBgzhifubao.setBackgroundColor(Color.GRAY);
 			mBgweixin.setBackgroundColor(Color.WHITE);
 			//改变支付说明
 			mPayclass.setText("你选择了支付宝支付");
 			break;
 		case R.id.rechrageactivity_imageview_weixin://威信
-			Toast.makeText(RechargeActivity.this,"威信", Toast.LENGTH_SHORT).show();
+			TAG="WX";
+			String strs=mJine.getText().toString();
+			mcurrentrechange.setText("￥"+strs);
 			mBgweixin.setBackgroundColor(Color.GRAY);
 			mBgzhifubao.setBackgroundColor(Color.WHITE);
 			mPayclass.setText("你选择了微信支付");
 			break;
 		case R.id.rechrageactivity_textview_querenzhifu://支付
-			Toast.makeText(RechargeActivity.this,"支付", Toast.LENGTH_SHORT).show();
 			mBgzhifubao.setBackgroundColor(Color.WHITE);
 			mBgweixin.setBackgroundColor(Color.WHITE);
+			if(TAG.equals("ZFB")){
+				Ali_Pay ali_Pay = new Ali_Pay(RechargeActivity.this);
+//				String []sa = price.split(".");
+//				int p = Integer.parseInt(sa[0])*100+Integer.parseInt(sa[1]);
+				ali_Pay.pay("支付", "余额充值", mcurrentrechange.getText().toString());
+			}else if(TAG.equals("WX")){
+				
+			}
 			break;
 			
 
 		default:
 			break;
 		}
+	}
+	private void getdatatixianedu() {
+		// TODO Auto-generated method stub
+		RequestParams params = new RequestParams();
+		// 只包含字符串参数时默认使用BodyParamsEntity，
+		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
+		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
+		params.addBodyParameter("type", "finance");
+		params.addBodyParameter("part", "user_finance_91");
+		params.addBodyParameter("user_name", SysApplication.getInstance().getUserInfo().getName());
+		HttpUtils http = new HttpUtils();
+		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
+
+		        @Override
+		        public void onStart() {
+		        	//开始请求
+		        }
+
+		        @Override
+		        public void onLoading(long total, long current, boolean isUploading) {
+		            if (isUploading) {
+		            } else {
+		            }
+		        }
+
+		        @Override
+		        public void onSuccess(ResponseInfo<String> responseInfo) {
+		        	//请求成功
+		        	String str=responseInfo.result;
+		        	Log.i("caiwu 请求下来的参数是",str);
+		        	
+//		        	这里接口有问题，需要改动
+		        	try {
+						JSONObject obj=new JSONObject(str);
+						JSONObject objs=obj.getJSONObject("data");
+						String banace=objs.getString("user_balance");
+						mCurrentPrice.setText("￥"+banace);
+						String user_conbalance=objs.getString("user_conbalance");
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		        }
+
+		        @Override
+		        public void onFailure(HttpException error, String msg) {
+		        }
+		});
 	}
 
 }

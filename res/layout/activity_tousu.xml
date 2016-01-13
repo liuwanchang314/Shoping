@@ -135,7 +135,7 @@
             android:text="投诉主题" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/tousu_zhuti"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/textView6"
@@ -185,11 +185,63 @@
             android:text="选择投诉商品" />
 
     </RelativeLayout>
-    <ListView 
+    <RelativeLayout 
         android:id="@+id/tousu_listview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        ></ListView>
+        android:layout_height="80dp"
+        >
+
+        <ImageView
+            android:id="@+id/tousu_goods_image"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="5dp"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/tousu_goods_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tousu_goods_image"
+            android:layout_toRightOf="@+id/tousu_goods_image"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tousu_goods_image"
+            android:text="商品价格：" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tousu_goods_image"
+            android:layout_toRightOf="@+id/tousu_goods_image"
+            android:text="商品数量：" />
+
+        <TextView
+            android:id="@+id/tousu_shangpinjiage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView12"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/textView12"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/tousu_shangpinshuliang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView13"
+            android:layout_alignLeft="@+id/tousu_shangpinjiage"
+            android:text="TextView" />
+        
+    </RelativeLayout>
     <RelativeLayout 
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -230,22 +282,18 @@
 
     <ImageView
         android:id="@+id/tousu_dianjixuanzezhaopian"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
         android:src="@drawable/shangchuan" />
 
     <EditText
         android:id="@+id/tousu_yijianlan"
         android:layout_width="match_parent"
         android:layout_height="150dp" />
-
-        </LinearLayout>
-    </ScrollView>
-
-    <RelativeLayout 
+<RelativeLayout 
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
         android:background="#ffffff"
         >
         <TextView 
@@ -261,4 +309,8 @@
             android:gravity="center"
             />
     </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    
 </RelativeLayout>

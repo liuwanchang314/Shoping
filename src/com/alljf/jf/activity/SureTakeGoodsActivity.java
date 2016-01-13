@@ -42,6 +42,7 @@ public class SureTakeGoodsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_confirmationtakegoods);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		initdata();
 		
@@ -58,14 +59,19 @@ public class SureTakeGoodsActivity extends Activity {
 		Intent intent=getIntent();
 		final String orderid=intent.getStringExtra("order");
 		mDingdanhao.setText(orderid);
-		mSure.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				getdata(orderid, mPassword.getText().toString());
-			}
-		});
+		if(mPassword.getText().toString()==null){
+			Toast.makeText(SureTakeGoodsActivity.this,"请输入支付密码",1).show();
+		}else{
+			mSure.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					getdata(orderid, mPassword.getText().toString());
+				}
+			});
+		}
+		
 	}
 
 	/**
@@ -79,7 +85,24 @@ public class SureTakeGoodsActivity extends Activity {
 		mDingdanhao=(TextView) findViewById(R.id.confirmationtakegoods_dingdanbianhao);
 		mSure=(TextView) findViewById(R.id.confirmationtakegoods_queren);
 		mBack=(ImageView) findViewById(R.id.confirmationtakegoods_back);
+		mBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				SureTakeGoodsActivity.this.finish();
+			}
+		});		
 		mHome=(ImageView) findViewById(R.id.confirmationtakegoods_home);
+		mHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				SureTakeGoodsActivity.this.finish();
+				startActivity(new Intent(SureTakeGoodsActivity.this,MainActivity.class));
+			}
+		});
 	}
 	
 	/**
@@ -116,7 +139,7 @@ public class SureTakeGoodsActivity extends Activity {
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
 		        	String str=responseInfo.result;
-		        	Log.i("订单取消了没有", str);
+		        	Log.i("确认收货界面数据返回", str);
 		        	try {
 						JSONObject obj=new JSONObject(str);
 						String strs=obj.getString("status");
@@ -124,6 +147,7 @@ public class SureTakeGoodsActivity extends Activity {
 							Toast.makeText(SureTakeGoodsActivity.this,"确认失败",1).show();
 						}else{
 							Toast.makeText(SureTakeGoodsActivity.this,"确认成功",1).show();
+							SureTakeGoodsActivity.this.finish();
 						}
 					} catch (JSONException e) {
 						e.printStackTrace();

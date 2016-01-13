@@ -23,7 +23,7 @@
 //	private ImageView imageView;
 //	private Handler handler;
 //	private int mWidth, mHeight;
-//
+
 //	@Override
 //	protected void onCreate(Bundle savedInstanceState) {
 //		super.onCreate(savedInstanceState);

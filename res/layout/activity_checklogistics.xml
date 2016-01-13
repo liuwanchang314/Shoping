@@ -95,7 +95,7 @@
                      android:layout_marginBottom="10dp"
                      android:layout_centerHorizontal="true"
                      android:layout_centerVertical="true"
-                     android:src="@drawable/home" />
+                     android:src="@drawable/peisongdizhi" />
 
              </RelativeLayout>
              <RelativeLayout 

@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.Application.SysApplication;
 import com.adapter.KuaiDiAdapter;
 import com.adapter.ShangjiazenpinAdapter;
 import com.alljf.jf.R;
@@ -50,6 +51,7 @@ public class ShangJiaSendGoodsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_shangjiafahuo);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		Intent in=getIntent();
 		final String modeString=in.getStringExtra("mode");
@@ -194,7 +196,24 @@ public class ShangJiaSendGoodsActivity extends Activity {
 	private void initview() {
 		// TODO Auto-generated method stub
 		mBack=(ImageView) findViewById(R.id.shangjiafahuo_back);
+		mBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ShangJiaSendGoodsActivity.this.finish();
+			}
+		});
 		mHome=(ImageView) findViewById(R.id.shangjiafahuo_home);
+		mHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ShangJiaSendGoodsActivity.this.finish();
+				startActivity(new Intent(ShangJiaSendGoodsActivity.this,MainActivity.class));
+			}
+		});
 		layout_kuaidi=(RelativeLayout) findViewById(R.id.shangjiafahuo_layout_xuanzekuaidi);
 		layout_zengpin=(RelativeLayout) findViewById(R.id.shangjiafahuo_layouy_xuanzezengpin);
 		listview_kuaidi=(ListView) findViewById(R.id.shangjiafahuo_listview_kuaidi);

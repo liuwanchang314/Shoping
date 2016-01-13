@@ -108,7 +108,7 @@
                 android:layout_marginLeft="23dp"
                 android:layout_toRightOf="@+id/textView2"
                 android:textColor="#000000"
-                android:text="TextView" />
+                />
 
         </RelativeLayout>
         
@@ -146,7 +146,7 @@
             >
 
             <TextView
-                android:id="@+id/textView32"
+                android:id="@+id/textView22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -158,11 +158,11 @@
                 android:id="@+id/tousuxiangqing_tousuzhuti"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/textView32"
-                android:layout_alignBottom="@+id/textView32"
+                android:layout_alignBaseline="@+id/textView22"
+                android:layout_alignBottom="@+id/textView22"
                 android:layout_marginLeft="16dp"
-                android:layout_toRightOf="@+id/textView32"
-                android:text="TextView" />
+                android:layout_toRightOf="@+id/textView22"
+                />
 
         </RelativeLayout>
         <RelativeLayout 
@@ -171,7 +171,7 @@
             >
 
             <TextView
-                android:id="@+id/textView42"
+                android:id="@+id/textView32"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -191,21 +191,24 @@
             <ImageView
                 android:id="@+id/tousuxiangqing_zhengju1"
                 android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:src="@drawable/logo" />
+                android:layout_height="80dp"
+                android:scaleType="fitXY"
+                android:layout_margin="5dp"
+                 />
             <ImageView
                 android:id="@+id/tousuxiangqing_zhengju2"
                 android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:src="@drawable/logo" />
+                android:layout_height="80dp"
+                android:scaleType="fitXY"
+                android:layout_margin="5dp"
+                 />
             <ImageView
                 android:id="@+id/tousuxiangqing_zhengju3"
                 android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:src="@drawable/logo" />
+                android:layout_height="80dp"
+                android:scaleType="fitXY"
+                android:layout_margin="5dp"
+                />
             
         </LinearLayout>
         <RelativeLayout 
@@ -214,7 +217,7 @@
             >
 
             <TextView
-                android:id="@+id/textView52"
+                android:id="@+id/textView42"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -226,11 +229,11 @@
                 android:id="@+id/tousuxiangqing_tousushijian"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/textView52"
-                android:layout_alignBottom="@+id/textView52"
+                android:layout_alignBaseline="@+id/textView42"
+                android:layout_alignBottom="@+id/textView42"
                 android:layout_marginLeft="16dp"
-                android:layout_toRightOf="@+id/textView52"
-                android:text="TextView" />
+                android:layout_toRightOf="@+id/textView42"
+                />
 
         </RelativeLayout>
         <RelativeLayout 
@@ -241,7 +244,7 @@
             >
 
             <TextView
-                android:id="@+id/textView62"
+                android:id="@+id/textView52"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -316,7 +319,7 @@
             >
 
             <TextView
-                android:id="@+id/textView72"
+                android:id="@+id/textView62"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -328,11 +331,11 @@
                 android:id="@+id/tousuxiangqing_wentimiaoshu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/textView72"
-                android:layout_alignBottom="@+id/textView72"
+                android:layout_alignBaseline="@+id/textView62"
+                android:layout_alignBottom="@+id/textView62"
                 android:layout_marginLeft="16dp"
-                android:layout_toRightOf="@+id/textView72"
-                android:text="TextView" />
+                android:layout_toRightOf="@+id/textView62"
+                 />
 
         </RelativeLayout>
         <RelativeLayout 
@@ -359,7 +362,7 @@
                 android:layout_alignBaseline="@+id/textView3"
                 android:layout_alignBottom="@+id/textView3"
                 android:layout_toRightOf="@+id/textView3"
-                android:text="TextView" />
+                 />
             
         </RelativeLayout>
         <RelativeLayout 
@@ -370,7 +373,7 @@
             >
 
             <TextView
-                android:id="@+id/textView82"
+                android:id="@+id/textView21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -387,7 +390,7 @@
             >
 
             <TextView
-                android:id="@+id/textView92"
+                android:id="@+id/textView2s"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -399,11 +402,11 @@
                 android:id="@+id/tousuxiangqing_beitousudianpu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/textView92"
-                android:layout_alignBottom="@+id/textView92"
+                android:layout_alignBaseline="@+id/textView2s"
+                android:layout_alignBottom="@+id/textView2s"
                 android:layout_marginLeft="16dp"
-                android:layout_toRightOf="@+id/textView92"
-                android:text="TextView" />
+                android:layout_toRightOf="@+id/textView2s"
+                 />
 
         </RelativeLayout>
         <RelativeLayout 
@@ -412,7 +415,7 @@
             >
 
             <TextView
-                android:id="@+id/textView21"
+                android:id="@+id/textView23"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -429,21 +432,24 @@
             <ImageView
                 android:id="@+id/tousuxiangqing_shengsuzhengju1"
                 android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:src="@drawable/logo" />
+                android:layout_height="80dp"
+                android:scaleType="fitXY"
+                android:layout_margin="5dp"
+                />
             <ImageView
                 android:id="@+id/tousuxiangqing_shengsuzhengju2"
                 android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:src="@drawable/logo" />
+                android:layout_height="80dp"
+                android:scaleType="fitXY"
+                android:layout_margin="5dp"
+                />
             <ImageView
                 android:id="@+id/tousuxiangqing_shengsuzhengju3"
                 android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:src="@drawable/logo" />
+                android:layout_height="80dp"
+                android:scaleType="fitXY"
+                android:layout_margin="5dp"
+                />
             
         </LinearLayout>
          <LinearLayout 
@@ -460,7 +466,7 @@
             >
 
             <TextView
-                android:id="@+id/textView22"
+                android:id="@+id/textView25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -472,12 +478,12 @@
                 android:id="@+id/tousuxiangqing_shensuneirong"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/textView22"
-                android:layout_alignBottom="@+id/textView22"
+                android:layout_alignBaseline="@+id/textView25"
+                android:layout_alignBottom="@+id/textView25"
                 android:layout_marginLeft="23dp"
-                android:layout_toRightOf="@+id/textView22"
+                android:layout_toRightOf="@+id/textView25"
                 android:textColor="#000000"
-                android:text="TextView" />
+                />
 
         </RelativeLayout>
         
@@ -496,7 +502,7 @@
             >
 
             <TextView
-                android:id="@+id/textView23"
+                android:id="@+id/textView222"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -508,12 +514,12 @@
                 android:id="@+id/tousuxiangqing_chulixiangqing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/textView23"
-                android:layout_alignBottom="@+id/textView23"
+                android:layout_alignBaseline="@+id/textView222"
+                android:layout_alignBottom="@+id/textView222"
                 android:layout_marginLeft="23dp"
-                android:layout_toRightOf="@+id/textView23"
+                android:layout_toRightOf="@+id/textView222"
                 android:textColor="#000000"
-                android:text="TextView" />
+                />
 
         </RelativeLayout>
         

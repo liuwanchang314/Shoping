@@ -11,9 +11,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.Spinner;
 
+import com.Application.SysApplication;
 import com.Extension.DataService;
 import com.Model.RelInfo;
 import com.alljf.jf.R;
@@ -31,12 +35,13 @@ public class RetrieveActivity extends Activity {
 	Handler handler;
 	HashMap<String, String> list = new HashMap<String, String>();
 	private String name;
-	
+	private Button back;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_retrieve);
+		SysApplication.getInstance().addActivity(this);
 		Intent intent = getIntent();
 		name = intent.getStringExtra("name");
 		spinner = (Spinner) findViewById(R.id.ret_txt_one);
@@ -57,7 +62,15 @@ public class RetrieveActivity extends Activity {
 			}
 		};
 		addRetItem();
-
+		back=(Button) findViewById(R.id.ret_btn_back);
+		back.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
 	}
 
 	private void addRetItem() {

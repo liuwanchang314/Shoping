@@ -128,43 +128,53 @@
 
         <CheckBox
             android:id="@+id/checkBox_baobeipingjia1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="28dp"
+            android:layout_height="25dp"
             android:layout_alignBaseline="@+id/textView4"
             android:layout_alignBottom="@+id/textView4"
-            android:layout_marginLeft="30dp"
+            android:button="@drawable/checkboxpingjia"
+            android:background="@null"
+            android:layout_marginLeft="35dp"
             android:layout_toRightOf="@+id/textView4" />
         <CheckBox
             android:id="@+id/checkBox_baobeipingjia2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="28dp"
+            android:layout_height="25dp"
             android:layout_alignBaseline="@+id/checkBox_baobeipingjia1"
             android:layout_alignBottom="@+id/checkBox_baobeipingjia1"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
+                        android:button="@drawable/checkboxpingjia"
+            android:background="@null"
             android:layout_toRightOf="@+id/checkBox_baobeipingjia1" />
         <CheckBox
             android:id="@+id/checkBox_baobeipingjia3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+             android:layout_width="28dp"
+            android:layout_height="25dp"
             android:layout_alignBaseline="@+id/checkBox_baobeipingjia2"
             android:layout_alignBottom="@+id/checkBox_baobeipingjia2"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
+                        android:button="@drawable/checkboxpingjia"
+            android:background="@null"
             android:layout_toRightOf="@+id/checkBox_baobeipingjia2" />
         <CheckBox
             android:id="@+id/checkBox_baobeipingjia4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+             android:layout_width="28dp"
+            android:layout_height="25dp"
             android:layout_alignBaseline="@+id/checkBox_baobeipingjia3"
             android:layout_alignBottom="@+id/checkBox_baobeipingjia3"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
+                        android:button="@drawable/checkboxpingjia"
+            android:background="@null"
             android:layout_toRightOf="@+id/checkBox_baobeipingjia3" />
         <CheckBox
             android:id="@+id/checkBox_baobeipingjia5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+             android:layout_width="28dp"
+            android:layout_height="25dp"
             android:layout_alignBaseline="@+id/checkBox_baobeipingjia4"
             android:layout_alignBottom="@+id/checkBox_baobeipingjia4"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
+                        android:button="@drawable/checkboxpingjia"
+            android:background="@null"
             android:layout_toRightOf="@+id/checkBox_baobeipingjia4" />
 
     </RelativeLayout>
@@ -211,37 +221,47 @@
 
          <CheckBox
              android:id="@+id/checkBox_baobeiyumiaoshuiangfu1"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
              android:layout_centerVertical="true"
+              android:layout_width="28dp"
+            android:layout_height="25dp"
+                         android:button="@drawable/checkboxpingjia"
+            android:background="@null"
              android:layout_toRightOf="@+id/textView6" />
           <CheckBox
              android:id="@+id/checkBox_baobeiyumiaoshuiangfu2"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
+              android:layout_width="28dp"
+            android:layout_height="25dp"
+                         android:button="@drawable/checkboxpingjia"
+            android:background="@null"
              android:layout_centerVertical="true"
-             android:layout_marginLeft="10dp"
+             android:layout_marginLeft="5dp"
              android:layout_toRightOf="@+id/checkBox_baobeiyumiaoshuiangfu1" />
           <CheckBox
              android:id="@+id/checkBox_baobeiyumiaoshuiangfu3"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
+              android:layout_width="28dp"
+            android:layout_height="25dp"
              android:layout_centerVertical="true"
-             android:layout_marginLeft="10dp"
+                         android:button="@drawable/checkboxpingjia"
+            android:background="@null"
+             android:layout_marginLeft="5dp"
              android:layout_toRightOf="@+id/checkBox_baobeiyumiaoshuiangfu2" />
           <CheckBox
              android:id="@+id/checkBox_baobeiyumiaoshuiangfu4"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
+              android:layout_width="28dp"
+            android:layout_height="25dp"
              android:layout_centerVertical="true"
-             android:layout_marginLeft="10dp"
+             android:layout_marginLeft="5dp"
+                         android:button="@drawable/checkboxpingjia"
+            android:background="@null"
              android:layout_toRightOf="@+id/checkBox_baobeiyumiaoshuiangfu3" />
           <CheckBox
              android:id="@+id/checkBox_baobeiyumiaoshuiangfu5"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
+              android:layout_width="28dp"
+            android:layout_height="25dp"
              android:layout_centerVertical="true"
-             android:layout_marginLeft="10dp"
+             android:layout_marginLeft="5dp"
+                         android:button="@drawable/checkboxpingjia"
+            android:background="@null"
              android:layout_toRightOf="@+id/checkBox_baobeiyumiaoshuiangfu4" />
 
      </RelativeLayout>
@@ -266,40 +286,51 @@
             />
         <CheckBox
             android:id="@+id/checkBox_maijiadefuwutaidu2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+             android:layout_width="28dp"
+            android:layout_height="25dp"
+
+            android:layout_marginLeft="5dp"
+                        android:button="@drawable/checkboxpingjia"
+            android:background="@null"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/checkBox_maijiadefuwutaidu1"
              />
          <CheckBox
             android:id="@+id/checkBox_maijiadefuwutaidu3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+             android:layout_width="28dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="5dp"
             android:layout_centerVertical="true"
+                        android:button="@drawable/checkboxpingjia"
+            android:background="@null"
             android:layout_toRightOf="@+id/checkBox_maijiadefuwutaidu2"/>
              <CheckBox
             android:id="@+id/checkBox_maijiadefuwutaidu4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+             android:layout_width="28dp"
+            android:layout_height="25dp"
+                        android:button="@drawable/checkboxpingjia"
+            android:background="@null"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/checkBox_maijiadefuwutaidu3"
              />
               <CheckBox
             android:id="@+id/checkBox_maijiadefuwutaidu5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+             android:layout_width="28dp"
+            android:layout_height="25dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+                        android:button="@drawable/checkboxpingjia"
+            android:background="@null"
+            android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/checkBox_maijiadefuwutaidu4"
              />
 
               <CheckBox
                   android:id="@+id/checkBox_maijiadefuwutaidu1"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
+                   android:layout_width="28dp"
+            android:layout_height="25dp"
+                              android:button="@drawable/checkboxpingjia"
+            android:background="@null"
                   android:layout_centerVertical="true"
                   android:layout_toRightOf="@+id/textView8" />
 
@@ -326,46 +357,56 @@
 
         <CheckBox
             android:id="@+id/checkBox_maijiadefahuosudu1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+             android:layout_width="28dp"
+            android:layout_height="25dp"
+                        android:button="@drawable/checkboxpingjia"
+            android:background="@null"
             android:layout_alignBaseline="@+id/textView11"
             android:layout_alignBottom="@+id/textView11"
             android:layout_toRightOf="@+id/textView11"
              />
         <CheckBox
             android:id="@+id/checkBox_maijiadefahuosudu2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+             android:layout_width="28dp"
+            android:layout_height="25dp"
             android:layout_alignBaseline="@+id/checkBox_maijiadefahuosudu1"
             android:layout_alignBottom="@+id/checkBox_maijiadefahuosudu1"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
+                        android:button="@drawable/checkboxpingjia"
+            android:background="@null"
             android:layout_toRightOf="@+id/checkBox_maijiadefahuosudu1"
              />
         <CheckBox
             android:id="@+id/checkBox_maijiadefahuosudu3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+             android:layout_width="28dp"
+            android:layout_height="25dp"
             android:layout_alignBaseline="@+id/checkBox_maijiadefahuosudu2"
             android:layout_alignBottom="@+id/checkBox_maijiadefahuosudu2"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
+                        android:button="@drawable/checkboxpingjia"
+            android:background="@null"
             android:layout_toRightOf="@+id/checkBox_maijiadefahuosudu2"
              />
         <CheckBox
             android:id="@+id/checkBox_maijiadefahuosudu4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+             android:layout_width="28dp"
+            android:layout_height="25dp"
             android:layout_alignBaseline="@+id/checkBox_maijiadefahuosudu3"
             android:layout_alignBottom="@+id/checkBox_maijiadefahuosudu3"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
+                        android:button="@drawable/checkboxpingjia"
+            android:background="@null"
             android:layout_toRightOf="@+id/checkBox_maijiadefahuosudu3"
              />
         <CheckBox
             android:id="@+id/checkBox_maijiadefahuosudu5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+             android:layout_width="28dp"
+            android:layout_height="25dp"
             android:layout_alignBaseline="@+id/checkBox_maijiadefahuosudu4"
             android:layout_alignBottom="@+id/checkBox_maijiadefahuosudu4"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
+                        android:button="@drawable/checkboxpingjia"
+            android:background="@null"
             android:layout_toRightOf="@+id/checkBox_maijiadefahuosudu4"
              />
 

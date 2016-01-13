@@ -4,7 +4,14 @@
     android:layout_height="match_parent"
     android:background="#F5F5F5"
     tools:context="com.activity.IndexActivity" >
-    <ScrollView 
+    
+    <com.customview.RefreshableView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/refresh_root"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+         <ScrollView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
      <LinearLayout 
@@ -21,21 +28,15 @@
         android:orientation="vertical" >
 
 
-        <RelativeLayout
+        <RelativeLayout 
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            >
+             <RelativeLayout
             android:id="@+id/index_rt_top"
             android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.6"
+            android:layout_height="100dp"
             android:background="@drawable/top_bg" >
-             
-             <ImageView
-          
-          android:layout_width="70dp"
-          android:layout_height="70dp"
-          android:layout_alignParentLeft="true"
-          android:layout_alignParentTop="true"
-          android:layout_marginTop="22dp"
-          android:src="@drawable/logo" />
            
         <TextView
             android:id="@+id/logoName"
@@ -43,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="19dp"
+            android:layout_marginRight="15dp"
             android:text="南通风向标纺织品有限公司"
             android:textColor="@color/white"
             android:textSize="18dp"
@@ -68,16 +69,22 @@
              android:src="@drawable/index_look" />
 
 		</RelativeLayout>
+
+             <ImageView
+                 android:layout_width="80dp"
+                 android:layout_height="80dp"
+                 android:layout_alignParentBottom="true"
+                 android:layout_alignParentLeft="true"
+                 android:src="@drawable/logo" />
+
+        </RelativeLayout>
+       
         <RadioGroup
             android:id="@+id/index_tab_rg_menu"
             android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.3"
-            android:layout_alignParentBottom="true"
-            android:layout_below="@+id/logo"
+            android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
             android:background="#FFFFFF"
             android:gravity="center"
             android:orientation="horizontal" >
@@ -159,7 +166,7 @@
         android:id="@+id/index_lt_search"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:layout_weight="0.2"
         android:background="@drawable/order_search_style"
         android:orientation="horizontal" >
@@ -223,6 +230,9 @@
     </LinearLayout>
   </LinearLayout>
 </ScrollView>
+    </com.customview.RefreshableView>
+    
+   
      
 
 </RelativeLayout>

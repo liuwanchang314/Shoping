@@ -102,6 +102,7 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_product_info);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		_id=getid();
 		getdata(_id);
@@ -547,25 +548,22 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.producinfo_back:
-			Toast.makeText(Product_infoActivity.this, "返回",Toast.LENGTH_SHORT).show();
+			Product_infoActivity.this.finish();
 			break;
 		case R.id.producinfo_home:
-			Toast.makeText(Product_infoActivity.this, "主页",Toast.LENGTH_SHORT).show();
+			Product_infoActivity.this.finish();
+			startActivity(new Intent(Product_infoActivity.this,MainActivity.class));
 			break;
 		case R.id.producinfo_weixinfenxiang:
-			Toast.makeText(Product_infoActivity.this, "威信",Toast.LENGTH_SHORT).show();
 			IWXAPI api = WXAPIFactory.createWXAPI(Product_infoActivity.this, CommonConstants.WXAPP_ID);
 //			api.registerApp(CommonConstants.WXAPP_ID);
-			
 			ShareUtils.shareWebToWX(Product_infoActivity.this, api, "www.baidu.com", "....", "sss", true);
 			break;
 		case R.id.producinfo_Qonefeixiang:
-			Toast.makeText(Product_infoActivity.this, "qq控件",Toast.LENGTH_SHORT).show();
 			tencent = Tencent.createInstance(CommonConstants.QQ_ID, Product_infoActivity.this);
 			ShareUtils.shareMegToQzone(tencent, Product_infoActivity.this, new ArrayList<String>(), "title", "summary", "http://www.baidu.com", listener);
 			break;
 		case R.id.producinfo_paizhao:
-			Toast.makeText(Product_infoActivity.this, "拍照",Toast.LENGTH_SHORT).show();
 			break;
 		case R.id.productinfo_jiarugouwuche:
 					AlertDialog.Builder dialog=new AlertDialog.Builder(Product_infoActivity.this);

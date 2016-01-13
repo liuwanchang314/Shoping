@@ -105,7 +105,8 @@
 			        android:layout_marginLeft="20dp"
 			        android:layout_alignParentBottom="true"
 			        android:gravity="center"
-			        android:background="@drawable/jinekuang" >
+			        android:inputType="number"
+			        android:background="@drawable/biankuang" >
 
             </EditText>
 			</RelativeLayout>
@@ -123,7 +124,7 @@
 				    android:layout_alignParentLeft="true"
 				    android:layout_centerVertical="true"
 				    android:textColor="#ff4500"
-				    android:text="(当前预存款为：" />
+				    android:text="(当前余额:" />
 
 				<TextView
 				    android:id="@+id/rechrageactivity_current_jine"
@@ -131,7 +132,7 @@
 				    android:layout_height="wrap_content"
 				    android:layout_centerVertical="true"
 				    android:layout_toRightOf="@+id/textView3"
-				    android:text="xxx" />
+				    android:text="0.0" />
 
 				<TextView
 				    android:id="@+id/textView5"
@@ -188,8 +189,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:textColor="#aa00aa"
-                    android:text="000" />
+                    android:textColor="#ff4500"
+                    android:text="0.0" />
 
                 <TextView
                     android:id="@+id/textView8"
@@ -213,6 +214,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
                     android:text="(你选择了支付宝支付）" />
 
             </RelativeLayout>

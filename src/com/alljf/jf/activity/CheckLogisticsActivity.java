@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -58,6 +60,7 @@ public class CheckLogisticsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_checklogistics);
+		SysApplication.getInstance().addActivity(this);
 		Log.i("进入这里了吗","好像");
 		initview();
 		Intent intent=getIntent();
@@ -75,7 +78,7 @@ public class CheckLogisticsActivity extends Activity {
 		if(bean.getOrdergoods().getGoods_name().equals("")){
 			mProductName.setText(bean.getOrdergoods().getGoods_name());
 		}else{
-			mProductName.setText("");
+			mProductName.setText(bean.getOrdergoods().getGoods_name());
 		}
 		mProductDimens.setText(bean.getOrdergoods().getSpec_id());
 		mProductColor.setText(bean.getOrdergoods().getSpec_id());
@@ -186,7 +189,26 @@ public class CheckLogisticsActivity extends Activity {
 	private void initview() {
 		// TODO Auto-generated method stub
 		mBack=(ImageView) findViewById(R.id.checklogistics_iamgeview_back);
+		mBack.setOnClickListener(new OnClickListener(
+				) {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				CheckLogisticsActivity.this.finish();
+			}
+		});
 		mHome=(ImageView) findViewById(R.id.checklogistics_iamgeview_home);
+		mHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				CheckLogisticsActivity.this.finish();
+				Intent intent=new Intent(CheckLogisticsActivity.this,MainActivity.class);
+				startActivity(intent);
+			}
+		});
 		mBiaozhi=(ImageView) findViewById(R.id.checklogistics_iamgeview_wuliugongsibiaozhi);
 		mSdate=(TextView) findViewById(R.id.checklogistics_tv_wuliuzhuangtai);
 		mCompanyName=(TextView) findViewById(R.id.checklogistics_tv_wuliugongsimingchen);

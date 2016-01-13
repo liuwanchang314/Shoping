@@ -3,8 +3,11 @@ package com.alljf.jf.activity;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -36,6 +39,7 @@ public class TuiKuanYuSHActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.antivity_tuikuanshouhou);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		initdata();
 	}
@@ -94,7 +98,24 @@ public class TuiKuanYuSHActivity extends Activity {
 	private void initview() {
 		// TODO Auto-generated method stub
 		mBack=(ImageView) findViewById(R.id.shouhoutuikuan_back);
+		mBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				TuiKuanYuSHActivity.this.finish();
+			}
+		});
 		mHome=(ImageView) findViewById(R.id.shouhoutuikuan_home);
+		mHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				TuiKuanYuSHActivity.this.finish();
+				startActivity(new Intent(TuiKuanYuSHActivity.this,MainActivity.class));
+			}
+		});
 		mListview=(ListView) findViewById(R.id.tuikuanshouhou_listview);
 	}
 

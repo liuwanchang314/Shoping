@@ -50,12 +50,14 @@
 
     <TextView
         android:id="@+id/tv_quxiao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="25dp"
         android:layout_alignRight="@+id/textView1"
         android:layout_below="@+id/textView2"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:textColor="#ffffff"
         android:background="@drawable/button_style"
         android:text="取消" />
 
@@ -76,6 +78,7 @@
         android:layout_alignParentRight="true"
         android:background="@drawable/button_style"
         android:gravity="center"
+        android:textColor="#ffffff"
         android:text="验证" />
 
     <TextView
@@ -110,12 +113,14 @@
 
     <TextView
         android:id="@+id/tv_queren"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="25dp"
         android:layout_alignBaseline="@+id/tv_quxiao"
         android:layout_alignBottom="@+id/tv_quxiao"
         android:layout_alignLeft="@+id/textView4"
         android:background="@drawable/button_style"
+        android:gravity="center"
+        android:textColor="#ffffff"
         android:text="确认" />
 
     <TextView

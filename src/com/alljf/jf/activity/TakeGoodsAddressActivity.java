@@ -53,6 +53,7 @@ public class TakeGoodsAddressActivity extends Activity implements OnClickListene
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_takegoodsaddress);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		getdata();
 	}
@@ -191,12 +192,11 @@ public class TakeGoodsAddressActivity extends Activity implements OnClickListene
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.takegoodsaddress_back:
-			Toast.makeText(TakeGoodsAddressActivity.this,"返回", Toast.LENGTH_SHORT).show();
-			
+			TakeGoodsAddressActivity.this.finish();
 			break;
 		case R.id.takegoodsaddress_home:
-			Toast.makeText(TakeGoodsAddressActivity.this,"主页", Toast.LENGTH_SHORT).show();
-			
+			TakeGoodsAddressActivity.this.finish();
+			startActivity(new Intent(TakeGoodsAddressActivity.this,MainActivity.class));
 			break;
 		case R.id.takegoodsaddress_add:
 			Toast.makeText(TakeGoodsAddressActivity.this,"添加", Toast.LENGTH_SHORT).show();

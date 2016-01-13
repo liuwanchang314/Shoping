@@ -134,7 +134,7 @@
                  android:layout_alignBaseline="@+id/textView4"
                  android:layout_alignBottom="@+id/textView4"
                  android:layout_toRightOf="@+id/textView4"
-                 android:background="@drawable/jinekuang"
+                 android:background="@drawable/biankuang"
                  android:gravity="center" >
 
              </EditText>

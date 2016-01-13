@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,6 +61,10 @@ public class PayMoneyActivity extends Activity {
 	private String addressid=null;
 	private String kuaidiid=null;
 	
+	private ImageView mback;
+	private ImageView mhome;
+	
+	
 	private String fahuoTAG="sj";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +72,7 @@ public class PayMoneyActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_paymoney);
+		SysApplication.getInstance().addActivity(this);
 		Intent intent=getIntent();
 		list=(List<BuyCartBean>) getIntent().getSerializableExtra("list");
 		Log.i("现在传递过来了多少数据",list.size()+"");
@@ -224,9 +230,6 @@ public class PayMoneyActivity extends Activity {
 									}
 									
 								}
-								
-								
-								
 							}
 							
 						}
@@ -263,6 +266,25 @@ public class PayMoneyActivity extends Activity {
 //		zhifumima=(EditText) findViewById(R.id.paymoney_activity_ed_shurujine);
 //		yanzhengmima=(TextView) findViewById(R.id.paymoney_activity_tv_zhifu);
 		quedinganniu=(TextView) findViewById(R.id.pay_quedinganniu);
+		mback=(ImageView) findViewById(R.id.paymoney_activity_imageview_back);
+		mback.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				PayMoneyActivity.this.finish();
+			}
+		});
+		mhome=(ImageView) findViewById(R.id.paymoney_activity_imageview_home);
+		mhome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				PayMoneyActivity.this.finish();
+				startActivity(new Intent(PayMoneyActivity.this, MainActivity.class));
+			}
+		});
 	}
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {

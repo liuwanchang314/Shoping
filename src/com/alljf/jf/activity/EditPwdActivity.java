@@ -34,12 +34,14 @@ public class EditPwdActivity extends Activity {
 	String UserName;
 	SysApplication Application = SysApplication.getInstance();
 	EditText txtone, txttwo;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_edit_pwd);
+		SysApplication.getInstance().addActivity(this);
 		UserName = Application.getUserInfo().getName();
 		txtone = (EditText) findViewById(R.id.editpwd_txt_one);
 		txttwo = (EditText) findViewById(R.id.editpwd_txt_two);

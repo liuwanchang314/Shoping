@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.Application.SysApplication;
 import com.alljf.jf.R;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -52,6 +53,7 @@ public class ChangeTakeGoodsAddressActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_changetakegoodsaddress);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		Intent intent=getIntent();
 		name=intent.getStringExtra("name");
@@ -128,6 +130,22 @@ public class ChangeTakeGoodsAddressActivity extends Activity {
 		mDelete=(LinearLayout) findViewById(R.id.changeaddress_shanchu);
 		mSet=(LinearLayout) findViewById(R.id.changeaddress_shezhiweimoren);
 		mSure=(TextView) findViewById(R.id.changeaddress_tijiao);
+		mBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ChangeTakeGoodsAddressActivity.this.finish();
+			}
+		});
+		mQuxiao.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ChangeTakeGoodsAddressActivity.this.finish();
+			}
+		});
 	}
 	
 	

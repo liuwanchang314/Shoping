@@ -4,8 +4,11 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ListView;
@@ -45,6 +48,7 @@ public class FinanInfoActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_finan_info);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		getdata();
 	}
@@ -56,7 +60,7 @@ public class FinanInfoActivity extends Activity {
 		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
 		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
 		params.addBodyParameter("type", "finance");
-		params.addBodyParameter("part", "user_finance_log_91_nokey");
+		params.addBodyParameter("part", "user_finance_log_domain_nokey");
 		params.addBodyParameter("user_name", SysApplication.getInstance().getUserInfo().getName());
 		params.addBodyParameter("limit","30");
 		params.addBodyParameter("limit_start","1");
@@ -96,7 +100,24 @@ public class FinanInfoActivity extends Activity {
 	private void initview() {
 		// TODO Auto-generated method stub
 		mcallback=(Button) findViewById(R.id.finance_btn_back);
+		mcallback.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				FinanInfoActivity.this.finish();
+			}
+		});
 		mHome=(TextView) findViewById(R.id.finance_btn_home);
+		mHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				FinanInfoActivity.this.finish();
+				startActivity(new Intent(FinanInfoActivity.this,MainActivity.class));
+			}
+		});
 		mListview=(ListView) findViewById(R.id.financedetail_listview);
 	}
 

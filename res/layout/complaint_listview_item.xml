@@ -95,7 +95,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             android:gravity="center"
-            android:background="@drawable/biankuang"
+            android:background="@drawable/bg_maintext"
             android:text="查看详情" />
 
     </RelativeLayout>

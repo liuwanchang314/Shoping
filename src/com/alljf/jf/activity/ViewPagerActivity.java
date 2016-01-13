@@ -14,6 +14,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Window;
 
+import com.Application.SysApplication;
 import com.alljf.jf.R;
 /**
  * ViewPager 引导
@@ -33,6 +34,7 @@ public class ViewPagerActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_viewpager);
+		SysApplication.getInstance().addActivity(this);
 		//首先，需要一个sharedpreference对象，用来存储配置文件信息
 		SharedPreferences preferences=getSharedPreferences("loading",Context.MODE_PRIVATE);
 		//首先先读取数据

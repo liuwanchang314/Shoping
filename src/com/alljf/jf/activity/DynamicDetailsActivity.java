@@ -10,6 +10,7 @@ import android.view.Window;
 import android.webkit.WebView;
 import android.widget.TextView;
 
+import com.Application.SysApplication;
 import com.alljf.jf.R;
 import com.bean.Dynamicdetailsbean;
 import com.jsonParser.DyJsonpaser;
@@ -46,6 +47,7 @@ public class DynamicDetailsActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_dynamicdetails);
+		SysApplication.getInstance().addActivity(this);
 		Intent intent=getIntent();
 		Bundle budle=intent.getExtras();
 		mId=budle.getString("id");
@@ -105,7 +107,23 @@ public class DynamicDetailsActivity extends Activity implements OnClickListener{
 	private void initview() {
 		// TODO Auto-generated method stub
 		mCallback=(TextView) findViewById(R.id.dynamicdetails_top_textview_back);
+		mCallback.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				DynamicDetailsActivity.this.finish();
+			}
+		});
 		mHome=(TextView) findViewById(R.id.dynamicdetails_top_textview_home);
+		mHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				startActivity(new Intent(DynamicDetailsActivity.this,MainActivity.class));
+			}
+		});
 		mTitle=(TextView) findViewById(R.id.dynamicdetais_tv_title);
 		mTime=(TextView) findViewById(R.id.dynamicdetais_tv_time);
 		mContent=(WebView) findViewById(R.id.dy_webview);

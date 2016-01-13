@@ -48,6 +48,7 @@ public class ChangeSafetyActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_changesafety);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		
 	}
@@ -144,6 +145,24 @@ public class ChangeSafetyActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				getdata();
+			}
+		});
+		mBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ChangeSafetyActivity.this.finish();
+			}
+		});
+		mHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ChangeSafetyActivity.this.finish();
+				Intent intent=new Intent(ChangeSafetyActivity.this,MainActivity.class);
+				startActivity(intent);
 			}
 		});
 	}

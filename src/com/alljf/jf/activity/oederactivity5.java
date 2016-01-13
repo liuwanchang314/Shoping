@@ -37,6 +37,7 @@ public class oederactivity5 extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.orderactivity5);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		getdata();
 	}

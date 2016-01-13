@@ -6,10 +6,13 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.Application.SysApplication;
 import com.adapter.DingdanxiangqingAdapter;
 import com.alljf.jf.R;
 import com.bean.OrderBean;
@@ -44,6 +47,7 @@ public class DingDanXQActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_dingdanxiangqingye);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		initdata();
 	}
@@ -54,7 +58,7 @@ public class DingDanXQActivity extends Activity {
 	private void initdata() {
 		// TODO Auto-generated method stub
 		Intent intent=getIntent();
-		OrderBean bean=(OrderBean) intent.getSerializableExtra("bean");
+		final OrderBean bean=(OrderBean) intent.getSerializableExtra("bean");
 		List<OrderBean> list=new ArrayList<OrderBean>();
 		list.add(bean);
 		//由于无订单详情接口，而且订单列表接口里面也无此数据，所以暂时不写
@@ -73,9 +77,29 @@ public class DingDanXQActivity extends Activity {
 		mFukuanshijian.setText(bean.getPay_time());
 		mFahuoshijian.setText(bean.getShipping_time());
 		mChengjiaoshijian.setText(bean.getPay_time());
-		
 		adapter=new DingdanxiangqingAdapter(list,DingDanXQActivity.this);
 		Mlistview.setAdapter(adapter);
+		
+		mPingjia.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent=new Intent(DingDanXQActivity.this, FaBiaoPingJiaActivity.class);
+				intent.putExtra("bean",bean);
+				startActivity(intent);
+			}
+		});
+		mChakanwuliu.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent=new Intent(DingDanXQActivity.this, CheckLogisticsActivity.class);
+				intent.putExtra("bean",bean);
+				startActivity(intent);
+			}
+		});
 		
 	}
 	/**
@@ -97,7 +121,24 @@ public class DingDanXQActivity extends Activity {
 		mFahuoshijian=(TextView) findViewById(R.id.ddxq_fahuoshijian);
 		mChengjiaoshijian=(TextView) findViewById(R.id.ddxq_chengjiaoshijian);
 		mBack=(ImageView) findViewById(R.id.dingdanxiangqing_back);
+		mBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				DingDanXQActivity.this.finish();
+			}
+		});
 		mHome=(ImageView) findViewById(R.id.dingdanxiangqing_home);
+		mHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				DingDanXQActivity.this.finish();
+				startActivity(new Intent(DingDanXQActivity.this,MainActivity.class));
+			}
+		});
 		mPingjia=(TextView) findViewById(R.id.ddxq_pingjia);
 		mChakanwuliu=(TextView) findViewById(R.id.ddxq_chakanwuliu);
 	}

@@ -8,11 +8,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.Application.SysApplication;
 import com.adapter.CompanyNoticeAdapter;
 import com.alljf.jf.R;
 import com.bean.CompanyNoticeBean;
@@ -28,13 +31,14 @@ public class CompanyNoticeActivity extends Activity {
 	
 	private ListView mListview;
 	List<CompanyNoticeBean> list;
-	@SuppressLint("NewApi")
+	private TextView mback,mhome;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_companynotice);
+		SysApplication.getInstance().addActivity(this);
 
 		initview();
 		//准备数据源
@@ -100,6 +104,26 @@ public class CompanyNoticeActivity extends Activity {
 	private void initview() {
 		// TODO Auto-generated method stub
 		mListview=(ListView) findViewById(R.id.companynotice_listview);
+		mback=(TextView) findViewById(R.id.companynotice_top_textview_back);
+		mback.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				CompanyNoticeActivity.this.finish();
+			}
+		});
+		mhome=(TextView) findViewById(R.id.companynotice_top_textview_home);
+		mhome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				CompanyNoticeActivity.this.finish();
+				Intent intent=new Intent(CompanyNoticeActivity.this,MainActivity.class);
+				startActivity(intent);
+			}
+		});
 	}
 
 }

@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -52,6 +53,8 @@ public class RegnActivity extends Activity implements OnClickListener{
 	List<String> strList,idlist;
 	private int i;//计时
 	
+	private Button mback;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -80,6 +83,7 @@ public class RegnActivity extends Activity implements OnClickListener{
 				switch (msg.arg1) {
 				case 0:
 					try {
+						Log.i("问题的返回数据是",msg.obj.toString());
 						jsonObject = new JSONObject(msg.obj.toString());
 						data = jsonObject.getString("questions");
 						
@@ -137,6 +141,7 @@ public class RegnActivity extends Activity implements OnClickListener{
 				case 2:
 					try {
 						jsonObject = new JSONObject(msg.obj.toString());
+						Log.i("注册完成后的数据是",msg.obj.toString());
 						data = jsonObject.getString("reg_status");
 						if(data.equals("1")){
 							Toast.makeText(RegnActivity.this, "成功！", 0).show();

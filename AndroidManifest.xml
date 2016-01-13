@@ -19,12 +19,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <meta-data  
         android:name="com.baidu.lbsapi.API_KEY"  
-        android:value="ILBma1GqS3whAbMzcyZLFzFg" />  
+        android:value="6ia8cGGRswlroGQtBw3iCdiB" />  
         
         <!-- 支付宝 -->
         <activity 
@@ -211,6 +211,10 @@
         <activity 
             android:name="com.alljf.jf.activity.ChangeTakeGoodsAddressActivity"
             ></activity>
+        <!-- 找回密码界面	 -->
+        <activity 
+            android:name="com.alljf.jf.activity.RetrieveActivity"
+            ></activity>
         <!-- 发票信息界面 -->
         <activity 
             android:name="com.alljf.jf.activity.BillActivity"
@@ -287,6 +291,19 @@
            <activity 
                android:name=".activity.activity_qidongye"
 
+               ></activity>
+           <!--搜索界面  -->
+           <activity 
+               android:name=".activity.SousuoActivity"
+               ></activity>
+           <!-- 选择服务界面 -->
+           <activity 
+               android:name=".activity.XuanzefuwuActivity"
+               ></activity>
+           <!-- 申请退款界面 -->
+           <activity 
+               android:name=".activity.ShenQingTuiKuanActivity"
+               android:windowSoftInputMode="stateUnchanged"
                ></activity>
         <!-- QZONE -->
         <activity

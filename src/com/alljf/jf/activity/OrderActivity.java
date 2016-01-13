@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.Application.SysApplication;
 import com.alljf.jf.R;
 
 
@@ -33,13 +34,13 @@ public class OrderActivity extends Activity implements OnClickListener{
 	private Fragment[] mfragments;//用来存储fragment
 	private ActionBar actionbar;
 	
-	@SuppressLint("NewApi")
-	@Override
+	@SuppressLint("NewApi") @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_order);
+		SysApplication.getInstance().addActivity(this);
 		initview();
 		inittitleview();
 		initflagview();
