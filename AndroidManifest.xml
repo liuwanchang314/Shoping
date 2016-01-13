@@ -36,10 +36,15 @@
          <activity 
              android:name="com.pay.mm.PayActivity"
              >
-       
+             <intent-filter>		
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+             
          </activity>
         <activity 
-            android:name=".activity.wxapi.WXEntryActicity"
+            android:name=".wxapi.WXEntryActicity"
             android:label="@string/app_name"
             android:exported="true"></activity>
         <!-- Ping++ sdk -->
@@ -50,7 +55,7 @@
     android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 <!-- 微信支付 sdk ，也是 Ping++ sdk 调用入口 -->
 <activity-alias
-    android:name=".activity.wxapi.WXPayEntryActivity"
+    android:name=".wxapi.WXPayEntryActivity"
     android:exported="true"
     android:targetActivity="com.pingplusplus.android.PaymentActivity" />
 <!-- 支付宝 sdk -->
@@ -79,11 +84,6 @@
             android:screenOrientation="portrait"
             >
 
-           <intent-filter>		
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity

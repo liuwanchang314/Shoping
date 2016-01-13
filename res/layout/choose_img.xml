@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activityLayout"
     android:background="@android:color/transparent" >
-
+<!-- 
     <GridView
         android:id="@+id/gridView"
         android:layout_width="fill_parent"
@@ -23,7 +23,7 @@
         android:layout_height="0.5dp"
         android:layout_above="@+id/layout_sumbitChooseImg"
         android:background="#cccccc" />
-<!-- 
+
     <LinearLayout
         android:id="@+id/layout_sumbitChooseImg"
         android:layout_width="match_parent"
@@ -54,7 +54,7 @@
             android:textColor="#ffffff"
             android:textSize="@dimen/sp_13" />
     </LinearLayout>
- -->
+
     <RelativeLayout
         android:id="@+id/showImgView"
         android:layout_width="fill_parent"
@@ -72,5 +72,5 @@
             android:layout_height="fill_parent"
             android:background="@android:color/transparent" />
     </RelativeLayout>
-
+ -->
 </RelativeLayout>

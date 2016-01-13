@@ -127,7 +127,7 @@
             >
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -146,7 +146,7 @@
             >
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView32"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -158,10 +158,10 @@
                 android:id="@+id/tousuxiangqing_tousuzhuti"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/textView2"
-                android:layout_alignBottom="@+id/textView2"
+                android:layout_alignBaseline="@+id/textView32"
+                android:layout_alignBottom="@+id/textView32"
                 android:layout_marginLeft="16dp"
-                android:layout_toRightOf="@+id/textView2"
+                android:layout_toRightOf="@+id/textView32"
                 android:text="TextView" />
 
         </RelativeLayout>
@@ -171,7 +171,7 @@
             >
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView42"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -214,7 +214,7 @@
             >
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView52"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -226,10 +226,10 @@
                 android:id="@+id/tousuxiangqing_tousushijian"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/textView2"
-                android:layout_alignBottom="@+id/textView2"
+                android:layout_alignBaseline="@+id/textView52"
+                android:layout_alignBottom="@+id/textView52"
                 android:layout_marginLeft="16dp"
-                android:layout_toRightOf="@+id/textView2"
+                android:layout_toRightOf="@+id/textView52"
                 android:text="TextView" />
 
         </RelativeLayout>
@@ -241,7 +241,7 @@
             >
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView62"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -316,7 +316,7 @@
             >
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView72"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -328,10 +328,10 @@
                 android:id="@+id/tousuxiangqing_wentimiaoshu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/textView2"
-                android:layout_alignBottom="@+id/textView2"
+                android:layout_alignBaseline="@+id/textView72"
+                android:layout_alignBottom="@+id/textView72"
                 android:layout_marginLeft="16dp"
-                android:layout_toRightOf="@+id/textView2"
+                android:layout_toRightOf="@+id/textView72"
                 android:text="TextView" />
 
         </RelativeLayout>
@@ -370,7 +370,7 @@
             >
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView82"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -387,7 +387,7 @@
             >
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView92"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -399,10 +399,10 @@
                 android:id="@+id/tousuxiangqing_beitousudianpu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/textView2"
-                android:layout_alignBottom="@+id/textView2"
+                android:layout_alignBaseline="@+id/textView92"
+                android:layout_alignBottom="@+id/textView92"
                 android:layout_marginLeft="16dp"
-                android:layout_toRightOf="@+id/textView2"
+                android:layout_toRightOf="@+id/textView92"
                 android:text="TextView" />
 
         </RelativeLayout>
@@ -412,7 +412,7 @@
             >
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -460,7 +460,7 @@
             >
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -472,10 +472,10 @@
                 android:id="@+id/tousuxiangqing_shensuneirong"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/textView2"
-                android:layout_alignBottom="@+id/textView2"
+                android:layout_alignBaseline="@+id/textView22"
+                android:layout_alignBottom="@+id/textView22"
                 android:layout_marginLeft="23dp"
-                android:layout_toRightOf="@+id/textView2"
+                android:layout_toRightOf="@+id/textView22"
                 android:textColor="#000000"
                 android:text="TextView" />
 
@@ -496,7 +496,7 @@
             >
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView23"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -508,10 +508,10 @@
                 android:id="@+id/tousuxiangqing_chulixiangqing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/textView2"
-                android:layout_alignBottom="@+id/textView2"
+                android:layout_alignBaseline="@+id/textView23"
+                android:layout_alignBottom="@+id/textView23"
                 android:layout_marginLeft="23dp"
-                android:layout_toRightOf="@+id/textView2"
+                android:layout_toRightOf="@+id/textView23"
                 android:textColor="#000000"
                 android:text="TextView" />
 

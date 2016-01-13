@@ -12,9 +12,10 @@ public class CommonConstants {
 	
 	public static int RESULTCODE_OK = 2;
 	
-	public static String WXAPP_ID = "wx803cd3c4cbf3474a";
-	public static String WXSHANGHAO = "1300979601";
+	public static String WXAPP_ID = "wx021fdcc845a77220";
+	public static String WXSHANGHAO = "1306550001";
 	public static String WXSIGN = "260f6c8f9a23ff19737f0f9131455584";
+	public static String WXSECRET = "585339176a7f6d40f3238064fe9ae40f";
 	public static String QQ_ID = "1105031750";
 	
 	

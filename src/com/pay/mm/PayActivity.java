@@ -1,97 +1,71 @@
-
 package com.pay.mm;
 
-import java.io.StringReader;
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.message.BasicNameValuePair;
-import org.xmlpull.v1.XmlPullParser;
+import org.json.JSONObject;
+
+import com.alljf.jf.CommonConstants;
+import com.alljf.jf.R;
+import com.tencent.mm.sdk.constants.Build;
+import com.tencent.mm.sdk.modelpay.PayReq;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Xml;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-
-import com.alljf.jf.CommonConstants;
-import com.alljf.jf.R;
-import com.tencent.mm.sdk.modelpay.PayReq;
-import com.tencent.mm.sdk.openapi.IWXAPI;
-import com.tencent.mm.sdk.openapi.WXAPIFactory;
-
-/**
- * 微信支付
- * @author 孟祥程
- *
- */
+import android.widget.Toast;
 
 public class PayActivity extends Activity {
 
 	private static final String TAG = "MicroMsg.SDKSample.PayActivity";
-
-	PayReq req;
-	final IWXAPI msgApi = WXAPIFactory.createWXAPI(this, null);
-	TextView show;
-	Map<String,String> resultunifiedorder;
-	StringBuffer sb;
+	
+	private IWXAPI api;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.paywx_main);
-		show =(TextView)findViewById(R.id.editText_prepay_id);
-		req = new PayReq();
-		sb=new StringBuffer();
+		setContentView(R.layout.pay);
+		
+		api = WXAPIFactory.createWXAPI(this, CommonConstants.WXAPP_ID);
 
-		msgApi.registerApp(CommonConstants.WXAPP_ID);
-		//生成prepay_id
-		Button payBtn = (Button) findViewById(R.id.unifiedorder_btn);
+		Button payBtn = (Button) findViewById(R.id.pay_btn);
 		payBtn.setOnClickListener(new View.OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
-				GetPrepayIdTask getPrepayId = new GetPrepayIdTask();
-				getPrepayId.execute();
+				new GetAccessTokenTask().execute();
 			}
 		});
-		Button appayBtn = (Button) findViewById(R.id.appay_btn);
-		appayBtn.setOnClickListener(new View.OnClickListener() {
-
+		
+		Button checkPayBtn = (Button) findViewById(R.id.check_pay_btn);
+		checkPayBtn.setOnClickListener(new View.OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
-				sendPayReq();
-			}
-		});
-
-		//生成签名参数
-		Button appay_pre_btn = (Button) findViewById(R.id.appay_pre_btn);
-		appay_pre_btn.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				genPayReq();
+				boolean isPaySupported = api.getWXAppSupportAPI() >= Build.PAY_SUPPORTED_SDK_INT;
+				Toast.makeText(PayActivity.this, String.valueOf(isPaySupported), Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
-	
-
 	
 	/**
-	 生成签名
+	 * 微信公众平台商户模块和商户约定的密钥
+	 * 
+	 * 注意：不能hardcode在客户端，建议genPackage这个过程由服务器端完成
 	 */
-
-	private String genPackageSign(List<NameValuePair> params) {
+	private static final String PARTNER_KEY = "8934e7d15453e97507ef794cf7b0519d";
+	
+	private String genPackage(List<NameValuePair> params) {
 		StringBuilder sb = new StringBuilder();
 		
 		for (int i = 0; i < params.size(); i++) {
@@ -101,66 +75,100 @@ public class PayActivity extends Activity {
 			sb.append('&');
 		}
 		sb.append("key=");
-		sb.append(CommonConstants.WXSIGN);
+		sb.append(PARTNER_KEY); // 注意：不能hardcode在客户端，建议genPackage这个过程都由服务器端完成
 		
-
+		// 进行md5摘要前，params内容为原始内容，未经过url encode处理
 		String packageSign = MD5.getMessageDigest(sb.toString().getBytes()).toUpperCase();
-		Log.e("orion",packageSign);
-		return packageSign;
+		
+		return URLEncodedUtils.format(params, "utf-8") + "&sign=" + packageSign;
 	}
-	private String genAppSign(List<NameValuePair> params) {
-		StringBuilder sb = new StringBuilder();
-
-		for (int i = 0; i < params.size(); i++) {
-			sb.append(params.get(i).getName());
-			sb.append('=');
-			sb.append(params.get(i).getValue());
-			sb.append('&');
-		}
-		sb.append("key=");
-		sb.append(CommonConstants.WXSIGN);
-
-        this.sb.append("sign str\n"+sb.toString()+"\n\n");
-		String appSign = MD5.getMessageDigest(sb.toString().getBytes());
-		Log.e("orion",appSign);
-		return appSign;
-	}
-	private String toXml(List<NameValuePair> params) {
-		StringBuilder sb = new StringBuilder();
-		sb.append("<xml>");
-		for (int i = 0; i < params.size(); i++) {
-			sb.append("<"+params.get(i).getName()+">");
-
-
-			sb.append(params.get(i).getValue());
-			sb.append("</"+params.get(i).getName()+">");
-		}
-		sb.append("</xml>");
-
-		Log.e("orion",sb.toString());
-		return sb.toString();
-	}
-
-	private class GetPrepayIdTask extends AsyncTask<Void, Void, Map<String,String>> {
+	
+	 /**
+     * 微信开放平台和商户约定的密钥
+     * 
+     * 注意：不能hardcode在客户端，建议genSign这个过程由服务器端完成
+     */
+	private static final String APP_SECRET = CommonConstants.WXSECRET; // wxd930ea5d5a258f4f 对应的密钥
+	
+	/**
+     * 微信开放平台和商户约定的支付密钥
+     * 
+     * 注意：不能hardcode在客户端，建议genSign这个过程由服务器端完成
+     */
+	private static final String APP_KEY = CommonConstants.WXSIGN; // wxd930ea5d5a258f4f 对应的支付密钥
+	
+	private class GetAccessTokenTask extends AsyncTask<Void, Void, GetAccessTokenResult> {
 
 		private ProgressDialog dialog;
-
-
+		
 		@Override
 		protected void onPreExecute() {
-			dialog = ProgressDialog.show(PayActivity.this, "title==", "00000");
+			dialog = ProgressDialog.show(PayActivity.this, "title", "正在获取token");
 		}
 
 		@Override
-		protected void onPostExecute(Map<String,String> result) {
+		protected void onPostExecute(GetAccessTokenResult result) {
 			if (dialog != null) {
 				dialog.dismiss();
 			}
-			sb.append("prepay_id\n"+result.get("prepay_id")+"\n\n");
-			show.setText(sb.toString());
+			
+			if (result.localRetCode == LocalRetCode.ERR_OK) {
+				Toast.makeText(PayActivity.this, "token 成功", Toast.LENGTH_LONG).show();
+				Log.d(TAG, "onPostExecute, accessToken = " + result.accessToken);
+				
+				GetPrepayIdTask getPrepayId = new GetPrepayIdTask(result.accessToken);
+				getPrepayId.execute();
+			} else {
+				Toast.makeText(PayActivity.this, "获取token失败", Toast.LENGTH_LONG).show();
+			}
+		}
 
-			resultunifiedorder=result;
+		@Override
+		protected GetAccessTokenResult doInBackground(Void... params) {
+			GetAccessTokenResult result = new GetAccessTokenResult();
 
+			String url = String.format("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s",
+					CommonConstants.WXAPP_ID, APP_SECRET);
+			Log.d(TAG, "get access token, url = " + url);
+			
+			byte[] buf = Util.httpGet(url);
+			if (buf == null || buf.length == 0) {
+				result.localRetCode = LocalRetCode.ERR_HTTP;
+				return result;
+			}
+			
+			String content = new String(buf);
+			result.parseFrom(content);
+			return result;
+		}
+	}
+	
+	private class GetPrepayIdTask extends AsyncTask<Void, Void, GetPrepayIdResult> {
+
+		private ProgressDialog dialog;
+		private String accessToken;
+		
+		public GetPrepayIdTask(String accessToken) {
+			this.accessToken = accessToken;
+		}
+		
+		@Override
+		protected void onPreExecute() {
+			dialog = ProgressDialog.show(PayActivity.this, "title", "huoqu preid");
+		}
+
+		@Override
+		protected void onPostExecute(GetPrepayIdResult result) {
+			if (dialog != null) {
+				dialog.dismiss();
+			}
+			
+			if (result.localRetCode == LocalRetCode.ERR_OK) {
+				Toast.makeText(PayActivity.this, "prepayid_succ", Toast.LENGTH_LONG).show();
+				sendPayReq(result);
+			} else {
+				Toast.makeText(PayActivity.this, "get_prepayid_fail", Toast.LENGTH_LONG).show();
+			}
 		}
 
 		@Override
@@ -169,61 +177,104 @@ public class PayActivity extends Activity {
 		}
 
 		@Override
-		protected Map<String,String>  doInBackground(Void... params) {
+		protected GetPrepayIdResult doInBackground(Void... params) {
 
-			String url = String.format("https://api.mch.weixin.qq.com/pay/unifiedorder");
+			String url = String.format("https://api.weixin.qq.com/pay/genprepay?access_token=%s", accessToken);
 			String entity = genProductArgs();
-
-			Log.e("orion",entity);
-
+			
+			Log.d(TAG, "doInBackground, url = " + url);
+			Log.d(TAG, "doInBackground, entity = " + entity);
+			
+			GetPrepayIdResult result = new GetPrepayIdResult();
+			
 			byte[] buf = Util.httpPost(url, entity);
-
-			String content = new String(buf);
-			Log.e("orion", content);
-			Map<String,String> xml=decodeXml(content);
-
-			return xml;
-		}
-	}
-
-
-
-	public Map<String,String> decodeXml(String content) {
-
-		try {
-			Map<String, String> xml = new HashMap<String, String>();
-			XmlPullParser parser = Xml.newPullParser();
-			parser.setInput(new StringReader(content));
-			int event = parser.getEventType();
-			while (event != XmlPullParser.END_DOCUMENT) {
-
-				String nodeName=parser.getName();
-				switch (event) {
-					case XmlPullParser.START_DOCUMENT:
-
-						break;
-					case XmlPullParser.START_TAG:
-
-						if("xml".equals(nodeName)==false){
-							//实例化student对象
-							xml.put(nodeName,parser.nextText());
-						}
-						break;
-					case XmlPullParser.END_TAG:
-						break;
-				}
-				event = parser.next();
+			if (buf == null || buf.length == 0) {
+				result.localRetCode = LocalRetCode.ERR_HTTP;
+				return result;
 			}
-
-			return xml;
-		} catch (Exception e) {
-			Log.e("orion",e.toString());
+			
+			String content = new String(buf);
+			Log.d(TAG, "doInBackground, content = " + content);
+			result.parseFrom(content);
+			return result;
 		}
-		return null;
-
 	}
 
+	private static enum LocalRetCode {
+		ERR_OK, ERR_HTTP, ERR_JSON, ERR_OTHER
+	}
+	
+	private static class GetAccessTokenResult {
+		
+		private static final String TAG = "MicroMsg.SDKSample.PayActivity.GetAccessTokenResult";
+		
+		public LocalRetCode localRetCode = LocalRetCode.ERR_OTHER;
+		public String accessToken;
+		public int expiresIn;
+		public int errCode;
+		public String errMsg;
+		
+		public void parseFrom(String content) {
 
+			if (content == null || content.length() <= 0) {
+				Log.e(TAG, "parseFrom fail, content is null");
+				localRetCode = LocalRetCode.ERR_JSON;
+				return;
+			}
+			
+			try {
+				JSONObject json = new JSONObject(content);
+				if (json.has("access_token")) { // success case
+					accessToken = json.getString("access_token");
+					expiresIn = json.getInt("expires_in");
+					localRetCode = LocalRetCode.ERR_OK;
+				} else {
+					errCode = json.getInt("errcode");
+					errMsg = json.getString("errmsg");
+					localRetCode = LocalRetCode.ERR_JSON;
+				}
+				
+			} catch (Exception e) {
+				localRetCode = LocalRetCode.ERR_JSON;
+			}
+		}
+	}
+	
+	private static class GetPrepayIdResult {
+		
+		private static final String TAG = "MicroMsg.SDKSample.PayActivity.GetPrepayIdResult";
+		
+		public LocalRetCode localRetCode = LocalRetCode.ERR_OTHER;
+		public String prepayId;
+		public int errCode;
+		public String errMsg;
+		
+		public void parseFrom(String content) {
+			
+			if (content == null || content.length() <= 0) {
+				Log.e(TAG, "parseFrom fail, content is null");
+				localRetCode = LocalRetCode.ERR_JSON;
+				return;
+			}
+			
+			try {
+				JSONObject json = new JSONObject(content);
+				if (json.has("prepayid")) { // success case
+					prepayId = json.getString("prepayid");
+					localRetCode = LocalRetCode.ERR_OK;
+				} else {
+					localRetCode = LocalRetCode.ERR_JSON;
+				}
+				
+				errCode = json.getInt("errcode");
+				errMsg = json.getString("errmsg");
+				
+			} catch (Exception e) {
+				localRetCode = LocalRetCode.ERR_JSON;
+			}
+		}
+	}
+	
 	private String genNonceStr() {
 		Random random = new Random();
 		return MD5.getMessageDigest(String.valueOf(random.nextInt(10000)).getBytes());
@@ -233,105 +284,108 @@ public class PayActivity extends Activity {
 		return System.currentTimeMillis() / 1000;
 	}
 	
-
-
+	/**
+	 * 建议 traceid 字段包含用户信息及订单信息，方便后续对订单状态的查询和跟踪
+	 */
+	private String getTraceId() {
+		return "crestxu_" + genTimeStamp(); 
+	}
+	
+	/**
+	 * 注意：商户系统内部的订单号,32个字符内、可包含字母,确保在商户系统唯一
+	 */
 	private String genOutTradNo() {
 		Random random = new Random();
 		return MD5.getMessageDigest(String.valueOf(random.nextInt(10000)).getBytes());
 	}
 	
-
-   //
+	private long timeStamp;
+	private String nonceStr, packageValue; 
+	
+	private String genSign(List<NameValuePair> params) {
+		StringBuilder sb = new StringBuilder();
+		
+		int i = 0;
+		for (; i < params.size() - 1; i++) {
+			sb.append(params.get(i).getName());
+			sb.append('=');
+			sb.append(params.get(i).getValue());
+			sb.append('&');
+		}
+		sb.append(params.get(i).getName());
+		sb.append('=');
+		sb.append(params.get(i).getValue());
+		
+		String sha1 = Util.sha1(sb.toString());
+		Log.d(TAG, "genSign, sha1 = " + sha1);
+		return sha1;
+	}
+	
 	private String genProductArgs() {
-		StringBuffer xml = new StringBuffer();
-
+		JSONObject json = new JSONObject();
+		
 		try {
-			String	nonceStr = genNonceStr();
-
-
-			xml.append("</xml>");
-           List<NameValuePair> packageParams = new LinkedList<NameValuePair>();
-			packageParams.add(new BasicNameValuePair("appid", CommonConstants.WXAPP_ID));
-			packageParams.add(new BasicNameValuePair("body", "APP pay test"));
-			packageParams.add(new BasicNameValuePair("mch_id", CommonConstants.WXSHANGHAO));
-			packageParams.add(new BasicNameValuePair("nonce_str", nonceStr));
-			packageParams.add(new BasicNameValuePair("notify_url", "http://www.91jf.com/nabin/api/wap_buy/alipay/notify_url.php"));
-			packageParams.add(new BasicNameValuePair("out_trade_no",genOutTradNo()));
-			packageParams.add(new BasicNameValuePair("spbill_create_ip",getPhoneIp()));
+			json.put("appid", CommonConstants.WXAPP_ID);
+			String traceId = getTraceId();  // traceId 由开发者自定义，可用于订单的查询与跟踪，建议根据支付用户信息生成此id
+			json.put("traceid", traceId);
+			nonceStr = genNonceStr();
+			json.put("noncestr", nonceStr);
+			
+			List<NameValuePair> packageParams = new LinkedList<NameValuePair>();
+			packageParams.add(new BasicNameValuePair("bank_type", "WX"));
+			packageParams.add(new BasicNameValuePair("body", "千足金箍棒"));
+			packageParams.add(new BasicNameValuePair("fee_type", "1"));
+			packageParams.add(new BasicNameValuePair("input_charset", "UTF-8"));
+			packageParams.add(new BasicNameValuePair("notify_url", "http://weixin.qq.com"));
+			packageParams.add(new BasicNameValuePair("out_trade_no", genOutTradNo()));
+			packageParams.add(new BasicNameValuePair("partner", "1900000109"));
+			packageParams.add(new BasicNameValuePair("spbill_create_ip", "196.168.1.1"));
 			packageParams.add(new BasicNameValuePair("total_fee", "1"));
-			packageParams.add(new BasicNameValuePair("trade_type", "APP"));
-
-
-			String sign = genPackageSign(packageParams);
-			packageParams.add(new BasicNameValuePair("sign", sign));
-
-
-		   String xmlstring =toXml(packageParams);
-		   //解决body传中文报签名错误的问题，生成的xml请求参数转为字节数组后，用“ISO8859-1”编码格式进行编码为字符
-			return new String(xmlstring.getBytes(),"ISO8859-1");
-
+			packageValue = genPackage(packageParams);
+			
+			json.put("package", packageValue);
+			timeStamp = genTimeStamp();
+			json.put("timestamp", timeStamp);
+			
+			List<NameValuePair> signParams = new LinkedList<NameValuePair>();
+			signParams.add(new BasicNameValuePair("appid", CommonConstants.WXAPP_ID));
+			signParams.add(new BasicNameValuePair("appkey", APP_KEY));
+			signParams.add(new BasicNameValuePair("noncestr", nonceStr));
+			signParams.add(new BasicNameValuePair("package", packageValue));
+			signParams.add(new BasicNameValuePair("timestamp", String.valueOf(timeStamp)));
+			signParams.add(new BasicNameValuePair("traceid", traceId));
+			json.put("app_signature", genSign(signParams));
+			
+			json.put("sign_method", "sha1");
 		} catch (Exception e) {
 			Log.e(TAG, "genProductArgs fail, ex = " + e.getMessage());
 			return null;
 		}
 		
-
+		return json.toString();
 	}
-	private void genPayReq() {
-
+	
+	private void sendPayReq(GetPrepayIdResult result) {
+		
+		PayReq req = new PayReq();
 		req.appId = CommonConstants.WXAPP_ID;
 		req.partnerId = CommonConstants.WXSHANGHAO;
-		req.prepayId = resultunifiedorder.get("prepay_id");
-		req.packageValue = "prepay_id="+resultunifiedorder.get("prepay_id");
-		req.nonceStr = genNonceStr();
-		req.timeStamp = String.valueOf(genTimeStamp());
-
-
+		req.prepayId = result.prepayId;
+		req.nonceStr = nonceStr;
+		req.timeStamp = String.valueOf(timeStamp);
+		req.packageValue = "Sign=" + packageValue;
+		
 		List<NameValuePair> signParams = new LinkedList<NameValuePair>();
 		signParams.add(new BasicNameValuePair("appid", req.appId));
+		signParams.add(new BasicNameValuePair("appkey", APP_KEY));
 		signParams.add(new BasicNameValuePair("noncestr", req.nonceStr));
 		signParams.add(new BasicNameValuePair("package", req.packageValue));
 		signParams.add(new BasicNameValuePair("partnerid", req.partnerId));
 		signParams.add(new BasicNameValuePair("prepayid", req.prepayId));
 		signParams.add(new BasicNameValuePair("timestamp", req.timeStamp));
-
-		req.sign = genAppSign(signParams);
-
-		sb.append("sign\n"+req.sign+"\n\n");
-
-		show.setText(sb.toString());
-
-		Log.e("orion", signParams.toString());
-
-	}
-	private void sendPayReq() {
+		req.sign = genSign(signParams);
 		
-
-		msgApi.registerApp(CommonConstants.WXAPP_ID);
-		msgApi.sendReq(req);
+		// 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信
+		api.sendReq(req);
 	}
-	
-	public static String getPhoneIp() { 
-	    try { 
-	        for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) { 
-	            NetworkInterface intf = en.nextElement(); 
-	            for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) { 
-	                InetAddress inetAddress = enumIpAddr.nextElement(); 
-	                if (!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) { 
-	                    // if (!inetAddress.isLoopbackAddress() && inetAddress 
-	                    // instanceof Inet6Address) { 
-	                    return inetAddress.getHostAddress().toString(); 
-	                } 
-	            } 
-	        } 
-	    } catch (Exception e) { 
-	    } 
-	    return "127.0.0.1"; 
-	}
-
-
-
-
 }
-
-
