@@ -49,6 +49,7 @@ public class PayPassWordFindBackActivity extends Activity implements OnClickList
 	private TextView mHuoquyanzhengma;//获取验证码
 	private int i;
 	private SpotsDialog mdialog;
+	private String Yanzhengma;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -103,6 +104,7 @@ public class PayPassWordFindBackActivity extends Activity implements OnClickList
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.passwordfindback_huoquyanzhengma:
+			mHuoquyanzhengma.setClickable(false);
 			if(!TextUtils.isEmpty(mPhone.getText().toString())){
 				new Thread(new Runnable() {
 					
@@ -146,12 +148,19 @@ public class PayPassWordFindBackActivity extends Activity implements OnClickList
 			break;
 		case R.id.passwordfindback_go:
 			//获取界面数据，调用方法，进行密码修改
-			String phone=mPhone.getText().toString();
+			//先匹配验证码
 			String code=mYanzm.getText().toString();
 			String newPW=mNewPassword.getText().toString();
 			String oldPW=mSurewore.getText().toString();
-//			getdatachange(phone,code,newPW,oldPW);
-			//无接口
+			if(code.equals(Yanzhengma)){
+				if(newPW.equals(oldPW)){
+					getdatachange(oldPW);
+				}else{
+					Toast.makeText(PayPassWordFindBackActivity.this,"密码不一致",1).show();
+				}
+			}else{
+				Toast.makeText(PayPassWordFindBackActivity.this,"请输入正确的验证码",1).show();
+			}
 			break;
 		default:
 			break;
@@ -162,16 +171,16 @@ public class PayPassWordFindBackActivity extends Activity implements OnClickList
 	 * @2016-1-7下午11:09:56
 	 * 提交修改
 	 */
-	private void getdatachange(String phone, String code, String newPW,
-			String oldPW) {
+	private void getdatachange(String oldPW) {
 		// TODO Auto-generated method stub
 		RequestParams params = new RequestParams();
 		// 只包含字符串参数时默认使用BodyParamsEntity，
 		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
 		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
-		params.addBodyParameter("type", "system");
-		params.addBodyParameter("part", "message");
-		params.addBodyParameter("mobilphone",phone );
+		params.addBodyParameter("type", "user");
+		params.addBodyParameter("part", "update_pay_password");
+		params.addBodyParameter("username",SysApplication.getInstance().getUserInfo().getName());
+		params.addBodyParameter("password", oldPW);
 		HttpUtils http = new HttpUtils();
 		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
 
@@ -194,13 +203,12 @@ public class PayPassWordFindBackActivity extends Activity implements OnClickList
 		        	mdialog.dismiss();
 		        	String str=responseInfo.result;
 		        	Log.i("网络请求下来的参数是",str);
-		        	try {
+					try {
 						JSONObject obj=new JSONObject(str);
-						String status=obj.getString("send_status");
+						String status=obj.getString("status");
 						if(status.equals("1")){
-							Toast.makeText(PayPassWordFindBackActivity.this,"已发送",1).show();
-						}else{
-							Toast.makeText(PayPassWordFindBackActivity.this,"请输入正确的手机号",1).show();
+							Toast.makeText(PayPassWordFindBackActivity.this,"修改成功",1).show();
+							PayPassWordFindBackActivity.this.finish();
 						}
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
@@ -257,6 +265,7 @@ public class PayPassWordFindBackActivity extends Activity implements OnClickList
 						}else{
 							Toast.makeText(PayPassWordFindBackActivity.this,"请输入正确的手机号",1).show();
 						}
+						Yanzhengma=obj.getString("message_code");
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

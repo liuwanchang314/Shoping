@@ -33,13 +33,22 @@
 		    android:orientation="horizontal"
 		    >
 
+		    <ImageView
+		        android:id="@+id/person_logo"
+		        android:layout_width="50dp"
+		        android:layout_height="50dp"
+		        android:layout_alignParentLeft="true"
+		        android:layout_alignParentTop="true"
+		        android:scaleType="fitXY"
+		        android:layout_marginLeft="10dp"
+		        />
+
 		    <TextView
 		        android:id="@+id/relation_tv_goongsimingcheng"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
-		        android:layout_alignParentLeft="true"
+		        android:layout_centerHorizontal="true"
 		        android:layout_centerVertical="true"
-		        android:text="南通风向标纺织品有限公司"
 		        android:textSize="20sp" />
 
 		</RelativeLayout>
@@ -54,6 +63,7 @@
 		        android:layout_height="wrap_content"
 		        android:layout_gravity="center_vertical"
 		        android:textSize="15sp"
+		        android:layout_marginLeft="10dp"
 		        android:text="联系人： "
 		        />
 		    <TextView  
@@ -62,7 +72,6 @@
 		        android:layout_height="wrap_content"
 		        android:layout_gravity="center_vertical"
 		        android:textSize="15sp"
-		        android:text="蔡海洋 "
 		        />
 		</LinearLayout>
 		<LinearLayout 
@@ -76,6 +85,7 @@
 		        android:layout_height="wrap_content"
 		        android:layout_gravity="center_vertical"
 		        android:textSize="15sp"
+		        android:layout_marginLeft="10dp"
 		        android:text="联系电话： "
 		        />
 		    <TextView  
@@ -84,7 +94,6 @@
 		        android:layout_height="wrap_content"
 		        android:layout_gravity="center_vertical"
 		        android:textSize="15sp"
-		        android:text="13993155768 "
 		        />
 		</LinearLayout>
 		<LinearLayout 
@@ -98,6 +107,7 @@
 		        android:layout_height="wrap_content"
 		        android:layout_gravity="center_vertical"
 		        android:textSize="15sp"
+		        android:layout_marginLeft="10dp"
 		        android:text="联系QQ： "
 		        />
 		    <TextView  
@@ -106,7 +116,6 @@
 		        android:layout_height="wrap_content"
 		        android:layout_gravity="center_vertical"
 		        android:textSize="15sp"
-		        android:text="448890153 "
 		        />
 		</LinearLayout>
 		<!--  
@@ -143,6 +152,7 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:textSize="15sp"
+		        android:layout_marginLeft="10dp"
 		        android:text="联系地址： "
 		        />
 		    <TextView  
@@ -150,7 +160,6 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:textSize="15sp"
-		        android:text="江苏省海门市叠石桥大岛路网销广场内88号（风向标家纺） "
 		        
 		        />
 		</LinearLayout>

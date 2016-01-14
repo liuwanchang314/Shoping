@@ -6,7 +6,7 @@
      >
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView322222"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView2"
@@ -45,7 +45,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/tv_quxiao"
-        android:layout_toRightOf="@+id/textView3"
+        android:layout_toRightOf="@+id/textView322222"
+        android:textColor="#ff4500"
+        
          />
 
     <TextView

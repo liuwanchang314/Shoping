@@ -426,6 +426,7 @@ public class PayMoneyActivity extends Activity {
 							}
 							intent.putExtra("order",order_sn);
 							intent.putExtra("pay",pay_sn);
+							intent.putExtra("orderid",order_id);
 							startActivity(intent);
 						}
 					} catch (JSONException e) {

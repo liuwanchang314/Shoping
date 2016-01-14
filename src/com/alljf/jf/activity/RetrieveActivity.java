@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -54,6 +55,7 @@ public class RetrieveActivity extends Activity {
 				try {
 
 					jsonObject = new JSONObject(msg.obj.toString());
+					Log.i("找回密码这里有数据吗",msg.obj.toString());
 					data = jsonObject.getString("questions");
 
 				} catch (Exception exp) {

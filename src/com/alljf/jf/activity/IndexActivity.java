@@ -304,11 +304,15 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 			// img.setTag(mPicsUrlid[i]);
 			img.setScaleType(ScaleType.FIT_XY);
 			mImageViews[i] = img;
-
+			final String str=mPicsUrl[i];
 			mImageViews[i].setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
+					Toast.makeText(IndexActivity.this,"被点击了",1).show();
+					Intent intent=new Intent(IndexActivity.this,AllProductActivity.class);
+					startActivity(intent);
+					Log.i("路径是",str);
 				}
 			});
 		}

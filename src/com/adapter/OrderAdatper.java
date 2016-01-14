@@ -90,6 +90,7 @@ public class OrderAdatper extends BaseAdapter {
 			final String order=list.get(arg0).getOrder_sn();
 			final String fhfs=list.get(arg0).getShipping_mode();
 			final String pay=list.get(arg0).getPay_sn();
+			final String orderid=list.get(arg0).getOrder_id();
 			final TextView tv=vh.pingjia;
 			tv.setOnClickListener(new OnClickListener() {
 				
@@ -102,13 +103,14 @@ public class OrderAdatper extends BaseAdapter {
 						intent.putExtra("fhfs",fhfs);
 						intent.putExtra("order",order);
 						intent.putExtra("pay", pay);
+						intent.putExtra("orderid",orderid);
 						context.startActivity(intent);
 					}
 				}
 			});
 			vh.chakanwuliu.setText("取消订单");
 			final TextView tvs=vh.chakanwuliu;
-			final String orderid=list.get(arg0).getOrder_id();
+			final String orderids=list.get(arg0).getOrder_id();
 			tvs.setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -123,7 +125,7 @@ public class OrderAdatper extends BaseAdapter {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
 								// TODO Auto-generated method stub
-								getdata(orderid);
+								getdata(orderids);
 								list.remove(arg0);
 								notifyDataSetChanged();
 							}

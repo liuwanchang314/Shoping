@@ -16,11 +16,13 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.Application.SysApplication;
+import com.alljf.jf.CommonConstants;
 import com.alljf.jf.R;
 import com.alljf.jf.R.string;
 import com.baidu.mapapi.SDKInitializer;
@@ -31,6 +33,7 @@ import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
+import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;
@@ -54,6 +57,7 @@ public class ShopsActivity extends Activity implements OnClickListener{
 	private TextView mAddress;
 	private String map=new String();
 	private Handler handle;
+	private ImageView mLogo;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -64,6 +68,7 @@ public class ShopsActivity extends Activity implements OnClickListener{
         //注意该方法要再setContentView方法之前实现  
 		setContentView(R.layout.activity_shops);
 		initview();
+		initviemapw();
 		username=SysApplication.getInstance().getUserInfo().getName();
 		if(username.equals("user")){
 			//说明是空值
@@ -76,16 +81,45 @@ public class ShopsActivity extends Activity implements OnClickListener{
 				switch (msg.arg1) {
 				case 0:
 					Log.i("现在地图数据是多少",(String) msg.obj);
-//					initviemapw((String) msg.obj);
+					String str=(String) msg.obj;
+					String[] key_vealue=str.split(",");
+					String key=key_vealue[0];
+					String value=key_vealue[1];
+					float weidu=Float.parseFloat(key);
+					float jingdu=Float.parseFloat(value);
+					changeMap(weidu,jingdu);
 					break;
 
 				default:
 					break;
 				}
-			};
+			}
+
+			
 		};
-		initviemapw();
+		
 	}
+	/**
+	 * 动态修改地图上面的坐标点
+	 * @param jingdu 
+	 * @param weidu 
+	 * @2016-1-14下午1:24:42
+	 */
+	private void changeMap(float weidu, float jingdu) {
+		// TODO Auto-generated method stub
+		//定义Maker坐标点  
+				mBaidumap = mMapView.getMap();
+				LatLng point = new LatLng(weidu,jingdu);  
+				//构建Marker图标  
+				BitmapDescriptor bitmap = BitmapDescriptorFactory  
+				    .fromResource(R.drawable.icon_gcoding);  
+				//构建MarkerOption，用于在地图上添加Marker  
+				OverlayOptions option = new MarkerOptions()  
+				    .position(point)  
+				    .icon(bitmap);  
+				//在地图上添加Marker，并显示  
+				mBaidumap.addOverlay(option);
+	};
 	/**
 	 * @param username2 
 	 * @2016-1-10下午5:29:23
@@ -121,6 +155,7 @@ public class ShopsActivity extends Activity implements OnClickListener{
 								String storename=objs.getString("company_name");
 								String name=objs.getString("real_name");
 								String phone=objs.getString("link_tel");
+								String logo=objs.getString("logo");
 								String QQstring=objs.getString("qqnum");
 								String address=objs.getString("address");
 								String map=objs.getString("map");
@@ -128,6 +163,9 @@ public class ShopsActivity extends Activity implements OnClickListener{
 								msg.arg1=0;
 								msg.obj=map;
 								handle.sendMessage(msg);
+								BitmapUtils bmp=new BitmapUtils(ShopsActivity.this);
+								Log.i("路径是多少",logo);
+								bmp.display(mLogo,CommonConstants.APP_IMG_URL+logo);
 								mGongsimincheng.setText(storename);
 								mName.setText(name);
 								mPhone.setText(phone);
@@ -175,6 +213,7 @@ public class ShopsActivity extends Activity implements OnClickListener{
 						String storename=objs.getString("company_name");
 						String name=objs.getString("real_name");
 						String phone=objs.getString("link_tel");
+						String logo=objs.getString("logo");
 						String QQstring=objs.getString("qqnum");
 						String address=objs.getString("address");
 						String map=objs.getString("map");
@@ -182,13 +221,15 @@ public class ShopsActivity extends Activity implements OnClickListener{
 						msg.arg1=0;
 						msg.obj=map;
 						handle.sendMessage(msg);
+						BitmapUtils bmp=new BitmapUtils(ShopsActivity.this);
+						Log.i("路径是多少",logo);
+						bmp.display(mLogo,CommonConstants.APP_IMG_URL+logo);
 						mGongsimincheng.setText(storename);
 						mName.setText(name);
 						mPhone.setText(phone);
 						mQQstring.setText(QQstring);
 						mAddress.setText(address);
 					} catch (JSONException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 		        }
@@ -205,7 +246,7 @@ public class ShopsActivity extends Activity implements OnClickListener{
 //		String value=key_vealue[1];
 //		int weidu=Integer.parseInt(key);
 //		int jingdu=Integer.parseInt(value);
-		mMapView = (MapView) findViewById(R.id.bmapView); 
+//		mMapView = (MapView) findViewById(R.id.bmapView); 
 		mBaidumap = mMapView.getMap();
 		//定义Maker坐标点  
 		LatLng point = new LatLng(35.69,121.36);  
@@ -219,10 +260,12 @@ public class ShopsActivity extends Activity implements OnClickListener{
 		//在地图上添加Marker，并显示  
 		mBaidumap.addOverlay(option);
 	}
+	
 	private void initview() {
 		// TODO Auto-generated method stub
 		//获取地图控件引用  
-        
+		mLogo=(ImageView) findViewById(R.id.person_logo);
+		mMapView = (MapView) findViewById(R.id.bmapView); 
 		mDetails=(RelativeLayout) findViewById(R.id.shops_companydetails);
 		mDetails.setOnClickListener(this);
 		back=(TextView) findViewById(R.id.relationactivity_top_textview_back);
@@ -272,7 +315,7 @@ public class ShopsActivity extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.shops_companydetails://点击查看详情
-			startActivity(new Intent(ShopsActivity.this,CompanyInfoActivity.class));
+//			startActivity(new Intent(ShopsActivity.this,CompanyInfoActivity.class));
 			break;
 
 		default:

@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.Application.SysApplication;
 import com.alljf.jf.R;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;
@@ -58,6 +59,9 @@ public class PayForActivity extends Activity implements OnClickListener {
 	private String price;
 	private String pay_sn;
 	private int Tag=0;//用来标记用户是用支付密码验证成功
+	private SpotsDialog mdialog_pay;//用于账号支付的进度条
+	private String orderid;
+	private String order_sn;//订单号
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -71,13 +75,14 @@ public class PayForActivity extends Activity implements OnClickListener {
 		 * 1,需付款金额，2，订单号，3配送方式
 		 * */
 		Intent intent=getIntent();
+		orderid=intent.getStringExtra("orderid");
 		price=intent.getStringExtra("price");
 		String psfs=intent.getStringExtra("fhfs");
-		String order=intent.getStringExtra("order");
+		String order_sn=intent.getStringExtra("order");
 		pay_sn=intent.getStringExtra("pay");
 		mMoneyNum.setText(price);
 		mPeisongWay.setText(psfs);
-		mOrderNum.setText(order);
+		mOrderNum.setText(order_sn);
 		mZhifubao.setOnClickListener(this);
 		mCaifutong.setOnClickListener(this);
 		mWeixin.setOnClickListener(this);
@@ -89,6 +94,9 @@ public class PayForActivity extends Activity implements OnClickListener {
 	 */  
 	private void initview() {
 		// TODO Auto-generated method stub
+		SpotsDialog.TAG=R.style.SpotsDialogDefault_tijiao;
+		mdialog_pay=new SpotsDialog(PayForActivity.this);
+		mdialog_pay.setCanceledOnTouchOutside(false);
 		mBack=(ImageView) findViewById(R.id.payfor_back);
 		mBack.setOnClickListener(new OnClickListener() {
 			
@@ -200,6 +208,7 @@ public class PayForActivity extends Activity implements OnClickListener {
 						if(Tag==1){
 							//说明已经验证成功
 							//调用方法，支付
+							mdialog_pay.show();
 							payformoney();
 						}else if(Tag==0){
 							//说明验证失败
@@ -217,10 +226,10 @@ public class PayForActivity extends Activity implements OnClickListener {
 					@Override
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
+						mdialog_pay.show();
 						getdatayanzhenmima(mima.getText().toString());//获取密码进行验证
 					}
 				});
-//	            getdatatixianedu();
 				
 			}else if(payTAG.equals("wx")){
 				//微信操作
@@ -265,8 +274,29 @@ public class PayForActivity extends Activity implements OnClickListener {
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog_pay.dismiss();
 		        	String str=responseInfo.result;
 		        	Log.i("账号支付请求下来的参数是",str);
+		        	try {
+						JSONObject obj=new JSONObject(str);
+						String status=obj.getString("status");
+						if(status.equals("0")){
+							Toast.makeText(PayForActivity.this,"支付失败，请检查网络",1).show();
+						}else if(status.equals("1")){
+							Toast.makeText(PayForActivity.this,"支付成功",1).show();
+							//进行界面跳转，进入支付成功界面
+							Intent intent=new Intent(PayForActivity.this,SuccessPayActivity.class);
+							intent.putExtra("orderid",orderid);
+							intent.putExtra("sfk",price);
+							startActivity(intent);
+							PayForActivity.this.finish();
+						}else if(status.equals("2")){
+							Toast.makeText(PayForActivity.this,"余额不足，请选择其他方式进行支付",1).show();
+						}
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 		        }
 
 		        @Override
@@ -307,6 +337,7 @@ public class PayForActivity extends Activity implements OnClickListener {
 			        @Override
 			        public void onSuccess(ResponseInfo<String> responseInfo) {
 			        	//请求成功
+			        	mdialog_pay.dismiss();
 			        	String str=responseInfo.result;
 			        	Log.i("tixian请求下来的参数是",str);
 			        	try {

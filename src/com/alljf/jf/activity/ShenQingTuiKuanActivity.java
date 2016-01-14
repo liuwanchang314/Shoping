@@ -47,6 +47,8 @@ public class ShenQingTuiKuanActivity extends Activity implements OnClickListener
 	private ImageView mback,mhome;
 	private OrderBean bean;
 	private SpotsDialog mdialog;
+	private String title;
+	private TextView biaoti;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -55,6 +57,14 @@ public class ShenQingTuiKuanActivity extends Activity implements OnClickListener
 		setContentView(R.layout.activity_shengqingtuikuan);
 		initview();
 		Intent intent=getIntent();
+		title=intent.getStringExtra("title");
+		if(title.equals("tk")){
+			biaoti.setText("申请退款");
+		}else if(title.equals("th")){
+			biaoti.setText("申请退货");
+		}else if(title.equals("sh")){
+			biaoti.setText("申请售后");
+		}
 		bean=(OrderBean) intent.getSerializableExtra("bean");
 	}
 
@@ -67,6 +77,7 @@ public class ShenQingTuiKuanActivity extends Activity implements OnClickListener
 		SpotsDialog.TAG=R.style.SpotsDialogDefault_tijiao;
 		mdialog=new SpotsDialog(ShenQingTuiKuanActivity.this);
 		mdialog.setCanceledOnTouchOutside(false);
+		biaoti=(TextView) findViewById(R.id.shenqingtuikuan_biaoti);
 		mFuwuleixing=(TextView) findViewById(R.id.shenqingtuikuan_fuwu);
 		mHuowuzhuangtai=(TextView) findViewById(R.id.shenqingtuikuan_huowuzhuangtai);
 		mTijiaoshenqing=(TextView) findViewById(R.id.shenqingtuikuan_tijiaoshenqing);

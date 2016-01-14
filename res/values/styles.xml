@@ -76,10 +76,20 @@
         <item name="DialogTitleText">正在提交……</item>
         <item name="DialogSpotCount">5</item>
     </style>
+    
     <style name="SpotsDialogDefault_denglu" parent="android:Theme.DeviceDefault.Light.Dialog">
         <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
         <item name="DialogTitleText">正在登录……</item>
         <item name="DialogSpotCount">5</item>
+    </style>
+    
+      <style name="dot_style">
+        <item name="android:layout_width">5dip</item>
+        <item name="android:layout_height">5dip</item>
+        <item name="android:background">@drawable/drawable_point_indicator</item>
+        <item name="android:layout_marginLeft">1.5dip</item>
+        <item name="android:button">@null</item>
+        <item name="android:layout_marginRight">1.5dip</item>
     </style>
     
     

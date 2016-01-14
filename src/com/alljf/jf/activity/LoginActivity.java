@@ -311,22 +311,40 @@ public class LoginActivity extends Activity {
 				codetwo.setText("隐藏");
 			}
 		}else {
-			codetwo.setClickable(false);
-			//同时开启一个子线程，目的是为了改变控件上的时间数字
-			
-			new Thread(new Runnable() {
+			String txtoneString = txtone.getText().toString().trim();
+			if(txtoneString.length() == 11){
 				
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-					//先让线程睡上1000毫秒，
-					for(i=59;i>0;i--)
-					{
-						try {
-							Thread.sleep(1000);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+				list.clear();
+				list.put("type", "system");
+				list.put("part", "message");
+				list.put("mobilphone", txtoneString);
+				client = new DataService(handler, 1, list);
+				client.start();
+				codetwo.setClickable(false);
+				//同时开启一个子线程，目的是为了改变控件上的时间数字
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						//先让线程睡上1000毫秒，
+						for(i=59;i>0;i--)
+						{
+							try {
+								Thread.sleep(1000);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							codetwo.post(new Runnable() {
+								
+								@Override
+								public void run() {
+									// TODO Auto-generated method stub
+									//更新ui上面的数字
+									codetwo.setText(i+"");
+								}
+							});
+							
 						}
 						codetwo.post(new Runnable() {
 							
@@ -334,31 +352,12 @@ public class LoginActivity extends Activity {
 							public void run() {
 								// TODO Auto-generated method stub
 								//更新ui上面的数字
-								codetwo.setText(i+"");
+								codetwo.setText("获取验证码");
+								codetwo.setClickable(true);
 							}
 						});
-						
 					}
-					codetwo.post(new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							//更新ui上面的数字
-							codetwo.setText("获取验证码");
-							codetwo.setClickable(true);
-						}
-					});
-				}
-			}).start();
-			String txtoneString = txtone.getText().toString().trim();
-			if(txtoneString.length() == 11){
-				list.clear();
-				list.put("type", "system");
-				list.put("part", "message");
-				list.put("mobilphone", txtoneString);
-				client = new DataService(handler, 1, list);
-				client.start();
+				}).start();
 			}else{
 				Toast.makeText(getApplicationContext(), "手机号码格式错误", 1)
 				.show();
@@ -370,12 +369,13 @@ public class LoginActivity extends Activity {
 	private void setting_one() {
 		tvone.setText("手机号码");
 		tvtwo.setText("手机验证码");
+//		codetwo.setVisibility(View.VISIBLE);
 		codetwo.setText("获取验证码");
 		txtone.setHint("输入手机号码");
 		check.setVisibility(View.GONE);
 		txttwo.setHint("输入验证码");
 		btn_left.setText("账号登录");
-		isPassWord();
+//		isPassWord();
 		txttwo.setText("");
 		txtone.setText("");
 	}
@@ -384,6 +384,7 @@ public class LoginActivity extends Activity {
 		tvone.setText("账户");
 		tvtwo.setText("登录密码");
 		codetwo.setText("显示");
+//		codetwo.setVisibility(View.GONE);
 		txtone.setHint("手机/会员名/邮箱");
 		txttwo.setHint("请输入密码");
 		check.setVisibility(View.VISIBLE);

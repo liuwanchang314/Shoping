@@ -102,6 +102,7 @@ public class DingdanxiangqingAdapter extends BaseAdapter {
 						// TODO Auto-generated method stub
 						Intent intent=new Intent(context, ShenQingTuiKuanActivity.class);
 						intent.putExtra("bean",list.get(position));
+						intent.putExtra("title","tk");
 						context.startActivity(intent);
 					}
 				});
@@ -114,6 +115,7 @@ public class DingdanxiangqingAdapter extends BaseAdapter {
 						// TODO Auto-generated method stub
 						Intent intent=new Intent(context, ShenQingTuiKuanActivity.class);
 						intent.putExtra("bean",list.get(position));
+						intent.putExtra("title","th");
 						context.startActivity(intent);
 					}
 				});
@@ -126,6 +128,7 @@ public class DingdanxiangqingAdapter extends BaseAdapter {
 						// TODO Auto-generated method stub
 						Intent intent=new Intent(context, ShenQingTuiKuanActivity.class);
 						intent.putExtra("bean",list.get(position));
+						intent.putExtra("title","sh");
 						context.startActivity(intent);
 					}
 				});
