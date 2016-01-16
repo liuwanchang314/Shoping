@@ -84,7 +84,7 @@ public class LoginActivity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_login);
 		SysApplication.getInstance().addActivity(this);
-		api = WXAPIFactory.createWXAPI(this, CommonConstants.WXAPP_ID, false);
+		api = WXAPIFactory.createWXAPI(this, CommonConstants.WXAPP_ID, true);
 		SpotsDialog.TAG=R.style.SpotsDialogDefault_denglu;
 		mdialog=new SpotsDialog(LoginActivity.this);
 		tvone = (TextView) findViewById(R.id.login_tv_one);// 第一行标题
@@ -257,7 +257,7 @@ public class LoginActivity extends Activity {
 
 	private void rightClint(){
 		Toast.makeText(this, "weixin denglu", 0).show();;
-	   SendAuth.Req req = new SendAuth.Req();
+SendAuth.Req req = new SendAuth.Req();
 	    req.scope = "snsapi_userinfo";
 	    req.state = "wechat_sdk_demo_test";
 	    api.sendReq(req);

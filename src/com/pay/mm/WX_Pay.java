@@ -11,8 +11,7 @@ import org.json.JSONObject;
 import com.Extension.DataService;
 import com.alljf.jf.CommonConstants;
 import com.alljf.jf.R;
-import com.tencent.mm.sdk.constants.Build;
-import com.tencent.mm.sdk.modelpay.PayReq;
+
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 

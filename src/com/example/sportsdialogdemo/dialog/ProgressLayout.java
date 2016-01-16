@@ -1,6 +1,6 @@
 package com.example.sportsdialogdemo.dialog;
 import com.alljf.jf.R;
-
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -30,7 +30,8 @@ class ProgressLayout extends FrameLayout {
         init(attrs, defStyleAttr, 0);
     }
 
-    public ProgressLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    @SuppressLint("Instantiatable")
+	public ProgressLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr);
         init(attrs, defStyleAttr, defStyleRes);
     }
