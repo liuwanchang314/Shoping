@@ -2,10 +2,17 @@ package com.Model;
 
 public class UserInfo {
 
-	public UserInfo() {
-		// TODO 自动生成的构造函数存根
+	private static UserInfo  instance=null;
+	private UserInfo(){
+		
 	}
-	
+	public static UserInfo getInstance(){
+		if(instance == null){
+			instance = new UserInfo();
+		}
+		
+		return instance;
+	}
 	public String getName() {
 		return Name;
 	}

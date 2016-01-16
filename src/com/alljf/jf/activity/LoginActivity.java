@@ -143,7 +143,7 @@ public class LoginActivity extends Activity {
 						jsonObject = new JSONObject(msg.obj.toString());
 						data = jsonObject.getString("login_user_status");
 						if (data.equals("1")) {
-							UserInfo model = new UserInfo();
+							UserInfo model = UserInfo.getInstance();
 							String txtoneString = txtone.getText().toString()
 									.trim();
 							String txttwoString = txttwo.getText().toString()

@@ -35,12 +35,11 @@
          <!-- 微信回调页面 -->
          <activity 
              android:name="com.pay.mm.PayActivity"
+             android:label="@string/app_name" 
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"
              >
-             <intent-filter>		
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            
              
          </activity>
         <activity 
@@ -48,13 +47,9 @@
             android:label="@string/app_name"
             android:exported="true"></activity>
         <!-- Ping++ sdk -->
-<activity
-    android:name="com.pingplusplus.android.PaymentActivity"
-    android:configChanges="orientation|screenSize"
-    android:launchMode="singleTop"
-    android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
 <!-- 微信支付 sdk ，也是 Ping++ sdk 调用入口 -->
-<activity-alias
+<activity
     android:name=".wxapi.WXPayEntryActivity"
     android:exported="true"
     android:targetActivity="com.pingplusplus.android.PaymentActivity" />
@@ -72,9 +67,7 @@
     android:screenOrientation="behind" >
 </activity>
 
-<!-- 银联支付 sdk -->
-<activity android:name="com.unionpay.uppay.PayActivity" >
-</activity>
+
 <!-- ping++ -->
         
         <activity
@@ -83,7 +76,11 @@
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"
             >
+             <intent-filter>		
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
         <activity

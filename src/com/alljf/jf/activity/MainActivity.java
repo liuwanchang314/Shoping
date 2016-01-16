@@ -1,5 +1,7 @@
 package com.alljf.jf.activity;
 
+import java.util.HashMap;
+
 import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -16,9 +18,11 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TabHost;
 
 import com.Application.SysApplication;
+import com.Model.UserInfo;
 import com.alljf.jf.CommonConstants;
 import com.alljf.jf.R;
 import com.other.NetReceiver;
+import com.pay.mm.WX_Pay;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
@@ -114,11 +118,14 @@ public class MainActivity extends TabActivity {
 				switch (checkedId) {
 				case R.id.tab_rb_1:
 					t1.setTextColor(Color.rgb(248, 78, 1));
-					tabHost.setCurrentTabByTag("首页");
+					tabHost.setCurrentTabByTag("首页"); 
+//					Intent intent1 = new Intent(MainActivity.this, PayActivity.class);
+//					startActivity(intent1);
 					break;
 				case R.id.tab_rb_2:
 					t2.setTextColor(Color.rgb(248, 78, 1));
 					tabHost.setCurrentTabByTag("联系商家");
+					
 					break;
 				case R.id.tab_rb_3:
 					if(SysApplication.getInstance().getIsLogin()){

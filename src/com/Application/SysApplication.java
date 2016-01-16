@@ -11,9 +11,11 @@ import java.util.List;
 
 
 
+
 import com.Model.UserInfo;
 import com.alljf.jf.CommonConstants;
 import com.other.NetReceiver;
+import com.pay.ali.Ali_Pay;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
@@ -25,7 +27,7 @@ public class SysApplication extends Application {
 
 	NetReceiver mReceiver = new NetReceiver();
     IntentFilter mFilter = new IntentFilter();
-	private static UserInfo user=new UserInfo();
+	private static UserInfo user= UserInfo.getInstance();
 
 	private static SysApplication instance;
 
@@ -38,12 +40,14 @@ public class SysApplication extends Application {
 	 */
 	private List<Activity> mList = new LinkedList<Activity>();
 	
+	public static Ali_Pay ali ;
 @Override
 public void onCreate() {
 	// TODO Auto-generated method stub
 	super.onCreate();
 	IWXAPI api = WXAPIFactory.createWXAPI(this, CommonConstants.WXAPP_ID);
 	api.registerApp(CommonConstants.WXAPP_ID);
+	ali = new Ali_Pay(getApplicationContext());
 }
 	
 	public boolean getIsLogin(){

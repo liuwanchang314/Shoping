@@ -1,6 +1,8 @@
 
 package com.alljf.jf.activity;
 
+import java.util.HashMap;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.Application.SysApplication;
+import com.Model.UserInfo;
 import com.alljf.jf.R;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -31,6 +34,7 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.pay.ali.Ali_Pay;
+import com.pay.mm.WX_Pay;
 
 
 public class PayForActivity extends Activity implements OnClickListener {
@@ -56,6 +60,7 @@ public class PayForActivity extends Activity implements OnClickListener {
 	private TextView yue;
 	private TextView xuzhifu;
 	private String price;
+	private String order;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -71,7 +76,7 @@ public class PayForActivity extends Activity implements OnClickListener {
 		Intent intent=getIntent();
 		price=intent.getStringExtra("price");
 		String psfs=intent.getStringExtra("fhfs");
-		String order=intent.getStringExtra("order");
+		order=intent.getStringExtra("order");
 		mMoneyNum.setText(price);
 		mPeisongWay.setText(psfs);
 		mOrderNum.setText(order);
@@ -147,10 +152,10 @@ public class PayForActivity extends Activity implements OnClickListener {
 			}else if(payTAG.equals("zfb")){
 				//在这里进行相应的支付操作
 				Log.i("当前选择了支付宝支付", payTAG);
-				Ali_Pay ali_Pay = new Ali_Pay(PayForActivity.this);
+				Ali_Pay ali = new Ali_Pay(PayForActivity.this);
 //				String []sa = price.split(".");
 //				int p = Integer.parseInt(sa[0])*100+Integer.parseInt(sa[1]);
-				ali_Pay.pay("支付", mOrderNum.getText().toString(), price);
+				ali.pay("支付", mOrderNum.getText().toString(), price);
 			}else if(payTAG.equals("cft")){
 				//财付通的操作,这里到时候需要换一张图片
 				Log.i("当前选择了财付通支付", payTAG);
@@ -195,6 +200,18 @@ public class PayForActivity extends Activity implements OnClickListener {
 			}else if(payTAG.equals("wx")){
 				//微信操作
 				Log.i("当前选择了微信支付", payTAG);
+				WX_Pay wx_Pay = new WX_Pay(PayForActivity.this);
+				HashMap<String, String> map =new HashMap<String, String>();
+				
+				Log.e("tag====", "order=="+order+"price=="+price);
+				map.put("type", "system");
+				map.put("part", "wxpay");
+				map.put("pay_sn", order);
+				map.put("wxtype", "order");
+				UserInfo userInfo = UserInfo.getInstance();
+				map.put("username", userInfo.getName());
+				map.put("price", price);
+				wx_Pay.pay(map);
 			}
 				
 			break;

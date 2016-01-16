@@ -120,10 +120,10 @@ public class RechargeActivity extends Activity implements OnClickListener{
 			mBgzhifubao.setBackgroundColor(Color.WHITE);
 			mBgweixin.setBackgroundColor(Color.WHITE);
 			if(TAG.equals("ZFB")){
-				Ali_Pay ali_Pay = new Ali_Pay(RechargeActivity.this);
+				Ali_Pay ali = new Ali_Pay(RechargeActivity.this);
 //				String []sa = price.split(".");
 //				int p = Integer.parseInt(sa[0])*100+Integer.parseInt(sa[1]);
-				ali_Pay.pay("支付", "余额充值", mcurrentrechange.getText().toString());
+				ali.pay("支付", "000990", mJine.getText().toString());
 			}else if(TAG.equals("WX")){
 				
 			}
