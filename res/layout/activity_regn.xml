@@ -127,8 +127,10 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="5dp"
                 android:gravity="center"
+                android:background="@drawable/button_style"
                 android:text="显示"
-                android:textColor="#686868" />
+                android:textColor="#ffffff"
+                 />
         </RelativeLayout>
 
         <View
@@ -150,7 +152,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:text="手机验证码"
-                android:textColor="#686868" />
+                android:textColor="#ffffff"
+                 />
 
             <EditText
                 android:id="@+id/regn_phcode_et"
@@ -176,9 +179,11 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="5dp"
+                android:background="@drawable/button_style"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:text="获取验证码"
-                android:textColor="#686868" />
+                />
         </RelativeLayout>
 
         <RelativeLayout

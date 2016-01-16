@@ -16,6 +16,7 @@ import com.Application.SysApplication;
 import com.adapter.ComplaintAdapter;
 import com.alljf.jf.R;
 import com.bean.ComplaintBean;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.jsonParser.ComplaitJsonParser;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -31,6 +32,7 @@ public class ComplaintActivity extends Activity {
 	private ImageView mBack;
 	private ImageView mHome;
 	private ListView mListview;
+	private SpotsDialog mdialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -59,6 +61,7 @@ public class ComplaintActivity extends Activity {
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -71,6 +74,7 @@ public class ComplaintActivity extends Activity {
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	String str=responseInfo.result;
 		        	Log.i("投诉数据获取了没有", str);
 		        	List<ComplaintBean> list=ComplaitJsonParser.getlist(str);
@@ -86,6 +90,9 @@ public class ComplaintActivity extends Activity {
 
 	private void initview() {
 		// TODO Auto-generated method stub
+		SpotsDialog.TAG=R.style.SpotsDialogDefault;
+		mdialog=new SpotsDialog(ComplaintActivity.this);
+		mdialog.setCanceledOnTouchOutside(false);
 		mBack=(ImageView) findViewById(R.id.complaint_back);
 		mBack.setOnClickListener(new OnClickListener() {
 			

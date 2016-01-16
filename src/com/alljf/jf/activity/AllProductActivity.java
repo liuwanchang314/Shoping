@@ -30,6 +30,7 @@ import com.bean.AllProductBean;
 import com.customview.PullToRefreshBase.OnRefreshListener;
 import com.customview.PullToRefreshGridView;
 import com.customview.PullToRefreshListView;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.jsonParser.AllProductDataJson;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -67,6 +68,10 @@ public class AllProductActivity extends Activity {
 	private boolean xiaoliangIS=false;//销量是否切换
 	private ProgressBar mbar;
 	private ImageView mBack,mHome;
+	/**
+	 * 进度条
+	 */
+	private SpotsDialog mdialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -172,6 +177,9 @@ public class AllProductActivity extends Activity {
 	 */  
 	private void initview() {
 		// TODO Auto-generated method stub
+		SpotsDialog.TAG=R.style.SpotsDialogDefault;
+		mdialog=new SpotsDialog(AllProductActivity.this);
+		mdialog.setCanceledOnTouchOutside(true);
 		mBack=(ImageView) findViewById(R.id.allprodyct_back);
 		mHome=(ImageView) findViewById(R.id.allprodyct_home);
 		mBack.setOnClickListener(new OnClickListener() {
@@ -323,6 +331,7 @@ public class AllProductActivity extends Activity {
 		        	//开始请求
 		        	Log.i("开始启动","hhhhhh");
 		        	mbar.setVisibility(View.VISIBLE);
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -335,6 +344,7 @@ public class AllProductActivity extends Activity {
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	mbar.setVisibility(View.GONE);
 		        	String str=responseInfo.result;
 		        	Log.i("网络请求下来的参数是",str);

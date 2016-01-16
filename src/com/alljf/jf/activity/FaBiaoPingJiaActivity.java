@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.Application.SysApplication;
 import com.alljf.jf.R;
 import com.bean.OrderBean;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -72,6 +73,10 @@ public class FaBiaoPingJiaActivity extends Activity {
 	 * 是否选择匿名评价
 	 */
 	private String isnona;
+	/**
+	 * 进度条
+	 */
+	private SpotsDialog mdialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -92,6 +97,9 @@ public class FaBiaoPingJiaActivity extends Activity {
 	 */
 	private void initview() {
 		// TODO Auto-generated method stub
+		SpotsDialog.TAG=R.style.SpotsDialogDefault_tijiao;
+		mdialog=new SpotsDialog(FaBiaoPingJiaActivity.this);
+		mdialog.setCanceledOnTouchOutside(false);
 		mBack=(ImageView) findViewById(R.id.pingjia_back);
 		mBack.setOnClickListener(new OnClickListener() {
 			
@@ -453,6 +461,7 @@ public class FaBiaoPingJiaActivity extends Activity {
 
 		        @Override
 		        public void onStart() {
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -464,6 +473,7 @@ public class FaBiaoPingJiaActivity extends Activity {
 
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
+		        	mdialog.dismiss();
 		        	String str=responseInfo.result;
 		        	Log.i("评价返回的数据是",str+"");
 		        	try {

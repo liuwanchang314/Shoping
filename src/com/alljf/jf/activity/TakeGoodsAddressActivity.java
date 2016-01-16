@@ -27,6 +27,7 @@ import com.Application.SysApplication;
 import com.adapter.TakeGoodsAddressAdapter;
 import com.alljf.jf.R;
 import com.bean.TakeGoodsAddressBean;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.jsonParser.TakeGoodsAddressJsonpaser;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -47,6 +48,10 @@ public class TakeGoodsAddressActivity extends Activity implements OnClickListene
 	private ListView mListview;
 	private TextView mAdd;
 	private TakeGoodsAddressAdapter adapter;
+	/**
+	 * 进度条
+	 */
+	private SpotsDialog mdialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -67,6 +72,7 @@ public class TakeGoodsAddressActivity extends Activity implements OnClickListene
 			return SysApplication.getInstance().getUserInfo().getName();
 		}
 	private void getdata() {
+		
 		// TODO Auto-generated method stub
 		RequestParams params = new RequestParams();
 		// 只包含字符串参数时默认使用BodyParamsEntity，
@@ -81,6 +87,7 @@ public class TakeGoodsAddressActivity extends Activity implements OnClickListene
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -93,6 +100,7 @@ public class TakeGoodsAddressActivity extends Activity implements OnClickListene
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	String str=responseInfo.result;
 		        	Log.i("网络请求下来的参数是",str);
 		        		//获取的数据无格式说明
@@ -175,6 +183,10 @@ public class TakeGoodsAddressActivity extends Activity implements OnClickListene
 	@SuppressLint("NewApi")
 	private void initview() {
 		// TODO Auto-generated method stub
+		SpotsDialog.TAG=R.style.SpotsDialogDefault_UPaddress;
+		mdialog=new SpotsDialog(TakeGoodsAddressActivity.this);
+		mdialog.setCanceledOnTouchOutside(false);
+		mdialog.setCanceledOnTouchOutside(false);
 		mBack=(ImageView) findViewById(R.id.takegoodsaddress_back);
 		mBack.setOnClickListener(this);
 		mHome=(ImageView) findViewById(R.id.takegoodsaddress_home);
@@ -241,6 +253,7 @@ public class TakeGoodsAddressActivity extends Activity implements OnClickListene
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -253,6 +266,7 @@ public class TakeGoodsAddressActivity extends Activity implements OnClickListene
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	String str=responseInfo.result;
 		        	String status = null;
 		        	Log.i("网络请求下来的参数是",str);

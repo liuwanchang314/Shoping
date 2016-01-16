@@ -76,11 +76,13 @@
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"
             >
+
              <intent-filter>		
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
 
         </activity>
         <activity
@@ -281,9 +283,15 @@
            <activity 
                android:name=".activity.TousuXiangqingActivity"
                ></activity>
+           <!-- 引导页 -->
            <activity 
                android:name=".activity.ViewPagerActivity"
                >
+                <intent-filter>		
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
            </activity>
            <activity 
                android:name=".activity.activity_qidongye"
@@ -301,6 +309,10 @@
            <activity 
                android:name=".activity.ShenQingTuiKuanActivity"
                android:windowSoftInputMode="stateUnchanged"
+               ></activity>
+           <!-- 支付成功界面 -->
+           <activity 
+               android:name=".activity.SuccessPayActivity"
                ></activity>
         <!-- QZONE -->
         <activity

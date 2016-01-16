@@ -58,7 +58,7 @@
                       android:layout_alignParentRight="true"
                       android:layout_centerVertical="true"
                       android:layout_marginRight="15dp"
-                      android:textColor="#aa00aa"
+                      android:textColor="#ff4500"
                       android:text="等待买家付款" />
 
               </RelativeLayout>  

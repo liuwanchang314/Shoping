@@ -123,7 +123,8 @@ public class RechargeActivity extends Activity implements OnClickListener{
 				Ali_Pay ali = new Ali_Pay(RechargeActivity.this);
 //				String []sa = price.split(".");
 //				int p = Integer.parseInt(sa[0])*100+Integer.parseInt(sa[1]);
-				ali.pay("支付", "000990", mJine.getText().toString());
+
+				ali.pay("支付", "008909980608698","余额充值",mJine.getText().toString());
 			}else if(TAG.equals("WX")){
 				
 			}

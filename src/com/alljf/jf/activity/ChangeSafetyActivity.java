@@ -21,6 +21,7 @@ import com.Application.SysApplication;
 import com.alljf.jf.CommonConstants;
 import com.alljf.jf.R;
 import com.bean.ChangeSafetBean;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;
@@ -42,6 +43,7 @@ public class ChangeSafetyActivity extends Activity {
 	private EditText mSpd;//确认密码
 	private TextView mTG;//提交
 	private ActionBar actionbar;
+	private SpotsDialog mdialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -77,8 +79,8 @@ public class ChangeSafetyActivity extends Activity {
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
-
 		        @Override
 		        public void onLoading(long total, long current, boolean isUploading) {
 		            if (isUploading) {
@@ -89,6 +91,7 @@ public class ChangeSafetyActivity extends Activity {
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	String str=responseInfo.result;
 		        	Log.i("网络请求下来的参数是",str);
 		        		//不做任何操作，选择默认图片
@@ -131,6 +134,9 @@ public class ChangeSafetyActivity extends Activity {
 	 * @date : 2015-12-11 上午11:43:52
 	 */  
 	private void initview() {
+		SpotsDialog.TAG=R.style.SpotsDialogDefault_tijiao;
+		mdialog=new SpotsDialog(ChangeSafetyActivity.this);
+		mdialog.setCanceledOnTouchOutside(false);
 		// TODO Auto-generated method stub
 		mBack=(ImageView) findViewById(R.id.changesafety_back);
 		mHome=(ImageView) findViewById(R.id.changesafety_home);

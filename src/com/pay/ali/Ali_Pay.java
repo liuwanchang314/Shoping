@@ -112,10 +112,10 @@ public class Ali_Pay {
 	 * call alipay sdk pay. 调用SDK支付
 	 * 
 	 */
-	public void pay(String subject,String body,String price) {
+	public void pay(String subject, String orderinfo,String body,String price) {
 		
 		// 订单
-		String orderInfo = getOrderInfo(subject, body, price);
+		String orderInfo = getOrderInfo(subject,orderinfo , body, price);
 
 		// 对订单做RSA 签名
 		String sign = sign(orderInfo);
@@ -192,7 +192,7 @@ public class Ali_Pay {
 	 * create the order info. 创建订单信息
 	 * 
 	 */
-	public String getOrderInfo(String subject, String body, String price) {
+	public String getOrderInfo(String subject, String orderinfo, String body, String price) {
 
 		// 签约合作者身份ID
 		String orderInfo = "partner=" + "\"" + PARTNER + "\"";

@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.Application.SysApplication;
 import com.alljf.jf.R;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;
@@ -69,6 +70,11 @@ public class NewTakeOverGoodsAddress extends Activity{
 	private TextView shengshixian;
 
 	private Map<String, String[]> mAreaDatasMap = new HashMap<String, String[]>();
+	
+	/**
+	 * 进度条
+	 */
+	private SpotsDialog mdialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +107,9 @@ public class NewTakeOverGoodsAddress extends Activity{
 	@SuppressLint("NewApi")
 	private void initview() {
 		// TODO Auto-generated method stub
+		SpotsDialog.TAG=R.style.SpotsDialogDefault_SaveAddress;
+		mdialog=new SpotsDialog(NewTakeOverGoodsAddress.this);
+		mdialog.setCanceledOnTouchOutside(false);
 		mBack=(ImageView) findViewById(R.id.newtakeoveraddress_back);
 		mBack.setOnClickListener(new OnClickListener() {
 			
@@ -128,7 +137,6 @@ public class NewTakeOverGoodsAddress extends Activity{
 		mSave=(TextView) findViewById(R.id.newtakeoveraddress_save);
 		shengshixian=(TextView) findViewById(R.id.newtake_shengshixian);
 	}
-	//获取省
 	public void getprovince(String name,String phone,String youbian,String pid,String cid,String did,String mxx){
 		RequestParams params = new RequestParams();
 		// 只包含字符串参数时默认使用BodyParamsEntity，
@@ -150,6 +158,7 @@ public class NewTakeOverGoodsAddress extends Activity{
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -162,6 +171,7 @@ public class NewTakeOverGoodsAddress extends Activity{
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	province=responseInfo.result;
 		        	Log.i("网络请求下来的shengfen 参数是",province);
 		        	

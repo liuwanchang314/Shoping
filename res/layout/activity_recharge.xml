@@ -348,7 +348,6 @@
             android:layout_centerVertical="true"
             android:textSize="20sp"
             android:gravity="center"
-            
             android:background="@drawable/button_style"
             android:text="确认充值" />
 

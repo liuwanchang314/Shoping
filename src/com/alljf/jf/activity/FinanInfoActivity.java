@@ -18,6 +18,7 @@ import com.Application.SysApplication;
 import com.adapter.FinanceAdapter;
 import com.alljf.jf.R;
 import com.bean.FinanceBean;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.jsonParser.FinanceJsonPaser;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -42,6 +43,7 @@ public class FinanInfoActivity extends Activity {
 	private TextView mHome;
 	private ListView mListview;
 	private FinanceAdapter adapter;
+	private SpotsDialog mdialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,7 @@ public class FinanInfoActivity extends Activity {
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -82,6 +85,7 @@ public class FinanInfoActivity extends Activity {
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	String str=responseInfo.result;
 		        	Log.i("caiwu 请求下来的参数是",str);
 		        	List<FinanceBean> list=FinanceJsonPaser.getlist(str);
@@ -99,6 +103,9 @@ public class FinanInfoActivity extends Activity {
 	@SuppressLint("NewApi")
 	private void initview() {
 		// TODO Auto-generated method stub
+		SpotsDialog.TAG=R.style.SpotsDialogDefault;
+		mdialog=new SpotsDialog(FinanInfoActivity.this);
+		mdialog.setCanceledOnTouchOutside(false);
 		mcallback=(Button) findViewById(R.id.finance_btn_back);
 		mcallback.setOnClickListener(new OnClickListener() {
 			
