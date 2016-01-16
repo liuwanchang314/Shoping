@@ -123,9 +123,10 @@ public class BuyCartAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(final int position, View convertView, ViewGroup parent) {
+	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		viewholder vhs;
+		final int positions=position;
 		final Map<String, BuyCartBean> map = new HashMap<String, BuyCartBean>();
 		if (convertView == null) {
 			vhs = new viewholder();
@@ -175,10 +176,9 @@ public class BuyCartAdapter extends BaseAdapter {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					list.remove(position);// �����Դ��ɾ��
-					notifyDataSetChanged();// ֪ͨ����������ı�
-					// ���÷������ڷ������н���ɾ�����
-					getdata(list.get(position).getCart_id());
+					getdata(list.get(positions).getCart_id());
+					list.remove(positions);
+					notifyDataSetChanged();
 				}
 			});
 			vhs.jiageheshuliang.setVisibility(View.GONE);
@@ -193,9 +193,9 @@ public class BuyCartAdapter extends BaseAdapter {
 					// TODO Auto-generated method stub
 					int i = Integer.parseInt(tv.getText().toString());
 					i++;
-					list.get(position).setGoods_num(i + "");
+					list.get(positions).setGoods_num(i + "");
 					tv.setText(i + "");
-					getdataadd(list.get(position).getCart_id(), 1 + "");
+					getdataadd(list.get(positions).getCart_id(), 1 + "");
 				}
 			});
 			vhs.jian.setOnClickListener(new OnClickListener() {
@@ -205,13 +205,13 @@ public class BuyCartAdapter extends BaseAdapter {
 					// TODO Auto-generated method stub
 					int i = Integer.parseInt(tv.getText().toString());
 					if (i == 1) {
-						list.get(position).setGoods_num(i + "");
+						list.get(positions).setGoods_num(i + "");
 						tv.setText(i + "");
 					} else {
 						i--;
 						tv.setText(i + "");
-						list.get(position).setGoods_num(i + "");
-						getdatajianqu(list.get(position).getCart_id(), 1 + "");
+						list.get(positions).setGoods_num(i + "");
+						getdatajianqu(list.get(positions).getCart_id(), 1 + "");
 					}
 
 				}

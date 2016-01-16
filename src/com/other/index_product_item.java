@@ -43,7 +43,6 @@ public class index_product_item extends RelativeLayout {
 		WebSettings webSettings = wv.getSettings();
 		webSettings.setSavePassword(false);
 		webSettings.setSaveFormData(false);
-		// �����һ�仰�Ǳ���ģ�����Ҫ��javaScript��Ȼ����һ�ж���ͽ�͵�
 		webSettings.setJavaScriptEnabled(true);
 		webSettings.setSupportZoom(false);
 		webSettings.setUseWideViewPort(true); 

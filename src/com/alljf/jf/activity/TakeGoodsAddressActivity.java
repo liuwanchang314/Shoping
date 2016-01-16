@@ -168,7 +168,7 @@ public class TakeGoodsAddressActivity extends Activity implements OnClickListene
 								}
 							});
 							dialog.create().show();
-							return false;
+							return true;
 						}
 					});
 		        	

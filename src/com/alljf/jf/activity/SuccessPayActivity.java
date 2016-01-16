@@ -1,8 +1,12 @@
 package com.alljf.jf.activity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -10,8 +14,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.Application.SysApplication;
+import com.adapter.DingdanxiangqingAdapter;
 import com.alljf.jf.R;
 import com.alljf.jf.R.string;
+import com.bean.OrderBean;
+import com.jsonParser.OrderDataJsonParser;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 
 /**
  * @author JZKJ-LWC
@@ -41,8 +54,10 @@ public class SuccessPayActivity extends Activity implements OnClickListener{
 		Intent intent=getIntent();
 		price=intent.getStringExtra("sfk");
 		orderid=intent.getStringExtra("orderid");
+		Log.i("这个时候订单号是多少",orderid);
+		//用该订单号来请求数据，然后展示部分数据在该界面
 		initview();
-		//订单不合适，暂时无法获取定单详情数据
+		getdata(orderid);
 	}
 
 	/**
@@ -85,12 +100,58 @@ public class SuccessPayActivity extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.successpay_dingdanxiangqing:
+			SuccessPayActivity.this.finish();
 			Intent intent=new Intent(SuccessPayActivity.this,DingDanXQActivity.class);
+			intent.putExtra("id",orderid);
+			startActivity(intent);
 			break;
 
 		default:
 			break;
 		}
+	}
+	/**
+	 * @2016-1-15上午10:01:45
+	 * 根据订单id来获取订单详细数据
+	 * 
+	 */
+	private void getdata(String orderid) {
+		// TODO Auto-generated method stub
+		RequestParams params = new RequestParams();
+		// 只包含字符串参数时默认使用BodyParamsEntity，
+		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
+		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
+		params.addBodyParameter("type", "order");
+		params.addBodyParameter("part", "order_main");
+		params.addBodyParameter("order_id",orderid);
+		HttpUtils http = new HttpUtils();
+		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
+
+		        @Override
+		        public void onStart() {
+		        	//开始请求
+		        }
+
+		        @Override
+		        public void onLoading(long total, long current, boolean isUploading) {
+		            if (isUploading) {
+		            } else {
+		            }
+		        }
+
+		        @Override
+		        public void onSuccess(ResponseInfo<String> responseInfo) {
+		        	//请求成功
+		        	String str=responseInfo.result;
+		        	Log.i("订单详情请求下来的参数是",str);
+		        	final OrderBean bean=OrderDataJsonParser.getbean(str);
+		        	
+		        }
+
+		        @Override
+		        public void onFailure(HttpException error, String msg) {
+		        }
+		});
 	}
 
 }

@@ -576,6 +576,7 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 			ShareUtils.shareMegToQzone(tencent, Product_infoActivity.this, new ArrayList<String>(), "title", "summary", "http://www.baidu.com", listener);
 			break;
 		case R.id.producinfo_paizhao:
+			Toast.makeText(Product_infoActivity.this,"暂不支持，请期待新版本", 1).show();
 			break;
 		case R.id.productinfo_jiarugouwuche:
 					AlertDialog.Builder dialog=new AlertDialog.Builder(Product_infoActivity.this);

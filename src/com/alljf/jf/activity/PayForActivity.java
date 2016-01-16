@@ -67,6 +67,7 @@ public class PayForActivity extends Activity implements OnClickListener {
 	private SpotsDialog mdialog_pay;//用于账号支付的进度条
 	private String orderid;
 	private String order_sn;//订单号
+	private Dialog dialog; 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -172,7 +173,7 @@ public class PayForActivity extends Activity implements OnClickListener {
 				//财付通的操作,这里到时候需要换一张图片
 				Log.i("当前选择了财付通支付", payTAG);
 				//需要先弹出一个dialog，在该dialog上面来进行选择
-				 final Dialog dialog = new Dialog(PayForActivity.this, R.style.Theme_Light_Dialog);
+				 dialog = new Dialog(PayForActivity.this, R.style.Theme_Light_Dialog);
 	            View dialogView = LayoutInflater.from(PayForActivity.this).inflate(R.layout.activity_surepayfor,null);
 	            //获得dialog的window窗口
 	            Window window = dialog.getWindow();
@@ -225,6 +226,14 @@ public class PayForActivity extends Activity implements OnClickListener {
 					
 				});
 	            quxiao=(TextView) dialogView.findViewById(R.id.tv_quxiao);
+	            quxiao.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						dialog.dismiss();
+					}
+				});
 	            xuzhifu=(TextView) dialogView.findViewById(R.id.tv_xuzhifu);
 	            xuzhifu.setText(price);
 	            yanzheng.setOnClickListener(new OnClickListener() {
@@ -261,6 +270,7 @@ public class PayForActivity extends Activity implements OnClickListener {
 		}
 	}
 	/**
+	 * @param dialog 
 	 * @2016-1-14上午12:05:03
 	 * 使用预存款进行支付
 	 */
@@ -307,6 +317,7 @@ public class PayForActivity extends Activity implements OnClickListener {
 							intent.putExtra("orderid",orderid);
 							intent.putExtra("sfk",price);
 							startActivity(intent);
+							dialog.dismiss();
 							PayForActivity.this.finish();
 						}else if(status.equals("2")){
 							Toast.makeText(PayForActivity.this,"余额不足，请选择其他方式进行支付",1).show();

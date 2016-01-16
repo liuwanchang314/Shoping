@@ -15,6 +15,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.view.Window;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -43,6 +44,7 @@ public class ViewPagerActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_viewpager);
 		SysApplication.getInstance().addActivity(this);
 		//首先，需要一个sharedpreference对象，用来存储配置文件信息
