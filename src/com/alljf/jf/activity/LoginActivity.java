@@ -58,6 +58,10 @@ public class LoginActivity extends Activity {
 	private int i;//读秒计数
 	private Button back;
 	private SpotsDialog mdialog;
+	/**
+	 * 动态改变按钮数字的线程
+	 */
+	private Thread thread;
 	@Override
 	protected void onResume() {
 		super.onResume();

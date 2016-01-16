@@ -112,7 +112,7 @@ public class oederactivity3 extends Activity {
 										View arg1, int arg2, long arg3) {
 									// TODO Auto-generated method stub
 									Intent intent=new Intent(oederactivity3.this,DingDanXQActivity.class);
-									intent.putExtra("bean",list.get(arg2));
+									intent.putExtra("id",list.get(arg2).getOrder_id());
 									startActivity(intent);
 								}
 							});

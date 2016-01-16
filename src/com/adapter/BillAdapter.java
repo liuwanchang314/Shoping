@@ -75,9 +75,9 @@ public class BillAdapter extends BaseAdapter {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				delete(list.get(position).getInv_id());
 				list.remove(position);
 				notifyDataSetChanged();
-				delete(list.get(position).getInv_id());
 			}
 		});
 		

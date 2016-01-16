@@ -22,6 +22,7 @@ import com.adapter.ShangjiazenpinAdapter;
 import com.alljf.jf.R;
 import com.bean.KuaiDiBean;
 import com.bean.ShangjiazengpingBean;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.jsonParser.KuaiDiJsonParser;
 import com.jsonParser.ShangjiazenpinJsonparser;
 import com.lidroid.xutils.HttpUtils;
@@ -45,6 +46,7 @@ public class ShangJiaSendGoodsActivity extends Activity {
 	private String kuaidiid;
 	private ShangjiazenpinAdapter adapter_zenpin;
 	private KuaiDiAdapter adapter_kuaidi;
+	private SpotsDialog mdialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -55,6 +57,7 @@ public class ShangJiaSendGoodsActivity extends Activity {
 		initview();
 		Intent in=getIntent();
 		final String modeString=in.getStringExtra("mode");
+		
 		getgoodsdata(modeString);
 		//首先显示的是选择赠品的部分
 		layout_zengpin.setVisibility(View.VISIBLE);
@@ -102,6 +105,7 @@ public class ShangJiaSendGoodsActivity extends Activity {
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -114,6 +118,7 @@ public class ShangJiaSendGoodsActivity extends Activity {
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	String CallBackString=responseInfo.result;
 		        	Log.i("商家赠品请求有数据吗？",CallBackString);
 		        	final List<ShangjiazengpingBean> list=ShangjiazenpinJsonparser.getlist(CallBackString);
@@ -153,6 +158,7 @@ public class ShangJiaSendGoodsActivity extends Activity {
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -165,6 +171,7 @@ public class ShangJiaSendGoodsActivity extends Activity {
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	String CallBackString=responseInfo.result;
 		        	Log.i("商家快递请求有数据吗？",CallBackString);
 		        	final List<KuaiDiBean> list=KuaiDiJsonParser.getlist(CallBackString);
@@ -195,6 +202,9 @@ public class ShangJiaSendGoodsActivity extends Activity {
 	 */  
 	private void initview() {
 		// TODO Auto-generated method stub
+		SpotsDialog.TAG=R.style.SpotsDialogDefault;
+		mdialog=new SpotsDialog(ShangJiaSendGoodsActivity.this);
+		mdialog.setCanceledOnTouchOutside(false);
 		mBack=(ImageView) findViewById(R.id.shangjiafahuo_back);
 		mBack.setOnClickListener(new OnClickListener() {
 			

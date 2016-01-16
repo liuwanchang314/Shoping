@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:text="TextView" />
+        />
 
     <TextView
         android:id="@+id/shangjiazenpin_jiage"
@@ -38,7 +38,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/shangjiazenpin_title"
         android:layout_below="@+id/shangjiazenpin_tubiao"
-        android:text="TextView" />
+        android:textColor="#ff4500"
+        />
 
     <TextView
         android:id="@+id/shangjiazenppin_zhongliang"
@@ -48,6 +49,6 @@
         android:layout_alignBottom="@+id/shangjiazenpin_jiage"
         android:layout_marginLeft="16dp"
         android:layout_toRightOf="@+id/shangjiazenpin_jiage"
-        android:text="TextView" />
+        />
 
 </RelativeLayout>

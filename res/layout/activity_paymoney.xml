@@ -108,7 +108,8 @@
                     ></com.customview.Mylistview>
                 <TextView 
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="20dp"
+                    android:textSize="10sp"
                     android:text="以下为选填，可填写您与商家达成一致的要求"
                     android:gravity="center"
                     />

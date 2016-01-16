@@ -9,6 +9,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -105,7 +107,7 @@ public class PayPassWordFindBackActivity extends Activity implements OnClickList
 		switch (v.getId()) {
 		case R.id.passwordfindback_huoquyanzhengma:
 			mHuoquyanzhengma.setClickable(false);
-			if(!TextUtils.isEmpty(mPhone.getText().toString())){
+			if(!TextUtils.isEmpty(mPhone.getText().toString())&&mPhone.getText().toString().length()==11){
 				new Thread(new Runnable() {
 					
 					@Override
@@ -137,11 +139,12 @@ public class PayPassWordFindBackActivity extends Activity implements OnClickList
 							}
 						});
 					}
-				}).start();
+				}).start();;
+				
 				//调用方法，获取验证码
 				getyanzhengma(mPhone.getText().toString());
 			}else{
-				Toast.makeText(PayPassWordFindBackActivity.this,"请输入手机号",1).show();
+				Toast.makeText(PayPassWordFindBackActivity.this,"请输入正确的手机号",1).show();
 			}
 			
 			
@@ -262,6 +265,7 @@ public class PayPassWordFindBackActivity extends Activity implements OnClickList
 						String status=obj.getString("send_status");
 						if(status.equals("1")){
 							Toast.makeText(PayPassWordFindBackActivity.this,"已发送",1).show();
+							//发送消息，改变textview的字体
 						}else{
 							Toast.makeText(PayPassWordFindBackActivity.this,"请输入正确的手机号",1).show();
 						}

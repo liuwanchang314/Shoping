@@ -76,6 +76,7 @@
             <com.Extension.AutoScrollViewPager
 		        android:id="@+id/producinfo_viewpager"
 		        android:layout_width="match_parent"
+		        
 		        android:layout_height="match_parent" >
     			</com.Extension.AutoScrollViewPager>
 
@@ -246,13 +247,13 @@
         </LinearLayout>
         <View 
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="10dp"
             />
     <RelativeLayout
         android:id="@+id/productinfo_chicunxuanze"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/white" >
 
         <TextView
@@ -272,15 +273,11 @@
             android:layout_marginRight="5dp"
             android:src="@drawable/side_right_img" />
     </RelativeLayout>
-    <View 
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            />
     <!-- 商品详情 -->
      <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/white" >
 
         <TextView
@@ -292,10 +289,6 @@
             android:textColor="#393939" />
 
     </RelativeLayout>
-        <View 
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            />
         <!-- 这里是一张大图 -->
         
         <WebView

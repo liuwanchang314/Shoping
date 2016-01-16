@@ -96,9 +96,8 @@ public class oederactivity1 extends Activity {
 						@Override
 						public void onItemClick(AdapterView<?> arg0, View arg1,
 								int arg2, long arg3) {
-							// TODO Auto-generated method stub
 							Intent intent=new Intent(oederactivity1.this,DingDanXQActivity.class);
-							intent.putExtra("bean",list.get(arg2));
+							intent.putExtra("id",list.get(arg2).getOrder_id());
 							startActivity(intent);
 						}
 					});

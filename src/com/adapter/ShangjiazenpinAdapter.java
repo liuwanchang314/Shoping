@@ -62,8 +62,8 @@ public class ShangjiazenpinAdapter extends BaseAdapter {
 			vh=(viewholder) convertView.getTag();
 		}
 		vh.title.setText(list.get(position).getGoods_name());
-		vh.price.setText(list.get(position).getGoods_price());
-		vh.weight.setText(list.get(position).getGoods_weight());
+		vh.price.setText("价格"+"￥:"+list.get(position).getGoods_price());
+		vh.weight.setText("重量"+":"+list.get(position).getGoods_weight());
 		if(list.get(position).isIschecked()){
 			vh.cb.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.checkbox_check));
 		}else{
