@@ -136,6 +136,8 @@ public class UserActivity extends Activity implements OnClickListener,
 		case R.id.horder_lt_list6:// 退出当前账号
 			// Toast.makeText(UserActivity.this, "退出当前账号",
 			// Toast.LENGTH_SHORT).show();
+			SysApplication.getInstance().logOut();
+			startActivity(new Intent(UserActivity.this,MainActivity.class));
 			break;
 		case R.id.horder_lt_list:// 全部订单
 			// Toast.makeText(UserActivity.this, "全部订单",

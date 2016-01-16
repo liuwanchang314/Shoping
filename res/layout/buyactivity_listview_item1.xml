@@ -132,6 +132,7 @@
                      android:layout_height="wrap_content"
                      android:layout_alignLeft="@+id/buy_chicun"
                      android:layout_alignParentBottom="true"
+                     android:textSize="12sp"
                      android:text="TextView" />
 
                  <TextView
@@ -140,6 +141,7 @@
                      android:layout_height="wrap_content"
                      android:layout_alignParentTop="true"
                      android:layout_toRightOf="@+id/textView2"
+                     android:textSize="12sp"
                      android:text="TextView" />
 
                  <TextView
@@ -187,7 +189,9 @@
                      android:layout_alignParentLeft="true"
                      android:layout_alignParentTop="true"
                      android:layout_marginTop="10dp"
-                     android:text="价格" />
+                     android:textColor="#ff4500"
+                     android:text="价格"
+                      />
 
                  <TextView
                      android:id="@+id/buy_shuliang"
@@ -196,6 +200,7 @@
                      android:layout_alignParentLeft="true"
                      android:layout_below="@+id/buy_jiage"
                      android:layout_marginTop="19dp"
+                     android:textColor="#ff4500"
                      android:text="数量" />
 
              </RelativeLayout>

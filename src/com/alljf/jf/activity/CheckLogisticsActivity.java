@@ -1,8 +1,16 @@
 package com.alljf.jf.activity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,6 +22,8 @@ import android.widget.TextView;
 import com.Application.SysApplication;
 import com.alljf.jf.R;
 import com.bean.OrderBean;
+import com.bean.SpecBean;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -54,6 +64,8 @@ public class CheckLogisticsActivity extends Activity {
 	private TextView mProductNumber;//数量
 	private ListView mListview;
 	
+	private SpotsDialog mdialog;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -80,40 +92,38 @@ public class CheckLogisticsActivity extends Activity {
 		}else{
 			mProductName.setText(bean.getOrdergoods().getGoods_name());
 		}
-		mProductDimens.setText(bean.getOrdergoods().getSpec_id());
-		mProductColor.setText(bean.getOrdergoods().getSpec_id());
-		mProductPrice.setText(bean.getOrdergoods().getGoods_pay_price());
-		mProductNumber.setText(bean.getOrdergoods().getGoods_num());
+		getdataspec(mProductDimens,mProductColor,bean.getOrdergoods().getSpec_id());
+		mProductPrice.setText("￥："+bean.getOrdergoods().getGoods_pay_price());
+		mProductNumber.setText("X："+bean.getOrdergoods().getGoods_num());
 		BitmapUtils bmp=new BitmapUtils(CheckLogisticsActivity.this);
 		bmp.display(mProductPic,bean.getOrdergoods().getGoods_image());
-		
+		String ship=bean.getShipping_code();
+		String id=bean.getExpress_id();
+		Log.i("有吗",bean.getShipping_code());
+		Log.i("有吗",bean.getExpress_id());
 		getdata(bean.getShipping_code(),bean.getExpress_id());
-//		getdatadc(bean.getOrdergoods().getSpec_id());
-		
 	}
 	/**
 	 * @author JZKJ-LWC
 	 * @date : 2015-12-27 下午7:08:53
 	 * 根据尺寸id，获取具体尺寸
 	 */  
-
-	private void getdatadc(String specid) {
+	private void getdataspec(final TextView chicun, final TextView yanse, String spec_id) {
 		// TODO Auto-generated method stub
 		RequestParams params = new RequestParams();
 		// 只包含字符串参数时默认使用BodyParamsEntity，
 		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
 		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
-		params.addBodyParameter("type", "order");
-		params.addBodyParameter("part", "cancer_order");
-		params.addBodyParameter("user_name",SysApplication.getInstance().getUserInfo().getName());
-		params.addBodyParameter("order_id", specid);
-		params.addBodyParameter("state_info", "");
+		params.addBodyParameter("type", "goods");
+		params.addBodyParameter("part", "get_spec_main");
+		params.addBodyParameter("spec_id",spec_id);
 		HttpUtils http = new HttpUtils();
 		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
 
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -126,10 +136,28 @@ public class CheckLogisticsActivity extends Activity {
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	String str=responseInfo.result;
-		        	Log.i("订单取消了没有", str);
+		        	Log.i("chicun参数是",str);
+		        	try {
+						List<SpecBean> listspe=new ArrayList<SpecBean>();
+						JSONObject obj=new JSONObject(str);
+						JSONObject objs=obj.getJSONObject("data");
+						JSONArray objss=objs.getJSONArray("spec_main");
+						for(int i=0;i<objss.length();i++){
+							SpecBean bean=new SpecBean();
+							JSONObject obja=objss.getJSONObject(i);
+							bean.setKey(obja.getString("key"));
+							listspe.add(bean);
+						}
+						chicun.setText(listspe.get(1).getKey());
+						yanse.setText(listspe.get(0).getKey());
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		        	
 		        }
-
 		        @Override
 		        public void onFailure(HttpException error, String msg) {
 		        }
@@ -157,6 +185,7 @@ public class CheckLogisticsActivity extends Activity {
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -169,6 +198,7 @@ public class CheckLogisticsActivity extends Activity {
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	String str=responseInfo.result;
 		        	Log.i("快递信息获取到了没有", str);
 		        }
@@ -188,6 +218,7 @@ public class CheckLogisticsActivity extends Activity {
 	 */  
 	private void initview() {
 		// TODO Auto-generated method stub
+		mdialog=new SpotsDialog(CheckLogisticsActivity.this);
 		mBack=(ImageView) findViewById(R.id.checklogistics_iamgeview_back);
 		mBack.setOnClickListener(new OnClickListener(
 				) {

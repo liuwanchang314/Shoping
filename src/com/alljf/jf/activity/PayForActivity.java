@@ -81,6 +81,7 @@ public class PayForActivity extends Activity implements OnClickListener {
 		String psfs=intent.getStringExtra("fhfs");
 		String order_sn=intent.getStringExtra("order");
 		pay_sn=intent.getStringExtra("pay");
+		Log.i("支付单号是多少",pay_sn);
 		mMoneyNum.setText(price);
 		mPeisongWay.setText(psfs);
 		mOrderNum.setText(order_sn);

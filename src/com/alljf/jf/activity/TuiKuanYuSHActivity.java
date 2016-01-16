@@ -46,7 +46,6 @@ public class TuiKuanYuSHActivity extends Activity {
 		initview();
 		initdata();
 	}
-
 	/**
 	 * @2016-1-3下午8:50:28
 	 * 初始化数据
@@ -60,7 +59,7 @@ public class TuiKuanYuSHActivity extends Activity {
 		params.addBodyParameter("type", "order");
 		params.addBodyParameter("part", "refund_list_nokey");
 		params.addBodyParameter("user_name", SysApplication.getInstance().getUserInfo().getName());
-		params.addBodyParameter("limit", "100");
+		params.addBodyParameter("limit", "");
 		params.addBodyParameter("limit_start", "0");
 		HttpUtils http = new HttpUtils();
 		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
@@ -102,7 +101,7 @@ public class TuiKuanYuSHActivity extends Activity {
 	 */
 	private void initview() {
 		// TODO Auto-generated method stub
-		SpotsDialog.TAG=R.style.SpotsDialogDefault_tijiao;
+		SpotsDialog.TAG=R.style.SpotsDialogDefault;
 		mdialog=new SpotsDialog(TuiKuanYuSHActivity.this);
 		mdialog.setCanceledOnTouchOutside(false);
 		mBack=(ImageView) findViewById(R.id.shouhoutuikuan_back);

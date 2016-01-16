@@ -55,12 +55,12 @@
         </LinearLayout>
         <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:background="#e4e4e4"
         android:orientation="horizontal"
         >
             <RelativeLayout 
-                android:layout_width="100dp"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
                 >
 			<!-- 商品图片 -->
@@ -75,7 +75,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
-                    android:src="@drawable/home" />
+                     />
 
             </RelativeLayout>
             <LinearLayout 
@@ -129,16 +129,17 @@
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:layout_alignParentTop="true"
-                         android:layout_marginLeft="17dp"
+                         android:layout_marginLeft="2dp"
                          android:layout_toRightOf="@+id/textView4"
                          android:text="1.8（6英尺）" />
 					<!-- item当中的颜色分类 -->
+
                      <TextView
                          android:id="@+id/dingdan_goodsyanse"
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:layout_alignParentBottom="true"
-                         android:layout_alignRight="@+id/dingdan_goodschicun"
+                         android:layout_toRightOf="@+id/textView5"
                          android:text="蒲公因种子" />
 
                  </RelativeLayout>
@@ -149,22 +150,17 @@
                 android:layout_height="match_parent"
                 >
 				<!-- item当中的价格-->
-                <TextView
-                    android:id="@+id/dingdan_goodsjiage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="5dp"
-                    android:text="￥ 23.9" />
 				<!-- item当中的数量-->
+
                 <TextView
                     android:id="@+id/dingdan_goodsshuliang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="x1" />
+                    android:layout_marginRight="20dp"
+                    android:textColor="#ff4500"
+                     />
 
                 <TextView
                     android:id="@+id/dingdan_goodsgezhong"
@@ -175,13 +171,23 @@
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
                     android:background="@drawable/bg_maintext"
-                    android:text="TextView" />
+                    />
+
+                <TextView
+                    android:id="@+id/dingdan_goodsjiage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="14dp"
+                    android:textColor="#ff4500"
+                    />
 
             </RelativeLayout>
         </LinearLayout>
         <RelativeLayout 
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="20dp"
         >
 
             <TextView
@@ -200,12 +206,12 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="22dp"
-                android:text="TextView" />
+                 />
 
         </RelativeLayout>
         <RelativeLayout 
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="20dp"
         >
 
             <TextView
@@ -215,7 +221,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="19dp"
-                android:text="TextView" />
+                />
 
             <TextView
                 android:id="@+id/textView2"

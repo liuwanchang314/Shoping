@@ -3,6 +3,8 @@ package com.alljf.jf.activity;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -54,6 +56,7 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.utils.writeDateToSdCard;
 /** 
  * @author 作者 E-mail: 
  * @version 创建时间：2015-12-29 下午11:07:38 
@@ -80,6 +83,8 @@ public class TousuActivity extends Activity implements OnClickListener{
 	private String cachePath;
 	private Uri originalUri;
 	private SpotsDialog mdialog;
+	private File file;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -106,9 +111,8 @@ public class TousuActivity extends Activity implements OnClickListener{
 	 */
 	private void initview() {
 		// TODO Auto-generated method stub
-		SpotsDialog.TAG=R.style.SpotsDialogDefault_tijiao;
+		SpotsDialog.TAG=R.style.SpotsDialogDefault;
 		mdialog=new SpotsDialog(TousuActivity.this);
-		mdialog.setCanceledOnTouchOutside(false);
 		mback=(ImageView) findViewById(R.id.tousu_back);
 		mback.setOnClickListener(new OnClickListener() {
 			@Override
@@ -225,6 +229,8 @@ public class TousuActivity extends Activity implements OnClickListener{
 			        @Override
 			        public void onStart() {
 			        	//开始请求
+			        	SpotsDialog.TAG=R.style.SpotsDialogDefault;
+			        	mdialog.show();
 			        }
 
 			        @Override
@@ -237,6 +243,7 @@ public class TousuActivity extends Activity implements OnClickListener{
 			        @Override
 			        public void onSuccess(ResponseInfo<String> responseInfo) {
 			        	//请求成功
+			        	mdialog.dismiss();
 			        	String str=responseInfo.result;
 			        	Log.i("投诉获取的数据是", str);
 			        	final List<SubjectBean> list=SubjectJsonparser.getlist(str);
@@ -336,9 +343,13 @@ public class TousuActivity extends Activity implements OnClickListener{
 				}else{
 					// 将图片内容解析成字节数组
 					mContent = readStream(resolver.openInputStream(Uri.parse(originalUri.toString())));
+					boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,"123456.jpg",mContent);
+					file=new File(cachePath+"/"+"123456.jpg");
 					// 将字节数组转换为ImageView可调用的Bitmap对象
-					myBitmap = getPicFromBytes(mContent, null);
-					// //把得到的图片绑定在控件上显示
+//					myBitmap = getPicFromBytes(mContent, null);
+//					// //把得到的图片绑定在控件上显示
+//					mXuanzezhaopian.setImageBitmap(myBitmap);
+					myBitmap=decodeFile(file);
 					mXuanzezhaopian.setImageBitmap(myBitmap);
 				}
 			
@@ -360,7 +371,10 @@ public class TousuActivity extends Activity implements OnClickListener{
 					ByteArrayOutputStream baos = new ByteArrayOutputStream();
 					myBitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
 					mContent = baos.toByteArray();
+					boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,"123456.jpg",mContent);
+					file=new File(cachePath+"/"+"123456.jpg");
 					// 把得到的图片绑定在控件上显示
+					myBitmap=decodeFile(file);
 					mXuanzezhaopian.setImageBitmap(myBitmap);
 				}
 				
@@ -392,13 +406,14 @@ public class TousuActivity extends Activity implements OnClickListener{
 		params.addBodyParameter("complain_subject", subid);
 		params.addBodyParameter("complain_content",subcon);
 		params.addBodyParameter("goods_values",goodsid);
-		params.addBodyParameter("input_complain_pic1","");
+		params.addBodyParameter("input_complain_pic1",file);
 		HttpUtils http = new HttpUtils();
 		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
 
 		        @Override
 		        public void onStart() {
 		        	//开始请求
+		        	mdialog.show();
 		        }
 
 		        @Override
@@ -411,12 +426,13 @@ public class TousuActivity extends Activity implements OnClickListener{
 		        @Override
 		        public void onSuccess(ResponseInfo<String> responseInfo) {
 		        	//请求成功
+		        	mdialog.dismiss();
 		        	String str=responseInfo.result;
 		        	Log.i("投诉完毕以后的返回结果是", str);
 		        	try {
 						JSONObject obj=new JSONObject(str);
 						String status=obj.getString("status");
-						if(status.equals("0")){
+						if(status.equals("1")){
 							Toast.makeText(TousuActivity.this,"投诉成功",1).show();
 							TousuActivity.this.finish();
 						}
@@ -484,5 +500,41 @@ public class TousuActivity extends Activity implements OnClickListener{
 	        return file;   
 	   }   
 
+
+	  //decodes image and scales it to reduce memory consumption
+
+	    private Bitmap decodeFile(File f){
+
+	       try {
+	           //Decode image size
+	           BitmapFactory.Options o = new BitmapFactory.Options();
+	           o.inJustDecodeBounds = true;
+	           BitmapFactory.decodeStream(new FileInputStream(f),null,o);
+	           //The new size we want to scale to
+	           final int REQUIRED_HEIGHT=800;
+	           final int REQUIRED_WIDTH=480;
+	           //Find the correct scale value. It should be the power of 2.
+	           int width_tmp=o.outWidth, height_tmp=o.outHeight;
+	           System.out.println(width_tmp+"  "+height_tmp);
+	           Log.w("===", (width_tmp+"  "+height_tmp));
+	           int scale=1;
+	           while(true){
+	               if(width_tmp/2<REQUIRED_WIDTH && height_tmp/2<REQUIRED_HEIGHT)
+	                   break;
+	               width_tmp/=2;
+	               height_tmp/=2;
+	               scale++;
+	               Log.w("===", scale+"''"+width_tmp+"  "+height_tmp);
+	           }
+	           //Decode with inSampleSize
+	           BitmapFactory.Options o2 = new BitmapFactory.Options();
+	           o2.inSampleSize=scale;
+	           return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
+	       } catch (FileNotFoundException e) {}
+	       return null;
+	    }
+
+
+	     
 
 }
