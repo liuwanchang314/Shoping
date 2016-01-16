@@ -108,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/textView2"
                     android:layout_toRightOf="@+id/textView2"
-                    android:text="李先生" />
+                    />
 
                 <TextView
                     android:id="@+id/success_dianhua"
@@ -118,7 +118,7 @@
                     android:layout_alignBottom="@+id/successpay_name"
                     android:layout_marginLeft="30dp"
                     android:layout_toRightOf="@+id/successpay_name"
-                    android:text="12312312312" />
+                     />
 
                 <TextView
                     android:id="@+id/textView4"
@@ -136,7 +136,7 @@
                     android:layout_alignBaseline="@+id/textView4"
                     android:layout_alignBottom="@+id/textView4"
                     android:layout_toRightOf="@+id/textView4"
-                    android:text="北京市北京市北京市北京市北京市北京市北京市北京市" />
+                    />
 
             </RelativeLayout>
             

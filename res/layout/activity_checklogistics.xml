@@ -298,6 +298,7 @@
                           android:layout_height="wrap_content"
                           android:layout_alignParentTop="true"
                           android:layout_centerHorizontal="true"
+                          android:textColor="#ff4500"
                           android:text="123.00" />
 
                       <TextView
@@ -306,6 +307,7 @@
                           android:layout_height="wrap_content"
                           android:layout_centerHorizontal="true"
                           android:layout_centerVertical="true"
+                          android:textColor="#ff4500"
                           android:text="X1" />
 
                   </RelativeLayout>

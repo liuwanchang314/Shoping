@@ -26,6 +26,7 @@ public class SpotsDialog extends AlertDialog {
     public static int TAG=R.style.SpotsDialogDefault;
     public SpotsDialog(Context context) {
         this(context,TAG);
+        setCanceledOnTouchOutside(false);
     }
 
     public SpotsDialog(Context context, int theme) {
@@ -41,7 +42,7 @@ public class SpotsDialog extends AlertDialog {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.dialog);
-        setCanceledOnTouchOutside(true);
+        setCanceledOnTouchOutside(false);
 
         initProgress();
     }

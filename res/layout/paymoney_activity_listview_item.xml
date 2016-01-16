@@ -98,6 +98,7 @@
                         android:id="@+id/paymoney_listviewa_item_shangpingmingcheng"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="12sp"
                         android:layout_alignParentLeft="true"
                         android:layout_marginTop="10dp"
                         android:text="风向标全棉活性印花四件套" />
@@ -116,6 +117,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
+                        android:textSize="12sp"
                         android:text="适用床尺寸：" />
 
                     <TextView
@@ -124,6 +126,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentLeft="true"
+                        android:textSize="12sp"
                         android:text="颜色分类：" />
 
                     <TextView
@@ -131,7 +134,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="17dp"
+                        android:layout_marginLeft="2dp"
+                        android:textSize="12sp"
                         android:layout_toRightOf="@+id/textView4"
                         android:text="1.8（6英尺）" />
 
@@ -140,8 +144,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
-                        android:layout_alignRight="@+id/paymoney_listviewa_item_chicun"
-                        android:text="蒲公因种子" />
+                        android:layout_toRightOf="@+id/textView5"
+                        android:text="蒲公因种子"
+                        android:textSize="12sp" />
+
                 </RelativeLayout>
 
             </LinearLayout>
@@ -154,9 +160,11 @@
                 <TextView
                     android:id="@+id/paymoney_listviewa_item_jiage"
                     android:layout_width="wrap_content"
+                    android:textColor="#ff4500"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_marginTop="10dp"
+                    android:textSize="12sp"
                     android:layout_marginLeft="5dp"
                     android:text="￥ 23.9" />
 				<!-- item当中的数量-->
@@ -165,6 +173,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:textSize="12sp"
+                    android:textColor="#ff4500"
                     android:layout_centerVertical="true"
                     android:text="x1" />
 

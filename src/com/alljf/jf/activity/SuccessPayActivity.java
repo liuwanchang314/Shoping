@@ -105,7 +105,10 @@ public class SuccessPayActivity extends Activity implements OnClickListener{
 			intent.putExtra("id",orderid);
 			startActivity(intent);
 			break;
-
+		case R.id.successpay_fanhuizhuye:
+			SuccessPayActivity.this.finish();
+			Intent intents=new Intent(SuccessPayActivity.this,MainActivity.class);
+			startActivity(intents);
 		default:
 			break;
 		}
@@ -145,6 +148,10 @@ public class SuccessPayActivity extends Activity implements OnClickListener{
 		        	String str=responseInfo.result;
 		        	Log.i("订单详情请求下来的参数是",str);
 		        	final OrderBean bean=OrderDataJsonParser.getbean(str);
+		        	mShifukuan.setText(bean.getOrdergoods().getGoods_pay_price());
+		        	mName.setText(bean.getReciver_name());
+		        	mPhone.setText(bean.getRecieveinfobean().getPhone());
+		        	mAddress.setText(bean.getRecieveinfobean().getAddress());
 		        	
 		        }
 
@@ -153,5 +160,7 @@ public class SuccessPayActivity extends Activity implements OnClickListener{
 		        }
 		});
 	}
+	
+
 
 }

@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
@@ -24,6 +28,7 @@ import android.widget.Toast;
 
 import com.alljf.jf.R;
 import com.bean.BuyCartBean;
+import com.bean.SpecBean;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -182,8 +187,9 @@ public class BuyCartAdapter extends BaseAdapter {
 				}
 			});
 			vhs.jiageheshuliang.setVisibility(View.GONE);
-			vhs.chicun.setText(list.get(position).getSpec_id());
-			vhs.yanse.setText(list.get(position).getSpec_id());
+			getdataspec(vhs.chicun,vhs.yanse,list.get(position).getSpec_id());
+//			vhs.chicun.setText(list.get(position).getSpec_id());
+//			vhs.yanse.setText(list.get(position).getSpec_id());
 			vhs.num.setText(list.get(position).getGoods_num());
 			final TextView tv = vhs.num;
 			vhs.add.setOnClickListener(new OnClickListener() {
@@ -226,8 +232,9 @@ public class BuyCartAdapter extends BaseAdapter {
 			BitmapUtils bitmapUtils = new BitmapUtils(context);
 			bitmapUtils.display(vhs.img, list.get(position).getGoods_image());
 			vhs.title.setText(list.get(position).getGoods_name());
-			vhs.chicun.setText(list.get(position).getSpec_id());
-			vhs.yanse.setText(list.get(position).getSpec_id());
+//			vhs.chicun.setText(list.get(position).getSpec_id());
+//			vhs.yanse.setText(list.get(position).getSpec_id());
+			getdataspec(vhs.chicun,vhs.yanse,list.get(position).getSpec_id());
 			vhs.jiage.setText(list.get(position).getGoods_price());
 			vhs.jiage.setTextColor(Color.RED);
 			vhs.shuliang.setText(list.get(position).getGoods_num());
@@ -407,6 +414,64 @@ public class BuyCartAdapter extends BaseAdapter {
 					public void onFailure(HttpException error, String msg) {
 					}
 				});
+	}
+	
+	/**
+	 * @2016-1-16下午6:37:34
+	 * 根据商品尺寸id来获取真正的尺寸值
+	 */
+	private void getdataspec(final TextView chicun, final TextView yanse, String spec_id) {
+		// TODO Auto-generated method stub
+		RequestParams params = new RequestParams();
+		// 只包含字符串参数时默认使用BodyParamsEntity，
+		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
+		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
+		params.addBodyParameter("type", "goods");
+		params.addBodyParameter("part", "get_spec_main");
+		params.addBodyParameter("spec_id",spec_id);
+		HttpUtils http = new HttpUtils();
+		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
+
+		        @Override
+		        public void onStart() {
+		        	//开始请求
+		        }
+
+		        @Override
+		        public void onLoading(long total, long current, boolean isUploading) {
+		            if (isUploading) {
+		            } else {
+		            }
+		        }
+
+		        @Override
+		        public void onSuccess(ResponseInfo<String> responseInfo) {
+		        	//请求成功
+		        	String str=responseInfo.result;
+		        	Log.i("chicun参数是",str);
+		        	try {
+						List<SpecBean> listspe=new ArrayList<SpecBean>();
+						JSONObject obj=new JSONObject(str);
+						JSONObject objs=obj.getJSONObject("data");
+						JSONArray objss=objs.getJSONArray("spec_main");
+						for(int i=0;i<objss.length();i++){
+							SpecBean bean=new SpecBean();
+							JSONObject obja=objss.getJSONObject(i);
+							bean.setKey(obja.getString("key"));
+							listspe.add(bean);
+						}
+						chicun.setText(listspe.get(1).getKey());
+						yanse.setText(listspe.get(0).getKey());
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		        	
+		        }
+		        @Override
+		        public void onFailure(HttpException error, String msg) {
+		        }
+		});
 	}
 
 }

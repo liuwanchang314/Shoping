@@ -31,55 +31,55 @@
     
      <style name="SpotsDialogDefault" parent="android:Theme.DeviceDefault.Light.Dialog">
         <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
-        <item name="DialogTitleText">正在加载……</item>
+        <item name="DialogTitleText">正在加载…</item>
         <item name="DialogSpotCount">5</item>
     </style>
      <style name="SpotsDialogDefault_addProduct" parent="android:Theme.DeviceDefault.Light.Dialog">
         <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
-        <item name="DialogTitleText">正在加入购物车……</item>
+        <item name="DialogTitleText">正在加入购物车…</item>
         <item name="DialogSpotCount">5</item>
     </style>
     <style name="SpotsDialogDefault_UPorder" parent="android:Theme.DeviceDefault.Light.Dialog">
         <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
-        <item name="DialogTitleText">正在提交订单……</item>
+        <item name="DialogTitleText">正在提交订单…</item>
         <item name="DialogSpotCount">5</item>
     </style>
      <style name="SpotsDialogDefault_UPbill" parent="android:Theme.DeviceDefault.Light.Dialog">
         <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
-        <item name="DialogTitleText">正在获取发票……</item>
+        <item name="DialogTitleText">正在获取发票…</item>
         <item name="DialogSpotCount">5</item>
     </style>
      <style name="SpotsDialogDefault_UPsave" parent="android:Theme.DeviceDefault.Light.Dialog">
         <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
-        <item name="DialogTitleText">正在保存发票……</item>
+        <item name="DialogTitleText">正在保存发票…</item>
         <item name="DialogSpotCount">5</item>
     </style>
     <style name="SpotsDialogDefault_SaveAddress" parent="android:Theme.DeviceDefault.Light.Dialog">
         <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
-        <item name="DialogTitleText">正在保存地址……</item>
+        <item name="DialogTitleText">正在保存地址…</item>
         <item name="DialogSpotCount">5</item>
     </style>
      <style name="SpotsDialogDefault_UPaddress" parent="android:Theme.DeviceDefault.Light.Dialog">
         <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
-        <item name="DialogTitleText">正在获取地址……</item>
+        <item name="DialogTitleText">正在获取地址…</item>
         <item name="DialogSpotCount">5</item>
     </style>
     
      <style name="SpotsDialogDefault_changeaddress" parent="android:Theme.DeviceDefault.Light.Dialog">
         <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
-        <item name="DialogTitleText">正在修改地址……</item>
+        <item name="DialogTitleText">正在修改地址…</item>
         <item name="DialogSpotCount">5</item>
     </style>
     
      <style name="SpotsDialogDefault_tijiao" parent="android:Theme.DeviceDefault.Light.Dialog">
         <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
-        <item name="DialogTitleText">正在提交……</item>
+        <item name="DialogTitleText">正在提交…</item>
         <item name="DialogSpotCount">5</item>
     </style>
     
     <style name="SpotsDialogDefault_denglu" parent="android:Theme.DeviceDefault.Light.Dialog">
         <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
-        <item name="DialogTitleText">正在登录……</item>
+        <item name="DialogTitleText">正在登录…</item>
         <item name="DialogSpotCount">5</item>
     </style>
     

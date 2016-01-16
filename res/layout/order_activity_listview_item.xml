@@ -22,11 +22,11 @@
 			 <!-- item当中的分类图标 -->
               <ImageView
                   android:id="@+id/orderfragment_listviewa_item_fenleitubiao"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
+                  android:layout_width="30dp"
+                  android:layout_height="30dp"
                   android:layout_alignParentLeft="true"
                   android:layout_centerVertical="true"
-                  android:src="@drawable/home" />
+                  android:src="@drawable/logo" />
 
               <!-- item当中的商家名称 -->
               <TextView
@@ -65,7 +65,7 @@
                 >
 			<!-- 商品图片 -->
                 <ImageView
-                    android:id="@+id/orderfragment_listviewa_item_picture"
+                    android:id="@+id/orderfragment_listviewa_item_picturess"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
