@@ -12,10 +12,9 @@
         android:orientation="horizontal" >
 
         <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#A9A9A9" >
+             android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:background="#a9a9a9" >
 
             <ImageView
                 android:id="@+id/withdraw_back"

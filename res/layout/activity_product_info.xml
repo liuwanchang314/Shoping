@@ -14,7 +14,7 @@
         <RelativeLayout
             android:layout_width="40dp"
             android:layout_height="60dp"
-            android:background="#E4E4E4" >
+            android:background="#a9a9a9" >
 
             <Button
                 android:id="@+id/producinfo_back"
@@ -36,7 +36,7 @@
             android:layout_width="40dp"
             android:layout_height="60dp"
             android:layout_alignParentRight="true"
-            android:background="#E4E4E4" >
+            >
 
             <Button
                 android:id="@+id/producinfo_home"

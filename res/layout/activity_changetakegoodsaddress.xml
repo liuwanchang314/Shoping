@@ -11,10 +11,9 @@
         android:orientation="horizontal"
         >
         <RelativeLayout 
-            android:layout_weight="1"
-            android:layout_width="0dp"
+           android:layout_width="40dp"
+            android:layout_height="60dp"
             android:background="#a9a9a9"
-            android:layout_height="match_parent"
             >
 
             <ImageView
@@ -61,8 +60,8 @@
     </LinearLayout>
     <View 
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#a9a9a9"
+        android:layout_height="10dp"
+        android:background="#e4e4e4"
         />
     
     <ScrollView 

@@ -23,7 +23,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.Application.SysApplication;
-import com.activity.R.string;
 import com.alljf.jf.R;
 import com.bean.OrderBean;
 import com.example.sportsdialogdemo.dialog.SpotsDialog;

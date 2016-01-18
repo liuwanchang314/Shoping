@@ -10,16 +10,15 @@
         android:orientation="horizontal"
         >
         <RelativeLayout 
-            android:layout_weight="1"
-            android:layout_width="0dp"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
             android:background="#a9a9a9"
-            android:layout_height="match_parent"
             >
 
             <ImageView
                 android:id="@+id/newtakeoveraddress_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/back" />

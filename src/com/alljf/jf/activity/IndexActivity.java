@@ -46,7 +46,7 @@ import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.other.index_product_item;
 import com.utils.StringManager;
 
-public class IndexActivity extends Activity implements OnPageChangeListener ,RefreshableView.RefreshListener{
+public class IndexActivity extends Activity implements OnPageChangeListener ,RefreshableView.RefreshListener,OnClickListener{
 	private static final String[] strs = new String[] { "first", "second",
 			"third", "fourth", "fifth" };
 	private String[] mPicsUrl;
@@ -68,7 +68,6 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 	private InputMethodManager inputManager;
 	private EditText edittext;
 	
-	private RadioGroup mRadiogroup;
 	private LinearLayout indeLayout;
 	/**
 	 * 可下拉刷新的scrollview
@@ -78,6 +77,10 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 	 * 进度条
 	 */
 	private SpotsDialog mdialog;
+	/**
+	 * 按钮
+	 */
+	private Button button1,button2,button3,button4;
 	Handler handlerR = new Handler() {//刷新界面的线程
 		public void handleMessage(Message message) {
 			super.handleMessage(message);
@@ -95,9 +98,15 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 		mdialog.show();
 		mRefreshableView = (RefreshableView) findViewById(R.id.refresh_root);
 		mRefreshableView.setRefreshListener(this);
-		initradiogroup();
 		edittext=(EditText)mRefreshableView.findViewById(R.id.fanslist_txt_search);
-		
+		button1=(Button) mRefreshableView.findViewById(R.id.index_tab_rb_1);
+		button1.setOnClickListener(this);
+		button2=(Button) mRefreshableView.findViewById(R.id.index_tab_rb_2);
+		button2.setOnClickListener(this);
+		button3=(Button) mRefreshableView.findViewById(R.id.index_tab_rb_3);
+		button3.setOnClickListener(this);
+		button4=(Button) mRefreshableView.findViewById(R.id.index_tab_rb_4);
+		button4.setOnClickListener(this);
 		initinputmanager(edittext);
 		mLisView =  (LinearLayout)mRefreshableView.findViewById(R.id.index_product_list);
 		//获取头部布局
@@ -219,46 +228,6 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 		
 
 	}
-	
-	
-
-	private void initradiogroup() {
-		// TODO Auto-generated method stub
-		mRadiogroup=(RadioGroup) mRefreshableView.findViewById(R.id.index_tab_rg_menu);
-		mRadiogroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			
-			@Override
-			public void onCheckedChanged(RadioGroup group, int checkedId) {
-				// TODO Auto-generated method stub
-				switch (checkedId) {
-				case R.id.index_tab_rb_1://全部商品
-					Toast.makeText(IndexActivity.this,"全部商品",Toast.LENGTH_SHORT).show();
-					startActivity(new Intent(IndexActivity.this,AllProductActivity.class));
-					break;
-				case R.id.index_tab_rb_2://产品分类
-					Toast.makeText(IndexActivity.this,"产品分类",Toast.LENGTH_SHORT).show();
-					startActivity(new Intent(IndexActivity.this,ProductClassNumberActivity.class));
-					break;
-				case R.id.index_tab_rb_3://公司公告
-					Toast.makeText(IndexActivity.this,"公司公告",Toast.LENGTH_SHORT).show();
-					Intent intent=new Intent(IndexActivity.this,CompanyNoticeActivity.class);
-					startActivity(intent);
-					break;
-				case R.id.index_tab_rb_4://下架公告
-					
-					Toast.makeText(IndexActivity.this,"下架公告",Toast.LENGTH_SHORT).show();
-					startActivity(new Intent(IndexActivity.this,SoldOutActivity.class));
-					break;
-				default:
-					break;
-				}
-			}
-		});
-	}
-
-
-
-
 	private void init() {
 
 		indeLayout=(LinearLayout) findViewById(R.id.index_lt_search);
@@ -446,5 +415,38 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 			}
 		return true;
 	
+	}
+
+
+
+	/* (non-Javadoc)
+	 * @see android.view.View.OnClickListener#onClick(android.view.View)
+	 */
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.index_tab_rb_1://全部商品
+			Toast.makeText(IndexActivity.this,"全部商品",Toast.LENGTH_SHORT).show();
+			startActivity(new Intent(IndexActivity.this,AllProductActivity.class));
+			break;
+		case R.id.index_tab_rb_2://产品分类
+			Toast.makeText(IndexActivity.this,"产品分类",Toast.LENGTH_SHORT).show();
+			startActivity(new Intent(IndexActivity.this,ProductClassNumberActivity.class));
+			break;
+		case R.id.index_tab_rb_3://公司公告
+			Toast.makeText(IndexActivity.this,"公司公告",Toast.LENGTH_SHORT).show();
+			Intent intent=new Intent(IndexActivity.this,CompanyNoticeActivity.class);
+			startActivity(intent);
+			break;
+		case R.id.index_tab_rb_4://下架公告
+			
+			Toast.makeText(IndexActivity.this,"下架公告",Toast.LENGTH_SHORT).show();
+			startActivity(new Intent(IndexActivity.this,SoldOutActivity.class));
+			break;
+
+		default:
+			break;
+		}
 	}
 }
