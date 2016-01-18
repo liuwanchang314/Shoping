@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.alljf.jf.CommonConstants;
+import com.tencent.mm.sdk.constants.ConstantsAPI;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.mm.sdk.openapi.IWXAPI;
@@ -49,12 +50,12 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
 	public void onResp(BaseResp resp) {
 		Log.d(TAG, "onPayFinish, errCode = " + resp.errCode);
 
-//		if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
+		if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setTitle("title");
 			builder.setMessage(String.valueOf(resp.errCode));
 			builder.show();
-//		}
+		}
 	}
 
 //	@Override

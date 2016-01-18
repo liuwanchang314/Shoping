@@ -11,9 +11,10 @@ import org.json.JSONObject;
 import com.Extension.DataService;
 import com.alljf.jf.CommonConstants;
 import com.alljf.jf.R;
-
+import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.utils.StringManager;
 
 import android.app.Activity;
 import android.content.Context;
@@ -29,6 +30,7 @@ public class WX_Pay {
 	private IWXAPI api;
 	DataService client;
 	JSONObject jsonObject;
+	private Context context;
 	private Handler handler = new Handler(){
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.arg1) {
@@ -36,6 +38,26 @@ public class WX_Pay {
 				Log.e("wx===", "===="+msg.obj.toString());
 				try {
 					jsonObject = new JSONObject(msg.obj.toString());
+					String date = jsonObject.getString("data");
+					Toast.makeText(context, date, Toast.LENGTH_SHORT).show();
+					Map<String, String> map = StringManager.getListMapByJson(date).get(0);
+					
+					PayReq req = new PayReq();
+					//req.appId = "wxf8b4f85f3a794e77";  // 测试用appId
+					req.appId			= CommonConstants.WXAPP_ID;
+					req.partnerId		= map.get("mch_id");
+					req.prepayId		= map.get("prepay_id");
+					req.nonceStr		= map.get("nonce_str");
+					req.timeStamp		= System.currentTimeMillis()+"";
+					req.packageValue	= "Sign=WXPay";
+					req.sign			= map.get("sign");
+					
+					req.extData			= "app data"; // optional
+//					
+					
+					// 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信
+					api.sendReq(req);
+					
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -50,6 +72,7 @@ public class WX_Pay {
 	};
 	
 	public WX_Pay(Context context){
+		this.context = context;
 		api = WXAPIFactory.createWXAPI(context, CommonConstants.WXAPP_ID);
 	}
 		
