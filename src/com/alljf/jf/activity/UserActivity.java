@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -17,8 +18,7 @@ import android.widget.Toast;
 import com.Application.SysApplication;
 import com.alljf.jf.R;
 
-public class UserActivity extends Activity implements OnClickListener,
-		OnCheckedChangeListener {
+public class UserActivity extends Activity implements OnClickListener {
 
 	private RelativeLayout mFinancelayout;// 财务明细
 	private RelativeLayout mRecharge;// 充值
@@ -29,7 +29,7 @@ public class UserActivity extends Activity implements OnClickListener,
 	private RelativeLayout mEnd;// 退出当前账号
 	private RelativeLayout mComplaint;// 我的投诉
 	private RelativeLayout mTixian;// 提现
-	private RadioGroup mRadiogroup;// 菜单项
+	private Button button1,button2,button3,button4,button5;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,48 +56,22 @@ public class UserActivity extends Activity implements OnClickListener,
 		mOrder.setOnClickListener(this);
 		mErweima = (ImageView) findViewById(R.id.user_erweima);
 		mErweima.setOnClickListener(this);
-		mRadiogroup = (RadioGroup) findViewById(R.id.user_tab_rg_menu);
-		mRadiogroup.setOnCheckedChangeListener(this);
 		mEnd = (RelativeLayout) findViewById(R.id.horder_lt_list6);
 		mEnd.setOnClickListener(this);
 		mComplaint = (RelativeLayout) findViewById(R.id.horder_lt_list3);
 		mComplaint.setOnClickListener(this);
 		mTixian = (RelativeLayout) findViewById(R.id.horder_lt_list_tixian);
 		mTixian.setOnClickListener(this);
-	}
-
-	@Override
-	public void onCheckedChanged(RadioGroup group, int checkedId) {
-		// TODO Auto-generated method stub
-		switch (checkedId) {
-		case R.id.user_tab_rb_1:// 带付款
-			Intent intent = new Intent(UserActivity.this, ZJorderActivity.class);
-			startActivity(intent);
-			break;
-		case R.id.user_tab_rb_2:// 待发货
-			Intent intent1 = new Intent(UserActivity.this,
-					ZJorderActivity.class);
-			startActivity(intent1);
-			break;
-		case R.id.user_tab_rb_3:// 待收货
-			Intent intent2 = new Intent(UserActivity.this,
-					ZJorderActivity.class);
-			startActivity(intent2);
-			break;
-		case R.id.user_tab_rb_4:// 待评价
-			Intent intent3 = new Intent(UserActivity.this,
-					ZJorderActivity.class);
-			startActivity(intent3);
-			break;
-		case R.id.user_tab_rb_5:// 退款售后
-			Intent intent4 = new Intent(UserActivity.this,
-					TuiKuanYuSHActivity.class);
-			startActivity(intent4);
-			break;
-
-		default:
-			break;
-		}
+		button1=(Button) findViewById(R.id.user_tab_rb_1);
+		button1.setOnClickListener(this);
+		button2=(Button) findViewById(R.id.user_tab_rb_2);
+		button2.setOnClickListener(this);
+		button3=(Button) findViewById(R.id.user_tab_rb_3);
+		button3.setOnClickListener(this);
+		button4=(Button) findViewById(R.id.user_tab_rb_4);
+		button4.setOnClickListener(this);
+		button5=(Button) findViewById(R.id.user_tab_rb_5);
+		button5.setOnClickListener(this);
 	}
 
 	@Override
@@ -153,6 +127,30 @@ public class UserActivity extends Activity implements OnClickListener,
 			// Toast.makeText(UserActivity.this,"提现",
 			// Toast.LENGTH_SHORT).show();
 			startActivity(new Intent(UserActivity.this, WithDrawAcivity.class));
+			break;
+		case R.id.user_tab_rb_1:// 带付款
+			Intent intent = new Intent(UserActivity.this, ZJorderActivity.class);
+			startActivity(intent);
+			break;
+		case R.id.user_tab_rb_2:// 待发货
+			Intent intent1 = new Intent(UserActivity.this,
+					ZJorderActivity.class);
+			startActivity(intent1);
+			break;
+		case R.id.user_tab_rb_3:// 待收货
+			Intent intent2 = new Intent(UserActivity.this,
+					ZJorderActivity.class);
+			startActivity(intent2);
+			break;
+		case R.id.user_tab_rb_4:// 待评价
+			Intent intent3 = new Intent(UserActivity.this,
+					ZJorderActivity.class);
+			startActivity(intent3);
+			break;
+		case R.id.user_tab_rb_5:// 退款售后
+			Intent intent4 = new Intent(UserActivity.this,
+					TuiKuanYuSHActivity.class);
+			startActivity(intent4);
 			break;
 		default:
 			break;

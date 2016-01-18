@@ -119,7 +119,6 @@ public class LoginActivity extends Activity {
 					}
 				
 			}
-			
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
