@@ -48,78 +48,75 @@
             android:src="@drawable/two_code" />
     </RelativeLayout>
 
-    <RadioGroup
+    <LinearLayout
         android:id="@+id/user_tab_rg_menu"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_below="@+id/user_rt_top"
         android:background="#FFFFFF"
         android:gravity="center"
         android:orientation="horizontal" >
 
-        <RadioButton
+        <Button
             android:id="@+id/user_tab_rb_1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
             android:layout_weight="1"
-            android:background="@color/transparent"
-            android:button="@null"
+            android:background="@drawable/button_style2"
             android:checked="true"
             android:gravity="center"
             android:text="代付款"
             android:textColor="#878787"
             android:textSize="14dp" />
 
-        <RadioButton
+        <Button
             android:id="@+id/user_tab_rb_2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/transparent"
             android:button="@null"
+            android:background="@drawable/button_style2"
             android:gravity="center"
             android:text="代发货 "
             android:textColor="#878787"
             android:textSize="14dp" />
 
-        <RadioButton
+        <Button
             android:id="@+id/user_tab_rb_3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/transparent"
+            android:background="@drawable/button_style2"
             android:button="@null"
             android:gravity="center"
             android:text="待收货 "
             android:textColor="#878787"
             android:textSize="14dp" />
 
-        <RadioButton
+        <Button
             android:id="@+id/user_tab_rb_4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/transparent"
             android:button="@null"
+            android:background="@drawable/button_style2"
             android:gravity="center"
             android:text="待评价"
             android:textColor="#878787"
             android:textSize="14dp" />
 
-        <RadioButton
+        <Button
             android:id="@+id/user_tab_rb_5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/transparent"
             android:button="@null"
+            android:background="@drawable/button_style2"
             android:gravity="center"
             android:text="退款/售后"
             android:textColor="#878787"
             android:textSize="14dp" />
-    </RadioGroup>
+    </LinearLayout>
 
     <View
         android:layout_width="fill_parent"
@@ -147,7 +144,8 @@
                 android:id="@+id/horder_lt_list"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
-                android:background="#ffffff" >
+                 android:background="@drawable/button_style2" 
+                 >
 
                 <ImageView
                     android:id="@+id/user_img_list"
@@ -204,7 +202,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="0.1dp"
-                android:background="#ffffff" >
+                 android:background="@drawable/button_style2" 
+                >
 
                 <ImageView
                     android:id="@+id/user_img_list1"
@@ -250,14 +249,16 @@
                 android:layout_height="0.1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#DEDEDE" />
+                android:background="#DEDEDE" 
+                />
 
             <RelativeLayout
                 android:id="@+id/horder_lt_list2"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="0.1dp"
-                android:background="#ffffff" >
+                 android:background="@drawable/button_style2" 
+                >
 
                 <ImageView
                     android:id="@+id/user_img_list2"
@@ -310,7 +311,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="0.1dp"
-                android:background="#ffffff" >
+                 android:background="@drawable/button_style2" 
+                >
 
                 <ImageView
                     android:id="@+id/user_img_list3"
@@ -368,7 +370,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="0.1dp"
-                android:background="#ffffff" >
+                 android:background="@drawable/button_style2" 
+                 >
 
                 <ImageView
                     android:id="@+id/user_img_list4"
@@ -423,7 +426,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="0.1dp"
-                android:background="#ffffff" >
+                android:background="@drawable/button_style2" 
+                >
 
                 <ImageView
                     android:id="@+id/user_img_list5"
@@ -474,7 +478,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="0.1dp"
-                android:background="#ffffff" >
+                 android:background="@drawable/button_style2" 
+                >
 
                 <ImageView
                     android:id="@+id/user_img_listtixian"
@@ -517,7 +522,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="0.1dp"
-                android:background="#ffffff" >
+                 android:background="@drawable/button_style2" 
+                >
 
                 <ImageView
                     android:id="@+id/user_img_list6"
