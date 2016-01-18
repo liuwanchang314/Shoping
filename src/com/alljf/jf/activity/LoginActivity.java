@@ -235,7 +235,7 @@ public class LoginActivity extends Activity {
 				}
 				Intent intent = new Intent(getApplicationContext(),
 						RetrieveActivity.class);
-				intent.putExtra("name", txttwo.getText().toString());
+				intent.putExtra("name", txtone.getText().toString());
 				startActivity(intent);
 				break;
 			default:

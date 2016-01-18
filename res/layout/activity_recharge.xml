@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A9A9A9"
+    android:background="#e4e4e4"
     android:orientation="vertical" >
     
     <LinearLayout 
@@ -13,10 +13,9 @@
         android:orientation="horizontal"
         >
         <RelativeLayout 
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:background="#A9A9A9"
-            android:layout_height="match_parent"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:background="#a9a9a9"
             >
 
             <ImageView

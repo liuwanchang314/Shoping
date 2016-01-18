@@ -79,7 +79,7 @@
 
         </RelativeLayout>
        
-        <RadioGroup
+        <LinearLayout
             android:id="@+id/index_tab_rg_menu"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
@@ -89,17 +89,17 @@
             android:gravity="center"
             android:orientation="horizontal" >
 
-            <RadioButton
+            <Button
                 android:id="@+id/index_tab_rb_1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/transparent"
                 android:button="@null"
                 android:checked="true"
                 android:gravity="center"
                 android:text="全部产品"
                 android:textColor="#444444"
+                android:background="@drawable/button_style2"
                 android:textSize="16dp" />
 
             <View
@@ -107,13 +107,13 @@
                 android:layout_height="fill_parent"
                 android:background="#DEDEDE" />
 
-            <RadioButton
+            <Button
                 android:id="@+id/index_tab_rb_2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/transparent"
                 android:button="@null"
+                android:background="@drawable/button_style2"
                 android:gravity="center"
                 android:text="产品分类 "
                 android:textColor="#444444"
@@ -124,12 +124,12 @@
                 android:layout_height="fill_parent"
                 android:background="#DEDEDE" />
 
-            <RadioButton
+            <Button
                 android:id="@+id/index_tab_rb_3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/transparent"
+                android:background="@drawable/button_style2"
                 android:button="@null"
                 android:gravity="center"
                 android:text="公司公告 "
@@ -141,18 +141,18 @@
                 android:layout_height="fill_parent"
                 android:background="#DEDEDE" />
 
-            <RadioButton
+            <Button
                 android:id="@+id/index_tab_rb_4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/transparent"
                 android:button="@null"
+                android:background="@drawable/button_style2"
                 android:gravity="center"
                 android:text="下架公告"
                 android:textColor="#444444"
                 android:textSize="16dp" />
-        </RadioGroup>
+        </LinearLayout>
 
        
 
