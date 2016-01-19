@@ -66,6 +66,10 @@ public class LoginActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		getUserMapFromSP();
+		if(SysApplication.getInstance().getIsLogin()){
+			setResult(RESULT_OK);
+			finish();
+		}
 	}
 	
 	private void getUserMapFromSP(){
@@ -76,6 +80,7 @@ public class LoginActivity extends Activity {
 		pwd = share.getString("log_pwd", "");
 		userMap.put("pwd", pwd);
 	}
+	
 	
 	
 	@Override
@@ -396,4 +401,6 @@ SendAuth.Req req = new SendAuth.Req();
 		txttwo.setText("");
 		txtone.setText("");
 	}
+	
+	
 }

@@ -113,15 +113,20 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler{
 					JSONObject jsonObject = new JSONObject(msg.obj.toString());
 					if(jsonObject.has("status")){
 						String status = jsonObject.getString("status");
-						tv.setText(status);
+						tv.setText(status+"charujieguo"+msg.obj.toString());
 						if(status.equals("1")){
 							UserInfo model = UserInfo.getInstance();
-							model.setName(jsonObject.getString("username"));
+							String data = jsonObject.getString("data");
+							JSONObject jsonObject1 = new JSONObject(data);
+							tv.setText(status+"----"+jsonObject1.getString("user_name"));
+							model.setName(jsonObject1.getString("user_name"));
 							SysApplication.getInstance().addUserInfo(model);
+							Toast.makeText(WXEntryActivity.this, "denglu chenggong",
+									Toast.LENGTH_LONG).show();
 							finish();
 						}else{
-							getWXUserUrl = getWXUserUrl+access_token+"&openid="+openid;
-							getHttpThread(getWXUserUrl, 2, handler).start();
+//							getWXUserUrl = getWXUserUrl+access_token+"&openid="+openid;
+//							getHttpThread(getWXUserUrl, 2, handler).start();
 						}
 					}else{
 						tv.setText("status is null"+msg.obj.toString());
@@ -136,28 +141,30 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler{
 			case 1:
 				List<Map<String, String>> list = StringManager.getListMapByJson(msg.obj.toString());
 				Map<String, String> map = list.get(0);
+				tv.setText("1111111");
 				access_token = map.get("access_token");
 				openid = map.get("openid");
 				HashMap<String, String> paramsmap = new HashMap<String, String>();
 				paramsmap.put("type", "user");
-				paramsmap.put("part", "check_wechat");
-				paramsmap.put("wx_openid", openid);
+				paramsmap.put("part", "wxlogin");
+				paramsmap.put("wxopen_id", openid);
 				DataService client1 = new DataService(handler, 0, paramsmap);
 				client1.start();
+				tv.setText("1111111------");
 //				tv.setText(access_token);
 				break;
-			case 2:
-				List<Map<String, String>> listmap = StringManager.getListMapByJson(msg.obj.toString());
-				Map<String, String> userinfomap = listmap.get(0);
-				HashMap<String, String> paramsmap1 = new HashMap<String, String>();
-				paramsmap1.put("type", "user");
-				paramsmap1.put("part", "insert_wechat");
-				
-				paramsmap1.put("username", userinfomap.get("nickname"));
-				paramsmap1.put("wx_openid", userinfomap.get("openid"));
-				client = new DataService(handler, 3, paramsmap1);
-				client.start();
-				break;
+//			case 2:
+//				List<Map<String, String>> listmap = StringManager.getListMapByJson(msg.obj.toString());
+//				Map<String, String> userinfomap = listmap.get(0);
+//				HashMap<String, String> paramsmap1 = new HashMap<String, String>();
+//				paramsmap1.put("type", "user");
+//				paramsmap1.put("part", "insert_wechat");
+//				
+//				paramsmap1.put("username", userinfomap.get("nickname"));
+//				paramsmap1.put("wx_openid", userinfomap.get("openid"));
+//				client = new DataService(handler, 3, paramsmap1);
+//				client.start();
+//				break;
 			case 3:
 //				tv.setText("baocun  chenggong");
 				break;
