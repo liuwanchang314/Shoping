@@ -223,6 +223,7 @@ public class LoginActivity extends Activity {
 				Intent intent1 = new Intent(getApplicationContext(),
 						RegnActivity.class);
 				startActivity(intent1);
+				LoginActivity.this.finish();
 				break;
 			case R.id.login_code_two:
 				isPassWord();

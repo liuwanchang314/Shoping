@@ -74,7 +74,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/regn_tv_one"
                 android:hint="输入手机号码"
-                android:singleLine="false" />
+                 />
         </RelativeLayout>
 
         <View
@@ -188,7 +188,7 @@
         <RelativeLayout
             android:id="@+id/ret_rt_four"
             android:layout_width="fill_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:layout_marginTop="5dp" >
 
             <TextView
@@ -204,14 +204,13 @@
             <Spinner
                 android:id="@+id/regn_ques_sp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/ret_tv_four"
                 android:hint="输入手机号码"
-              
                 android:singleLine="true" />
         </RelativeLayout>
 

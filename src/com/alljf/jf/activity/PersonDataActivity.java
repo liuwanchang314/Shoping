@@ -143,7 +143,9 @@ public class PersonDataActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.persondata_anquanxinxi://安全
 			Toast.makeText(PersonDataActivity.this,"安全",Toast.LENGTH_SHORT).show();
-			startActivity(new Intent(PersonDataActivity.this, ChangeSafetyActivity.class));
+			Intent intent=new Intent(PersonDataActivity.this, ChangeSafetyActivity.class);
+			intent.putExtra("username", getUserName());
+			startActivity(intent);
 			break;
 		case R.id.persondata_zhifumima://密码
 			Toast.makeText(PersonDataActivity.this,"密码",Toast.LENGTH_SHORT).show();

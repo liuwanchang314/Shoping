@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import com.Extension.DataService;
 import com.alljf.jf.R;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.utils.StringManager;
 
 /**
@@ -54,6 +55,7 @@ public class RegnActivity extends Activity implements OnClickListener{
 	private int i;//计时
 	
 	private Button mback;
+	private SpotsDialog dialog;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -140,11 +142,13 @@ public class RegnActivity extends Activity implements OnClickListener{
 					break;
 				case 2:
 					try {
+						dialog.dismiss();
 						jsonObject = new JSONObject(msg.obj.toString());
 						Log.i("注册完成后的数据是",msg.obj.toString());
 						data = jsonObject.getString("reg_status");
 						if(data.equals("1")){
 							Toast.makeText(RegnActivity.this, "成功！", 0).show();
+							RegnActivity.this.finish();
 						}else if(data.equals("0")){
 							Toast.makeText(RegnActivity.this, "注册失败，请重试", 0).show();
 						}else if(data.equals("2")){
@@ -167,6 +171,8 @@ public class RegnActivity extends Activity implements OnClickListener{
 	}
 	
 	private void initView(){
+		SpotsDialog.TAG=R.style.SpotsDialogDefault_tijiao;
+		dialog=new SpotsDialog(this);
 		regn_btn_back = (Button) findViewById(R.id.regn_btn_back);
 		regn_btn_show = (Button) findViewById(R.id.regn_show_btn);
 		regn_btn_getcode = (Button) findViewById(R.id.regn_getcode_btn);
@@ -183,7 +189,6 @@ public class RegnActivity extends Activity implements OnClickListener{
 		regn_btn_show.setOnClickListener(this);
 		regn_btn_getcode.setOnClickListener(this);
 		regn_btn_commit.setOnClickListener(this);
-//		regn_spSpinner.
 	}
 
 	@Override
@@ -257,7 +262,7 @@ public class RegnActivity extends Activity implements OnClickListener{
 			client.start();
 			break;
 		case R.id.regn_btn_submit:
-			
+			dialog.show();
 			listmap.put("type", "user");
 			listmap.put("part", "reg");
 			listmap.put("mobilphone", phnum);
