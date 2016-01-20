@@ -224,6 +224,7 @@
                 android:layout_alignBottom="@+id/orderfragment_listviewa_item_shuliangs"
                 android:layout_marginLeft="3dp"
                 android:textSize="12sp"
+                android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/orderfragment_listviewa_item_shuliangs"
                 android:text="件商品" />
 			<!-- item当中的图片下面的合计价格-->

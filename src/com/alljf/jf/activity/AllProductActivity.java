@@ -68,6 +68,7 @@ public class AllProductActivity extends Activity {
 	private boolean xiaoliangIS=false;//销量是否切换
 	private ProgressBar mbar;
 	private ImageView mBack,mHome;
+	private TextView zonghepaixu;
 	/**
 	 * 进度条
 	 */
@@ -89,7 +90,8 @@ public class AllProductActivity extends Activity {
 			String data=intent.getStringExtra("data");
 			if(data==null){
 				//说明无数据,则直接从网络获取
-				GetData();
+				String time="time";
+				GetData(time);
 			}else{
 				Log.i("传递过来的的参数是",data);
 	        	list=AllProductDataJson.GetProductData(data);
@@ -209,6 +211,7 @@ public class AllProductActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				GetData("price");
 				jiageIS=!jiageIS;
 				if(jiageIS){
 					Drawable drawable=getResources().getDrawable(R.drawable.jiantouup);
@@ -232,6 +235,7 @@ public class AllProductActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				xiaoliangIS=!xiaoliangIS;
+				GetData("hit");
 				if(xiaoliangIS){
 					Drawable drawable=getResources().getDrawable(R.drawable.jiantouup);
 					drawable.setBounds(0,0,20,20);
@@ -241,6 +245,15 @@ public class AllProductActivity extends Activity {
 					drawable.setBounds(0,0,20,20);
 					xiaoliang.setCompoundDrawables(null,null,drawable, null);
 				}
+			}
+		});
+		zonghepaixu=(TextView) findViewById(R.id.allprodyct_zonghepaixu);
+		zonghepaixu.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				GetData("time");
 			}
 		});
 		mTubiaoqiehuan=(ImageView) findViewById(R.id.allproduct_gridview_or_listview);
@@ -262,7 +275,7 @@ public class AllProductActivity extends Activity {
 //						mTubiaoqiehuan.setVisibility(View.VISIBLE);
 //						listimage.setVisibility(View.GONE);
 					}
-					GetData();
+					GetData("time");
 			}
 		});
 //		listimage.setOnClickListener(new OnClickListener() {
@@ -287,7 +300,7 @@ public class AllProductActivity extends Activity {
 		mGridview.setOnRefreshListener(new OnRefreshListener() {
 			public void onRefresh() {
 				// Do work to refresh the list here.
-				GetData();
+				GetData("time");
 			}
 
 			public void onLoading() {
@@ -299,7 +312,7 @@ public class AllProductActivity extends Activity {
 			public void onRefresh() {
 				// Do work to refresh the list here.
 				//刷新时回调
-				GetData();
+				GetData("time");
 			}
 
 			public void onLoading() {
@@ -311,7 +324,7 @@ public class AllProductActivity extends Activity {
 	}
 	
 	
-	public void GetData() {
+	public void GetData(String time) {
 		// TODO Auto-generated method stub
 		RequestParams params = new RequestParams();
 		// 只包含字符串参数时默认使用BodyParamsEntity，
@@ -321,7 +334,7 @@ public class AllProductActivity extends Activity {
 		params.addBodyParameter("part", "get_goods_nokey");
 		params.addBodyParameter("search_goodsname","");
 		params.addBodyParameter("goods_class", "");
-		params.addBodyParameter("order", "time");
+		params.addBodyParameter("order", time);
 		params.addBodyParameter("limit", "");
 		params.addBodyParameter("limit_start", "1");
 		HttpUtils http = new HttpUtils();

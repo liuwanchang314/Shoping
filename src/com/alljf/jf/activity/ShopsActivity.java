@@ -82,12 +82,17 @@ public class ShopsActivity extends Activity implements OnClickListener{
 				case 0:
 					Log.i("现在地图数据是多少",(String) msg.obj);
 					String str=(String) msg.obj;
-					String[] key_vealue=str.split(",");
-					String key=key_vealue[0];
-					String value=key_vealue[1];
-					float weidu=Float.parseFloat(key);
-					float jingdu=Float.parseFloat(value);
-					changeMap(weidu,jingdu);
+					if(str.contains(",")){
+						String[] key_vealue=str.split(",");
+						String key=key_vealue[0];
+						String value=key_vealue[1];
+						double weidu=Double.parseDouble(key);
+						double jingdu=Double.parseDouble(value);
+						changeMap(weidu,jingdu);
+					}else{
+						changeMap(31.973215,121.112759);
+					}
+					
 					break;
 
 				default:
@@ -105,7 +110,7 @@ public class ShopsActivity extends Activity implements OnClickListener{
 	 * @param weidu 
 	 * @2016-1-14下午1:24:42
 	 */
-	private void changeMap(float weidu, float jingdu) {
+	private void changeMap(double weidu, double jingdu) {
 		// TODO Auto-generated method stub
 		//定义Maker坐标点  
 				mBaidumap = mMapView.getMap();

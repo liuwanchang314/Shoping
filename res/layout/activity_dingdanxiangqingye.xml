@@ -101,9 +101,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="5dp"
                         android:layout_marginTop="5dp"
-                        android:text="TextView" />
+                        />
 
                     <TextView
                         android:id="@+id/ddxq_shuoming"
@@ -112,7 +111,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentRight="true"
                         android:layout_marginBottom="24dp"
-                        android:text="TextView" />
+                        />
 
                     <TextView
                         android:id="@+id/ddxq_time"
@@ -120,14 +119,24 @@
                         android:layout_height="wrap_content"
                         android:layout_alignLeft="@+id/ddxq_shuoming"
                         android:layout_alignParentBottom="true"
-                        android:text="TextView" />
+                         />
                 </RelativeLayout>
             </LinearLayout>
 
+            <View 
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#a9a9a9"
+                />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
                 android:background="#e4e4e4" />
+            <View 
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#a9a9a9"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -141,8 +150,8 @@
 
                     <ImageView
                         android:id="@+id/imageView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="25dp"
+                        android:layout_height="30dp"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:src="@drawable/address" />
@@ -169,7 +178,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignBottom="@+id/textView2"
                         android:layout_toRightOf="@+id/textView2"
-                        android:text="TextView" />
+                        />
 
                     <TextView
                         android:id="@+id/ddxq_shouhuorendianhua"
@@ -179,7 +188,7 @@
                         android:layout_alignBottom="@+id/ddxq_shouhuorenname"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="20dp"
-                        android:text="TextView" />
+                         />
 
                     <TextView
                         android:id="@+id/ddxq_shouhuodizhi"
@@ -187,14 +196,23 @@
                         android:layout_height="wrap_content"
                         android:layout_alignLeft="@+id/textView2"
                         android:layout_below="@+id/textView2"
-                        android:text="TextView" />
+                        />
                 </RelativeLayout>
             </LinearLayout>
-
+			<View 
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#a9a9a9"
+                />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
                 android:background="#e4e4e4" />
+            <View 
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#a9a9a9"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -208,10 +226,20 @@
                 </com.customview.Mylistview>
             </LinearLayout>
 
+            <View 
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#a9a9a9"
+                />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
                 android:background="#e4e4e4" />
+            <View 
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#a9a9a9"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -241,6 +269,11 @@
                         android:layout_toRightOf="@+id/textView4"
                         android:text="订单编号:" />
                 </RelativeLayout>
+                <View 
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#a9a9a9"
+                />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -266,7 +299,11 @@
                         android:layout_marginLeft="10dp"
                         android:text="创建时间:" />
                 </RelativeLayout>
-
+<View 
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#a9a9a9"
+                />
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
@@ -290,7 +327,11 @@
                         android:layout_marginLeft="10dp"
                         android:text="付款时间:" />
                 </RelativeLayout>
-
+<View 
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#a9a9a9"
+                />
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
@@ -315,7 +356,11 @@
                         android:layout_marginLeft="10dp"
                         android:text="发货时间:" />
                 </RelativeLayout>
-
+<View 
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#a9a9a9"
+                />
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
@@ -354,12 +399,20 @@
                         android:text="成交时间:" />
                 </RelativeLayout>
             </LinearLayout>
-
+<View 
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#a9a9a9"
+                />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
                 android:background="#e4e4e4" />
-
+<View 
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#a9a9a9"
+                />
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp" >
@@ -386,7 +439,11 @@
                     android:gravity="center"
                     android:text="评价" />
             </RelativeLayout>
-
+<View 
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#a9a9a9"
+                />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="15dp"

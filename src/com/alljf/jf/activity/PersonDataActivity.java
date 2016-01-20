@@ -89,7 +89,7 @@ public class PersonDataActivity extends Activity implements OnClickListener{
 		        	//请求成功
 		        	String str=responseInfo.result;
 		        	Log.i("网络请求下来的参数是",str);
-		        	PersonDataBean bean=PersonDataJsonprser.getbean(str);
+		        	final PersonDataBean bean=PersonDataJsonprser.getbean(str);
 		        	mPhone.setText(bean.getTel());
 		        	mEmail.setText(bean.getEmail());
 		        	String imageurl=bean.getHead_img();
@@ -99,6 +99,16 @@ public class PersonDataActivity extends Activity implements OnClickListener{
 		        		BitmapUtils bitmapUtils=new BitmapUtils(PersonDataActivity.this);
 		        		bitmapUtils.display(mHeadPic, imageurl);
 		        	}
+		        	mCard.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							// TODO Auto-generated method stub
+							Intent intent=new Intent(PersonDataActivity.this,TwoDimensionCodeActivity.class);
+							intent.putExtra("bean",bean);
+							startActivity(intent);
+						}
+					});
 		        }
 
 		        @Override
@@ -133,27 +143,19 @@ public class PersonDataActivity extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.persondata_back://返回
-			Toast.makeText(PersonDataActivity.this,"返回",Toast.LENGTH_SHORT).show();
 			PersonDataActivity.this.finish();
 			break;
 		case R.id.persondata_home://zhuye 
-			Toast.makeText(PersonDataActivity.this,"主页",Toast.LENGTH_SHORT).show();
 			PersonDataActivity.this.finish();
 			startActivity(new Intent(PersonDataActivity.this, MainActivity.class));
 			break;
 		case R.id.persondata_anquanxinxi://安全
-			Toast.makeText(PersonDataActivity.this,"安全",Toast.LENGTH_SHORT).show();
 			Intent intent=new Intent(PersonDataActivity.this, ChangeSafetyActivity.class);
 			intent.putExtra("username", getUserName());
 			startActivity(intent);
 			break;
 		case R.id.persondata_zhifumima://密码
-			Toast.makeText(PersonDataActivity.this,"密码",Toast.LENGTH_SHORT).show();
 			startActivity(new Intent(PersonDataActivity.this,PayPassWordFindBackActivity.class ));
-			break;
-		case R.id.persondata_mingpian://名片
-			Toast.makeText(PersonDataActivity.this,"名片",Toast.LENGTH_SHORT).show();
-			startActivity( new Intent(PersonDataActivity.this,TwoDimensionCodeActivity.class));
 			break;
 
 		default:

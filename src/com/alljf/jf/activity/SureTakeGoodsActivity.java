@@ -64,7 +64,7 @@ public class SureTakeGoodsActivity extends Activity {
 		Intent intent=getIntent();
 		final String orderid=intent.getStringExtra("order");
 		mDingdanhao.setText(orderid);
-		if(mPassword.getText().toString()==null){
+		if(mPassword.getText().toString().equals("")){
 			Toast.makeText(SureTakeGoodsActivity.this,"请输入支付密码",1).show();
 		}else{
 			mSure.setOnClickListener(new OnClickListener() {
