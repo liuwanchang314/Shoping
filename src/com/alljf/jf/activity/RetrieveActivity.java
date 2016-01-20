@@ -18,6 +18,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -28,6 +29,7 @@ import com.Model.RelInfo;
 import com.adapter.OrderAdatper;
 import com.alljf.jf.R;
 import com.bean.OrderBean;
+import com.example.sportsdialogdemo.dialog.SpotsDialog;
 import com.jsonParser.OrderJsonParser;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -50,6 +52,10 @@ public class RetrieveActivity extends Activity {
 	HashMap<String, String> list = new HashMap<String, String>();
 	private String name;
 	private Button back;
+	private TextView question;
+	private Button tijiao;
+	private EditText daan;
+	private SpotsDialog dialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,9 +64,11 @@ public class RetrieveActivity extends Activity {
 		SysApplication.getInstance().addActivity(this);
 		Intent intent = getIntent();
 		name = intent.getStringExtra("name");
+		SpotsDialog.TAG=R.style.SpotsDialogDefault;
+		dialog=new SpotsDialog(RetrieveActivity.this);
 		Log.i("用户民是",name);
-		spinner = (Spinner) findViewById(R.id.ret_txt_one);
 		back=(Button) findViewById(R.id.ret_btn_back);
+		question=(TextView) findViewById(R.id.zhaohuimima_wenti);
 		back.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -68,6 +76,8 @@ public class RetrieveActivity extends Activity {
 				finish();
 			}
 		});
+		tijiao=(Button) findViewById(R.id.ret_btn_submit);
+		daan=(EditText) findViewById(R.id.ret_txt_two);
 		getdate();
 	}
 	private void getdate() {
@@ -86,6 +96,7 @@ public class RetrieveActivity extends Activity {
 				        @Override
 				        public void onStart() {
 				        	//开始请求
+				        	dialog.show();
 				        }
 
 				        @Override
@@ -98,17 +109,46 @@ public class RetrieveActivity extends Activity {
 				        @Override
 				        public void onSuccess(ResponseInfo<String> responseInfo) {
 				        	//请求成功
+				        	dialog.dismiss();
 				        	String str=responseInfo.result;
 				        	Log.i("找回密码了没有", str);
 				        	try {
 								JSONObject obj=new JSONObject(str);
 								JSONObject objs=obj.getJSONObject("data");
-								String question=objs.getString("question");
+								final String answer=objs.getString("answer");
+								String questions=objs.getString("question");
+								if(questions.equals("1")){
+									question.setText("你的小学叫什么");
+								}else if(questions.equals("2")){
+									question.setText("你家乡的名称是什么");
+								}else if(questions.equals("3")){
+									question.setText("你最喜欢的格言是什么");
+								}else if(questions.equals("4")){
+									question.setText("你最喜欢的歌曲是什么");
+								}else if(questions.equals("5")){
+									question.setText("你最喜欢的偶像叫什么");
+								}else if(questions.equals("5")){
+									question.setText("你的母亲叫什么名字");
+								}
+								tijiao.setOnClickListener(new OnClickListener() {
+									
+									@Override
+									public void onClick(View v) {
+										// TODO Auto-generated method stub
+										if(daan.getText().toString().equals(answer)){
+											//说明匹配成功
+											Intent intent=new Intent(RetrieveActivity.this,ChangeSafetyActivity.class);
+											intent.putExtra("username",name);
+											startActivity(intent);
+											RetrieveActivity.this.finish();
+										}
+									}
+								});
+								
 							} catch (JSONException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-				        	
 				        }
 
 				        @Override

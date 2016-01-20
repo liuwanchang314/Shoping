@@ -66,16 +66,15 @@
                 android:text="密码安全"
                 android:textColor="#686868" />
 
-            <Spinner
-                android:id="@+id/ret_txt_one"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/zhaohuimima_wenti"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/ret_tv_one"
-                android:background="@null"
-                android:hint="输入手机号码"
-                android:singleLine="true" />
+                android:layout_alignBaseline="@+id/ret_tv_one"
+                android:layout_alignBottom="@+id/ret_tv_one"
+                android:layout_centerHorizontal="true"
+                android:text="TextView" />
+
         </RelativeLayout>
 
         <View
@@ -108,7 +107,6 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/ret_tv_two"
-                android:background="@null"
                 android:singleLine="true" />
         </RelativeLayout>
 

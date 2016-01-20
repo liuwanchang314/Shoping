@@ -44,6 +44,7 @@ public class ChangeSafetyActivity extends Activity {
 	private TextView mTG;//提交
 	private ActionBar actionbar;
 	private SpotsDialog mdialog;
+	private String username;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -51,14 +52,11 @@ public class ChangeSafetyActivity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_changesafety);
 		SysApplication.getInstance().addActivity(this);
+		Intent intent=getIntent();
+		username=intent.getStringExtra("username");
 		initview();
 		
 	}
-	
-	//获取用户用户名
-		private String getUserName() {
-			return SysApplication.getInstance().getUserInfo().getName();
-		}
 	/**
 	 * 修改密码需要三个参数
 	 * 
@@ -71,7 +69,7 @@ public class ChangeSafetyActivity extends Activity {
 		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
 		params.addBodyParameter("type", "user");
 		params.addBodyParameter("part", "update_password");
-		params.addBodyParameter("username", getUserName());
+		params.addBodyParameter("username",username);
 		params.addBodyParameter("password",mNewpw.getText().toString());
 		HttpUtils http = new HttpUtils();
 		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
