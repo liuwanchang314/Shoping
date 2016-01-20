@@ -48,7 +48,7 @@ public class WX_Pay {
 					req.partnerId		= map.get("mch_id");
 					req.prepayId		= map.get("prepay_id");
 					req.nonceStr		= map.get("nonce_str");
-					req.timeStamp		= System.currentTimeMillis()+"";
+					req.timeStamp		= map.get("end_time");
 					req.packageValue	= "Sign=WXPay";
 					req.sign			= map.get("sign");
 					

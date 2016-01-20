@@ -82,8 +82,6 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler{
 		case BaseResp.ErrCode.ERR_OK:
 			result = R.string.errcode_success;
 			if (resp.getType() == ConstantsAPI.COMMAND_SENDAUTH) {
-					Toast.makeText(this, "code = " + ((SendAuth.Resp)resp).code,
-							Toast.LENGTH_SHORT).show();
 					gettokenurl = gettokenurl+((SendAuth.Resp)resp).code+"&grant_type=authorization_code";
 					getHttpThread(gettokenurl, 1, handler).start();
 			
@@ -113,16 +111,12 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler{
 					JSONObject jsonObject = new JSONObject(msg.obj.toString());
 					if(jsonObject.has("status")){
 						String status = jsonObject.getString("status");
-						tv.setText(status+"charujieguo"+msg.obj.toString());
 						if(status.equals("1")){
 							UserInfo model = UserInfo.getInstance();
 							String data = jsonObject.getString("data");
 							JSONObject jsonObject1 = new JSONObject(data);
-							tv.setText(status+"----"+jsonObject1.getString("user_name"));
 							model.setName(jsonObject1.getString("user_name"));
 							SysApplication.getInstance().addUserInfo(model);
-							Toast.makeText(WXEntryActivity.this, "denglu chenggong",
-									Toast.LENGTH_LONG).show();
 							finish();
 						}else{
 //							getWXUserUrl = getWXUserUrl+access_token+"&openid="+openid;
@@ -141,7 +135,6 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler{
 			case 1:
 				List<Map<String, String>> list = StringManager.getListMapByJson(msg.obj.toString());
 				Map<String, String> map = list.get(0);
-				tv.setText("1111111");
 				access_token = map.get("access_token");
 				openid = map.get("openid");
 				HashMap<String, String> paramsmap = new HashMap<String, String>();
@@ -150,7 +143,6 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler{
 				paramsmap.put("wxopen_id", openid);
 				DataService client1 = new DataService(handler, 0, paramsmap);
 				client1.start();
-				tv.setText("1111111------");
 //				tv.setText(access_token);
 				break;
 //			case 2:
