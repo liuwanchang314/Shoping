@@ -7,7 +7,9 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +30,8 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.other.InternerIsConnection;
+import com.other.NetReceiver;
 import com.pay.ali.Ali_Pay;
 
 /**
@@ -37,8 +41,6 @@ import com.pay.ali.Ali_Pay;
  * 
  */  
 public class RechargeActivity extends Activity implements OnClickListener{
-	private ActionBar actionbar;
-	
 	private ImageView mback;//返回
 	private ImageView mhome;//主页
 	private EditText mJine;//输入的金额
@@ -51,6 +53,8 @@ public class RechargeActivity extends Activity implements OnClickListener{
 	private RelativeLayout mBgweixin;//微信需改变北京
 	private TextView mPay;//确认支付
 	private String TAG=new String();
+	private boolean isconnection;
+	private ConnectivityManager manager;//网络管理器对象
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -59,8 +63,36 @@ public class RechargeActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_recharge);
 		SysApplication.getInstance().addActivity(this);
 		initview();
-		getdatatixianedu();
+		isconnecions();
+		initmanager();
+		if(isconnection){
+			getdatatixianedu();
+		}else{
+			Toast.makeText(RechargeActivity.this,"请检查网络设置",1).show();
+		}
 		initdata();
+	}
+	/**
+	 * @author JZKJ-LWC
+	 * @date : 2015-12-27 下午9:49:45
+	 * 用于实时检测网络是否连接
+	 */  
+	private void isconnecions() {
+		// TODO Auto-generated method stub
+		NetReceiver mReceiver = new NetReceiver();
+	    IntentFilter mFilter = new IntentFilter();
+		 mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+		registerReceiver(mReceiver, mFilter);
+	}
+	/**
+	 * @author JZKJ-LWC
+	 * @date : 2015-12-27 下午9:11:36
+	 * 初始化网络管理对象
+	 */  
+	private void initmanager() {
+		// TODO Auto-generated method stub
+		manager =(ConnectivityManager) RechargeActivity.this.getSystemService(RechargeActivity.this.CONNECTIVITY_SERVICE);//获得网络连接的管理者对象
+		isconnection=InternerIsConnection.network(manager,RechargeActivity.this);
 	}
 	private void initdata() {
 		// TODO Auto-generated method stub
@@ -110,7 +142,7 @@ public class RechargeActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.rechrageactivity_imageview_weixin://威信
 			TAG="WX";
-			String strs=mJine.getText().toString();
+			String strs=mJine.getText().toString();	
 			mcurrentrechange.setText("￥"+strs);
 			mBgweixin.setBackgroundColor(Color.GRAY);
 			mBgzhifubao.setBackgroundColor(Color.WHITE);

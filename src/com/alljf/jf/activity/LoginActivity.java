@@ -8,8 +8,10 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -32,6 +34,8 @@ import com.Model.UserInfo;
 import com.alljf.jf.CommonConstants;
 import com.alljf.jf.R;
 import com.example.sportsdialogdemo.dialog.SpotsDialog;
+import com.other.InternerIsConnection;
+import com.other.NetReceiver;
 import com.tencent.mm.sdk.modelmsg.SendAuth;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
@@ -62,6 +66,8 @@ public class LoginActivity extends Activity {
 	 * 动态改变按钮数字的线程
 	 */
 	private Thread thread;
+	private boolean isconnection;
+	private ConnectivityManager manager;//网络管理器对象
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -81,7 +87,28 @@ public class LoginActivity extends Activity {
 		userMap.put("pwd", pwd);
 	}
 	
-	
+	/**
+	 * @author JZKJ-LWC
+	 * @date : 2015-12-27 下午9:49:45
+	 * 用于实时检测网络是否连接
+	 */  
+	private void isconnecions() {
+		// TODO Auto-generated method stub
+		NetReceiver mReceiver = new NetReceiver();
+	    IntentFilter mFilter = new IntentFilter();
+		 mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+		registerReceiver(mReceiver, mFilter);
+	}
+	/**
+	 * @author JZKJ-LWC
+	 * @date : 2015-12-27 下午9:11:36
+	 * 初始化网络管理对象
+	 */  
+	private void initmanager() {
+		// TODO Auto-generated method stub
+		manager =(ConnectivityManager) LoginActivity.this.getSystemService(LoginActivity.this.CONNECTIVITY_SERVICE);//获得网络连接的管理者对象
+		isconnection=InternerIsConnection.network(manager,LoginActivity.this);
+	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +119,8 @@ public class LoginActivity extends Activity {
 		api = WXAPIFactory.createWXAPI(this, CommonConstants.WXAPP_ID, true);
 		SpotsDialog.TAG=R.style.SpotsDialogDefault_denglu;
 		mdialog=new SpotsDialog(LoginActivity.this);
+		isconnecions();
+		initmanager();
 		tvone = (TextView) findViewById(R.id.login_tv_one);// 第一行标题
 		tvtwo = (TextView) findViewById(R.id.login_tv_two);// 第二行标题
 		codetwo = (TextView) findViewById(R.id.login_code_two);// 第二行验证码&显示

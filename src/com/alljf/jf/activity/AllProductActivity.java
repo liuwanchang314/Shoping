@@ -58,10 +58,10 @@ public class AllProductActivity extends Activity {
 	private List<AllProductBean> list=new ArrayList<AllProductBean>();
 	public static Boolean isGridView= true;
 	private ImageView listimage;
-	private ConnectivityManager manager;//网络管理器对象
 	//http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2013/0626/1392.html
 	private boolean Tag=true;//定义一个标记，默认用来控制显示方式
 	private boolean isconnection;
+	private ConnectivityManager manager;//网络管理器对象
 	private TextView jiage;//点击切换，重新获取
 	private TextView xiaoliang;//点击切换，重新获取
 	private boolean jiageIS=false;//价格是否切换

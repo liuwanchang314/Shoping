@@ -213,15 +213,21 @@
 
     <CheckBox
         android:id="@+id/login_check_pwd"
-        android:layout_width="80dp"
+        android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignBaseline="@+id/login_tv_getPwd"
         android:layout_alignBottom="@+id/login_tv_getPwd"
         android:layout_alignLeft="@+id/login_btn_submit"
         android:button="@drawable/bg_checkbox_icon_menu_4"
-        android:paddingLeft="5dp"
-        android:text="记住密码"
         android:textColor="#686868"
         android:textSize="12sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/login_check_pwd"
+        android:layout_alignBottom="@+id/login_check_pwd"
+        android:layout_toRightOf="@+id/login_check_pwd"
+        android:text="记住密码" />
 
 </RelativeLayout>

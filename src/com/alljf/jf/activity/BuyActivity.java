@@ -7,6 +7,8 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -31,6 +33,8 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.other.InternerIsConnection;
+import com.other.NetReceiver;
 
 public class BuyActivity extends Activity implements OnClickListener{
 
@@ -54,6 +58,11 @@ public class BuyActivity extends Activity implements OnClickListener{
 	 * 进度条
 	 */
 	private SpotsDialog mdialog;
+	/**
+	 * 网络管理对象
+	 */
+	private boolean isconnection;
+	private ConnectivityManager manager;//网络管理器对象
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -61,7 +70,14 @@ public class BuyActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_buy);
 		SysApplication.getInstance().addActivity(this);
 		initview();
-		getdata();
+		isconnecions();
+		initmanager();
+		if(isconnection){
+			getdata();
+		}else{
+			Toast.makeText(BuyActivity.this,"请检查网络设置", 1).show();
+		}
+		
 		
 		mChange.setOnClickListener(new OnClickListener() {
 			
@@ -90,6 +106,28 @@ public class BuyActivity extends Activity implements OnClickListener{
 			}
 		});
 		
+	}
+	/**
+	 * @author JZKJ-LWC
+	 * @date : 2015-12-27 下午9:49:45
+	 * 用于实时检测网络是否连接
+	 */  
+	private void isconnecions() {
+		// TODO Auto-generated method stub
+		NetReceiver mReceiver = new NetReceiver();
+	    IntentFilter mFilter = new IntentFilter();
+		 mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+		registerReceiver(mReceiver, mFilter);
+	}
+	/**
+	 * @author JZKJ-LWC
+	 * @date : 2015-12-27 下午9:11:36
+	 * 初始化网络管理对象
+	 */  
+	private void initmanager() {
+		// TODO Auto-generated method stub
+		manager =(ConnectivityManager) BuyActivity.this.getSystemService(BuyActivity.this.CONNECTIVITY_SERVICE);//获得网络连接的管理者对象
+		isconnection=InternerIsConnection.network(manager,BuyActivity.this);
 	}
 	//获取用户名
 	private String getUserName() {

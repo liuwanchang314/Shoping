@@ -259,7 +259,7 @@ public class BillActivity extends Activity {
 					
 					if(PZtag==1){
 						//说明现在需要保存普通发票
-						Log.i("现在内容有没有",content);
+//						Log.i("现在内容有没有",content);
 						String username=SysApplication.getInstance().getUserInfo().getName();
 						String leibie=PZtag+"";
 						String title=fapiaotaitou;

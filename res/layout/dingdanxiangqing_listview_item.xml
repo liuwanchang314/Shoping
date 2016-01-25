@@ -38,10 +38,11 @@
                   android:text="南通风向标纺织品有限公司" />
               <ImageView
                   android:id="@+id/imageView2"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
+                  android:layout_width="15dp"
+                  android:layout_height="20dp"
                   android:layout_alignParentRight="true"
-                  android:layout_alignTop="@+id/orderfragment_listviewa_item_fenleitubiao"
+                  
+                  android:layout_centerVertical="true"
                   android:src="@drawable/left" />
 
           </RelativeLayout>  
