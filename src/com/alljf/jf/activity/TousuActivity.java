@@ -75,6 +75,8 @@ public class TousuActivity extends Activity implements OnClickListener{
 	private TextView mGoodsNum;
 	private ImageView mXuanzezhaopian,mXuanzezhaopian2,mXuanzezhaopian3;
 	private Bitmap myBitmap=null;
+	private Bitmap myBitmap2=null;
+	private Bitmap myBitmap3=null;
 	private byte[] mContent;
 	private TextView mTousuzhuti;
 	private TextView mTousuTijiao;
@@ -457,8 +459,8 @@ public class TousuActivity extends Activity implements OnClickListener{
 //					myBitmap = getPicFromBytes(mContent, null);
 //					// //把得到的图片绑定在控件上显示
 //					mXuanzezhaopian.setImageBitmap(myBitmap);
-					myBitmap=decodeFile(file);
-					mXuanzezhaopian2.setImageBitmap(myBitmap);
+					myBitmap2=decodeFile(file);
+					mXuanzezhaopian2.setImageBitmap(myBitmap2);
 				}
 			
 			} catch ( Exception e )
@@ -472,18 +474,18 @@ public class TousuActivity extends Activity implements OnClickListener{
 			{
 				super.onActivityResult(requestCode, resultCode, data);
 				Bundle extras = data.getExtras();
-				myBitmap = (Bitmap) extras.get("data");
-				if(myBitmap==null){
+				myBitmap2 = (Bitmap) extras.get("data");
+				if(myBitmap2==null){
 					
 				}else{
 					ByteArrayOutputStream baos = new ByteArrayOutputStream();
-					myBitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+					myBitmap2.compress(Bitmap.CompressFormat.JPEG, 20, baos);
 					mContent = baos.toByteArray();
 					boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,"1234567.jpg",mContent);
 					file=new File(cachePath+"/"+"1234567.jpg");
 					// 把得到的图片绑定在控件上显示
-					myBitmap=decodeFile(file);
-					mXuanzezhaopian2.setImageBitmap(myBitmap);
+					myBitmap2=decodeFile(file);
+					mXuanzezhaopian2.setImageBitmap(myBitmap2);
 				}
 				
 			} catch ( Exception e )
@@ -499,7 +501,6 @@ public class TousuActivity extends Activity implements OnClickListener{
 				// 获得图片的uri
 				originalUri = data.getData();
 				if(originalUri==null){
-					
 				}else{
 					// 将图片内容解析成字节数组
 					mContent = readStream(resolver.openInputStream(Uri.parse(originalUri.toString())));
@@ -509,8 +510,8 @@ public class TousuActivity extends Activity implements OnClickListener{
 //					myBitmap = getPicFromBytes(mContent, null);
 //					// //把得到的图片绑定在控件上显示
 //					mXuanzezhaopian.setImageBitmap(myBitmap);
-					myBitmap=decodeFile(file);
-					mXuanzezhaopian3.setImageBitmap(myBitmap);
+					myBitmap3=decodeFile(file);
+					mXuanzezhaopian3.setImageBitmap(myBitmap3);
 				}
 			
 			} catch ( Exception e )
@@ -524,18 +525,18 @@ public class TousuActivity extends Activity implements OnClickListener{
 			{
 				super.onActivityResult(requestCode, resultCode, data);
 				Bundle extras = data.getExtras();
-				myBitmap = (Bitmap) extras.get("data");
-				if(myBitmap==null){
+				myBitmap3 = (Bitmap) extras.get("data");
+				if(myBitmap3==null){
 					
 				}else{
 					ByteArrayOutputStream baos = new ByteArrayOutputStream();
-					myBitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+					myBitmap3.compress(Bitmap.CompressFormat.JPEG, 20, baos);
 					mContent = baos.toByteArray();
 					boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,"12345678.jpg",mContent);
 					file=new File(cachePath+"/"+"12345678.jpg");
 					// 把得到的图片绑定在控件上显示
-					myBitmap=decodeFile(file);
-					mXuanzezhaopian3.setImageBitmap(myBitmap);
+					myBitmap3=decodeFile(file);
+					mXuanzezhaopian3.setImageBitmap(myBitmap3);
 				}
 				
 			} catch ( Exception e )

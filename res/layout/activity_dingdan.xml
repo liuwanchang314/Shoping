@@ -28,6 +28,7 @@
         <RelativeLayout 
             android:layout_weight="8"
             android:layout_width="0dp"
+            android:background="#ffffff"
             android:layout_height="match_parent"
             >
 
@@ -60,7 +61,7 @@
     <View 
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="#e4e4e4"
+        android:background="#d1d1d1"
         />
     <TabHost  
     android:id="@android:id/tabhost"  

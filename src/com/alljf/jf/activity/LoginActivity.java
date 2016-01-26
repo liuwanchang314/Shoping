@@ -220,6 +220,7 @@ public class LoginActivity extends Activity {
 					}
 				}else if(msg.arg1 == 1){
 					try {
+						mdialog.dismiss();
 						jsonObject = new JSONObject(msg.obj.toString());
 						data = jsonObject.getString("send_status");
 						if(data.equals("1")){
@@ -320,6 +321,7 @@ SendAuth.Req req = new SendAuth.Req();
 				return;
 			}
 			if(!txttwoString.equals(message_code)){
+				mdialog.dismiss();
 				Toast.makeText(getApplicationContext(), "验证码错误", 1)
 				.show();
 				return;

@@ -1,6 +1,8 @@
 package com.alljf.jf.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -178,8 +180,27 @@ public class UserActivity extends Activity implements OnClickListener {
 		case R.id.horder_lt_list6:// 退出当前账号
 			// Toast.makeText(UserActivity.this, "退出当前账号",
 			// Toast.LENGTH_SHORT).show();
-			SysApplication.getInstance().logOut();
-			startActivity(new Intent(UserActivity.this,MainActivity.class));
+			final AlertDialog.Builder builder=new AlertDialog.Builder(UserActivity.this);
+			builder.setTitle("温馨提示");
+			builder.setMessage("您确定要退出吗");
+			builder.setPositiveButton("确定",new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					SysApplication.getInstance().logOut();
+					startActivity(new Intent(UserActivity.this,MainActivity.class));
+				}
+			});
+			builder.setNegativeButton("取消",new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+				}
+			} );
+			builder.create().show();
+			
 			break;
 		case R.id.horder_lt_list:// 全部订单
 			// Toast.makeText(UserActivity.this, "全部订单",

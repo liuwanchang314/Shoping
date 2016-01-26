@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     android:orientation="vertical" >
     
     <LinearLayout 
@@ -28,6 +29,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="7"
+            android:background="#ffffff"
             >
 
             <TextView
@@ -78,6 +80,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:text="选择赠品" />
+        
 
         <ListView
             android:id="@+id/shangjiafahuo_listview_zengpin"

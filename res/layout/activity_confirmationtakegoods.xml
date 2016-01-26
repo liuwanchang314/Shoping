@@ -133,6 +133,7 @@
                  android:layout_alignBottom="@+id/textView4"
                  android:layout_toRightOf="@+id/textView4"
                  android:background="@drawable/biankuang"
+                 android:inputType="textPassword"
                  android:gravity="center" >
 
              </EditText>

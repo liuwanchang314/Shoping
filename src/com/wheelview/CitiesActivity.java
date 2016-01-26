@@ -19,9 +19,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.alljf.jf.R;
+import com.alljf.jf.activity.MainActivity;
 
 
 
@@ -75,6 +77,8 @@ public class CitiesActivity extends Activity implements OnWheelChangedListener {
 	 */
 	private String mCurrentAreaName = "";
 	private Button btn;
+	
+	private ImageView back,home;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -87,6 +91,25 @@ public class CitiesActivity extends Activity implements OnWheelChangedListener {
 		mCity = (WheelView) findViewById(R.id.id_city);
 		mArea = (WheelView) findViewById(R.id.id_area);
 		btn = (Button) findViewById(R.id.sure);
+		back=(ImageView) findViewById(R.id.cities_back);
+		back.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				CitiesActivity.this.finish();
+			}
+		});
+		home=(ImageView) findViewById(R.id.cities_home);
+		home.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				CitiesActivity.this.finish();
+				startActivity(new Intent(CitiesActivity.this,MainActivity.class));
+			}
+		});
 		initDatas();
 
 		mProvince.setViewAdapter(new ArrayWheelAdapter<String>(this,
@@ -121,16 +144,27 @@ public class CitiesActivity extends Activity implements OnWheelChangedListener {
 				}
 				String Pname=list.get(mProvince.getCurrentItem()).getName();
 				String Cname=list.get(mProvince.getCurrentItem()).getList().get(mCity.getCurrentItem()).getName();
-				String Dname=list.get(mProvince.getCurrentItem()).getList().get(mCity.getCurrentItem()).getList().get(mArea.getCurrentItem()).getName();
+				String Dname=null;
+				if(list.get(mProvince.getCurrentItem()).getList().get(mCity.getCurrentItem()).getList().size()==0){
+					Dname="";
+				}else{
+					Dname=list.get(mProvince.getCurrentItem()).getList().get(mCity.getCurrentItem()).getList().get(mArea.getCurrentItem()).getName();
+				}
 				String Pid=list.get(mProvince.getCurrentItem()).getId();
 				String Cid=list.get(mProvince.getCurrentItem()).getList().get(mCity.getCurrentItem()).getId();
-				String Did=list.get(mProvince.getCurrentItem()).getList().get(mCity.getCurrentItem()).getList().get(mArea.getCurrentItem()).getId();
-				Log.i("ʡ����", Pname);
-				Log.i("������", Cname);
-				Log.i("������", Dname);
-				Log.i("ʡid��", Pid);
-				Log.i("ʡid��", Cid);
-				Log.i("ʡid��", Did);
+				String Did=null;
+				if(list.get(mProvince.getCurrentItem()).getList().get(mCity.getCurrentItem()).getList().size()==0){
+					Did="";
+				}else{
+					Did=list.get(mProvince.getCurrentItem()).getList().get(mCity.getCurrentItem()).getList().get(mArea.getCurrentItem()).getId();
+				}
+				
+//				Log.i("ʡ����", Pname);
+//				Log.i("������", Cname);
+//				Log.i("������", Dname);
+//				Log.i("ʡid��", Pid);
+//				Log.i("ʡid��", Cid);
+//				Log.i("ʡid��", Did);
 				//�������ֵ�ش�
 				Intent intent=new Intent();
 				intent.putExtra("pname", Pname);
