@@ -1,11 +1,13 @@
 package com.bean;
 
+import java.io.Serializable;
+
 /**
  * {
     "api": "APISUCCESS",
     "data": {
         "cname": "apitestuser",
-        "sex": "ÄÐ",
+        "sex": "ï¿½ï¿½",
         "tel": "",
         "address": "",
         "qq": "",
@@ -18,7 +20,7 @@ package com.bean;
     "status": 1
 }
  * */
-public class PersonDataBean {
+public class PersonDataBean implements Serializable{
 
 	private String cname;
 	public String getCname() {

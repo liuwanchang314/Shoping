@@ -30,13 +30,14 @@ import com.lidroid.xutils.http.client.HttpRequest;
  * @version 创建时间：2015-12-29 下午10:04:52 
  * 类说明   确认收货界面
  */
-public class SureTakeGoodsActivity extends Activity {
+public class SureTakeGoodsActivity extends Activity implements OnClickListener{
 
 	private EditText mPassword;//密码
 	private TextView mDingdanhao;//订单号
 	private TextView mSure;//确认
 	private ImageView mBack;
 	private ImageView mHome;
+	private String orderid;
 	/**
 	 * 进度条
 	 */
@@ -62,21 +63,8 @@ public class SureTakeGoodsActivity extends Activity {
 	private void initdata() {
 		// TODO Auto-generated method stub
 		Intent intent=getIntent();
-		final String orderid=intent.getStringExtra("order");
+		orderid=intent.getStringExtra("order");
 		mDingdanhao.setText(orderid);
-		if(mPassword.getText().toString()==null){
-			Toast.makeText(SureTakeGoodsActivity.this,"请输入支付密码",1).show();
-		}else{
-			mSure.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					getdata(orderid, mPassword.getText().toString());
-				}
-			});
-		}
-		
 	}
 
 	/**
@@ -92,6 +80,7 @@ public class SureTakeGoodsActivity extends Activity {
 		mPassword=(EditText) findViewById(R.id.confirmationtakegoods_mimakuang);
 		mDingdanhao=(TextView) findViewById(R.id.confirmationtakegoods_dingdanbianhao);
 		mSure=(TextView) findViewById(R.id.confirmationtakegoods_queren);
+		mSure.setOnClickListener(this);
 		mBack=(ImageView) findViewById(R.id.confirmationtakegoods_back);
 		mBack.setOnClickListener(new OnClickListener() {
 			
@@ -169,6 +158,26 @@ public class SureTakeGoodsActivity extends Activity {
 		        public void onFailure(HttpException error, String msg) {
 		        }
 		});
+	}
+
+	/* (non-Javadoc)
+	 * @see android.view.View.OnClickListener#onClick(android.view.View)
+	 */
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.confirmationtakegoods_queren:
+			if(mPassword.getText().toString().equals("")){
+				Toast.makeText(SureTakeGoodsActivity.this,"请输入支付密码",1).show();
+			}else{
+				getdata(orderid, mPassword.getText().toString());
+			}
+			break;
+
+		default:
+			break;
+		}
 	}
 
 	

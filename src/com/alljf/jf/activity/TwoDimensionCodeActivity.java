@@ -15,6 +15,7 @@ import android.widget.ImageView;
 
 import com.Application.SysApplication;
 import com.alljf.jf.R;
+import com.bean.PersonDataBean;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -43,6 +44,8 @@ public class TwoDimensionCodeActivity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_towdimensioncode);
 		SysApplication.getInstance().addActivity(this);
+		Intent intent=getIntent();
+		PersonDataBean bean=(PersonDataBean) intent.getSerializableExtra("bean");
 		// 构造对象
 		imageview = (ImageView) findViewById(R.id.erweima_im);
 		// 构造需要插入的图片对象
@@ -58,7 +61,16 @@ public class TwoDimensionCodeActivity extends Activity {
 				mBitmap.getHeight(), m, false);
 
 		try {
-			String s = "仿微信二维码名片";
+//			if(bean.getWx_openid().equals("")){
+//				String s = "微信二维码制作";
+//				imageview.setImageBitmap(cretaeBitmap(new String(s.getBytes(),
+//						"ISO-8859-1")));
+//			}else{
+//				String s = bean.getWx_openid();
+//				imageview.setImageBitmap(cretaeBitmap(new String(s.getBytes(),
+//						"ISO-8859-1")));
+//			}
+			String s = "微信二维码制作";
 			imageview.setImageBitmap(cretaeBitmap(new String(s.getBytes(),
 					"ISO-8859-1")));
 		} catch (WriterException e) {

@@ -16,7 +16,6 @@
 	<uses-permission android:name="android.permission.GET_TASKS" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.WRITE_SETTINGS" />
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
@@ -83,205 +82,255 @@
         </activity>
         <activity
             android:name="com.alljf.jf.activity.IndexActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_index" >
         </activity>
         <activity
             android:name="com.alljf.jf.activity.ShopsActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_shops" >
         </activity>
         <activity
             android:name="com.alljf.jf.activity.BuyActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_buy" >
         </activity>
         <activity
             android:name="com.alljf.jf.activity.UserActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_user" >
         </activity>
         <activity
             android:name="com.alljf.jf.activity.CarouselActivity"
+            android:screenOrientation="portrait"
             android:label="a" >
         </activity>
         <activity
             android:name="com.alljf.jf.activity.LoginActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_login" >
         </activity>
         <activity
             android:name="com.alljf.jf.activity.activityRetrieveActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_retrieve" >
         </activity>
         <activity
             android:name="com.alljf.jf.activity.EditPwdActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_edit_pwd" >
         </activity>
         <activity
             android:name="com.alljf.jf.activity.FinanInfoActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_finan_info" >
         </activity>
         <activity
             android:name="com.alljf.jf.activity.RegnActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_regn" >
         </activity>
         <activity
             android:name="com.alljf.jf.activity.Product_infoActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_product_info" >
         </activity>
         <activity
             android:name="com.alljf.jf.activity.Product_info_itemActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_product_info_item" >
         </activity>
         <!-- 公司公告 -->
         <activity 
             android:name="com.alljf.jf.activity.CompanyNoticeActivity"
+            android:screenOrientation="portrait"
             ></activity>
         <!--公告详情  -->
         <activity 
             android:name="com.alljf.jf.activity.DynamicDetailsActivity"
+            android:screenOrientation="portrait"
             ></activity>
         <!-- 充值 -->
         <activity 
             android:name="com.alljf.jf.activity.RechargeActivity"
+            android:screenOrientation="portrait"
             ></activity>
         <!--订单  -->
         <activity 
             android:name="com.alljf.jf.activity.OrderActivity"
-            ></activity>
+            android:screenOrientation="portrait"
+            >
+        </activity>
         <!-- 个人资料 -->
         <activity 
             android:name="com.alljf.jf.activity.PersonDataActivity"
+            android:screenOrientation="portrait"
             ></activity>
         <!-- 管理收货地址 -->
         <activity 
             android:name="com.alljf.jf.activity.TakeGoodsAddressActivity"
+            android:screenOrientation="portrait"
             ></activity>
         <!-- 提现界面 -->
         <activity 
             android:name="com.alljf.jf.activity.WithDrawAcivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateUnchanged"
             ></activity>
         <!-- 公司简介详情 -->
         <activity 
             android:name="com.alljf.jf.activity.CompanyInfoActivity"
+            android:screenOrientation="portrait"
             ></activity>
         <!-- 产品分类详情 -->
         <activity 
             android:name="com.alljf.jf.activity.ProductClassNumberActivity"
+            android:screenOrientation="portrait"
             ></activity>
         <!-- 下架公告界面 -->
         <activity 
             android:name="com.alljf.jf.activity.SoldOutActivity"
+            android:screenOrientation="portrait"
             ></activity>
         <!-- 全部商品界面 -->
         <activity 
             android:name="com.alljf.jf.activity.AllProductActivity"
+            android:screenOrientation="portrait"
             ></activity>
         <!-- 支付密码找回界面 -->
         <activity 
             android:name="com.alljf.jf.activity.PayPassWordFindBackActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateUnchanged"
             ></activity>
         <!-- 修改安全信息界面 -->
         <activity 
             android:name="com.alljf.jf.activity.ChangeSafetyActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateUnchanged"
             ></activity>
         <!--二维码界面  -->
         <activity 
             android:name="com.alljf.jf.activity.TwoDimensionCodeActivity"
+            android:screenOrientation="portrait"
             ></activity>
         <!-- 新建 收货地址界面-->
         <activity 
             android:name="com.alljf.jf.activity.NewTakeOverGoodsAddress"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateUnchanged"
             ></activity>
         <!-- 确认支付界面 -->
         <activity 
             android:name="com.alljf.jf.activity.PayMoneyActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             ></activity>
         <!-- 选择省市县界面 -->
         <activity 
             android:name="com.wheelview.CitiesActivity"
+            android:screenOrientation="portrait"
             ></activity>
         <!-- 修改地址界面 -->
         <activity 
             android:name="com.alljf.jf.activity.ChangeTakeGoodsAddressActivity"
+            android:screenOrientation="portrait"
             ></activity>
         <!-- 找回密码界面	 -->
         <activity 
             android:name="com.alljf.jf.activity.RetrieveActivity"
+            android:screenOrientation="portrait"
             ></activity>
         <!-- 发票信息界面 -->
         <activity 
             android:name="com.alljf.jf.activity.BillActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateUnchanged"
             ></activity>
        
         <!-- 商家发货界面 -->
         <activity 
             android:name="com.alljf.jf.activity.ShangJiaSendGoodsActivity"
+            android:screenOrientation="portrait"
             ></activity>
         
 
         <!-- 订单界面 -->
         <activity 
             android:name="com.alljf.jf.activity.ZJorderActivity"
+            android:screenOrientation="portrait"
             ></activity>
         <!-- 支付界面 -->
         <activity 
             android:name="com.alljf.jf.activity.PayForActivity"
+            android:screenOrientation="portrait"
             ></activity>
          <!-- 投诉列表界面 -->
         <activity 
             android:name="com.alljf.jf.activity.ComplaintActivity"
+            android:screenOrientation="portrait"
             ></activity>
         <activity 
             android:name="com.alljf.jf.activity.oederactivity1"
+            android:screenOrientation="portrait"
             ></activity>
           <activity 
             android:name="com.alljf.jf.activity.oederactivity2"
+            android:screenOrientation="portrait"
             ></activity>
            <activity 
             android:name="com.alljf.jf.activity.oederactivity3"
+            android:screenOrientation="portrait"
             ></activity>
            <activity 
             android:name="com.alljf.jf.activity.oederactivity4"
+            android:screenOrientation="portrait"
             ></activity>
            <activity 
             android:name="com.alljf.jf.activity.oederactivity5"
+            android:screenOrientation="portrait"
             ></activity>
            <!-- 查看物流详情界面 -->
            <activity 
                android:name="com.alljf.jf.activity.CheckLogisticsActivity"
+               android:screenOrientation="portrait"
                ></activity>
            <!-- 确认收货界面 -->
            <activity 
                android:name="com.alljf.jf.activity.SureTakeGoodsActivity"
+               android:screenOrientation="portrait"
                ></activity>
            <!-- 投诉 -->
            <activity 
                android:name="com.alljf.jf.activity.TousuActivity"
+               android:screenOrientation="portrait"
 
                android:windowSoftInputMode="stateUnchanged"
                ></activity>
            <!-- 发表评价界面 -->
            <activity 
                android:name="com.alljf.jf.activity.FaBiaoPingJiaActivity"
+               android:screenOrientation="portrait"
                ></activity>
            <!-- 订单详情界面 -->
            <activity 
                android:name="com.alljf.jf.activity.DingDanXQActivity"
+               android:screenOrientation="portrait"
                ></activity>
            <!-- 退款与售后界面 -->
            <activity 
                android:name="com.alljf.jf.activity.TuiKuanYuSHActivity"
+               android:screenOrientation="portrait"
 
                ></activity>
            <activity 
                android:name=".activity.TousuXiangqingActivity"
+               android:screenOrientation="portrait"
                ></activity>
            <!-- 引导页 -->
            <activity 
                android:name=".activity.ViewPagerActivity"
+               android:screenOrientation="portrait"
                >
                 <intent-filter>		
                 <action android:name="android.intent.action.MAIN" />
@@ -291,24 +340,29 @@
            </activity>
            <activity 
                android:name=".activity.activity_qidongye"
+               android:screenOrientation="portrait"
 
                ></activity>
            <!--搜索界面  -->
            <activity 
                android:name=".activity.SousuoActivity"
+               android:screenOrientation="portrait"
                ></activity>
            <!-- 选择服务界面 -->
            <activity 
                android:name=".activity.XuanzefuwuActivity"
+               android:screenOrientation="portrait"
                ></activity>
            <!-- 申请退款界面 -->
            <activity 
                android:name=".activity.ShenQingTuiKuanActivity"
+               android:screenOrientation="portrait"
                android:windowSoftInputMode="stateUnchanged"
                ></activity>
            <!-- 支付成功界面 -->
            <activity 
                android:name=".activity.SuccessPayActivity"
+               android:screenOrientation="portrait"
                ></activity>
         <!-- QZONE -->
         <activity

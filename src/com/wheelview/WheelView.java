@@ -47,7 +47,7 @@ import com.alljf.jf.R;
 public class WheelView extends View {
 
 	/** Top and bottom shadows colors */
-	private int[] SHADOWS_COLORS = new int[] { 0xFF111111,
+	private int[] SHADOWS_COLORS = new int[] {  0x3fE9E9E9,
 			0x00AAAAAA, 0x00AAAAAA };
 
 	/** Top and bottom items offset (to hide that) */

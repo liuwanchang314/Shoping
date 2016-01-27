@@ -4,14 +4,64 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:text="请选择城市"
-        android:textSize="20sp" />
+     <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        >
+        <RelativeLayout 
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:background="#a9a9a9"
+            >
 
+            <ImageView
+                android:id="@+id/cities_back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/back" />
+
+        </RelativeLayout>
+         <RelativeLayout 
+            android:layout_weight="8"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="10dp"
+                android:text="请选择城市"
+                android:textSize="20sp" />
+
+         </RelativeLayout>
+          <RelativeLayout 
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            >
+
+              <ImageView
+                  android:id="@+id/cities_home"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_centerHorizontal="true"
+                  android:layout_centerVertical="true"
+                  android:src="@drawable/home" />
+
+          </RelativeLayout>
+    </LinearLayout>
+    
+<View 
+    android:layout_width="match_parent"
+    android:layout_height="10dp"
+    android:background="#d1d1d1"
+    />
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -44,8 +94,12 @@
         android:id="@+id/sure"
 		android:onClick="showChoose"
 		android:layout_gravity="right"
-		android:layout_width="wrap_content"
+		android:layout_width="match_parent"
+		android:layout_margin="10dp"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
 		android:layout_height="wrap_content"
+		android:background="@drawable/button_style"
 		android:text="确定"
         />
     

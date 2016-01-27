@@ -40,7 +40,6 @@ public class ViewPagerActivity extends FragmentActivity {
 	private PagerAdapter mPgAdapter;
 	private RadioGroup dotLayout;
 	private List<Fragment> mListFragment = new ArrayList<Fragment>();
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

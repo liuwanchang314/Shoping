@@ -27,6 +27,7 @@
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:background="#ffffff"
                 android:layout_weight="8" >
 
                 <TextView
@@ -78,7 +79,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_margin="10dp"
-                    android:background="#e4e4e4" >
+                    android:background="#d1d1d1" >
 
                     <TextView
                         android:id="@+id/textViewd3"
@@ -114,7 +115,7 @@
                     android:layout_height="40dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:background="#e4e4e4" >
+                    android:background="#d1d1d1" >
 
                     <TextView
                         android:id="@+id/textViewd223"
@@ -149,7 +150,7 @@
                     android:layout_height="40dp"
                     android:layout_margin="10dp"
                     android:layout_marginTop="0dp"
-                    android:background="#e4e4e4" >
+                    android:background="#d1d1d1" >
 
                     <TextView
                         android:id="@+id/textViewd2sss23"
@@ -176,7 +177,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="0dp"
-                    android:background="#e4e4e4" >
+                    android:background="#d1d1d1" >
 
                     <EditText
                         android:id="@+id/shenqingtuikuan_tuikuanshuoming"

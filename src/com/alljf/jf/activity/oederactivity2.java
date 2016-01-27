@@ -6,6 +6,8 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.Application.SysApplication;
 import com.adapter.OrderAdatper;
@@ -28,11 +31,15 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.other.InternerIsConnection;
+import com.other.NetReceiver;
 
 public class oederactivity2 extends Activity {
 
 	private ListView mListview;
 	private SpotsDialog mdialog;
+	private boolean isconnection;
+	private ConnectivityManager manager;//网络管理器对象
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -41,7 +48,36 @@ public class oederactivity2 extends Activity {
 		setContentView(R.layout.orderactivity2);
 		SysApplication.getInstance().addActivity(this);
 		initview();
-		getdate();
+		isconnecions();
+		initmanager();
+		if(isconnection){
+			getdate();
+		}else{
+			Toast.makeText(oederactivity2.this,"请检查网络设置",1).show();
+		}
+		
+	}
+	/**
+	 * @author JZKJ-LWC
+	 * @date : 2015-12-27 下午9:49:45
+	 * 用于实时检测网络是否连接
+	 */  
+	private void isconnecions() {
+		// TODO Auto-generated method stub
+		NetReceiver mReceiver = new NetReceiver();
+	    IntentFilter mFilter = new IntentFilter();
+		 mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+		registerReceiver(mReceiver, mFilter);
+	}
+	/**
+	 * @author JZKJ-LWC
+	 * @date : 2015-12-27 下午9:11:36
+	 * 初始化网络管理对象
+	 */  
+	private void initmanager() {
+		// TODO Auto-generated method stub
+		manager =(ConnectivityManager) oederactivity2.this.getSystemService(oederactivity2.this.CONNECTIVITY_SERVICE);//获得网络连接的管理者对象
+		isconnection=InternerIsConnection.network(manager,oederactivity2.this);
 	}
 	private void getdate() {
 		// TODO Auto-generated method stub

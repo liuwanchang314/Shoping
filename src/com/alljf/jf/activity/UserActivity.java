@@ -1,9 +1,12 @@
 package com.alljf.jf.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,10 +16,21 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.Application.SysApplication;
+import com.Extension.RoundImageView;
 import com.alljf.jf.R;
+import com.bean.PersonDataBean;
+import com.jsonParser.PersonDataJsonprser;
+import com.lidroid.xutils.BitmapUtils;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 
 public class UserActivity extends Activity implements OnClickListener {
 
@@ -30,6 +44,8 @@ public class UserActivity extends Activity implements OnClickListener {
 	private RelativeLayout mComplaint;// 我的投诉
 	private RelativeLayout mTixian;// 提现
 	private Button button1,button2,button3,button4,button5;
+	private RoundImageView mheader;
+	private TextView name;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +55,65 @@ public class UserActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_user);
 		SysApplication.getInstance().addActivity(this);
 		initview();
+		getData();
+	}
+
+	/**
+	 * @2016-1-20下午9:28:49
+	 * 获取用户资料，进行设置
+	 */
+	private void getData() {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+				RequestParams params = new RequestParams();
+				// 只包含字符串参数时默认使用BodyParamsEntity，
+				params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
+				params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
+				params.addBodyParameter("type", "user");
+				params.addBodyParameter("part", "get_userinfo");
+				params.addBodyParameter("username", SysApplication.getInstance().getUserInfo().getName());
+				HttpUtils http = new HttpUtils();
+				http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
+
+				        @Override
+				        public void onStart() {
+				        	//开始请求
+				        }
+
+				        @Override
+				        public void onLoading(long total, long current, boolean isUploading) {
+				            if (isUploading) {
+				            } else {
+				            }
+				        }
+
+				        @Override
+				        public void onSuccess(ResponseInfo<String> responseInfo) {
+				        	//请求成功
+				        	String str=responseInfo.result;
+				        	Log.i("网络请求下来的参数是",str);
+				        	PersonDataBean bean=PersonDataJsonprser.getbean(str);
+				        	name.setText(bean.getCname());
+				        	String imageurl=bean.getHead_img();
+				        	if(imageurl.equals("")||imageurl==null){
+				        		//不做任何操作，选择默认图片
+				        	}else{
+				        		BitmapUtils bitmapUtils=new BitmapUtils(UserActivity.this);
+				        		bitmapUtils.display(mheader, imageurl);
+				        	}
+				        }
+
+				        @Override
+				        public void onFailure(HttpException error, String msg) {
+				        }
+				});
 	}
 
 	private void initview() {
 		// TODO Auto-generated method stub
 
+		mheader=(RoundImageView) findViewById(R.id.user_img_head);
+		name=(TextView) findViewById(R.id.textView_username);
 		mFinancelayout = (RelativeLayout) findViewById(R.id.horder_lt_list5);
 		mFinancelayout.setOnClickListener(this);
 		mRecharge = (RelativeLayout) findViewById(R.id.horder_lt_list4);
@@ -110,8 +180,27 @@ public class UserActivity extends Activity implements OnClickListener {
 		case R.id.horder_lt_list6:// 退出当前账号
 			// Toast.makeText(UserActivity.this, "退出当前账号",
 			// Toast.LENGTH_SHORT).show();
-			SysApplication.getInstance().logOut();
-			startActivity(new Intent(UserActivity.this,MainActivity.class));
+			final AlertDialog.Builder builder=new AlertDialog.Builder(UserActivity.this);
+			builder.setTitle("温馨提示");
+			builder.setMessage("您确定要退出吗");
+			builder.setPositiveButton("确定",new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					SysApplication.getInstance().logOut();
+					startActivity(new Intent(UserActivity.this,MainActivity.class));
+				}
+			});
+			builder.setNegativeButton("取消",new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+				}
+			} );
+			builder.create().show();
+			
 			break;
 		case R.id.horder_lt_list:// 全部订单
 			// Toast.makeText(UserActivity.this, "全部订单",

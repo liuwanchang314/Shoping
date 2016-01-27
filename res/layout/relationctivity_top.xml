@@ -28,6 +28,7 @@
         <RelativeLayout 
             android:layout_weight="8"
             android:layout_width="0dp"
+            android:background="#ffffff"
             android:layout_height="match_parent"
             >
 

@@ -38,10 +38,10 @@
                   android:text="南通风向标纺织品有限公司" />
               <ImageView
                   android:id="@+id/imageView2"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
+                  android:layout_width="15dp"
+                  android:layout_height="25dp"
+                  android:layout_centerVertical="true"
                   android:layout_alignParentRight="true"
-                  android:layout_alignTop="@+id/orderfragment_listviewa_item_fenleitubiao"
                   android:src="@drawable/left" />
 
           </RelativeLayout>  
@@ -224,6 +224,7 @@
                 android:layout_alignBottom="@+id/orderfragment_listviewa_item_shuliangs"
                 android:layout_marginLeft="3dp"
                 android:textSize="12sp"
+                android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/orderfragment_listviewa_item_shuliangs"
                 android:text="件商品" />
 			<!-- item当中的图片下面的合计价格-->

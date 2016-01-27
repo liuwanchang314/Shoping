@@ -46,14 +46,12 @@ public class RegnActivity extends Activity implements OnClickListener{
 	private HashMap<String, String> listmap = new HashMap<String, String>();
 	private List<Map<String, String>> ques_list = new ArrayList<Map<String,String>>();
 	public static int MPHONE_CODE = 1;
-	
 	private Handler handler; 
 	private DataService client;
 	private String message_code;
 	private String ques_id;
 	List<String> strList,idlist;
 	private int i;//计时
-	
 	private Button mback;
 	private SpotsDialog dialog;
 	
@@ -62,7 +60,6 @@ public class RegnActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_regn);
-		
 		initHandler();
 		getQues();
 		initView();

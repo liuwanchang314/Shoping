@@ -30,6 +30,7 @@ public class activity_qidongye extends Activity {
 				}
 				Intent intent=new Intent(activity_qidongye.this,MainActivity.class);
 				startActivity(intent);
+				finish();
 			}
 		}).start();
 		

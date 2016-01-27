@@ -73,8 +73,10 @@ public class TousuActivity extends Activity implements OnClickListener{
 	private TextView mGoodsName;
 	private TextView mGoodsPrice;
 	private TextView mGoodsNum;
-	private ImageView mXuanzezhaopian;
+	private ImageView mXuanzezhaopian,mXuanzezhaopian2,mXuanzezhaopian3;
 	private Bitmap myBitmap=null;
+	private Bitmap myBitmap2=null;
+	private Bitmap myBitmap3=null;
 	private byte[] mContent;
 	private TextView mTousuzhuti;
 	private TextView mTousuTijiao;
@@ -139,6 +141,10 @@ public class TousuActivity extends Activity implements OnClickListener{
 		mGoodsNum=(TextView) findViewById(R.id.tousu_shangpinshuliang);
 		mXuanzezhaopian=(ImageView) findViewById(R.id.tousu_dianjixuanzezhaopian);
 		mXuanzezhaopian.setOnClickListener(this);
+		mXuanzezhaopian2=(ImageView) findViewById(R.id.tousu_dianjixuanzezhaopian2);
+		mXuanzezhaopian2.setOnClickListener(this);
+		mXuanzezhaopian3=(ImageView) findViewById(R.id.tousu_dianjixuanzezhaopian3);
+		mXuanzezhaopian3.setOnClickListener(this);
 		mTousuzhuti=(TextView) findViewById(R.id.tousu_zhuti);
 		mTousuTijiao=(TextView) findViewById(R.id.tousu_tijiao);
 		mTousuTijiao.setOnClickListener(new OnClickListener() {
@@ -315,6 +321,58 @@ public class TousuActivity extends Activity implements OnClickListener{
 			dlg.show();
 			
 			break;
+		case R.id.tousu_dianjixuanzezhaopian2:
+			final CharSequence[] items2 =
+		{ "相册", "拍照" };
+			AlertDialog dlg2 = new AlertDialog.Builder(TousuActivity.this).setTitle("选择图片").setItems(items2,
+					new DialogInterface.OnClickListener()
+					{
+						public void onClick ( DialogInterface dialog , int item )
+						{
+							// 这里item是根据选择的方式，
+							// 在items数组里面定义了两种方式，拍照的下标为1所以就调用拍照方法
+							if (item == 1)
+							{
+								Intent getImageByCamera = new Intent("android.media.action.IMAGE_CAPTURE");
+								startActivityForResult(getImageByCamera, 2);
+							} else
+							{
+								Intent getImage = new Intent(Intent.ACTION_GET_CONTENT);
+								getImage.addCategory(Intent.CATEGORY_OPENABLE);
+								getImage.setType("image/jpeg");
+								startActivityForResult(getImage, 22);
+							}
+						}
+					}).create();
+			dlg2.show();
+			
+			break;
+		case R.id.tousu_dianjixuanzezhaopian3:
+			final CharSequence[] items3 =
+		{ "相册", "拍照" };
+			AlertDialog dlg3 = new AlertDialog.Builder(TousuActivity.this).setTitle("选择图片").setItems(items3,
+					new DialogInterface.OnClickListener()
+					{
+						public void onClick ( DialogInterface dialog , int item )
+						{
+							// 这里item是根据选择的方式，
+							// 在items数组里面定义了两种方式，拍照的下标为1所以就调用拍照方法
+							if (item == 1)
+							{
+								Intent getImageByCamera = new Intent("android.media.action.IMAGE_CAPTURE");
+								startActivityForResult(getImageByCamera, 3);
+							} else
+							{
+								Intent getImage = new Intent(Intent.ACTION_GET_CONTENT);
+								getImage.addCategory(Intent.CATEGORY_OPENABLE);
+								getImage.setType("image/jpeg");
+								startActivityForResult(getImage,33);
+							}
+						}
+					}).create();
+			dlg3.show();
+			
+			break;
 
 		default:
 			break;
@@ -376,6 +434,109 @@ public class TousuActivity extends Activity implements OnClickListener{
 					// 把得到的图片绑定在控件上显示
 					myBitmap=decodeFile(file);
 					mXuanzezhaopian.setImageBitmap(myBitmap);
+				}
+				
+			} catch ( Exception e )
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}else if (requestCode == 22)
+		{
+			try
+			{
+				// 获得图片的uri
+				originalUri = data.getData();
+				if(originalUri==null){
+					
+				}else{
+					// 将图片内容解析成字节数组
+					mContent = readStream(resolver.openInputStream(Uri.parse(originalUri.toString())));
+					boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,"1234567.jpg",mContent);
+					file=new File(cachePath+"/"+"1234567.jpg");
+					// 将字节数组转换为ImageView可调用的Bitmap对象
+//					myBitmap = getPicFromBytes(mContent, null);
+//					// //把得到的图片绑定在控件上显示
+//					mXuanzezhaopian.setImageBitmap(myBitmap);
+					myBitmap2=decodeFile(file);
+					mXuanzezhaopian2.setImageBitmap(myBitmap2);
+				}
+			
+			} catch ( Exception e )
+			{
+				System.out.println(e.getMessage());
+			}
+
+		}else if (requestCode == 2)
+		{
+			try
+			{
+				super.onActivityResult(requestCode, resultCode, data);
+				Bundle extras = data.getExtras();
+				myBitmap2 = (Bitmap) extras.get("data");
+				if(myBitmap2==null){
+					
+				}else{
+					ByteArrayOutputStream baos = new ByteArrayOutputStream();
+					myBitmap2.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+					mContent = baos.toByteArray();
+					boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,"1234567.jpg",mContent);
+					file=new File(cachePath+"/"+"1234567.jpg");
+					// 把得到的图片绑定在控件上显示
+					myBitmap2=decodeFile(file);
+					mXuanzezhaopian2.setImageBitmap(myBitmap2);
+				}
+				
+			} catch ( Exception e )
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}else if (requestCode == 33)
+		{
+			try
+			{
+				// 获得图片的uri
+				originalUri = data.getData();
+				if(originalUri==null){
+				}else{
+					// 将图片内容解析成字节数组
+					mContent = readStream(resolver.openInputStream(Uri.parse(originalUri.toString())));
+					boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,"12345678.jpg",mContent);
+					file=new File(cachePath+"/"+"12345678.jpg");
+					// 将字节数组转换为ImageView可调用的Bitmap对象
+//					myBitmap = getPicFromBytes(mContent, null);
+//					// //把得到的图片绑定在控件上显示
+//					mXuanzezhaopian.setImageBitmap(myBitmap);
+					myBitmap3=decodeFile(file);
+					mXuanzezhaopian3.setImageBitmap(myBitmap3);
+				}
+			
+			} catch ( Exception e )
+			{
+				System.out.println(e.getMessage());
+			}
+
+		}else if (requestCode == 3)
+		{
+			try
+			{
+				super.onActivityResult(requestCode, resultCode, data);
+				Bundle extras = data.getExtras();
+				myBitmap3 = (Bitmap) extras.get("data");
+				if(myBitmap3==null){
+					
+				}else{
+					ByteArrayOutputStream baos = new ByteArrayOutputStream();
+					myBitmap3.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+					mContent = baos.toByteArray();
+					boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,"12345678.jpg",mContent);
+					file=new File(cachePath+"/"+"12345678.jpg");
+					// 把得到的图片绑定在控件上显示
+					myBitmap3=decodeFile(file);
+					mXuanzezhaopian3.setImageBitmap(myBitmap3);
 				}
 				
 			} catch ( Exception e )

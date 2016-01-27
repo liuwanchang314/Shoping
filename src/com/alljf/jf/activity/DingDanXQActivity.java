@@ -131,9 +131,9 @@ public class DingDanXQActivity extends Activity {
 		    		mShouhuophone.setText(bean.getRecieveinfobean().getPhone());
 		    		mShouhuoAddress.setText(bean.getRecieveinfobean().getAddress());
 		    		//顶部标题部分
-		    		mYunshuzhuangtai.setText("暂无");
-		    		mShuoming.setText("期待再次为您服务");
-		    		mYunshuTime.setText("2013.3.3");
+		    		mYunshuzhuangtai.setText(bean.getExpress_name());
+		    		mShuoming.setText(bean.getDeliver_explain());
+		    		mYunshuTime.setText(bean.getShipping_time());
 		    		mPingjia.setOnClickListener(new OnClickListener() {
 		    			
 		    			@Override

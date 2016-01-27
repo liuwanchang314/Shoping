@@ -72,7 +72,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
+                android:background="@drawable/biankuang"
                 android:layout_toRightOf="@+id/regn_tv_one"
+                android:gravity="center"
                 android:hint="输入手机号码"
                  />
         </RelativeLayout>
@@ -107,7 +109,9 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:inputType="textPassword"
+                android:background="@drawable/biankuang"
                 android:layout_toRightOf="@+id/regn_tv_two"
+                android:gravity="center"
                 android:singleLine="true" />
 
             <View
@@ -160,7 +164,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
+                android:background="@drawable/biankuang"
                 android:layout_toRightOf="@+id/regn_tv_thr"
+                android:gravity="center"
                 android:singleLine="true" />
 
             <View
@@ -244,6 +250,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/ret_tv_five"
+                android:background="@drawable/biankuang"
+                android:gravity="center"
                 android:singleLine="true" />
         </RelativeLayout>
 

@@ -86,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:background="#e4e4e4"
+            android:background="#d1d1d1"
             >
 
             <TextView
@@ -122,7 +122,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:background="#e4e4e4"
+            android:background="#d1d1d1"
             >
 
             <TextView
@@ -239,7 +239,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_margin="5dp"
-            android:background="#e4e4e4"
+            android:background="#d1d1d1"
             >
 
             <TextView
@@ -258,7 +258,9 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:orientation="horizontal"
-            android:background="#e4e4e4"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#d1d1d1"
             >
             <RelativeLayout 
                 android:layout_width="80dp"
@@ -268,12 +270,13 @@
 
                 <ImageView
                     android:id="@+id/tousuxiangqing_goodsimage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:scaleType="fitXY"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:layout_margin="3dp"
-                    android:src="@drawable/logo" />
+                    />
                 
             </RelativeLayout>
             <RelativeLayout 
@@ -289,7 +292,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="TextView" />
+                     />
 
                 <TextView
                     android:id="@+id/tousuxiangqing_jiage"
@@ -298,7 +301,7 @@
                     android:layout_alignLeft="@+id/tousuxiangqing_goodsname"
                     android:layout_below="@+id/tousuxiangqing_goodsname"
                     android:layout_marginTop="14dp"
-                    android:text="TextView" />
+                     />
 
                 <TextView
                     android:id="@+id/tousuxiangqing_shuliang"
@@ -308,7 +311,7 @@
                     android:layout_alignBottom="@+id/tousuxiangqing_jiage"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="36dp"
-                    android:text="TextView" />
+                    />
 
             </RelativeLayout>
         </LinearLayout>
@@ -368,7 +371,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_margin="5dp"
-            android:background="#e4e4e4"
+            android:background="#d1d1d1"
             >
 
             <TextView
@@ -461,7 +464,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:background="#e4e4e4"
+            android:background="#d1d1d1"
             >
 
             <TextView
@@ -497,7 +500,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:background="#e4e4e4"
+            android:background="#d1d1d1"
             >
 
             <TextView

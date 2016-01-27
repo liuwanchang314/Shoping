@@ -46,7 +46,6 @@ public class WX_Pay {
 					builder.setMessage(date);
 					builder.show();
 					Map<String, String> map = StringManager.getListMapByJson(date).get(0);
-					
 					PayReq req = new PayReq();
 					//req.appId = "wxf8b4f85f3a794e77";  // 测试用appId
 					req.appId			= CommonConstants.WXAPP_ID;

@@ -292,7 +292,6 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 					    							dimesion=list_chicun.get(j).getId();
 					    						}
 					    					}
-					    					
 					    				}
 					    			});
 					                xDimesion.addView(view,ml);
@@ -784,8 +783,8 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 	public void changeimagebg(XCFlowLayout layout,int size){
 		
 		for(int i=0;i<size;i++){
-			layout.getChildAt(i).setBackgroundDrawable(getResources().getDrawable(R.drawable.textview_bg));
-			
+			layout.getChildAt(i).setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.textview_bg));
 		}
 		
 	}
