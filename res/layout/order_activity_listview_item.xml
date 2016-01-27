@@ -26,6 +26,7 @@
                   android:layout_height="30dp"
                   android:layout_alignParentLeft="true"
                   android:layout_centerVertical="true"
+                  android:layout_marginLeft="10dp"
                   android:src="@drawable/logo" />
 
               <!-- item当中的商家名称 -->

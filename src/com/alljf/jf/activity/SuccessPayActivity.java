@@ -83,7 +83,6 @@ public class SuccessPayActivity extends Activity implements OnClickListener{
 				startActivity(new Intent(SuccessPayActivity.this,MainActivity.class));
 			}
 		});
-		
 		mShifukuan=(TextView) findViewById(R.id.successpay_price);
 		mName=(TextView) findViewById(R.id.successpay_name);
 		mPhone=(TextView) findViewById(R.id.success_dianhua);

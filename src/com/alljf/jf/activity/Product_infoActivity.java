@@ -439,7 +439,12 @@ public class Product_infoActivity extends Activity implements OnClickListener,On
 															Log.i("要加入了，现在的buynum是", buynum);
 															Log.i("要加入了，现在的guige是", guiges);
 															//调用方法，加入购物车
-															addgouwuche(username,id,goodsname,buynum,guiges);
+															if(guiges.equals("")){
+																Toast.makeText(Product_infoActivity.this,"请选择商品颜色和尺寸", 1).show();
+															}else{
+																addgouwuche(username,id,goodsname,buynum,guiges);
+															}
+															
 														} catch (JSONException e) {
 															// TODO Auto-generated catch block
 															e.printStackTrace();

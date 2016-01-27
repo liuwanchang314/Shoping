@@ -24,6 +24,7 @@
                   android:id="@+id/orderfragment_listviewa_item_fenleitubiao"
                   android:layout_width="30dp"
                   android:layout_height="30dp"
+                  android:layout_marginLeft="10dp"
                   android:layout_alignParentLeft="true"
                   android:layout_centerVertical="true"
                   android:src="@drawable/logo" />
@@ -34,6 +35,7 @@
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_centerVertical="true"
+                  android:textSize="12sp"
                   android:layout_toRightOf="@+id/orderfragment_listviewa_item_fenleitubiao"
                   android:text="南通风向标纺织品有限公司" />
               <ImageView
