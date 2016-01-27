@@ -51,7 +51,6 @@ public class EditPwdActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO 自动生成的方法存根
 				onBackPressed();
 			}
 		});
@@ -59,7 +58,6 @@ public class EditPwdActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO 自动生成的方法存根
 				String pwd = txtone.getText().toString().trim();
 				String pwd1 = txttwo.getText().toString().trim();
 				if (!pwd.equals(pwd1)) {

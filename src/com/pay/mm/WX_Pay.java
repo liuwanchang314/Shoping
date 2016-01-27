@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,6 +18,7 @@ import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.utils.StringManager;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -39,7 +41,10 @@ public class WX_Pay {
 				try {
 					jsonObject = new JSONObject(msg.obj.toString());
 					String date = jsonObject.getString("data");
-					Toast.makeText(context, date, Toast.LENGTH_SHORT).show();
+					AlertDialog.Builder builder = new AlertDialog.Builder(context);
+					builder.setTitle("title");
+					builder.setMessage(date);
+					builder.show();
 					Map<String, String> map = StringManager.getListMapByJson(date).get(0);
 					
 					PayReq req = new PayReq();
@@ -48,14 +53,18 @@ public class WX_Pay {
 					req.partnerId		= map.get("mch_id");
 					req.prepayId		= map.get("prepay_id");
 					req.nonceStr		= map.get("nonce_str");
-					req.timeStamp		= map.get("end_time");
+					req.timeStamp		= map.get("timeStamp");
 					req.packageValue	= "Sign=WXPay";
-					req.sign			= map.get("sign");
+					req.sign			= map.get("callback_sign");
 					
-					req.extData			= "app data"; // optional
+//					req.extData			= "app data"; // optional
 //					
 					
 					// 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信
+					final IWXAPI msgApi = WXAPIFactory.createWXAPI(context, null);
+
+					// 将该app注册到微信
+					msgApi.registerApp(CommonConstants.WXAPP_ID);
 					api.sendReq(req);
 					
 				} catch (JSONException e) {

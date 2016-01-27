@@ -186,7 +186,6 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler{
 	            	}
 	            	
 				} catch (ClientProtocolException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

@@ -3,7 +3,6 @@ package com.Model;
 public class RelInfo {
 
 	public RelInfo() {
-		// TODO 自动生成的构造函数存根
 	}
 	public int getId() {
 		return Id;

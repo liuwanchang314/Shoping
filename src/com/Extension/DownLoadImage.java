@@ -36,7 +36,6 @@ public class DownLoadImage {
 	static String filename = "my.png";
 
 	public DownLoadImage() {
-		// TODO ���ㄧ�����������芥�板����
 	}
 
 	public static void DownLoadImg(String res, int type) {
@@ -53,20 +52,17 @@ public class DownLoadImage {
 		try {
 			jsonObject = new JSONObject(res);
 		} catch (JSONException e) {
-			// TODO ���ㄧ������ catch ��
 			e.printStackTrace();
 		}
 		try {
 			data = jsonObject.getString("msg");
 		} catch (JSONException e) {
-			// TODO ���ㄧ������ catch ��
 			e.printStackTrace();
 		}
 		if (data.equals("success")) {
 			try {
 				jsonObject = new JSONObject(res);
 			} catch (JSONException e) {
-				// TODO ���ㄧ������ catch ��
 				e.printStackTrace();
 			}
 			try {
@@ -129,10 +125,8 @@ public class DownLoadImage {
 					}
 				}
 			} catch (JSONException e) {
-				// TODO ���ㄧ������ catch ��
 				e.printStackTrace();
 			} catch (Exception e) {
-				// TODO ���ㄧ������ catch ��
 				e.printStackTrace();
 			}
 		}

@@ -74,7 +74,6 @@
 //		});
 //		gridView = (GridView) findViewById(R.id.gv_chooseImgFolder);
 //		recycleViews.put(gridView, new int[]{R.id.iv_item_folderImg});
-//		//TODO
 //		gridView.setSelector(new ColorDrawable(color.holo_green_light));
 //		gridView.setOnItemClickListener(new OnItemClickListener() {
 //

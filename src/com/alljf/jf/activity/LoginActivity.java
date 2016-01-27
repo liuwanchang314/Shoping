@@ -212,7 +212,6 @@ public class LoginActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			// TODO 自动生成的方法存根
 			switch (v.getId()) {
 			case R.id.login_btn_left:
 				LeftClint();
