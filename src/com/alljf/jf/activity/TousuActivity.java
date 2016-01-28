@@ -392,161 +392,183 @@ public class TousuActivity extends Activity implements OnClickListener{
 		 */
 		if (requestCode == 0)
 		{
-			try
-			{
-				// 获得图片的uri
-				originalUri = data.getData();
-				if(originalUri==null){
-					
-				}else{
-					// 将图片内容解析成字节数组
-					mContent = readStream(resolver.openInputStream(Uri.parse(originalUri.toString())));
-					boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,"123456.jpg",mContent);
-					file=new File(cachePath+"/"+"123456.jpg");
-					// 将字节数组转换为ImageView可调用的Bitmap对象
-//					myBitmap = getPicFromBytes(mContent, null);
-//					// //把得到的图片绑定在控件上显示
-//					mXuanzezhaopian.setImageBitmap(myBitmap);
-					myBitmap=decodeFile(file);
-					mXuanzezhaopian.setImageBitmap(myBitmap);
+			if(data==null){
+				
+			}else{
+				try
+				{
+					// 获得图片的uri
+					originalUri = data.getData();
+					if(originalUri==null){
+						
+					}else{
+						// 将图片内容解析成字节数组
+						mContent = readStream(resolver.openInputStream(Uri.parse(originalUri.toString())));
+						boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,"123456.jpg",mContent);
+						file=new File(cachePath+"/"+"123456.jpg");
+						// 将字节数组转换为ImageView可调用的Bitmap对象
+//						myBitmap = getPicFromBytes(mContent, null);
+//						// //把得到的图片绑定在控件上显示
+//						mXuanzezhaopian.setImageBitmap(myBitmap);
+						myBitmap=decodeFile(file);
+						mXuanzezhaopian.setImageBitmap(myBitmap);
+					}
+				
+				} catch ( Exception e )
+				{
+					System.out.println(e.getMessage());
 				}
-			
-			} catch ( Exception e )
-			{
-				System.out.println(e.getMessage());
 			}
+
 
 		} else if (requestCode == 1)
 		{
-			try
-			{
-				super.onActivityResult(requestCode, resultCode, data);
-				Bundle extras = data.getExtras();
-				myBitmap = (Bitmap) extras.get("data");
-				if(myBitmap==null){
-					
-				}else{
-					ByteArrayOutputStream baos = new ByteArrayOutputStream();
-					myBitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
-					mContent = baos.toByteArray();
-					boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,"123456.jpg",mContent);
-					file=new File(cachePath+"/"+"123456.jpg");
-					// 把得到的图片绑定在控件上显示
-					myBitmap=decodeFile(file);
-					mXuanzezhaopian.setImageBitmap(myBitmap);
-				}
+			if(data==null){
 				
-			} catch ( Exception e )
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			}else{
+				try
+				{
+					super.onActivityResult(requestCode, resultCode, data);
+					Bundle extras = data.getExtras();
+					myBitmap = (Bitmap) extras.get("data");
+					if(myBitmap==null){
+						
+					}else{
+						ByteArrayOutputStream baos = new ByteArrayOutputStream();
+						myBitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+						mContent = baos.toByteArray();
+						boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,"123456.jpg",mContent);
+						file=new File(cachePath+"/"+"123456.jpg");
+						// 把得到的图片绑定在控件上显示
+						myBitmap=decodeFile(file);
+						mXuanzezhaopian.setImageBitmap(myBitmap);
+					}
+					
+				} catch ( Exception e )
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-			
 		}else if (requestCode == 22)
 		{
-			try
-			{
-				// 获得图片的uri
-				originalUri = data.getData();
-				if(originalUri==null){
-					
-				}else{
-					// 将图片内容解析成字节数组
-					mContent = readStream(resolver.openInputStream(Uri.parse(originalUri.toString())));
-					boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,"1234567.jpg",mContent);
-					file=new File(cachePath+"/"+"1234567.jpg");
-					// 将字节数组转换为ImageView可调用的Bitmap对象
-//					myBitmap = getPicFromBytes(mContent, null);
-//					// //把得到的图片绑定在控件上显示
-//					mXuanzezhaopian.setImageBitmap(myBitmap);
-					myBitmap2=decodeFile(file);
-					mXuanzezhaopian2.setImageBitmap(myBitmap2);
+			if(data==null){
+				
+			}else{
+				try
+				{
+					// 获得图片的uri
+					originalUri = data.getData();
+					if(originalUri==null){
+						
+					}else{
+						// 将图片内容解析成字节数组
+						mContent = readStream(resolver.openInputStream(Uri.parse(originalUri.toString())));
+						boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,"1234567.jpg",mContent);
+						file=new File(cachePath+"/"+"1234567.jpg");
+						// 将字节数组转换为ImageView可调用的Bitmap对象
+//						myBitmap = getPicFromBytes(mContent, null);
+//						// //把得到的图片绑定在控件上显示
+//						mXuanzezhaopian.setImageBitmap(myBitmap);
+						myBitmap2=decodeFile(file);
+						mXuanzezhaopian2.setImageBitmap(myBitmap2);
+					}
+				
+				} catch ( Exception e )
+				{
+					System.out.println(e.getMessage());
 				}
-			
-			} catch ( Exception e )
-			{
-				System.out.println(e.getMessage());
-			}
 
+			}
+			
 		}else if (requestCode == 2)
 		{
-			try
-			{
-				super.onActivityResult(requestCode, resultCode, data);
-				Bundle extras = data.getExtras();
-				myBitmap2 = (Bitmap) extras.get("data");
-				if(myBitmap2==null){
+			if(data==null){
+				
+			}else{
+				try
+				{
+					super.onActivityResult(requestCode, resultCode, data);
+					Bundle extras = data.getExtras();
+					myBitmap2 = (Bitmap) extras.get("data");
+					if(myBitmap2==null){
+						
+					}else{
+						ByteArrayOutputStream baos = new ByteArrayOutputStream();
+						myBitmap2.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+						mContent = baos.toByteArray();
+						boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,"1234567.jpg",mContent);
+						file=new File(cachePath+"/"+"1234567.jpg");
+						// 把得到的图片绑定在控件上显示
+						myBitmap2=decodeFile(file);
+						mXuanzezhaopian2.setImageBitmap(myBitmap2);
+					}
 					
-				}else{
-					ByteArrayOutputStream baos = new ByteArrayOutputStream();
-					myBitmap2.compress(Bitmap.CompressFormat.JPEG, 20, baos);
-					mContent = baos.toByteArray();
-					boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,"1234567.jpg",mContent);
-					file=new File(cachePath+"/"+"1234567.jpg");
-					// 把得到的图片绑定在控件上显示
-					myBitmap2=decodeFile(file);
-					mXuanzezhaopian2.setImageBitmap(myBitmap2);
+				} catch ( Exception e )
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 				
-			} catch ( Exception e )
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 			
 		}else if (requestCode == 33)
 		{
-			try
-			{
-				// 获得图片的uri
-				originalUri = data.getData();
-				if(originalUri==null){
-				}else{
-					// 将图片内容解析成字节数组
-					mContent = readStream(resolver.openInputStream(Uri.parse(originalUri.toString())));
-					boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,"12345678.jpg",mContent);
-					file=new File(cachePath+"/"+"12345678.jpg");
-					// 将字节数组转换为ImageView可调用的Bitmap对象
-//					myBitmap = getPicFromBytes(mContent, null);
-//					// //把得到的图片绑定在控件上显示
-//					mXuanzezhaopian.setImageBitmap(myBitmap);
-					myBitmap3=decodeFile(file);
-					mXuanzezhaopian3.setImageBitmap(myBitmap3);
+			if(data==null){
+				
+			}else{
+				try
+				{
+					// 获得图片的uri
+					originalUri = data.getData();
+					if(originalUri==null){
+					}else{
+						// 将图片内容解析成字节数组
+						mContent = readStream(resolver.openInputStream(Uri.parse(originalUri.toString())));
+						boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,"12345678.jpg",mContent);
+						file=new File(cachePath+"/"+"12345678.jpg");
+						// 将字节数组转换为ImageView可调用的Bitmap对象
+//						myBitmap = getPicFromBytes(mContent, null);
+//						// //把得到的图片绑定在控件上显示
+//						mXuanzezhaopian.setImageBitmap(myBitmap);
+						myBitmap3=decodeFile(file);
+						mXuanzezhaopian3.setImageBitmap(myBitmap3);
+					}
+				
+				} catch ( Exception e )
+				{
+					System.out.println(e.getMessage());
 				}
-			
-			} catch ( Exception e )
-			{
-				System.out.println(e.getMessage());
 			}
-
 		}else if (requestCode == 3)
 		{
-			try
-			{
-				super.onActivityResult(requestCode, resultCode, data);
-				Bundle extras = data.getExtras();
-				myBitmap3 = (Bitmap) extras.get("data");
-				if(myBitmap3==null){
-					
-				}else{
-					ByteArrayOutputStream baos = new ByteArrayOutputStream();
-					myBitmap3.compress(Bitmap.CompressFormat.JPEG, 20, baos);
-					mContent = baos.toByteArray();
-					boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,"12345678.jpg",mContent);
-					file=new File(cachePath+"/"+"12345678.jpg");
-					// 把得到的图片绑定在控件上显示
-					myBitmap3=decodeFile(file);
-					mXuanzezhaopian3.setImageBitmap(myBitmap3);
-				}
+			if(data==null){
 				
-			} catch ( Exception e )
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			}else{
+				try
+				{
+					super.onActivityResult(requestCode, resultCode, data);
+					Bundle extras = data.getExtras();
+					myBitmap3 = (Bitmap) extras.get("data");
+					if(myBitmap3==null){
+					}else{
+						ByteArrayOutputStream baos = new ByteArrayOutputStream();
+						myBitmap3.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+						mContent = baos.toByteArray();
+						boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,"12345678.jpg",mContent);
+						file=new File(cachePath+"/"+"12345678.jpg");
+						// 把得到的图片绑定在控件上显示
+						myBitmap3=decodeFile(file);
+						mXuanzezhaopian3.setImageBitmap(myBitmap3);
+					}
+					
+				} catch ( Exception e )
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-			
-		}
-		
+			}
 	}
 	
 	/**

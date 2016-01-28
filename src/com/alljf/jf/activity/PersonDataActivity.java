@@ -221,60 +221,66 @@ public class PersonDataActivity extends Activity implements OnClickListener{
 		 */
 		if (requestCode == 0)
 		{
-			try
-			{
-				// 获得图片的uri
-				originalUri = data.getData();
-				if(originalUri==null){
-					
-				}else{
-					// 将图片内容解析成字节数组
-					mContent = readStream(resolver.openInputStream(Uri.parse(originalUri.toString())));
-					boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,UserName+".jpg",mContent);
-					file=new File(cachePath+"/"+UserName+".jpg");
-					// 将字节数组转换为ImageView可调用的Bitmap对象
-//					myBitmap = getPicFromBytes(mContent, null);
-//					// //把得到的图片绑定在控件上显示
-//					mXuanzezhaopian.setImageBitmap(myBitmap);
-					myBitmap=decodeFile(file);
-					mHeadPic.setImageBitmap(myBitmap);
+			if(data==null){
+				
+			}else{
+				try
+				{
+					// 获得图片的uri
+					originalUri = data.getData();
+					if(originalUri==null){
+						
+					}else{
+						// 将图片内容解析成字节数组
+						mContent = readStream(resolver.openInputStream(Uri.parse(originalUri.toString())));
+						boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,UserName+".jpg",mContent);
+						file=new File(cachePath+"/"+UserName+".jpg");
+						// 将字节数组转换为ImageView可调用的Bitmap对象
+//						myBitmap = getPicFromBytes(mContent, null);
+//						// //把得到的图片绑定在控件上显示
+//						mXuanzezhaopian.setImageBitmap(myBitmap);
+						myBitmap=decodeFile(file);
+						mHeadPic.setImageBitmap(myBitmap);
+					}
+				
+				} catch ( Exception e )
+				{
+					System.out.println(e.getMessage());
 				}
-			
-			} catch ( Exception e )
-			{
-				System.out.println(e.getMessage());
 			}
+			
 
 		} else if (requestCode == 1)
 		{
-			try
-			{
-				super.onActivityResult(requestCode, resultCode, data);
-				Bundle extras = data.getExtras();
-				myBitmap = (Bitmap) extras.get("data");
-				if(myBitmap==null){
-					
-				}else{
-					ByteArrayOutputStream baos = new ByteArrayOutputStream();
-					myBitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
-					mContent = baos.toByteArray();
-					boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,UserName+".jpg",mContent);
-					file=new File(cachePath+"/"+UserName+".jpg");
-					// 把得到的图片绑定在控件上显示
-					myBitmap=decodeFile(file);
-					mHeadPic.setImageBitmap(myBitmap);
-				}
+			if(data==null){
 				
-			} catch ( Exception e )
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			}else{
+				try
+				{
+					super.onActivityResult(requestCode, resultCode, data);
+					Bundle extras = data.getExtras();
+					myBitmap = (Bitmap) extras.get("data");
+					if(myBitmap==null){
+						
+					}else{
+						ByteArrayOutputStream baos = new ByteArrayOutputStream();
+						myBitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+						mContent = baos.toByteArray();
+						boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,UserName+".jpg",mContent);
+						file=new File(cachePath+"/"+UserName+".jpg");
+						// 把得到的图片绑定在控件上显示
+						myBitmap=decodeFile(file);
+						mHeadPic.setImageBitmap(myBitmap);
+					}
+					
+				} catch ( Exception e )
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
+
 		}
-			
-
-			
-
 	}
 
 public static Bitmap getPicFromBytes ( byte[] bytes , BitmapFactory.Options opts )

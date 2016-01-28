@@ -1,6 +1,9 @@
 package com.alljf.jf.activity;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import org.json.JSONArray;
@@ -17,6 +20,7 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.utils.writeDateToSdCard;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -27,6 +31,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -52,12 +57,16 @@ public class SousuoActivity extends Activity {
 	private Bitmap myBitmap=null;
 	private byte[] mContent;
 	private Uri originalUri;
+	private File file;
+	private String cachePath;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_sousuo);
+		SysApplication.getInstance().addActivity(this);
+		cachePath = Environment.getExternalStorageDirectory() + "/cacheImage";;
 		initview();
 		initdata();
 		Intent intent=getIntent();
@@ -211,51 +220,64 @@ public class SousuoActivity extends Activity {
 		 */
 		if (requestCode == 0)
 		{
-			Toast.makeText(SousuoActivity.this,"已存储",1).show();
-//			try
-//			{
-//				// 获得图片的uri
-//				originalUri = data.getData();
-//				if(originalUri==null){
-//					
-//				}else{
-//					// 将图片内容解析成字节数组
-//					mContent = readStream(resolver.openInputStream(Uri.parse(originalUri.toString())));
-//					// 将字节数组转换为ImageView可调用的Bitmap对象
-//					myBitmap = getPicFromBytes(mContent, null);
-//					// //把得到的图片绑定在控件上显示
-//					mXuanzezhaopian.setImageBitmap(myBitmap);
-//				}
-//			
-//			} catch ( Exception e )
-//			{
-//				System.out.println(e.getMessage());
-//			}
+			if(data==null){
+				
+			}else{
+				Toast.makeText(SousuoActivity.this,"已存储", 1).show();
+				try
+				{
+					// 获得图片的uri
+					originalUri = data.getData();
+					if(originalUri==null){
+						
+					}else{
+						// 将图片内容解析成字节数组
+						mContent = readStream(resolver.openInputStream(Uri.parse(originalUri.toString())));
+						boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,"123456.jpg",mContent);
+						file=new File(cachePath+"/"+"123456.jpg");
+						// 将字节数组转换为ImageView可调用的Bitmap对象
+//						myBitmap = getPicFromBytes(mContent, null);
+//						// //把得到的图片绑定在控件上显示
+//						mXuanzezhaopian.setImageBitmap(myBitmap);
+						myBitmap=decodeFile(file);
+					}
+				
+				} catch ( Exception e )
+				{
+					System.out.println(e.getMessage());
+				}
+			}
+
 
 		} else if (requestCode == 1)
 		{
-			Toast.makeText(SousuoActivity.this,"已存储",1).show();
-//			try
-//			{
-//				super.onActivityResult(requestCode, resultCode, data);
-//				Bundle extras = data.getExtras();
-//				myBitmap = (Bitmap) extras.get("data");
-//				if(myBitmap==null){
-//					
-//				}else{
-//					ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//					myBitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
-//					mContent = baos.toByteArray();
-//					// 把得到的图片绑定在控件上显示
-//					mXuanzezhaopian.setImageBitmap(myBitmap);
-//				}
-//				
-//			} catch ( Exception e )
-//			{
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-			
+			if(data==null){
+				
+			}else{
+				Toast.makeText(SousuoActivity.this,"已存储", 1).show();
+				try
+				{
+					super.onActivityResult(requestCode, resultCode, data);
+					Bundle extras = data.getExtras();
+					myBitmap = (Bitmap) extras.get("data");
+					if(myBitmap==null){
+						
+					}else{
+						ByteArrayOutputStream baos = new ByteArrayOutputStream();
+						myBitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+						mContent = baos.toByteArray();
+						boolean b=writeDateToSdCard.writeDateTosdcard(cachePath,"123456.jpg",mContent);
+						file=new File(cachePath+"/"+"123456.jpg");
+						// 把得到的图片绑定在控件上显示
+						myBitmap=decodeFile(file);
+					}
+					
+				} catch ( Exception e )
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 	
@@ -284,6 +306,36 @@ public class SousuoActivity extends Activity {
 		return data;
 
 	}
+	  private Bitmap decodeFile(File f){
+
+	       try {
+	           //Decode image size
+	           BitmapFactory.Options o = new BitmapFactory.Options();
+	           o.inJustDecodeBounds = true;
+	           BitmapFactory.decodeStream(new FileInputStream(f),null,o);
+	           //The new size we want to scale to
+	           final int REQUIRED_HEIGHT=800;
+	           final int REQUIRED_WIDTH=480;
+	           //Find the correct scale value. It should be the power of 2.
+	           int width_tmp=o.outWidth, height_tmp=o.outHeight;
+	           System.out.println(width_tmp+"  "+height_tmp);
+	           Log.w("===", (width_tmp+"  "+height_tmp));
+	           int scale=1;
+	           while(true){
+	               if(width_tmp/2<REQUIRED_WIDTH && height_tmp/2<REQUIRED_HEIGHT)
+	                   break;
+	               width_tmp/=2;
+	               height_tmp/=2;
+	               scale++;
+	               Log.w("===", scale+"''"+width_tmp+"  "+height_tmp);
+	           }
+	           //Decode with inSampleSize
+	           BitmapFactory.Options o2 = new BitmapFactory.Options();
+	           o2.inSampleSize=scale;
+	           return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
+	       } catch (FileNotFoundException e) {}
+	       return null;
+	    }
 	
 
 }
