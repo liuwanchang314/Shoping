@@ -222,7 +222,6 @@ public class AllProductActivity extends Activity {
 					drawable.setBounds(0,0,23,23);
 					jiage.setCompoundDrawables(null,null,drawable, null);
 				}
-				
 			}
 		});
 		xiaoliang=(TextView) findViewById(R.id.allprodyct_liulanliang);
