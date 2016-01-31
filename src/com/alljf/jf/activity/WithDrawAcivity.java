@@ -79,62 +79,27 @@ public class WithDrawAcivity extends Activity implements OnClickListener{
 			startActivity(new Intent(WithDrawAcivity.this,MainActivity.class));
 			break;
 		case R.id.withdraw_querentixian:
-			Toast.makeText(WithDrawAcivity.this,"确认",Toast.LENGTH_SHORT).show();
-			RequestParams params = new RequestParams();
-			// 只包含字符串参数时默认使用BodyParamsEntity，
-			params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
-			params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
-			params.addBodyParameter("type", "finance");
-			params.addBodyParameter("part", "do_deposit_91");
-			params.addBodyParameter("user_name", SysApplication.getInstance().getUserInfo().getName());
-			params.addBodyParameter("deposit_price", mMoney.getText().toString());
-			params.addBodyParameter("deposit_type","1");
-			params.addBodyParameter("deposit_bankname",mBankName.getText().toString());
-			params.addBodyParameter("deposit_bankcode",mNumber.getText().toString());
-			params.addBodyParameter("deposit_bankuser",mName.getText().toString());
-			params.addBodyParameter("deposit_bankaddress", mBranchName.getText().toString());
-			params.addBodyParameter("deposit_alipay","");
-			HttpUtils http = new HttpUtils();
-			http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
-
-			        @Override
-			        public void onStart() {
-			        	//开始请求
-			        }
-
-			        @Override
-			        public void onLoading(long total, long current, boolean isUploading) {
-			            if (isUploading) {
-			            } else {
-			            }
-			        }
-
-			        @Override
-			        public void onSuccess(ResponseInfo<String> responseInfo) {
-			        	//请求成功
-			        	String str=responseInfo.result;
-			        	Log.i("tixian请求下来的参数是",str);
-			        	try {
-							JSONObject obj=new JSONObject(str);
-							String status=obj.getString("status");
-							if(status!=null&&status.equals("1")){
-								Toast.makeText(WithDrawAcivity.this,"成功",1).show();
-							}else if(status!=null&&status.equals("0")){
-								Toast.makeText(WithDrawAcivity.this,"失败",1).show();
-							}else if(status!=null&&status.equals("2")){
-								Toast.makeText(WithDrawAcivity.this,"余额不足",1).show();
+			if(mMoney.getText().toString().equals("")){
+				Toast.makeText(WithDrawAcivity.this,"请检查金额",1).show();
+			}else{
+				if(mBankName.getText().toString().equals("")){
+					Toast.makeText(WithDrawAcivity.this,"请输入银行名称",1).show();
+				}else{
+					if(mNumber.getText().toString().equals("")){
+						Toast.makeText(WithDrawAcivity.this,"请输入银行卡号",1).show();
+					}else{
+						if(mName.getText().toString().equals("")){
+							Toast.makeText(WithDrawAcivity.this,"请输入姓名",1).show();
+						}else{
+							if(mBranchName.getText().toString().equals("")){
+								Toast.makeText(WithDrawAcivity.this,"请输入分行名称",1).show();
+							}else{
+								getdatatixian();
 							}
-						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
 						}
-			        	
-			        }
-
-			        @Override
-			        public void onFailure(HttpException error, String msg) {
-			        }
-			});
+					}
+				}
+			}
 			break;
 
 		default:
@@ -184,6 +149,64 @@ public class WithDrawAcivity extends Activity implements OnClickListener{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+		        }
+
+		        @Override
+		        public void onFailure(HttpException error, String msg) {
+		        }
+		});
+	}
+	private void getdatatixian() {
+		// TODO Auto-generated method stub
+		RequestParams params = new RequestParams();
+		// 只包含字符串参数时默认使用BodyParamsEntity，
+		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
+		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
+		params.addBodyParameter("type", "finance");
+		params.addBodyParameter("part", "do_deposit_91");
+		params.addBodyParameter("user_name", SysApplication.getInstance().getUserInfo().getName());
+		params.addBodyParameter("deposit_price", mMoney.getText().toString());
+		params.addBodyParameter("deposit_type","1");
+		params.addBodyParameter("deposit_bankname",mBankName.getText().toString());
+		params.addBodyParameter("deposit_bankcode",mNumber.getText().toString());
+		params.addBodyParameter("deposit_bankuser",mName.getText().toString());
+		params.addBodyParameter("deposit_bankaddress", mBranchName.getText().toString());
+		params.addBodyParameter("deposit_alipay","");
+		HttpUtils http = new HttpUtils();
+		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
+
+		        @Override
+		        public void onStart() {
+		        	//开始请求
+		        }
+
+		        @Override
+		        public void onLoading(long total, long current, boolean isUploading) {
+		            if (isUploading) {
+		            } else {
+		            }
+		        }
+
+		        @Override
+		        public void onSuccess(ResponseInfo<String> responseInfo) {
+		        	//请求成功
+		        	String str=responseInfo.result;
+		        	Log.i("tixian请求下来的参数是",str);
+		        	try {
+						JSONObject obj=new JSONObject(str);
+						String status=obj.getString("status");
+						if(status!=null&&status.equals("1")){
+							Toast.makeText(WithDrawAcivity.this,"成功",1).show();
+						}else if(status!=null&&status.equals("0")){
+							Toast.makeText(WithDrawAcivity.this,"失败",1).show();
+						}else if(status!=null&&status.equals("2")){
+							Toast.makeText(WithDrawAcivity.this,"余额不足",1).show();
+						}
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		        	
 		        }
 
 		        @Override

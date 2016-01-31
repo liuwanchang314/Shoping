@@ -205,21 +205,25 @@ public class NewTakeOverGoodsAddress extends Activity{
 						// TODO Auto-generated method stub
 						if(mName.getText().equals("")){
 							Toast.makeText(NewTakeOverGoodsAddress.this,"姓名不能为空",1).show();
+						}else{
+							if(mPhone.getText().equals("")||mPhone.getText().length()<11){
+								Toast.makeText(NewTakeOverGoodsAddress.this,"请检查手机号",1).show();
+							}else{
+								if(mYoubian.getText().equals("")||mYoubian.getText().length()!=6){
+									Toast.makeText(NewTakeOverGoodsAddress.this,"邮编格式错误",1).show();
+								}else{
+									if(mXXaddress.getText().equals("")){
+										Toast.makeText(NewTakeOverGoodsAddress.this,"请输入详细地址",1).show();
+									}else{
+										//现在开始网络请求，添加新地址
+										getprovince(mName.getText().toString(), mPhone.getText().toString(), mYoubian.getText().toString(), pid, cid, did, mXXaddress.getText().toString());
+										Intent intent=new Intent();
+										NewTakeOverGoodsAddress.this.setResult(1,intent);
+										NewTakeOverGoodsAddress.this.finish();
+									}
+								}
+							}
 						}
-						if(mPhone.getText().equals("")||mPhone.getText().length()<11){
-							Toast.makeText(NewTakeOverGoodsAddress.this,"请检查手机号",1).show();
-						}
-						if(mYoubian.getText().equals("")||mYoubian.getText().length()!=6){
-							Toast.makeText(NewTakeOverGoodsAddress.this,"邮编格式错误",1).show();
-						}
-						if(mXXaddress.getText().equals("")){
-							Toast.makeText(NewTakeOverGoodsAddress.this,"请输入详细地址",1).show();
-						}
-						//现在开始网络请求，添加新地址
-						getprovince(mName.getText().toString(), mPhone.getText().toString(), mYoubian.getText().toString(), pid, cid, did, mXXaddress.getText().toString());
-						Intent intent=new Intent();
-						NewTakeOverGoodsAddress.this.setResult(1,intent);
-						NewTakeOverGoodsAddress.this.finish();
 					}
 				});
 				

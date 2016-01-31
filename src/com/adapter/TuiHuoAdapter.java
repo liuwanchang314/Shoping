@@ -1,8 +1,14 @@
 package com.adapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,8 +19,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alljf.jf.R;
+import com.bean.SpecBean;
 import com.bean.TuikuanSHBean;
 import com.lidroid.xutils.BitmapUtils;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 
 /** 
  */
@@ -73,8 +86,9 @@ public class TuiHuoAdapter extends BaseAdapter {
 		vh.title.setText(list.get(position).getGoods_name());
 		vh.jiaoyijin.setText(list.get(position).getRefund_price());
 		vh.tuikuanjin.setText(list.get(position).getRefund_price());
-		vh.chicun.setText(list.get(position).getSpec_id());
-		vh.yanse.setText(list.get(position).getSpec_id());
+//		vh.chicun.setText(list.get(position).getSpec_id());
+		getdataspec(vh.chicun,vh.yanse,list.get(position).getSpec_id());
+//		vh.yanse.setText(list.get(position).getSpec_id());
 		BitmapUtils b=new BitmapUtils(context);
 		b.display(vh.im,list.get(position).getGoods_image());
 		final TextView tv=vh.xiangqing;
@@ -99,6 +113,64 @@ public class TuiHuoAdapter extends BaseAdapter {
 		TextView jiaoyijin;
 		TextView tuikuanjin;
 		TextView xiangqing;
+	}
+	
+	/**
+	 * @2016-1-16下午6:37:34
+	 * 根据商品尺寸id来获取真正的尺寸值
+	 */
+	private void getdataspec(final TextView chicun, final TextView yanse, String spec_id) {
+		// TODO Auto-generated method stub
+		RequestParams params = new RequestParams();
+		// 只包含字符串参数时默认使用BodyParamsEntity，
+		params.addBodyParameter("id", "8d7d8ee069cb0cbbf816bbb65d56947e");
+		params.addBodyParameter("key", "71d1dd35b75718a722bae7068bdb3e1a");
+		params.addBodyParameter("type", "goods");
+		params.addBodyParameter("part", "get_spec_main");
+		params.addBodyParameter("spec_id",spec_id);
+		HttpUtils http = new HttpUtils();
+		http.send(HttpRequest.HttpMethod.POST,"http://www.91jf.com/api.php",params,new RequestCallBack<String>() {
+
+		        @Override
+		        public void onStart() {
+		        	//开始请求
+		        }
+
+		        @Override
+		        public void onLoading(long total, long current, boolean isUploading) {
+		            if (isUploading) {
+		            } else {
+		            }
+		        }
+
+		        @Override
+		        public void onSuccess(ResponseInfo<String> responseInfo) {
+		        	//请求成功
+		        	String str=responseInfo.result;
+		        	Log.i("chicun参数是",str);
+		        	try {
+						List<SpecBean> listspe=new ArrayList<SpecBean>();
+						JSONObject obj=new JSONObject(str);
+						JSONObject objs=obj.getJSONObject("data");
+						JSONArray objss=objs.getJSONArray("spec_main");
+						for(int i=0;i<objss.length();i++){
+							SpecBean bean=new SpecBean();
+							JSONObject obja=objss.getJSONObject(i);
+							bean.setKey(obja.getString("key"));
+							listspe.add(bean);
+						}
+						chicun.setText(listspe.get(1).getKey());
+						yanse.setText(listspe.get(0).getKey());
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		        	
+		        }
+		        @Override
+		        public void onFailure(HttpException error, String msg) {
+		        }
+		});
 	}
 
 }

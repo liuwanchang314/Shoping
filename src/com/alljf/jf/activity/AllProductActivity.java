@@ -204,7 +204,7 @@ public class AllProductActivity extends Activity {
 		});
 		jiage=(TextView) findViewById(R.id.allprodyct_jiage);
 		Drawable drawable=getResources().getDrawable(R.drawable.jiantoudown);
-		drawable.setBounds(0,0,20,20);
+		drawable.setBounds(0,0,23,23);
 		jiage.setCompoundDrawables(null,null,drawable, null);
 		jiage.setOnClickListener(new OnClickListener() {
 			
@@ -215,19 +215,18 @@ public class AllProductActivity extends Activity {
 				jiageIS=!jiageIS;
 				if(jiageIS){
 					Drawable drawable=getResources().getDrawable(R.drawable.jiantouup);
-					drawable.setBounds(0,0,20,20);
+					drawable.setBounds(0,0,23,23);
 					jiage.setCompoundDrawables(null,null,drawable, null);
 				}else{
 					Drawable drawable=getResources().getDrawable(R.drawable.jiantoudown);
-					drawable.setBounds(0,0,20,20);
+					drawable.setBounds(0,0,23,23);
 					jiage.setCompoundDrawables(null,null,drawable, null);
 				}
-				
 			}
 		});
 		xiaoliang=(TextView) findViewById(R.id.allprodyct_liulanliang);
 		Drawable drawables=getResources().getDrawable(R.drawable.jiantoudown);
-		drawable.setBounds(0,0,20,20);
+		drawable.setBounds(0,0,23,23);
 		xiaoliang.setCompoundDrawables(null,null,drawable, null);
 		xiaoliang.setOnClickListener(new OnClickListener() {
 			
@@ -238,11 +237,11 @@ public class AllProductActivity extends Activity {
 				GetData("hit");
 				if(xiaoliangIS){
 					Drawable drawable=getResources().getDrawable(R.drawable.jiantouup);
-					drawable.setBounds(0,0,20,20);
+					drawable.setBounds(0,0,23,23);
 					xiaoliang.setCompoundDrawables(null,null,drawable, null);
 				}else{
 					Drawable drawable=getResources().getDrawable(R.drawable.jiantoudown);
-					drawable.setBounds(0,0,20,20);
+					drawable.setBounds(0,0,23,23);
 					xiaoliang.setCompoundDrawables(null,null,drawable, null);
 				}
 			}

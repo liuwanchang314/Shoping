@@ -306,19 +306,33 @@ public class PayMoneyActivity extends Activity {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == 1) {
 			// 说明值传递了过来
-			mName.setText(data.getStringExtra("name"));
-			mPhone.setText(data.getStringExtra("phone"));
-			mAddress.setText(data.getStringExtra("xxaddress"));
-			addressid = data.getStringExtra("id");
+			if(data==null){
+				
+			}else{
+				mName.setText(data.getStringExtra("name"));
+				mPhone.setText(data.getStringExtra("phone"));
+				mAddress.setText(data.getStringExtra("xxaddress"));
+				addressid = data.getStringExtra("id");
+			}
+			
 		} else if (resultCode == 4) {
 			// 说明是从发票界面传递过来的
-			String title = data.getStringExtra("title");
-			inv_id = data.getStringExtra("fapiaoid");
-			mFapiao.setText(title);
+			if(data==null){
+			}else{
+				String title = data.getStringExtra("title");
+				inv_id = data.getStringExtra("fapiaoid");
+				mFapiao.setText(title);
+			}
+			
 		} else if (resultCode == 3) {
 			// 说明是从商家发货界面过来的数据
-			zenpinid = data.getStringExtra("zenpinid");
-			kuaidiid = data.getStringExtra("kuaidiid");
+			if(data==null){
+				
+			}else{
+				zenpinid = data.getStringExtra("zenpinid");
+				kuaidiid = data.getStringExtra("kuaidiid");
+			}
+			
 		}
 	}
 

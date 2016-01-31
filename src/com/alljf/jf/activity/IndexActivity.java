@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -81,6 +82,14 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 	 * 按钮
 	 */
 	private Button button1,button2,button3,button4;
+	/**
+	 * 底部布局
+	 */
+	private View view_bottom;
+	/**
+	 * 域名string[]
+	 */
+	private String[] mUrl;
 	Handler handlerR = new Handler() {//刷新界面的线程
 		public void handleMessage(Message message) {
 			super.handleMessage(message);
@@ -113,9 +122,9 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 		View view = LayoutInflater.from(this).inflate(
 				R.layout.activity_carousel, null);
 		//获取尾部布局
-		final View view1 = LayoutInflater.from(this).inflate(
+		view_bottom = LayoutInflater.from(this).inflate(
 				R.layout.activity_index_button, null);
-		Button buttons=(Button) view1.findViewById(R.id.index_btn);
+		Button buttons=(Button) view_bottom.findViewById(R.id.index_btn);
 		buttons.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -145,6 +154,7 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 							JSONArray numberList = jsonObject
 									.getJSONArray("data");
 							mPicsUrl = new String[numberList.length()];
+							mUrl=new String[numberList.length()];
 							mPicsUrlid = new String[numberList.length()];
 							for (int i = 0; i < numberList.length(); i++) {
 								String urlString = numberList
@@ -155,6 +165,8 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 												numberList.getJSONObject(i)
 														.getString("img")
 														.length());
+								mUrl[i]=numberList.getJSONObject(i)
+										.getString("url");
 								mPicsUrl[i] = numberList.getJSONObject(i)
 										.getString("url") + urlString;
 								// mPicsUrlid[i] = numberList.getJSONObject(i)
@@ -190,7 +202,7 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 							}
 							
 							
-							mLisView.addView(view1);
+							mLisView.addView(view_bottom);
 						}
 					}else {
 						jsonObject = new JSONObject(msg.obj.toString());
@@ -274,14 +286,19 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 			img.setScaleType(ScaleType.FIT_XY);
 			mImageViews[i] = img;
 			final String str=mPicsUrl[i];
+			final String string=mUrl[i];
 			mImageViews[i].setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
-					Toast.makeText(IndexActivity.this,"被点击了",1).show();
-					Intent intent=new Intent(IndexActivity.this,AllProductActivity.class);
-					startActivity(intent);
-					Log.i("路径是",str);
+//					Toast.makeText(IndexActivity.this,"被点击了",1).show();
+//					Intent intent=new Intent(IndexActivity.this,AllProductActivity.class);
+//					startActivity(intent);
+//					Log.i("路径是",str);
+					Intent it = new Intent(Intent.ACTION_VIEW, Uri.parse(string));  
+					it.setClassName("com.android.browser", "com.android.browser.BrowserActivity");  
+					IndexActivity.this.startActivity(it);  
+
 				}
 			});
 		}
@@ -395,6 +412,14 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 		// TODO Auto-generated method stub
 		//这里只是伪处理了一下
 		handlerR.sendEmptyMessageDelayed(1, 2000);
+		//这里是添加post接口参数
+		mLisView.removeView(view_bottom);
+		mdialog.show();
+		list.put("type", "adv");
+		list.put("part", "index_slide");
+		//调用方法，开始进行网络请求
+		client = new DataService(handler, 0, list);
+		client.start();
 	}
 	
 	

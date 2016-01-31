@@ -304,6 +304,7 @@ SendAuth.Req req = new SendAuth.Req();
 			if(txtoneString.length() == 0 || txttwoString.length() == 0){
 				Toast.makeText(getApplicationContext(), "用户名或密码不能为空", 1)
 				.show();
+				mdialog.dismiss();
 				return;
 			}
 			list.clear();
@@ -317,12 +318,14 @@ SendAuth.Req req = new SendAuth.Req();
 			if(txtoneString.length() == 0 || txttwoString.length() == 0){
 				Toast.makeText(getApplicationContext(), "手机号码和验证码都不能为空", 1)
 				.show();
+				mdialog.dismiss();
 				return;
 			}
 			if(!txttwoString.equals(message_code)){
 				mdialog.dismiss();
 				Toast.makeText(getApplicationContext(), "验证码错误", 1)
 				.show();
+				mdialog.dismiss();
 				return;
 			}
 			list.clear();

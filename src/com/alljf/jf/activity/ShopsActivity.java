@@ -29,10 +29,14 @@ import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.MapStatus;
+import com.baidu.mapapi.map.MapStatusUpdate;
+import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.model.inner.GeoPoint;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -114,8 +118,19 @@ public class ShopsActivity extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		//定义Maker坐标点  
 				mBaidumap = mMapView.getMap();
-				LatLng point = new LatLng(weidu,jingdu);  
+				LatLng point = new LatLng(jingdu,weidu);  
 				//构建Marker图标  
+				//设定中心点坐标 
+				 //定义地图状态 
+				MapStatus mMapStatus = new MapStatus.Builder() 
+				 .target(point) 
+				 .zoom(14) 
+				 .build(); 
+				 //定义MapStatusUpdate对象，以便描述地图状态将要发生的变化 
+
+				MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus); 
+				 //改变地图状态 
+				mBaidumap.setMapStatus(mMapStatusUpdate); 
 				BitmapDescriptor bitmap = BitmapDescriptorFactory  
 				    .fromResource(R.drawable.icon_gcoding);  
 				//构建MarkerOption，用于在地图上添加Marker  
@@ -124,6 +139,7 @@ public class ShopsActivity extends Activity implements OnClickListener{
 				    .icon(bitmap);  
 				//在地图上添加Marker，并显示  
 				mBaidumap.addOverlay(option);
+				
 	};
 	/**
 	 * @param username2 
@@ -254,7 +270,16 @@ public class ShopsActivity extends Activity implements OnClickListener{
 //		mMapView = (MapView) findViewById(R.id.bmapView); 
 		mBaidumap = mMapView.getMap();
 		//定义Maker坐标点  
-		LatLng point = new LatLng(35.69,121.36);  
+		LatLng point = new LatLng(121.36,35.69);  
+		//定义地图状态
+		MapStatus mMapStatus = new MapStatus.Builder()
+		.target(point)
+		.zoom(16)
+		.build();
+		//定义MapStatusUpdate对象，以便描述地图状态将要发生的变化
+		MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
+		//改变地图状态
+		mBaidumap.setMapStatus(mMapStatusUpdate); 
 		//构建Marker图标  
 		BitmapDescriptor bitmap = BitmapDescriptorFactory  
 		    .fromResource(R.drawable.icon_gcoding);  
@@ -271,6 +296,9 @@ public class ShopsActivity extends Activity implements OnClickListener{
 		//获取地图控件引用  
 		mLogo=(ImageView) findViewById(R.id.person_logo);
 		mMapView = (MapView) findViewById(R.id.bmapView); 
+		//初始化地图
+		//定义中心点
+		//设定中心点坐标 
 		mDetails=(RelativeLayout) findViewById(R.id.shops_companydetails);
 		mDetails.setOnClickListener(this);
 		back=(TextView) findViewById(R.id.relationactivity_top_textview_back);
@@ -287,6 +315,7 @@ public class ShopsActivity extends Activity implements OnClickListener{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				startActivity(new Intent(ShopsActivity.this,MainActivity.class));
 				ShopsActivity.this.finish();
 			}
 		});
