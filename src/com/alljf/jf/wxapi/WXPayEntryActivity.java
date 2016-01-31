@@ -13,12 +13,14 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.alljf.jf.CommonConstants;
+import com.alljf.jf.activity.SuccessPayActivity;
 import com.tencent.mm.sdk.constants.ConstantsAPI;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.utils.FileUtils;
 
 public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
 	
@@ -55,6 +57,18 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
 			builder.setTitle("title");
 			builder.setMessage(String.valueOf(resp.errCode));
 			builder.show();
+		}
+		if(resp.errCode == 0){
+			Intent intent = new Intent(this, SuccessPayActivity.class);
+			intent.putExtra("sfk", FileUtils.getSFKAndClear(this));
+			intent.putExtra("orderid", FileUtils.getOrderidAndClear(this));
+			startActivity(intent);
+		}else{
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle("支付结果");
+			builder.setMessage("支付失败");
+			builder.show();
+			FileUtils.clearPayInfo(this);
 		}
 	}
 

@@ -36,6 +36,7 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.pay.ali.Ali_Pay;
 import com.pay.mm.WX_Pay;
+import com.utils.FileUtils;
 
 
 public class PayForActivity extends Activity implements OnClickListener {
@@ -170,6 +171,7 @@ public class PayForActivity extends Activity implements OnClickListener {
 //				String []sa = price.split(".");
 //				int p = Integer.parseInt(sa[0])*100+Integer.parseInt(sa[1]);
 				ali.pay("支付",pay_sn, mOrderNum.getText().toString(), price);
+				FileUtils.savePayInfo(PayForActivity.this, price, pay_sn);
 			}else if(payTAG.equals("cft")){
 				//财付通的操作,这里到时候需要换一张图片
 				Log.i("当前选择了财付通支付", payTAG);
@@ -258,6 +260,7 @@ public class PayForActivity extends Activity implements OnClickListener {
 				map.put("part", "wxpay");
 				map.put("pay_sn", pay_sn);
 				map.put("wxtype", "order");
+				FileUtils.savePayInfo(PayForActivity.this, price, pay_sn);
 //				UserInfo userInfo = UserInfo.getInstance();
 //				map.put("username", "");
 //				map.put("price", "");

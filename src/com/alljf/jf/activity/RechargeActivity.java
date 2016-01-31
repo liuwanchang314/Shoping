@@ -1,5 +1,7 @@
 package com.alljf.jf.activity;
 
+import java.util.HashMap;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.Application.SysApplication;
+import com.Model.UserInfo;
 import com.alljf.jf.R;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -33,6 +36,8 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import com.other.InternerIsConnection;
 import com.other.NetReceiver;
 import com.pay.ali.Ali_Pay;
+import com.pay.mm.WX_Pay;
+import com.utils.FileUtils;
 
 /**
  * @author JZKJ-LWC
@@ -159,10 +164,25 @@ public class RechargeActivity extends Activity implements OnClickListener{
 				if(mJine.getText().toString().equals("")){
 					Toast.makeText(RechargeActivity.this,"请输入正确金额", 1).show();
 				}else{
+					FileUtils.savePayInfo(RechargeActivity.this, mJine.getText().toString(), "充值");
 					ali.pay("支付", "008909980608698","余额充值",mJine.getText().toString());
 				}
 			}else if(TAG.equals("WX")){
+				WX_Pay wx_Pay = new WX_Pay(RechargeActivity.this);
+				HashMap<String, String> map =new HashMap<String, String>();
 				
+				map.put("type", "system");
+				map.put("part", "wxpay");
+				map.put("wxtype", "recharge");
+				map.put("username", UserInfo.getInstance().getName());
+				if(mJine.getText().toString().equals("")){
+					Toast.makeText(RechargeActivity.this,"请输入正确金额", 1).show();
+				}else{
+				map.put("price", mJine.getText().toString());
+				wx_Pay.pay(map);
+				FileUtils.savePayInfo(RechargeActivity.this
+						, mJine.getText().toString(), "充值");
+				}
 			}
 			break;
 			
