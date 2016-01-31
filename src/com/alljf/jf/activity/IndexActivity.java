@@ -81,6 +81,10 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 	 * 按钮
 	 */
 	private Button button1,button2,button3,button4;
+	/**
+	 * 底部布局
+	 */
+	private View view_bottom;
 	Handler handlerR = new Handler() {//刷新界面的线程
 		public void handleMessage(Message message) {
 			super.handleMessage(message);
@@ -113,9 +117,9 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 		View view = LayoutInflater.from(this).inflate(
 				R.layout.activity_carousel, null);
 		//获取尾部布局
-		final View view1 = LayoutInflater.from(this).inflate(
+		view_bottom = LayoutInflater.from(this).inflate(
 				R.layout.activity_index_button, null);
-		Button buttons=(Button) view1.findViewById(R.id.index_btn);
+		Button buttons=(Button) view_bottom.findViewById(R.id.index_btn);
 		buttons.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -190,7 +194,7 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 							}
 							
 							
-							mLisView.addView(view1);
+							mLisView.addView(view_bottom);
 						}
 					}else {
 						jsonObject = new JSONObject(msg.obj.toString());
@@ -395,6 +399,14 @@ public class IndexActivity extends Activity implements OnPageChangeListener ,Ref
 		// TODO Auto-generated method stub
 		//这里只是伪处理了一下
 		handlerR.sendEmptyMessageDelayed(1, 2000);
+		//这里是添加post接口参数
+		mLisView.removeView(view_bottom);
+		mdialog.show();
+		list.put("type", "adv");
+		list.put("part", "index_slide");
+		//调用方法，开始进行网络请求
+		client = new DataService(handler, 0, list);
+		client.start();
 	}
 	
 	

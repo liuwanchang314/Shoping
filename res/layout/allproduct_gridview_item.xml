@@ -39,7 +39,7 @@
              <RelativeLayout 
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="0.6"
                 
                 >
 
@@ -60,6 +60,7 @@
                      android:layout_alignParentLeft="true"
                      android:layout_marginLeft="10dp"
                      android:textColor="#ff4500"
+                     android:layout_marginBottom="5dp"
                      android:text="price" />
 
              </RelativeLayout>

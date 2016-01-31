@@ -124,7 +124,7 @@ public class ShopsActivity extends Activity implements OnClickListener{
 				 //定义地图状态 
 				MapStatus mMapStatus = new MapStatus.Builder() 
 				 .target(point) 
-				 .zoom(16) 
+				 .zoom(14) 
 				 .build(); 
 				 //定义MapStatusUpdate对象，以便描述地图状态将要发生的变化 
 
