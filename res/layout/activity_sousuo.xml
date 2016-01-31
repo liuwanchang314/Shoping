@@ -90,6 +90,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
+                android:background="@drawable/button_style2"
                 android:src="@drawable/index_camera" />
 
             <View
@@ -106,6 +107,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
+                android:background="@drawable/button_style2"
                 android:src="@drawable/index_search" />
         </LinearLayout>
     </LinearLayout>
